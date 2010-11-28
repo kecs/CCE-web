@@ -1,0 +1,12 @@
+[submodule "lib/vendor/symfony"]
+	path = lib/vendor/symfony
+	url = git://github.com/Cassus/sfAutoconfigPlugin.git
+[submodule "plugins/sfAutoconfigPlugin"]
+	path = plugins/sfAutoconfigPlugin
+	url = git://github.com/Cassus/sfAutoconfigPlugin.git
+[submodule "plugins/sfAssetsManagerPlugin"]
+	path = plugins/sfAssetsManagerPlugin
+	url = http://github.com/vinyll/sfAssetsManagerPlugin.git
+[submodule "lib/vendor/ludo-jquery-plugins"]
+	path = lib/vendor/ludo-jquery-plugins
+	url = http://github.com/Cassus/jquery-treeTable.git
