@@ -1,0 +1,106 @@
+Profile:
+  abstract: true
+  columns:
+    id:               { type: integer(4), primary: true, comment: 'sfGuardUserId' }
+    full_name:        { type: string(255), notnull: true }
+    phone:            { type: string(20), notnull: true }
+Patient:
+  inheritance:
+    type: concrete
+    extends: Profile
+  columns:
+    social_security_number: { type: integer(4), notnull: true, comment: 'taj szam'}
+    born_at:                { type: string(255), notnull: true, comment: 'szuletesi hely, idopont'}
+    address:                { type: string(255), notnull: true, comment: 'lakcim' }
+  relations:
+    sfGuardUser:
+      local:       id
+      foreignType: one
+      owningSide:  true
+#TODO ennek kellene egy jó név
+Observer:
+  comment:                Hozzátartozó, felügyelő vagy gondozó
+  inheritance:
+    type: concrete
+    extends: Profile
+  columns:
+  relations:
+    sfGuardUser:
+      local:       id
+      foreign:     id
+      foreignType: one
+      owningSide:  true
+    Observants:
+      class:       Patient
+      refClass:    Observation
+Observation:
+  columns:
+    observer_id:  { type: integer(4), primary: true }
+    patient_id:   { type: integer(4), primary: true }
+  relations:
+    Observer:
+    Patient:
+Device: 
+  columns:
+    id:               { type: integer(4), primary: true, autoincrement: true }
+    guid:             { type: string(255), notnull: true, unique: true }
+# TODO Hát, ezt is jól át kellene majd még gondolni. Lehet a teljes datasink URL-t is átírni.
+DeviceDeployment:
+  columns:
+    id:               { type: integer(4), primary: true, autoincrement: true }
+    active:           { type: boolean,    notnull: true }
+    device_id:        { type: integer(4), notnull: true }
+    patient_id:       { type: integer(4), notnull: true }
+  relations:
+    Patient:
+    Device:
+      foreignAlias: Deployments
+Measurement:
+  abstract: true
+  columns:
+    id:                   { type: integer(4), primary: true, autoincrement: true }
+    device_deployment_id: { type: integer(4), notnull: true }
+  relations:
+    DeviceDeployment:
+TimedMeasurement:
+  abstract: true
+  inheritance:
+    type: concrete
+    extends: Measurement
+  columns:
+    timestamp:            { type: integer(4), notnull: true }
+  indexes:
+    timestamp:
+      fields: [timestamp]
+ScalarTimedMeasurement:
+  abstract: true
+  inheritance:
+    type: concrete
+    extends: TimedMeasurement
+  columns:
+    #data - has to be overwritten 
+EKGChannel:
+  inheritance:
+    type: concrete
+    extends: TimedMeasurement
+  columns:
+    battery_voltage:    { type: 'float(4,3)', notnull: true, comment: in volts }
+    started_by:         { type: string(10), notnull: true }
+    heart_rate:         { type: integer(2), notnull: true }
+    st_segment_elevation_ch1: { type: 'float(10,6)', notnull: true, comment: in volts }
+    st_segment_elevation_ch2: { type: 'float(10,6)', notnull: true, comment: in volts }
+    commonparams:       { type: array, notnull: true }
+    channelparams:      { type: array, notnull: true }
+    averages:           { type: array, notnull: true }
+  relations:
+    DeviceDeployment:
+DeviceActivityChannel:
+  inheritance:
+    type: concrete
+    extends: Measurement
+  columns:
+    device_name:    { type: string(255), notnull: true }
+    on_time:        { type: integer(4), notnull: true }
+    off_time:       { type: integer(4), notnull: true }
+  relations:
+    DeviceDeployment:    
