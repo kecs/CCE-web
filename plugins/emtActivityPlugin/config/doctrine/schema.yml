@@ -1,0 +1,8 @@
+Activity:
+  inheritance:
+    type: concrete
+    extends: Measurement
+  columns:
+    type:           { type: string(255), notnull: true }
+    start_time:     { type: integer(4), notnull: true }
+    end_time:       { type: integer(4), notnull: true }

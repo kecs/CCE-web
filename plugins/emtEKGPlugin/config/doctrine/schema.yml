@@ -1,0 +1,12 @@
+EKG:
+  inheritance:
+    type: concrete
+    extends: TimedMeasurement
+  columns:
+    started_by:         { type: string(10), notnull: true }
+    heart_rate:         { type: integer(2), notnull: true }
+    st_segment_elevation_ch1: { type: 'float(10,6)', notnull: true, comment: in volts }
+    st_segment_elevation_ch2: { type: 'float(10,6)', notnull: true, comment: in volts }
+    commonparams:       { type: array, notnull: true }
+    channelparams:      { type: array, notnull: true }
+    averages:           { type: array, notnull: true }
