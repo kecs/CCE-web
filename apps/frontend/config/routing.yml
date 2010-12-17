@@ -1,0 +1,20 @@
+# You can find more information about this file on the symfony website:
+# http://www.symfony-project.org/reference/1_4/en/10-Routing
+
+# default rules
+homepage:
+  url:    /
+  param:  { module: default, action: index }
+
+datasource:
+  url:      /datasource/:id/:channel
+  class:    sfDoctrineRoute
+  options:  { model: DataSource, type: object }
+  param:    { module: datasource, action: createMeasurement }
+  requirements:
+    entityId:         \d+
+    channel:          \S+
+    sf_method:        post
+
+default:
+  url:   /:entityType/:entityId/*
