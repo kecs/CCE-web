@@ -45,7 +45,7 @@ Locality:
     extends: Entity
     type: column_aggregation
   columns:
-    locality_type_id: { type: integer(4), notnull: true}
+    locality_type_id: { type: integer(4) }
   relations:
     LocalityType:
 LocalityType:
@@ -58,7 +58,7 @@ Window:
     extends: Entity
     type: column_aggregation
   columns:
-    locality_id:  { type: integer(4), notnull: true }
+    locality_id:  { type: integer(4) }
   relations:
     Locality:
 Door:
@@ -66,8 +66,8 @@ Door:
     extends: Entity
     type: column_aggregation
   columns:
-    locality_id:      { type: integer(4), notnull: true }
-    locality2_id:     { type: integer(4), notnull: true }
+    locality_id:      { type: integer(4) }
+    locality2_id:     { type: integer(4) }
   relations:
     Locality1:
     Locality2:
@@ -78,7 +78,7 @@ DataSource:
     extends: Entity
     type: column_aggregation
   columns:
-    remark:           { type: clob, notnull: true }
+    remark:           { type: clob }
   relations:
     Devices:
       class: Device
@@ -95,7 +95,7 @@ Device:
 Measurement:
   columns:
     id:               { type: integer(4), primary: true, autoincrement: true }
-    entity_id:         { type: integer(4), notnull: true }
+    entity_id:        { type: integer(4), notnull: true }
     data_source_id:   { type: integer(4), notnull: true }
   relations:
     About:

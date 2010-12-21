@@ -65,22 +65,18 @@ abstract class BaseEntity extends sfDoctrineRecord
              ));
         $this->hasColumn('locality_type_id', 'integer', 4, array(
              'type' => 'integer',
-             'notnull' => true,
              'length' => 4,
              ));
         $this->hasColumn('locality_id', 'integer', 4, array(
              'type' => 'integer',
-             'notnull' => true,
              'length' => 4,
              ));
         $this->hasColumn('locality2_id', 'integer', 4, array(
              'type' => 'integer',
-             'notnull' => true,
              'length' => 4,
              ));
         $this->hasColumn('remark', 'clob', null, array(
              'type' => 'clob',
-             'notnull' => true,
              ));
 
         $this->setSubClasses(array(
