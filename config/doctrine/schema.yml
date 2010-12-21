@@ -1,19 +1,21 @@
 Patient:
   columns:
     id:                     { type: integer(4), primary: true, autoincrement: true }
-    user_id:              { type: integer(4), notnull: true }
+    user_id:                { type: integer, notnull: true }
     social_security_number: { type: integer(4), notnull: true, comment: 'taj szam'}
     born_at:                { type: string(255), notnull: true, comment: 'szuletesi hely, idopont'}
     address:                { type: string(255), notnull: true, comment: 'lakcim' }
   relations:
-    User:
+    sfGuardUser:
+      local:      user_id
 Observer:
   comment:                Hozzátartozó, felügyelő vagy gondozó
   columns:
     id:                   { type: integer(4), primary: true, autoincrement: true }
-    user_id:              { type: integer(4), notnull: true }
+    user_id:                { type: integer, notnull: true }
   relations:
-    User:
+    sfGuardUser:
+      local:      user_id
     Observants:
       class:       Entity
       refClass:    Observation

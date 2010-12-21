@@ -10,20 +10,20 @@
  * @property integer $social_security_number
  * @property string $born_at
  * @property string $address
- * @property User $User
+ * @property sfGuardUser $sfGuardUser
  * 
- * @method integer getId()                     Returns the current record's "id" value
- * @method integer getUserId()                 Returns the current record's "user_id" value
- * @method integer getSocialSecurityNumber()   Returns the current record's "social_security_number" value
- * @method string  getBornAt()                 Returns the current record's "born_at" value
- * @method string  getAddress()                Returns the current record's "address" value
- * @method User    getUser()                   Returns the current record's "User" value
- * @method Patient setId()                     Sets the current record's "id" value
- * @method Patient setUserId()                 Sets the current record's "user_id" value
- * @method Patient setSocialSecurityNumber()   Sets the current record's "social_security_number" value
- * @method Patient setBornAt()                 Sets the current record's "born_at" value
- * @method Patient setAddress()                Sets the current record's "address" value
- * @method Patient setUser()                   Sets the current record's "User" value
+ * @method integer     getId()                     Returns the current record's "id" value
+ * @method integer     getUserId()                 Returns the current record's "user_id" value
+ * @method integer     getSocialSecurityNumber()   Returns the current record's "social_security_number" value
+ * @method string      getBornAt()                 Returns the current record's "born_at" value
+ * @method string      getAddress()                Returns the current record's "address" value
+ * @method sfGuardUser getSfGuardUser()            Returns the current record's "sfGuardUser" value
+ * @method Patient     setId()                     Sets the current record's "id" value
+ * @method Patient     setUserId()                 Sets the current record's "user_id" value
+ * @method Patient     setSocialSecurityNumber()   Sets the current record's "social_security_number" value
+ * @method Patient     setBornAt()                 Sets the current record's "born_at" value
+ * @method Patient     setAddress()                Sets the current record's "address" value
+ * @method Patient     setSfGuardUser()            Sets the current record's "sfGuardUser" value
  * 
  * @package    cce
  * @subpackage model
@@ -41,10 +41,9 @@ abstract class BasePatient extends sfDoctrineRecord
              'autoincrement' => true,
              'length' => 4,
              ));
-        $this->hasColumn('user_id', 'integer', 4, array(
+        $this->hasColumn('user_id', 'integer', null, array(
              'type' => 'integer',
              'notnull' => true,
-             'length' => 4,
              ));
         $this->hasColumn('social_security_number', 'integer', 4, array(
              'type' => 'integer',
@@ -69,7 +68,7 @@ abstract class BasePatient extends sfDoctrineRecord
     public function setUp()
     {
         parent::setUp();
-        $this->hasOne('User', array(
+        $this->hasOne('sfGuardUser', array(
              'local' => 'user_id',
              'foreign' => 'id'));
     }

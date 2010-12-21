@@ -1,0 +1,93 @@
+patient:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                patient
+    module:               patient
+    prefix_path:          /patient
+    column:               id
+    with_wildcard_routes: true
+
+device:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                Device
+    module:               device
+    prefix_path:          /device
+    column:               id
+    with_wildcard_routes: true
+
+data_source:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                DataSource
+    module:               data_source
+    prefix_path:          /data_source
+    column:               id
+    with_wildcard_routes: true
+
+door:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                Door
+    module:               door
+    prefix_path:          /door
+    column:               id
+    with_wildcard_routes: true
+
+window:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                Window
+    module:               window
+    prefix_path:          /window
+    column:               id
+    with_wildcard_routes: true
+
+locality_type:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                LocalityType
+    module:               locality_type
+    prefix_path:          /locality_type
+    column:               id
+    with_wildcard_routes: true
+
+locality:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                Locality
+    module:               locality
+    prefix_path:          /locality
+    column:               id
+    with_wildcard_routes: true
+
+home:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                Home
+    module:               home
+    prefix_path:          /home
+    column:               id
+    with_wildcard_routes: true
+
+entity:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                Entity
+    module:               entity
+    prefix_path:          /entity
+    column:               id
+    with_wildcard_routes: true
+
+observer:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                Observer
+    module:               observer
+    prefix_path:          /observer
+    column:               id
+    with_wildcard_routes: true
+
+homepage:
+  url:   /
+  param: { module: sfAdminDash, action: dashboard }

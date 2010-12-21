@@ -16,7 +16,7 @@ abstract class BasePatientForm extends BaseFormDoctrine
   {
     $this->setWidgets(array(
       'id'                     => new sfWidgetFormInputHidden(),
-      'user_id'                => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('User'), 'add_empty' => false)),
+      'user_id'                => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('sfGuardUser'), 'add_empty' => false)),
       'social_security_number' => new sfWidgetFormInputText(),
       'born_at'                => new sfWidgetFormInputText(),
       'address'                => new sfWidgetFormInputText(),
@@ -24,7 +24,7 @@ abstract class BasePatientForm extends BaseFormDoctrine
 
     $this->setValidators(array(
       'id'                     => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
-      'user_id'                => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('User'))),
+      'user_id'                => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('sfGuardUser'))),
       'social_security_number' => new sfValidatorInteger(),
       'born_at'                => new sfValidatorString(array('max_length' => 255)),
       'address'                => new sfValidatorString(array('max_length' => 255)),

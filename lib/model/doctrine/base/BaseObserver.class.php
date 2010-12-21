@@ -7,18 +7,18 @@
  * 
  * @property integer $id
  * @property integer $user_id
- * @property User $User
+ * @property sfGuardUser $sfGuardUser
  * @property Doctrine_Collection $Observants
  * @property Doctrine_Collection $Observation
  * 
  * @method integer             getId()          Returns the current record's "id" value
  * @method integer             getUserId()      Returns the current record's "user_id" value
- * @method User                getUser()        Returns the current record's "User" value
+ * @method sfGuardUser         getSfGuardUser() Returns the current record's "sfGuardUser" value
  * @method Doctrine_Collection getObservants()  Returns the current record's "Observants" collection
  * @method Doctrine_Collection getObservation() Returns the current record's "Observation" collection
  * @method Observer            setId()          Sets the current record's "id" value
  * @method Observer            setUserId()      Sets the current record's "user_id" value
- * @method Observer            setUser()        Sets the current record's "User" value
+ * @method Observer            setSfGuardUser() Sets the current record's "sfGuardUser" value
  * @method Observer            setObservants()  Sets the current record's "Observants" collection
  * @method Observer            setObservation() Sets the current record's "Observation" collection
  * 
@@ -38,17 +38,16 @@ abstract class BaseObserver extends sfDoctrineRecord
              'autoincrement' => true,
              'length' => 4,
              ));
-        $this->hasColumn('user_id', 'integer', 4, array(
+        $this->hasColumn('user_id', 'integer', null, array(
              'type' => 'integer',
              'notnull' => true,
-             'length' => 4,
              ));
     }
 
     public function setUp()
     {
         parent::setUp();
-        $this->hasOne('User', array(
+        $this->hasOne('sfGuardUser', array(
              'local' => 'user_id',
              'foreign' => 'id'));
 

@@ -10,6 +10,6 @@
 [submodule "lib/vendor/ludo-jquery-plugins"]
 	path = lib/vendor/ludo-jquery-plugins
 	url = http://github.com/Cassus/jquery-treeTable.git
-[submodule "plugins/doAuthPlugin"]
-	path = plugins/doAuthPlugin
-	url = git://github.com/DavertMik/doAuthPlugin.git
+[submodule "plugins/sfAdminDashPlugin"]
+	path = plugins/sfAdminDashPlugin
+	url = git://github.com/kbond/sfAdminDashPlugin.git

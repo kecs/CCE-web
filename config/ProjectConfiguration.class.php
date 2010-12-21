@@ -11,9 +11,11 @@ class ProjectConfiguration extends sfProjectConfiguration
     $this->enablePlugins(array(
         'sfDoctrinePlugin',
         'sfAutoconfigPlugin',
+        'sfDoctrineGuardPlugin',
+        'sfAdminDashPlugin',
+
         'emtActivityPlugin',
         'emtEKGPlugin',
-        'doAuthPlugin',
     ));
   }
 

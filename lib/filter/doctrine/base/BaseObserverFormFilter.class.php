@@ -13,12 +13,12 @@ abstract class BaseObserverFormFilter extends BaseFormFilterDoctrine
   public function setup()
   {
     $this->setWidgets(array(
-      'user_id'         => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('User'), 'add_empty' => true)),
+      'user_id'         => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('sfGuardUser'), 'add_empty' => true)),
       'observants_list' => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'Entity')),
     ));
 
     $this->setValidators(array(
-      'user_id'         => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('User'), 'column' => 'id')),
+      'user_id'         => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('sfGuardUser'), 'column' => 'id')),
       'observants_list' => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'Entity', 'required' => false)),
     ));
 

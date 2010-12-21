@@ -1,0 +1,39 @@
+# You can find more information about this file on the symfony website:
+# http://www.symfony-project.org/reference/1_4/en/11-App
+
+all:
+  sf_admin_dash:
+    site:                         CCE/web
+    include_jquery:               false
+    categories:
+      Users:
+        items:
+          Patients:
+            url:    patient
+          Observers:
+            url:    observer
+      Entities:
+        items:
+          All entities:
+            url:    entity
+          Home:
+            url:    home
+          Locality:
+            url:    locality
+          Window:
+            url:    window
+          Door:
+            url:    door
+          DataSource:
+            url:    data_source
+#      Measurements:
+#        items:
+#          Activity:
+#            url:    activity
+      Misc:
+        items:
+          LocalityType:
+            url:    locality_type
+          Device:
+            url:    device
+            
