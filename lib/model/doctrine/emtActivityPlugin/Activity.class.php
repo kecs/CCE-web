@@ -12,4 +12,13 @@
  */
 class Activity extends PluginActivity
 {
+  protected function loadData(sfWebRequest $request)
+  {
+    $body = $request->getRawBody();
+    $xml = simplexml_load_string($body); /* @var $xml SimpleXMLElement */
+    $this->type = $xml->type;
+    $this->start_time = $xml->start;
+    $this->end_time = $xml->end;
+  }
+
 }
