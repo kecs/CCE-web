@@ -10,7 +10,7 @@ datasource:
   url:      /datasource/:id/:channel
   class:    sfDoctrineRoute
   options:  { model: DataSource, type: object }
-  param:    { module: datasource, action: createMeasurement }
+  param:    { module: dataSource, action: createMeasurement }
   requirements:
     entityId:         \d+
     channel:          \S+
