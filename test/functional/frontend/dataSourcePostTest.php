@@ -2,7 +2,7 @@
 
 include(dirname(__FILE__) . '/../../bootstrap/functional.php');
 
-$b = new CceTestFunctionalFrontend(new sfBrowser());
+$b = new CceTestFunctionalFrontend(new cceBrowser());
 
 $b->info('Activity test');
 
@@ -13,7 +13,7 @@ $type = 'testActivityType';
 $startTime = '1292521231';
 $endTime = '1292621231';
 
-$body = <<<EOM
+$content = <<<EOM
 <?xml version="1.0" encoding="UTF-8"?>
 <activity>
   <type>$type</type>
@@ -22,7 +22,8 @@ $body = <<<EOM
 </activity>
 EOM;
 
-$b->post("/datasource/$sourceId/$channel", array('body' => $body))
+$b->setHttpHeader("Content-Type",	"application/xml");
+$b->post("/datasource/$sourceId/$channel", array('content' => $content))
         ->with('response')
         ->isStatusCode(200);
 

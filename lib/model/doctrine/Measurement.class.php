@@ -13,21 +13,21 @@
 class Measurement extends BaseMeasurement
 {
 
-  static public function create(DataSource $dataSource, sfWebRequest $request)
+  static public function create(DataSource $dataSource, $data)
   {
     $m = new static();
     $m->Source = $dataSource;
-    $m->loadAbout($request);
-    $m->loadData($request);
+    $m->loadAbout($data);
+    $m->loadData($data);
     return $m;
   }
 
-  protected function loadAbout(sfWebRequest $request)
+  protected function loadAbout($data)
   {
     $this->About = $this->Source->getNode()->getParent();
   }
 
-  protected function loadData(sfWebRequest $request)
+  protected function loadData($data)
   {
     
   }

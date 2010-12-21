@@ -14,13 +14,31 @@ class DataSource_createMeasurementAction extends sfAction
     $typeReflectionClass = new ReflectionClass($channel);
     if ($typeReflectionClass->isSubclassOf('Measurement'))
     {
-      $measurement = $channel::create($dataSource, $request);
+      $data = $this->requestToMeasurementData($request);
+      $measurement = $channel::create($dataSource, $data);
       $measurement->save();
       return $this->renderText('OK');
     }
     else
     {
       throw new UnknownChannelException($channel);
+    }
+  }
+
+  protected function requestToMeasurementData(sfWebRequest $request)
+  {
+
+    switch ($request->getFormat($request->getContentType()))
+    {
+      case 'decoded':
+        return $request->getParameterHolder()->getAll();
+
+      case 'xml':
+        return new SimpleXMLElement($request->getContent());
+
+      default:
+        throw new Exception("Unknown request format {$request->getRequestFormat()} (content-type: {$request->getContentType()})");
+        break;
     }
   }
 
