@@ -1,0 +1,11 @@
+Installation
+============
+
+* Enable plugin
+* For the frontend
+  1. copy routing definition from routing-frontend.yml to routing.yml
+  2. enable activity module in settings.yml (enabled_modules)
+* For the backend
+  1. copy routing definition from routing-backend.yml to routing.yml
+  2. enable activityBackend module in settings.yml (enabled_modules)
+  3. add item to backend dashboard in apps.yml (app/sf_admin_dash/...)

@@ -3,7 +3,7 @@
 
 all:
   sf_admin_dash:
-    site:                         CCE/web
+    site:                         CCE-web
     include_jquery:               false
     categories:
       Users:
@@ -26,10 +26,10 @@ all:
             url:    door
           DataSource:
             url:    data_source
-#      Measurements:
-#        items:
-#          Activity:
-#            url:    activity
+      Measurements:
+        items:
+          Activity:
+            url:    activity
       Misc:
         items:
           LocalityType:

@@ -1,0 +1,8 @@
+activity:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                activity
+    module:               activityBackend
+    prefix_path:          /activity
+    column:               id
+    with_wildcard_routes: true
