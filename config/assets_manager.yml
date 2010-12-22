@@ -1,3 +1,104 @@
-packages:
+packages: 
   jquery:
     js:     jquery-1.4.4.js
+
+  #jquery ui
+  jquery.ui.core:
+    js:
+      - jquery.ui/jquery.ui.core.js
+      - jquery.ui/jquery.ui.widget.js
+    css:
+      - jquery.ui/themes/cce/jquery.ui.core.css
+      - jquery.ui/themes/cce/jquery.ui.theme.css
+
+  jquery.ui.widget:
+    import: jquery.ui.core
+    js:
+      - jquery.ui/jquery.ui.widget.js
+
+  jquery.ui.position:
+    import: jquery.ui.core
+    js:
+      - jquery.ui/jquery.ui.position.js
+
+  jquery.ui.resizable:
+    import:
+      - jquery.ui.core
+      - jquery.ui.mouse
+      - jquery.ui.widget
+    js:
+      - jquery.ui/jquery.ui.resizable.js
+    css: jquery.ui/themes/cce/jquery.ui.resizable.css
+
+  jquery.ui.mouse:
+    import:
+      - jquery.ui.core
+      - jquery.ui.widget
+    js:
+      - jquery.ui/jquery.ui.mouse.js
+
+  jquery.ui.draggable:
+    import:
+      - jquery.ui.core
+      - jquery.ui.mouse
+      - jquery.ui.widget
+    js:
+      - jquery.ui/jquery.ui.draggable.js
+
+  jquery.ui.droppable:
+    import:
+      - jquery.ui.core
+      - jquery.ui.mouse
+      - jquery.ui.widget
+      - jquery.ui.draggable
+    js:
+      - jquery.ui/jquery.ui.droppable.js
+
+  jquery.ui.button:
+    import: jquery.ui.core
+    js:
+      - jquery.ui/jquery.ui.button.js
+    css: jquery.ui/themes/cce/jquery.ui.button.css
+
+  jquery.ui.accordion:
+    import: jquery.ui.core
+    js:
+      - jquery.ui/jquery.ui.accordion.js
+    css: jquery.ui/themes/cce/jquery.ui.accordion.css
+
+  jquery.ui.datepicker:
+    import:
+     - jquery.ui.core
+    js:
+      - jquery.ui/jquery.ui.datepicker.js
+    css: jquery.ui/themes/cce/jquery.ui.datepicker.css
+
+  jquery.ui.dialog:
+    import:
+      - jquery.ui.core
+      - jquery.ui.widget
+      - jquery.ui.button
+      - jquery.ui.draggable
+      - jquery.ui.mouse
+      - jquery.ui.position
+      - jquery.ui.resizable
+    js:
+      - jquery.ui/jquery.ui.dialog.js
+    css: jquery.ui/themes/cce/jquery.ui.dialog.css
+    
+  #jquery plugins
+  jquery.treetable:
+    import:
+      - jquery
+      - jquery.ui.droppable
+    js:
+      - jquery.treeTable/javascripts/jquery.treeTable.js
+    css:
+      - jquery.treeTable/stylesheets/jquery.treeTable.css
+
+  jquery.urlTemplate:
+    import:
+      - jquery
+    js:
+      - jquery.urlTemplate/jquery.urlTemplate.js
+    

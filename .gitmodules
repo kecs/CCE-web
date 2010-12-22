@@ -7,9 +7,9 @@
 [submodule "plugins/sfAssetsManagerPlugin"]
 	path = plugins/sfAssetsManagerPlugin
 	url = http://github.com/vinyll/sfAssetsManagerPlugin.git
-[submodule "lib/vendor/ludo-jquery-plugins"]
-	path = lib/vendor/ludo-jquery-plugins
-	url = http://github.com/Cassus/jquery-treeTable.git
 [submodule "plugins/sfAdminDashPlugin"]
 	path = plugins/sfAdminDashPlugin
 	url = git://github.com/kbond/sfAdminDashPlugin.git
+[submodule "lib/vendor/jquery-treeTable"]
+	path = lib/vendor/jquery-treeTable
+	url = git://github.com/Cassus/jquery-treeTable.git

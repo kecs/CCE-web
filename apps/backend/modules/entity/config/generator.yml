@@ -15,7 +15,10 @@ generator:
     config:
       actions: ~
       fields:  ~
-      list:    ~
+      list:
+#        display:  [ id, name ]
+        sort:     [ lft, asc ]
+        max_per_page: 1000
       filter:  ~
       form:    ~
       edit:    ~

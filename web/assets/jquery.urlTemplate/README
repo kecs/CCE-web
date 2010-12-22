@@ -1,0 +1,10 @@
+Example usage:
+
+	var urlTemplate = $.urlTemplate("<?php
+	echo url_for("DisplayMeasurements", array(
+		'patientId' => $patient->id,
+		'from' => ':from',
+		'to' => ':to',
+		'measurementType' => $deviceType,
+	))
+	?>");

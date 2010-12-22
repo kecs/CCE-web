@@ -1,0 +1,13 @@
+packages:
+  sf_admin_page:
+    css:
+      - <?php echo sfConfig::get('sf_admin_module_web_dir') ?>/css/global.css
+      - <?php echo sfConfig::get('sf_admin_module_web_dir') ?>/css/default.css
+
+  sf_tree_admin_page:
+    import:
+      - sf_admin_page
+      - jquery.treetable
+      - jquery.urlTemplate
+    css:
+      - treeAdmin.css
