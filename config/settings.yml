@@ -1,0 +1,4 @@
+all:
+  .settings:
+    web_js_dir_name:        assets
+    web_css_dir_name:       assets

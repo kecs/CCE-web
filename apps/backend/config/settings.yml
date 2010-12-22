@@ -40,6 +40,10 @@ all:
     secure_module:          sfGuardAuth
     secure_action:          secure
 
+    standard_helpers:
+      - Partial
+      - sfAssetsManager
+
     enabled_modules:
       - sfAdminDash
       - sfGuardAuth
