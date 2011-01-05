@@ -1,0 +1,13 @@
+Installation
+============
+
+    git clone http://github.com/Cassus/CCE-web.git
+    cd CCE-web
+    git submodule update --init --recursive
+    cp config/autoconfig_template.yml config/autoconfig.yml
+    #create database user and edit config/autoconfig.yml
+    $EDITOR config/autoconfig.yml
+    mkdir log cache
+    ./symfony project:autoconfig config/autoconfig.yml
+    ./symfony project:permissions
+    ./symfony doctrine:build --db --and-migrate --and-load
