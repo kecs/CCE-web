@@ -1,0 +1,123 @@
+sfGuardGroup:
+  sfGuardGroup_admin:
+    name: admin
+    description: 'Administrator group'
+    created_at: '2010-03-30 18:47:39'
+    updated_at: '2010-03-30 18:47:39'
+sfGuardPermission:
+  sfGuardPermission_admin:
+    name: admin
+    description: 'Administrator permission'
+    created_at: '2010-03-30 18:47:39'
+    updated_at: '2010-03-30 18:47:39'
+sfGuardGroupPermission:
+  sfGuardGroupPermission_admin:
+    Group: sfGuardGroup_admin
+    Permission: sfGuardPermission_admin
+    created_at: '2010-03-30 18:47:39'
+    updated_at: '2010-03-30 18:47:39'
+sfGuardUserGroup:
+  sfGuardUserGroup_admin:
+    User: sfGuardUser_admin
+    Group: sfGuardGroup_admin
+    created_at: '2010-03-30 18:47:39'
+    updated_at: '2010-03-30 18:47:39'
+sfGuardUser:
+  sfGuardUser_admin:
+    username: admin@cce.emt.bme.hu
+    algorithm: sha1
+    password: admin
+    is_active: true
+    is_super_admin: true
+    last_login: null
+    created_at: '2010-03-30 18:47:39'
+    updated_at: '2010-07-20 12:15:28'
+  sfGuardUser_patient1:
+    username: patient1@cce.emt.bme.hu
+    algorithm: sha1
+    password: patient1
+    is_active: true
+    is_super_admin: false
+    last_login: null
+    created_at: '2010-03-30 18:47:39'
+    updated_at: '2010-03-30 18:47:39'
+  sfGuardUser_doctor1:
+    username: doctor1@cce.emt.bme.hu
+    algorithm: sha1
+    password: doctor1
+    is_active: true
+    is_super_admin: false
+    last_login: null
+    created_at: '2010-03-30 18:47:39'
+    updated_at: '2010-07-08 09:24:57'
+  sfGuardUser_patient2:
+    username: patient2@cce.emt.bme.hu
+    algorithm: sha1
+    password: patient2
+    is_active: true
+    is_super_admin: false
+    last_login: null
+    created_at: '2010-03-30 18:47:39'
+    updated_at: '2010-03-30 18:47:39'
+  sfGuardUser_doctor2:
+    username: doctor2@cce.emt.bme.hu
+    algorithm: sha1
+    password: doctor2
+    is_active: true
+    is_super_admin: false
+    last_login: null
+    created_at: '2010-07-08 11:22:48'
+    updated_at: '2010-07-08 11:22:48'
+  sfGuardUser_hanak_peter:
+    username: hanak@emt.bme.hu
+    algorithm: sha1
+    password: pibba112sg
+    is_active: true
+    is_super_admin: false
+    last_login: null
+    created_at: '2010-06-30 08:51:52'
+    updated_at: '2010-07-20 09:22:21'
+  sfGuardUser_horvath_lajos:
+    username: lhorvath.profitexpert@invitel.hu
+    algorithm: sha1
+    password: pibba112sg
+    is_active: true
+    is_super_admin: false
+    last_login: null
+    created_at: '2010-07-07 11:54:25'
+    updated_at: '2010-07-20 06:04:22'
+  sfGuardUser_vajda_lorant:
+    username: vajda@ikti.hu
+    algorithm: sha1
+    password: pibba112sg
+    is_active: true
+    is_super_admin: false
+    last_login: null
+    created_at: '2010-07-07 14:07:38'
+    updated_at: '2010-07-15 06:11:40'
+Patient:
+  Patient_1:
+    sfGuardUser: sfGuardUser_patient1
+    social_security_number: '000 000 001'
+    born_at: 'Budapest, 1982. ápr. 11.'
+    address: '1117 Budapest Irinyi J. utca 42.'
+  Patient_2:
+    sfGuardUser: sfGuardUser_patient2
+    social_security_number: '000 000 002'
+    born_at: 'Budapest, 1982. ápr. 11.'
+    address: '1117 Budapest Irinyi J. utca 42.'
+  Patient_hanak_peter:
+    sfGuardUser: sfGuardUser_hanak_peter
+    social_security_number: '100 000 001'
+    born_at: 'Budapest, 1945. dec. 12.'
+    address: '2131 Göd, Lánchíd u. 8.'
+  Patient_horvath_lajos:
+    sfGuardUser: sfGuardUser_horvath_lajos
+    social_security_number: '100 000 002'
+    born_at: '---'
+    address: '---'
+  Patient_vajda_lorant:
+    sfGuardUser: sfGuardUser_vajda_lorant
+    social_security_number: '100 000 003'
+    born_at: '---'
+    address: '---'
