@@ -41,11 +41,6 @@ class Addentity extends Doctrine_Migration_Base
               'type' => 'integer',
               'length' => 4,
              ),
-             'remark' => 
-             array(
-              'type' => 'clob',
-              'length' => NULL,
-             ),
              'root_id' => 
              array(
               'type' => 'integer',

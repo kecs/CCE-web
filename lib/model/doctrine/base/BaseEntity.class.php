@@ -11,7 +11,6 @@
  * @property integer $locality_type_id
  * @property integer $locality_id
  * @property integer $locality2_id
- * @property clob $remark
  * @property Doctrine_Collection $Observers
  * @property Doctrine_Collection $Observation
  * @property Doctrine_Collection $Measurement
@@ -22,7 +21,6 @@
  * @method integer             getLocalityTypeId()   Returns the current record's "locality_type_id" value
  * @method integer             getLocalityId()       Returns the current record's "locality_id" value
  * @method integer             getLocality2Id()      Returns the current record's "locality2_id" value
- * @method clob                getRemark()           Returns the current record's "remark" value
  * @method Doctrine_Collection getObservers()        Returns the current record's "Observers" collection
  * @method Doctrine_Collection getObservation()      Returns the current record's "Observation" collection
  * @method Doctrine_Collection getMeasurement()      Returns the current record's "Measurement" collection
@@ -32,7 +30,6 @@
  * @method Entity              setLocalityTypeId()   Sets the current record's "locality_type_id" value
  * @method Entity              setLocalityId()       Sets the current record's "locality_id" value
  * @method Entity              setLocality2Id()      Sets the current record's "locality2_id" value
- * @method Entity              setRemark()           Sets the current record's "remark" value
  * @method Entity              setObservers()        Sets the current record's "Observers" collection
  * @method Entity              setObservation()      Sets the current record's "Observation" collection
  * @method Entity              setMeasurement()      Sets the current record's "Measurement" collection
@@ -74,9 +71,6 @@ abstract class BaseEntity extends sfDoctrineRecord
         $this->hasColumn('locality2_id', 'integer', 4, array(
              'type' => 'integer',
              'length' => 4,
-             ));
-        $this->hasColumn('remark', 'clob', null, array(
-             'type' => 'clob',
              ));
 
         $this->setSubClasses(array(

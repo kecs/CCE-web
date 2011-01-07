@@ -79,8 +79,6 @@ DataSource:
   inheritance:
     extends: Entity
     type: column_aggregation
-  columns:
-    remark:           { type: clob }
   relations:
     Devices:
       class: Device
