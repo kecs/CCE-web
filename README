@@ -11,3 +11,15 @@ Installation
     ./symfony project:autoconfig config/autoconfig.yml
     ./symfony project:permissions
     ./symfony doctrine:build --db --and-migrate --and-load
+
+Development
+===========
+
+Regenerate base model and DB migrations
+---------------------------------------
+
+    rm -r lib/migration/doctrine/
+    symfony cc &&
+    symfony doctrine:build --all-classes &&
+    symfony doctrine:generate-migrations-models &&
+    symfony doctrine:build --db --and-migrate --and-load --no-confirmation
