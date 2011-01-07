@@ -14,7 +14,6 @@ class ProjectConfiguration extends sfProjectConfiguration
         'sfDoctrineGuardPlugin',
         'sfAdminDashPlugin',
         'sfAssetsManagerPlugin',
-        'sfDoctrineNestedSetAdminThemePlugin',
         'sfDoctrineNestedSetPlugin',
 
         'emtActivityPlugin',

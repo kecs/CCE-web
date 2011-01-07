@@ -1,13 +1,16 @@
 packages:
-  sf_admin_page:
-    css:
-      - <?php echo sfConfig::get('sf_admin_module_web_dir') ?>/css/global.css
-      - <?php echo sfConfig::get('sf_admin_module_web_dir') ?>/css/default.css
-
-  sf_tree_admin_page:
+  sfJqueryTree:
     import:
-      - sf_admin_page
-      - jquery.treetable
-      - jquery.urlTemplate
+      - jquery
     css:
-      - treeAdmin.css
+      - TreeManager/screen.css
+      - jsTree/themes/default/style.css
+    js:
+      - jsTree/jquery.cookie.js
+      - jsTree/jquery.tree.min.js
+      - jsTree/plugins/jquery.tree.cookie.js
+
+  sfJqueryTree.contextMenu:
+    import: sfJqueryTree
+    js:
+      - jsTree/plugins/jquery.tree.contextmenu.js

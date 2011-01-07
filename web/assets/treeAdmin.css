@@ -1,9 +1,0 @@
-#sf_admin_container .treeTable tr.selected, #sf_admin_container .treeTable tr.accept {
-  background-color: #3875d7;
-  color: #fff;
-}
-
-#sf_admin_container .treeTable .ui-draggable-dragging {
-  border-width: 0;
-}
-

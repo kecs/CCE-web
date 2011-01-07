@@ -10,6 +10,4 @@
 [submodule "plugins/sfAdminDashPlugin"]
 	path = plugins/sfAdminDashPlugin
 	url = git://github.com/kbond/sfAdminDashPlugin.git
-[submodule "lib/vendor/jquery-treeTable"]
-	path = lib/vendor/jquery-treeTable
-	url = git://github.com/Cassus/jquery-treeTable.git
+

@@ -79,43 +79,6 @@ home:
     column:               id
     with_wildcard_routes: true
 
-entity:
-  class: sfDoctrineRouteCollection
-  options:
-    model:                Entity
-    module:               entity
-    prefix_path:          /entity
-    column:               id
-    with_wildcard_routes: true
-
-entity_moveAsFirstChild:
-  class:    sfDoctrineRoute
-  url:      /entity/:id/moveAsFirstChildOf/:parentId
-  options:  { model: Entity, type: object }
-  param:    { module: entity, action: moveAsFirstChild }
-  requirements:
-    id: \d+
-    prentId: \d+
-    sf_method: [post]
-entity_moveAsPrevSibling:
-  class:    sfDoctrineRoute
-  url:      /entity/:id/moveAsPrevSiblingOf/:nextSiblingId
-  options:  { model: Entity, type: object }
-  param:    { module: entity, action: moveAsPrevSibling }
-  requirements:
-    id: \d+
-    nextSiblingId: \d+
-    sf_method: [post]
-entity_moveAsNextSibling:
-  class:    sfDoctrineRoute
-  url:      /entity/:id/moveAsNextSiblingOf/:prevSiblingId
-  options:  { model: Entity, type: object }
-  param:    { module: entity, action: moveAsNextSibling }
-  requirements:
-    id: \d+
-    prevSiblingId: \d+
-    sf_method: [post]
-
 observer:
   class: sfDoctrineRouteCollection
   options:
@@ -124,6 +87,22 @@ observer:
     prefix_path:          /observer
     column:               id
     with_wildcard_routes: true
+
+entity:
+  url:  /entity
+  param: { module: entity, action: index }
+entity_delete:
+  class:    sfDoctrineRoute
+  url:      /entity/:id
+  options:  { model: Entity, type: object }
+  param:    { module: entity, action: delete }
+  requirements:
+    id: \d+
+    sf_method: [delete]
+entity_wildcard:
+  url:  /entity/:action/*
+  param: { module: entity }
+  
 
 homepage:
   url:   /

@@ -1,1 +1,0 @@
-[?php load_assets('sf_tree_admin_page') ?]

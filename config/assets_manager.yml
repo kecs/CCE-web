@@ -87,15 +87,6 @@ packages:
     css: jquery.ui/themes/cce/jquery.ui.dialog.css
     
   #jquery plugins
-  jquery.treetable:
-    import:
-      - jquery
-      - jquery.ui.droppable
-    js:
-      - jquery.treeTable/javascripts/jquery.treeTable.js
-    css:
-      - jquery.treeTable/stylesheets/jquery.treeTable.css
-
   jquery.urlTemplate:
     import:
       - jquery
