@@ -12,4 +12,10 @@
  */
 class Entity extends BaseEntity
 {
+
+  public function __toString()
+  {
+    return "{$this->type} ({$this->id})";
+  }
+
 }
