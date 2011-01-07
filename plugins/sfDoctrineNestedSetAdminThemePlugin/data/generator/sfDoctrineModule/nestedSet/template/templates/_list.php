@@ -63,7 +63,7 @@
       initialState: 'expanded',
       draggable : true,
       sortable : true,
-      dragTarget : "#main_list tr td.sf_admin_list_td_id",
+      dragTarget : "#main_list tr td:nth-child(2)",
       dropTarget : "#main_list tbody tr",
       branchMovedAsFirstChild : function(node, parent) {
         var url = $.urlTemplate("[?php

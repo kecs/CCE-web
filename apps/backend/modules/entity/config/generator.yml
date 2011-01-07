@@ -16,7 +16,7 @@ generator:
       actions: ~
       fields:  ~
       list:
-#        display:  [ id, name ]
+        display:  [ type, comment ]
         sort:     [ lft, asc ]
         max_per_page: 1000
       filter:  ~
