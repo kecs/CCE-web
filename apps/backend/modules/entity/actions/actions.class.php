@@ -15,7 +15,6 @@ class EntityActions extends sfActions
       if (!$request->hasParameter('root') && !$this->modelHasManyRoots())
       {
         $this->redirect(url_for($request->getParameter('module') . '/' . $request->getParameter('action') . '?root=1'), true);
-        return sfView::NONE;
       }
       elseif (!$request->hasParameter('root') && $this->modelHasManyRoots())
       {
@@ -28,20 +27,15 @@ class EntityActions extends sfActions
     }
   }
 
-  public function executeAdd_child()
+  public function executeAddChild()
   {
-    $parent_id = $this->getRequestParameter('parent_id');
-    $model = $this->getRequestParameter('model');
-    $field = $this->getRequestParameter('field');
-    $value = $this->getRequestParameter('value');
-    $record = Doctrine_Core::getTable($model)->find($parent_id);
+    $parent = $this->getRoute()->getObject();
+    $type = $this->getRequestParameter('type');
 
-    $child = new $model;
-    $child->set($field, $value);
-    $record->getNode()->addChild($child);
+    $child = new $type;
+    $parent->getNode()->addChild($child);
 
-    $this->getResponse()->setHttpHeader('Content-type', 'application/json');
-    return $this->renderText(json_encode($child->toArray()));
+    return $this->renderJSON($child->toArray());
   }
 
   public function executeAdd_root()
@@ -114,10 +108,9 @@ class EntityActions extends sfActions
     return $this->renderText($record->toArray());
   }
 
-  /*
+  /**
    * return exception if Model is not defined as NestedSet
    */
-
   private function executeControl()
   {
     if (!Doctrine_Core::getTable($this->model)->isTree())
@@ -128,10 +121,9 @@ class EntityActions extends sfActions
     return true;
   }
 
-  /*
+  /**
    * Returns the roots
    */
-
   private function getRoots($model)
   {
     $tree = Doctrine_Core::getTable($model)->getTree();
@@ -159,6 +151,12 @@ class EntityActions extends sfActions
     $template = Doctrine_Core::getTable($this->model)->getTemplate('NestedSet');
     $options = $template->option('treeOptions');
     return isset($options['hasManyRoots']) && $options['hasManyRoots'];
+  }
+
+  private function renderJSON($data)
+  {
+    //$this->getResponse()->setHttpHeader('Content-type', 'application/json');
+    return $this->renderText(json_encode($data));
   }
 
 }

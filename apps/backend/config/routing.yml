@@ -99,6 +99,15 @@ entity_delete:
   requirements:
     id: \d+
     sf_method: [delete]
+entity_addChild:
+  class:    sfDoctrineRoute
+  url:      /entity/:id/addChild
+  options:  { model: Entity, type: object }
+  param:    { module: entity, action: addChild }
+  requirements:
+    id: \d+
+    sf_method: [post]
+
 entity_wildcard:
   url:  /entity/:action/*
   param: { module: entity }

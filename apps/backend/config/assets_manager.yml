@@ -4,13 +4,6 @@ packages:
       - jquery
     css:
       - TreeManager/screen.css
-      - jsTree/themes/default/style.css
+      - TreeManager/style.css
     js:
-      - jsTree/jquery.cookie.js
-      - jsTree/jquery.tree.min.js
-      - jsTree/plugins/jquery.tree.cookie.js
-
-  sfJqueryTree.contextMenu:
-    import: sfJqueryTree
-    js:
-      - jsTree/plugins/jquery.tree.contextmenu.js
+      - jquery.jsTree/jquery.jstree.js

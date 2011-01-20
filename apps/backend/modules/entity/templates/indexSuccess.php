@@ -2,8 +2,6 @@
 <?php $root = 0 ?>
 
 <?php load_assets('sfJqueryTree') ?>
-<?php if (sfConfig::get('app_sfJqueryTree_withContextMenu', true))
-  load_assets('sfJqueryTree.contextMenu') ?>
 
 <?php use_helper('I18N', 'Date', 'JavascriptBase') ?>
 <?php include_partial('entity/assets') ?>
