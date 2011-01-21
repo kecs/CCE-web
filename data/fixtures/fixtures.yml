@@ -2,6 +2,7 @@ Entity:
   home:
     id: 1
     type: Home
+    name: "Mézeskalácsház"
     root_id: 1
     lft: 1
     rgt: 4
@@ -11,6 +12,7 @@ DataSource:
   activtySensor:
     id: 5
     type: DataSource
+    name: "Mézeskalácsház aktivitás"
     root_id: 1
     lft: 2
     rgt: 3

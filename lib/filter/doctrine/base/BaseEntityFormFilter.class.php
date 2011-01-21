@@ -13,7 +13,8 @@ abstract class BaseEntityFormFilter extends BaseFormFilterDoctrine
   public function setup()
   {
     $this->setWidgets(array(
-      'comment'          => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'name'             => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'comment'          => new sfWidgetFormFilterInput(),
       'type'             => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'locality_type_id' => new sfWidgetFormFilterInput(),
       'locality_id'      => new sfWidgetFormFilterInput(),
@@ -26,6 +27,7 @@ abstract class BaseEntityFormFilter extends BaseFormFilterDoctrine
     ));
 
     $this->setValidators(array(
+      'name'             => new sfValidatorPass(array('required' => false)),
       'comment'          => new sfValidatorPass(array('required' => false)),
       'type'             => new sfValidatorPass(array('required' => false)),
       'locality_type_id' => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
@@ -74,6 +76,7 @@ abstract class BaseEntityFormFilter extends BaseFormFilterDoctrine
   {
     return array(
       'id'               => 'Number',
+      'name'             => 'Text',
       'comment'          => 'Text',
       'type'             => 'Text',
       'locality_type_id' => 'Number',

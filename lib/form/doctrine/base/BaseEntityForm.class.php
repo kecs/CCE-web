@@ -16,7 +16,8 @@ abstract class BaseEntityForm extends BaseFormDoctrine
   {
     $this->setWidgets(array(
       'id'               => new sfWidgetFormInputHidden(),
-      'comment'          => new sfWidgetFormInputText(),
+      'name'             => new sfWidgetFormInputText(),
+      'comment'          => new sfWidgetFormTextarea(),
       'type'             => new sfWidgetFormInputText(),
       'locality_type_id' => new sfWidgetFormInputText(),
       'locality_id'      => new sfWidgetFormInputText(),
@@ -30,7 +31,8 @@ abstract class BaseEntityForm extends BaseFormDoctrine
 
     $this->setValidators(array(
       'id'               => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
-      'comment'          => new sfValidatorString(array('max_length' => 255)),
+      'name'             => new sfValidatorString(array('max_length' => 255)),
+      'comment'          => new sfValidatorString(array('required' => false)),
       'type'             => new sfValidatorString(array('max_length' => 255)),
       'locality_type_id' => new sfValidatorInteger(array('required' => false)),
       'locality_id'      => new sfValidatorInteger(array('required' => false)),

@@ -14,11 +14,16 @@ class Addentity extends Doctrine_Migration_Base
               'autoincrement' => true,
               'length' => 4,
              ),
-             'comment' => 
+             'name' => 
              array(
               'type' => 'string',
               'notnull' => true,
               'length' => 255,
+             ),
+             'comment' => 
+             array(
+              'type' => 'clob',
+              'length' => NULL,
              ),
              'type' => 
              array(
