@@ -3,28 +3,43 @@
 class EntityActions extends sfActions
 {
 
-  private $model = 'Entity';
+  /**
+   * @return EntityTable
+   */
+  private function getTable()
+  {
+    return EntityTable::getInstance();
+  }
+
+  /**
+   * @return Doctrine_Tree_NestedSet
+   */
+  private function getTree()
+  {
+    return $this->getTable()->getTree();
+  }
+
+  public function executeIndexRoots(sfWebRequest $request)
+  {
+    $this->roots = $this->getTree()->fetchRoots();
+  }
 
   public function executeIndex(sfWebRequest $request)
   {
-    if (($this->records = $this->executeControl()))
-    {
-      $this->hasManyRoots = $this->modelHasManyRoots();
-      $request = $this->getRequest();
+    $root = $this->getRoute()->getObject(); /* @var $root Entity */
+    $node = $root->getNode(); /* @var $node Doctrine_Node_NestedSet */
+    $this->records = $node->getDescendants(null, true);
+  }
 
-      if (!$request->hasParameter('root') && !$this->modelHasManyRoots())
-      {
-        $this->redirect(url_for($request->getParameter('module') . '/' . $request->getParameter('action') . '?root=1'), true);
-      }
-      elseif (!$request->hasParameter('root') && $this->modelHasManyRoots())
-      {
-        $this->roots = $this->getRoots($this->model);
-      }
-      else
-      {
-        $this->records = $this->getTree($this->model, $request->getParameter('root'));
-      }
-    }
+  public function executeAddRoot(sfWebRequest $request)
+  {
+    $root = new Home();
+    $root->save(); //create ID
+    $this->getTree()->createRoot($root); //make into a root
+
+    $this->getUser()->setFlash('notice', "'{$root}' was created.");
+
+    $this->redirect($this->generateUrl('entity'));
   }
 
   public function executeAddChild()
@@ -37,38 +52,33 @@ class EntityActions extends sfActions
 
     return $this->renderJSON($child->toArray());
   }
-
-  public function executeAdd_root()
+  
+  public function executeMove(sfWebRequest $request)
   {
-    $type = $this->getRequestParameter('type');
+    $o = $this->getRoute()->getObject(); /* @var $o Entity */
+    $this->forward404Unless($ref = $this->getTable()->find($request->getParameter('referenceId'))); /* @var $ref Entity */
+    switch ($position = $request->getParameter('position'))
+    {
+      case 'before':
+        $o->getNode()->moveAsPrevSiblingOf($ref);
+        break;
 
-    $root = new $type;
-    $root->save();
+      case 'inside':
+        $o->getNode()->moveAsLastChildOf($ref);
+        break;
+      
+      case 'after':
+        $o->getNode()->moveAsNextSiblingOf($ref);
+        break;
 
-    Doctrine_Core::getTable($type)->getTree()->createRoot($root);
-
-
-    //return $this->redirect($this->generateUrl(strtolower($type) . '_edit', $root));
-    $this->getUser()->setFlash('notice', "'{$root}' was created.");
-    $this->redirect($this->generateUrl('entity'));
+      default:
+        throw new Exception("Unknown position '$position'.");
+        break;
+    }
+    return $this->renderJSON($o->toArray());
   }
 
-  public function executeEdit_field()
-  {
-    $id = $this->getRequestParameter('id');
-    $model = $this->getRequestParameter('model');
-    $field = $this->getRequestParameter('field');
-    $value = $this->getRequestParameter('value');
-
-    $record = Doctrine_Core::getTable($model)->find($id);
-    $record->set($field, $value);
-    $record->save();
-
-    $this->getResponse()->setHttpHeader('Content-type', 'application/json');
-    return $this->renderText(json_encode($record->toArray()));
-  }
-
-  /**
+    /**
    * Recursively delete
    */
   public function executeDelete()
@@ -78,79 +88,6 @@ class EntityActions extends sfActions
 
     $this->getUser()->setFlash('notice', "'{$record}' was deleted.");
     $this->redirect($this->generateUrl('entity'));
-  }
-
-  public function executeMove()
-  {
-    $id = $this->getRequestParameter('id');
-    $to_id = $this->getRequestParameter('to_id');
-    $model = $this->getRequestParameter('model');
-    $movetype = $this->getRequestParameter('movetype');
-
-    $record = Doctrine_Core::getTable($model)->find($id);
-    $dest = Doctrine_Core::getTable($model)->find($to_id);
-
-    if ($movetype == 'inside')
-    {
-      //$prev = $record->getNode()->getPrevSibling();
-      $record->getNode()->moveAsLastChildOf($dest);
-    }
-    else if ($movetype == 'after')
-    {
-      $record->getNode()->moveAsNextSiblingOf($dest);
-    }
-    else if ($movetype == 'before')
-    {
-      //$next = $record->getNode()->getNextSibling();
-      $record->getNode()->moveAsPrevSiblingOf($dest);
-    }
-    $this->getResponse()->setHttpHeader('Content-type', 'application/json');
-    return $this->renderText($record->toArray());
-  }
-
-  /**
-   * return exception if Model is not defined as NestedSet
-   */
-  private function executeControl()
-  {
-    if (!Doctrine_Core::getTable($this->model)->isTree())
-    {
-      throw new Exception('Model "' . $this->model . '" is not a NestedSet');
-      return false;
-    }
-    return true;
-  }
-
-  /**
-   * Returns the roots
-   */
-  private function getRoots($model)
-  {
-    $tree = Doctrine_Core::getTable($model)->getTree();
-    return $tree->fetchRoots();
-  }
-
-  private function getTree($model, $rootId = null)
-  {
-    $tree = Doctrine_Core::getTable($model)->getTree();
-    $options = array();
-    if ($rootId !== null)
-    {
-      $options['root_id'] = $rootId;
-    }
-    return $tree->fetchTree($options);
-  }
-
-  private function modelIsNestedSet()
-  {
-    return $this->options['treeImpl'] == 'NestedSet';
-  }
-
-  private function modelHasManyRoots()
-  {
-    $template = Doctrine_Core::getTable($this->model)->getTemplate('NestedSet');
-    $options = $template->option('treeOptions');
-    return isset($options['hasManyRoots']) && $options['hasManyRoots'];
   }
 
   private function renderJSON($data)

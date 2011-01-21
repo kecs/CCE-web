@@ -18,4 +18,14 @@ class Entity extends BaseEntity
     return "{$this->type} ({$this->id})";
   }
 
+  /**
+   * getter for node associated with this record
+   *
+   * @return Doctrine_Node_NestedSet
+   */
+  public function getNode()
+  {
+    return parent::getNode();
+  }
+
 }

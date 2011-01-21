@@ -1,5 +1,7 @@
+<?php load_assets('sfJqueryTree') ?>
+<?php load_assets('jquery.urlTemplate') ?>
 <?php if (isset($records) && is_object($records) && count($records) > 0): ?>
-  <div id="<?php echo strtolower($model); ?>-nested-set">
+  <div id="entity-nested-set">
     <ul class="nested_set_list">
       <?php $prevLevel = 0; ?>      
       <?php foreach ($records as $record): ?>
@@ -26,7 +28,8 @@
             </div>
             <div class="nodeinteraction deletenode">
               <form action="<?php echo url_for('entity_delete', $record) ?>" method="POST">
-                <input type="submit" value="<?php echo __('Delete Node') ?>"></input>
+                <input type="hidden" name="sf_method" value="delete" />
+                <input type="submit" value="<?php echo __('Delete Node') ?>" />
               </form>
             </div>
           </div>
@@ -42,77 +45,43 @@
   $(function () {
     
     function getId(node) {
-      return NODE.attr("id").replace('phtml_','');
+      return node.attr("id").replace('phtml_','');
     }
     
-    $("#<?php echo strtolower($model); ?>-nested-set").jstree({
+    function onMove(event, data){
+      var movedNode = data.rslt.o;
+      var referenceNode = data.rslt.r;
+      var position = data.rslt.p;
+      var rollback = data.rlbk;
+      $('.error, .notice').remove();
+      $('.nested_set_manager_holder').before('<div class="waiting"><?php echo __('Sending data to server.'); ?></div>');
+      $.ajax({
+        type: "POST",
+        url : $.urlTemplate('<?php echo url_for('entity_move', array('id' => ':id')) ?>').generate({id: getId(movedNode)}),
+        dataType : 'json',
+        data : {
+          referenceId: getId(referenceNode),
+          position: position
+        },
+        complete : function(){
+          $('.waiting').remove();
+        },
+        success : function (data, textStatus) {
+          $('.nested_set_manager_holder').before('<div class="notice"><?php echo __('The item was moved successfully.'); ?></div>');
+          jQuery.jstree._reference(referenceNode).open_node(referenceNode);
+        },
+        error : function (data, textStatus) {
+          $('.nested_set_manager_holder').before('<div class="error"><?php echo __('Error while moving the item.'); ?></div>');
+          $.jstree.rollback(rollback);
+        }
+      });
+    };
+    
+    $("#entity-nested-set").jstree({
       plugins : [ "themes", "html_data", 'dnd' ]
     })
-    .jstree('open_all');
-
-    /*
-        onmove: function(NODE, REF_NODE, TYPE, TREE_OBJ, RB){
-          $('.error, .notice').remove();
-          $('.nested_set_manager_holder').before('<div class="waiting"><?php echo __('Sending data to server.'); ?></div>');
-          $.ajax({
-            type: "POST",
-            url : '<?php echo url_for('entity/Move'); ?>',
-            dataType : 'json',
-            data : 'root=<?php echo $root; ?>&model=<?php echo $model; ?>&id=' + NODE.id.replace('phtml_','') +'&to_id=' + REF_NODE.id.replace('phtml_','') + '&movetype=' + TYPE,
-            complete : function(){
-              $('.waiting').remove();
-            },
-            success : function (data, textStatus) {
-              $('.nested_set_manager_holder').before('<div class="notice"><?php echo __('The item was moved successfully.'); ?></div>');
-            },
-            error : function (data, textStatus) {
-              $('.nested_set_manager_holder').before('<div class="error"><?php echo __('Error while moving the item.'); ?></div>');
-              $.tree.rollback(RB);
-            }
-          });
-        },
-
-        ondelete: function(NODE, TREE_OBJ, RB){
-          $('.error, .notice').remove();
-          $('.nested_set_manager_holder').before('<div class="waiting"><?php echo __('Sending data to server.'); ?></div>');
-          $.ajax({
-            type: "POST",
-            url : '<?php echo url_for('entity/Delete'); ?>',
-            dataType : 'json',
-            data : 'root=<?php echo $root; ?>&model=<?php echo $model; ?>&id=' + NODE.id.replace('phtml_',''),
-            complete : function(){ 
-              $('.waiting').remove();
-            },
-            success : function (data, textStatus) {
-              $('.nested_set_manager_holder').before('<div class="notice"><?php echo __('The item was deleted successfully.'); ?></div>');
-            },
-            error : function (data, textStatus) {
-              $('.nested_set_manager_holder').before('<div class="error"><?php echo __('Error while deleting the item.'); ?></div>');
-              $.tree.rollback(RB);
-            }
-          });
-        }
-      }
-    });*/
-    
-    $('.createnode').click(function(e){
-      var id = getId($(this).closest('li'));
-      t.create();
-    });
-                
-    $('.deletenode').click(function(e){
-      var t = $.tree.focused(); 
-      if(t.selected) {
-        if ( t.parent(t.selected) == -1){
-          alert("<?php echo __('forbidden to remove root node'); ?>")
-        }else{
-          t.remove();
-        }
-      } 
-      else {
-        alert("Select a node first");
-      }
-    });
+    .jstree('open_all')
+    .bind('move_node.jstree', onMove);
 
   });
   /* ]]> */

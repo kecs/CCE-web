@@ -88,9 +88,30 @@ observer:
     column:               id
     with_wildcard_routes: true
 
+
 entity:
+  class: sfRequestRoute
   url:  /entity
+  param: { module: entity, action: indexRoots }
+  requirements:
+    sf_method: [get]
+    
+entity_addRoot:
+  class: sfRequestRoute
+  url:      /entity
+  param:    { module: entity, action: addRoot }
+  requirements:
+    sf_method: [post]
+    
+entity_index:
+  class:    sfDoctrineRoute
+  url:      /entity/:id
+  options:  { model: Entity, type: object }
   param: { module: entity, action: index }
+  requirements:
+    id: \d+
+    sf_method: [get]
+    
 entity_delete:
   class:    sfDoctrineRoute
   url:      /entity/:id
@@ -99,6 +120,7 @@ entity_delete:
   requirements:
     id: \d+
     sf_method: [delete]
+    
 entity_addChild:
   class:    sfDoctrineRoute
   url:      /entity/:id/addChild
@@ -108,9 +130,14 @@ entity_addChild:
     id: \d+
     sf_method: [post]
 
-entity_wildcard:
-  url:  /entity/:action/*
-  param: { module: entity }
+entity_move:
+  class:    sfDoctrineRoute
+  url:      /entity/:id/move
+  options:  { model: Entity, type: object }
+  param:    { module: entity, action: move }
+  requirements:
+    id: \d+
+    sf_method: [post]
   
 
 homepage:
