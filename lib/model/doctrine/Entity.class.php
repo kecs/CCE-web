@@ -15,7 +15,7 @@ class Entity extends BaseEntity
 
   public function __toString()
   {
-    return "{$this->type} ({$this->id})";
+    return "{$this->name} ({$this->type} {$this->id})";
   }
 
   /**
