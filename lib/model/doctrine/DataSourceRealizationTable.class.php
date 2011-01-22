@@ -10,7 +10,7 @@ class DataSourceRealizationTable extends Doctrine_Table
     /**
      * Returns an instance of this class.
      *
-     * @return object DataSourceRealizationTable
+     * @return DataSourceRealizationTable
      */
     public static function getInstance()
     {

@@ -10,7 +10,7 @@ class HomeTable extends EntityTable
     /**
      * Returns an instance of this class.
      *
-     * @return object HomeTable
+     * @return HomeTable
      */
     public static function getInstance()
     {

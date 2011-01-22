@@ -10,7 +10,7 @@ class WindowTable extends EntityTable
     /**
      * Returns an instance of this class.
      *
-     * @return object WindowTable
+     * @return WindowTable
      */
     public static function getInstance()
     {

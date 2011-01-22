@@ -10,7 +10,7 @@ class EmptyTimedMeasurementTable extends TimedMeasurementTable
     /**
      * Returns an instance of this class.
      *
-     * @return object EmptyTimedMeasurementTable
+     * @return EmptyTimedMeasurementTable
      */
     public static function getInstance()
     {

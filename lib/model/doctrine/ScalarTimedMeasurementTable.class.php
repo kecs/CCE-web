@@ -10,7 +10,7 @@ class ScalarTimedMeasurementTable extends TimedMeasurementTable
     /**
      * Returns an instance of this class.
      *
-     * @return object ScalarTimedMeasurementTable
+     * @return ScalarTimedMeasurementTable
      */
     public static function getInstance()
     {

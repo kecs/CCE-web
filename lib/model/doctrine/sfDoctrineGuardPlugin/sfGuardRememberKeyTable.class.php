@@ -10,7 +10,7 @@ class sfGuardRememberKeyTable extends PluginsfGuardRememberKeyTable
     /**
      * Returns an instance of this class.
      *
-     * @return object sfGuardRememberKeyTable
+     * @return sfGuardRememberKeyTable
      */
     public static function getInstance()
     {

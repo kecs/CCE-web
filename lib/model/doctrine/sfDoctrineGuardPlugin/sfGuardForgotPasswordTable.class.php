@@ -10,7 +10,7 @@ class sfGuardForgotPasswordTable extends PluginsfGuardForgotPasswordTable
     /**
      * Returns an instance of this class.
      *
-     * @return object sfGuardForgotPasswordTable
+     * @return sfGuardForgotPasswordTable
      */
     public static function getInstance()
     {

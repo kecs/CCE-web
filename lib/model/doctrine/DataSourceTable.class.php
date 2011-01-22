@@ -10,7 +10,7 @@ class DataSourceTable extends EntityTable
     /**
      * Returns an instance of this class.
      *
-     * @return object DataSourceTable
+     * @return DataSourceTable
      */
     public static function getInstance()
     {

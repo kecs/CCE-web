@@ -10,7 +10,7 @@ class sfGuardUserGroupTable extends PluginsfGuardUserGroupTable
     /**
      * Returns an instance of this class.
      *
-     * @return object sfGuardUserGroupTable
+     * @return sfGuardUserGroupTable
      */
     public static function getInstance()
     {

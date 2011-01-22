@@ -10,7 +10,7 @@ class LocalityTypeTable extends Doctrine_Table
     /**
      * Returns an instance of this class.
      *
-     * @return object LocalityTypeTable
+     * @return LocalityTypeTable
      */
     public static function getInstance()
     {

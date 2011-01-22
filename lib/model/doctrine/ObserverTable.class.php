@@ -10,7 +10,7 @@ class ObserverTable extends Doctrine_Table
     /**
      * Returns an instance of this class.
      *
-     * @return object ObserverTable
+     * @return ObserverTable
      */
     public static function getInstance()
     {

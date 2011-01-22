@@ -10,7 +10,7 @@ class sfGuardPermissionTable extends PluginsfGuardPermissionTable
     /**
      * Returns an instance of this class.
      *
-     * @return object sfGuardPermissionTable
+     * @return sfGuardPermissionTable
      */
     public static function getInstance()
     {

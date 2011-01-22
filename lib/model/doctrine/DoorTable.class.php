@@ -10,7 +10,7 @@ class DoorTable extends EntityTable
     /**
      * Returns an instance of this class.
      *
-     * @return object DoorTable
+     * @return DoorTable
      */
     public static function getInstance()
     {

@@ -10,7 +10,7 @@ class EKGTable extends PluginEKGTable
     /**
      * Returns an instance of this class.
      *
-     * @return object EKGTable
+     * @return EKGTable
      */
     public static function getInstance()
     {

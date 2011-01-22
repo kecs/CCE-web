@@ -10,7 +10,7 @@ class LocalityTable extends EntityTable
     /**
      * Returns an instance of this class.
      *
-     * @return object LocalityTable
+     * @return LocalityTable
      */
     public static function getInstance()
     {

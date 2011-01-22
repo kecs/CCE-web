@@ -10,7 +10,7 @@ class ActivityTable extends PluginActivityTable
     /**
      * Returns an instance of this class.
      *
-     * @return object ActivityTable
+     * @return ActivityTable
      */
     public static function getInstance()
     {

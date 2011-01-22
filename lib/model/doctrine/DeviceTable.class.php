@@ -10,7 +10,7 @@ class DeviceTable extends Doctrine_Table
     /**
      * Returns an instance of this class.
      *
-     * @return object DeviceTable
+     * @return DeviceTable
      */
     public static function getInstance()
     {
