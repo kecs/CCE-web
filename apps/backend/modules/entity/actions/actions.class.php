@@ -42,17 +42,24 @@ class EntityActions extends sfActions
     $this->redirect($this->generateUrl('entity'));
   }
 
-  public function executeAddChild()
+  public function executeAddChild(sfWebRequest $request)
   {
-    $parent = $this->getRoute()->getObject();
+    $parent = $this->getRoute()->getObject(); /* @var $parent Entity */
     $type = $this->getRequestParameter('type');
 
     $child = new $type;
     $parent->getNode()->addChild($child);
 
-    return $this->renderJSON($child->toArray());
+    if ($request->isXmlHttpRequest())
+    {
+      return $this->renderJSON($child->toArray());
+    }
+    else
+    {
+      $this->redirect($request->getReferer());
+    }
   }
-  
+
   public function executeMove(sfWebRequest $request)
   {
     $o = $this->getRoute()->getObject(); /* @var $o Entity */
@@ -66,7 +73,7 @@ class EntityActions extends sfActions
       case 'inside':
         $o->getNode()->moveAsLastChildOf($ref);
         break;
-      
+
       case 'after':
         $o->getNode()->moveAsNextSiblingOf($ref);
         break;
@@ -78,7 +85,7 @@ class EntityActions extends sfActions
     return $this->renderJSON($o->toArray());
   }
 
-    /**
+  /**
    * Recursively delete
    */
   public function executeDelete()

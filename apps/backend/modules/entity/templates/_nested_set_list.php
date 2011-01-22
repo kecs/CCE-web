@@ -22,14 +22,19 @@
             <div class="nodeinteraction createnode">
               <!--<a href="#"><?php echo __('Insert Subnode'); ?></a>-->
               <form action="<?php echo url_for('entity_addChild', $record) ?>" method="POST">
-                <input name="type"></input>
-                <input type="submit" value="<?php echo __('Insert Subnode') ?>"></input>
+                <?php foreach (EntityTable::getInstance()->getOption('subclasses') as $subclass) : ?>
+                  <button type="submit" name="type" value="<?php echo $subclass ?>">
+                    <?php echo __('Add :type', array(':type' => $subclass)) ?>
+                  </button>
+                <?php endforeach ?>
               </form>
             </div>
             <div class="nodeinteraction deletenode">
               <form action="<?php echo url_for('entity_delete', $record) ?>" method="POST">
                 <input type="hidden" name="sf_method" value="delete" />
-                <input type="submit" value="<?php echo __('Delete Node') ?>" />
+                  <button type="submit" >
+                    <?php echo __('Delete Node') ?>
+                  </button>
               </form>
             </div>
           </div>

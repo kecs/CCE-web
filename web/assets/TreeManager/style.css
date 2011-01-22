@@ -1,7 +1,7 @@
 
 /* hover menu */
-.jstree .nodeinteraction.createnode { background:url("node-insert-next.png") no-repeat scroll 0 0 transparent; padding-left: 20px; }
-.jstree .nodeinteraction.deletenode { background:url("node-delete-next.png") no-repeat scroll 0 0 transparent; padding-left: 20px; }
-.jstree div.sf_admin_actions { display: inline; visibility: hidden; }
-.jstree li > a:hover + .sf_admin_actions, .jstree li > .sf_admin_actions:hover { visibility: inherit; }
+.jstree .nodeinteraction.createnode button { background:url("node-insert-next.png") no-repeat scroll 0 0 transparent; padding-left: 15px; }
+.jstree .nodeinteraction.deletenode button { background:url("node-delete-next.png") no-repeat scroll 0 0 transparent; padding-left: 15px; }
+.jstree div.sf_admin_actions { display: inline; opacity: 0; }
+.jstree li > a:hover + .sf_admin_actions, .jstree li > .sf_admin_actions:hover { opacity: 1; }
 .jstree .sf_admin_actions * { display: inline; }
