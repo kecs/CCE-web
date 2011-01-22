@@ -1,16 +1,16 @@
 <?php
 
 /**
- * Usage form base class.
+ * Activation form base class.
  *
- * @method Usage getObject() Returns the current form's model object
+ * @method Activation getObject() Returns the current form's model object
  *
  * @package    cce
  * @subpackage form
  * @author     Adam Banko (Cassus)
  * @version    SVN: $Id: sfDoctrineFormGeneratedInheritanceTemplate.php 29553 2010-05-20 14:33:00Z Kris.Wallsmith $
  */
-abstract class BaseUsageForm extends MeasurementForm
+abstract class BaseActivationForm extends MeasurementForm
 {
   protected function setupInheritance()
   {
@@ -19,12 +19,12 @@ abstract class BaseUsageForm extends MeasurementForm
     $this->widgetSchema   ['timestamp'] = new sfWidgetFormInputText();
     $this->validatorSchema['timestamp'] = new sfValidatorInteger();
 
-    $this->widgetSchema->setNameFormat('usage[%s]');
+    $this->widgetSchema->setNameFormat('activation[%s]');
   }
 
   public function getModelName()
   {
-    return 'Usage';
+    return 'Activation';
   }
 
 }

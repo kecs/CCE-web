@@ -46,8 +46,8 @@ all:
             url:    openClose
           Temperature:
             url:    temperature
-          Usage:
-            url:    usage
+          Activation:
+            url:    activation
       Misc:
         items:
           LocalityType:

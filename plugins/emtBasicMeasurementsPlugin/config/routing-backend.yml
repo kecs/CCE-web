@@ -7,12 +7,12 @@ motion:
     column:               id
     with_wildcard_routes: true
 
-usage:
+activation:
   class: sfDoctrineRouteCollection
   options:
-    model:                Usage
-    module:               usageBackend
-    prefix_path:          /usage
+    model:                Activation
+    module:               activationBackend
+    prefix_path:          /activation
     column:               id
     with_wildcard_routes: true
 

@@ -1,13 +1,13 @@
 <?php
 
 /**
- * usageBackend module helper.
+ * activationBackend module helper.
  *
  * @package    cce
- * @subpackage usageBackend
+ * @subpackage activationBackend
  * @author     Adam Banko (Cassus)
  * @version    SVN: $Id: helper.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
  */
-class usageBackendGeneratorHelper extends BaseUsageBackendGeneratorHelper
+class activationBackendGeneratorHelper extends BaseActivationBackendGeneratorHelper
 {
 }

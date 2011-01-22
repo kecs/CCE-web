@@ -61,4 +61,4 @@ all:
       - onOffBackend
       - openCloseBackend
       - temperatureBackend
-      - usageBackend
+      - activationBackend

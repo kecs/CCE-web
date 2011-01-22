@@ -1,13 +1,13 @@
 generator:
   class: sfDoctrineGenerator
   param:
-    model_class:           Usage
+    model_class:           Activation
     theme:                 admin
     non_verbose_templates: true
     with_show:             false
     singular:              ~
     plural:                ~
-    route_prefix:          usage
+    route_prefix:          activation
     with_doctrine_route:   true
     actions_base_class:    sfActions
     css:                   false

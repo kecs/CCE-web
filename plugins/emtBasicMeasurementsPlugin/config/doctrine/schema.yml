@@ -22,7 +22,7 @@ OnOff:
   inheritance:
     type: concrete
     extends: ScalarTimedMeasurement
-Usage:
+Activation:
   inheritance:
     type: concrete
     extends: EmptyTimedMeasurement
