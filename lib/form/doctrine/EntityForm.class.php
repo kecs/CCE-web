@@ -26,7 +26,7 @@ class EntityForm extends BaseEntityForm
     }
 
 
-    $this->useFields(array('comment', 'parent'));
+    $this->useFields(array('name', 'comment', 'parent'));
 
     // set a validator for parent which prevents a category being moved to one of its own descendants
     $this->setValidator('parent', new sfValidatorDoctrineChoiceNestedSet(array(
