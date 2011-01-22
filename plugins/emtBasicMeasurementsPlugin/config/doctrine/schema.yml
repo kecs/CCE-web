@@ -1,0 +1,32 @@
+Light:
+  inheritance:
+    type: concrete
+    extends: ScalarTimedMeasurement
+Temperature:
+  inheritance:
+    type: concrete
+    extends: ScalarTimedMeasurement
+OpenClose:
+  inheritance:
+    type: concrete
+    extends: ScalarTimedMeasurement
+Battery:
+  inheritance:
+    type: concrete
+    extends: ScalarTimedMeasurement
+Humidity:
+  inheritance:
+    type: concrete
+    extends: ScalarTimedMeasurement
+OnOff:
+  inheritance:
+    type: concrete
+    extends: ScalarTimedMeasurement
+Usage:
+  inheritance:
+    type: concrete
+    extends: EmptyTimedMeasurement
+Motion:
+  inheritance:
+    type: concrete
+    extends: EmptyTimedMeasurement
