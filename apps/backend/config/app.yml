@@ -30,6 +30,8 @@ all:
         items:
           Activity:
             url:    activity
+          Ekg:
+            url:    ekg
       Misc:
         items:
           LocalityType:

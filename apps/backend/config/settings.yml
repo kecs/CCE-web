@@ -51,5 +51,6 @@ all:
       - sfGuardUser
       - sfGuardPermission
       - activityBackend
+      - ekgBackend
       - sfJqueryTreeDoctrineManager
       

@@ -1,0 +1,8 @@
+ekg:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                ekg
+    module:               ekgBackend
+    prefix_path:          /ekg
+    column:               id
+    with_wildcard_routes: true
