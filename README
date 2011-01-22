@@ -15,11 +15,7 @@ Installation
 Development
 ===========
 
-Regenerate base model and DB migrations
+Schema update
 ---------------------------------------
 
-    rm -r lib/migration/doctrine/ ; \
-    symfony cc &&
-    symfony doctrine:build --all-classes &&
-    symfony doctrine:generate-migrations-models &&
-    symfony doctrine:build --db --and-migrate --and-load --no-confirmation
+    symfony model:update
