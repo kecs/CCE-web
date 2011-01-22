@@ -32,6 +32,22 @@ all:
             url:    activity
           Ekg:
             url:    ekg
+          Battery:
+            url:    battery
+          Humidity:
+            url:    humidity
+          Light:
+            url:    light
+          Motion:
+            url:    motion
+          OnOff:
+            url:    onOff
+          OpenClose:
+            url:    openClose
+          Temperature:
+            url:    temperature
+          Usage:
+            url:    usage
       Misc:
         items:
           LocalityType:

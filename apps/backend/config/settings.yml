@@ -50,7 +50,15 @@ all:
       - sfGuardGroup
       - sfGuardUser
       - sfGuardPermission
+      - sfJqueryTreeDoctrineManager
+      #Measurement plugin backend modules
       - activityBackend
       - ekgBackend
-      - sfJqueryTreeDoctrineManager
-      
+      - batteryBackend
+      - humidityBackend
+      - lightBackend
+      - motionBackend
+      - onOffBackend
+      - openCloseBackend
+      - temperatureBackend
+      - usageBackend

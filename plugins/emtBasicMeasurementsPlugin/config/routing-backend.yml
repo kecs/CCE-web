@@ -1,0 +1,71 @@
+motion:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                Motion
+    module:               motionBackend
+    prefix_path:          /motion
+    column:               id
+    with_wildcard_routes: true
+
+usage:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                Usage
+    module:               usageBackend
+    prefix_path:          /usage
+    column:               id
+    with_wildcard_routes: true
+
+onOff:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                OnOff
+    module:               onOffBackend
+    prefix_path:          /onOff
+    column:               id
+    with_wildcard_routes: true
+
+humidity:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                Humidity
+    module:               humidityBackend
+    prefix_path:          /humidity
+    column:               id
+    with_wildcard_routes: true
+
+battery:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                Battery
+    module:               batteryBackend
+    prefix_path:          /battery
+    column:               id
+    with_wildcard_routes: true
+
+openClose:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                OpenClose
+    module:               openCloseBackend
+    prefix_path:          /openClose
+    column:               id
+    with_wildcard_routes: true
+
+temperature:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                Temperature
+    module:               temperatureBackend
+    prefix_path:          /temperature
+    column:               id
+    with_wildcard_routes: true
+
+light:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                Light
+    module:               lightBackend
+    prefix_path:          /light
+    column:               id
+    with_wildcard_routes: true
