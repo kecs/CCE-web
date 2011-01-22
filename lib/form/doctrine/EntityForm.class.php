@@ -15,7 +15,7 @@ class EntityForm extends BaseEntityForm
   {
     // create a new widget to represent this category's "parent"
     $this->setWidget('parent', new sfWidgetFormDoctrineChoiceNestedSet(array(
-                'model' => $this->getModelName(),
+                'model' => 'Entity',
                 'add_empty' => true,
             )));
 
@@ -31,7 +31,7 @@ class EntityForm extends BaseEntityForm
     // set a validator for parent which prevents a category being moved to one of its own descendants
     $this->setValidator('parent', new sfValidatorDoctrineChoiceNestedSet(array(
                 'required' => false,
-                'model' => $this->getModelName(),
+                'model' => 'Entity',
                 'node' => $this->getObject(),
             )));
     $this->getValidator('parent')->setMessage('node', 'A category cannot be made a descendent of itself.');
