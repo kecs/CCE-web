@@ -51,30 +51,34 @@ class EntityForm extends BaseEntityForm
     // save the record itself
     parent::doSave($con);
 
-    // if a parent has been specified, add/move this node to be the child of that node
-    if ($this->getValue('parent'))
+    //if parent has changed
+    if ($this->getValue('parent') != $this->getObject()->getNode()->getParent()->getId())
     {
-      $parent = Doctrine::getTable($this->getModelName())->findOneById($this->getValue('parent'));
-      if ($this->isNew())
+      // if a parent has been specified, add/move this node to be the child of that node
+      if ($this->getValue('parent'))
       {
-        $this->getObject()->getNode()->insertAsLastChildOf($parent);
+        $parent = EntityTable::getInstance()->findOneById($this->getValue('parent'));
+        if ($this->isNew())
+        {
+          $this->getObject()->getNode()->insertAsLastChildOf($parent);
+        }
+        else
+        {
+          $this->getObject()->getNode()->moveAsLastChildOf($parent);
+        }
       }
+      // if no parent was selected, add/move this node to be a new root in the tree
       else
       {
-        $this->getObject()->getNode()->moveAsLastChildOf($parent);
-      }
-    }
-    // if no parent was selected, add/move this node to be a new root in the tree
-    else
-    {
-      $categoryTree = Doctrine::getTable($this->getModelName())->getTree();
-      if ($this->isNew())
-      {
-        $categoryTree->createRoot($this->getObject());
-      }
-      else
-      {
-        $this->getObject()->getNode()->makeRoot($this->getObject()->getId());
+        $entityTree = EntityTable::getInstance()->getTree();
+        if ($this->isNew())
+        {
+          $entityTree->createRoot($this->getObject());
+        }
+        else
+        {
+          $this->getObject()->getNode()->makeRoot($this->getObject()->getId());
+        }
       }
     }
   }
