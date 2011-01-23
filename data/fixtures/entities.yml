@@ -1,0 +1,59 @@
+Entity:
+  Home_1:
+    type: Home
+    name: "Mézeskalácsház"
+    children: 
+      activtySensor:
+        type: DataSource
+        name: "Mézeskalácsház aktivitás"
+      Patient_1:
+        name: Patient 1
+        type: Patient
+        sfGuardUser: sfGuardUser_patient1
+        social_security_number: '000 000 001'
+        born_at: 'Budapest, 1982. ápr. 11.'
+        address: '1117 Budapest Irinyi J. utca 42.'
+  Home_2:
+    type: Home
+    name: "Home 2"
+    children: 
+      Patient_2:
+        name: Patient 2
+        type: Patient
+        sfGuardUser: sfGuardUser_patient2
+        social_security_number: '000 000 002'
+        born_at: 'Budapest, 1982. ápr. 11.'
+        address: '1117 Budapest Irinyi J. utca 42.'
+  Home_hanak:
+    type: Home
+    name: "HanákLak"
+    children: 
+      Patient_hanak_peter:
+        name: Hanák Péter
+        type: Patient
+        sfGuardUser: sfGuardUser_hanak_peter
+        social_security_number: '100 000 001'
+        born_at: 'Budapest, 1945. dec. 12.'
+        address: '2131 Göd, Lánchíd u. 8.'
+  Home_Horvath:
+    type: Home
+    name: "HorváthLak"
+    children: 
+      Patient_horvath_lajos:
+        name: Horváth Lajos
+        type: Patient
+        sfGuardUser: sfGuardUser_horvath_lajos
+        social_security_number: '100 000 002'
+        born_at: '---'
+        address: '---'
+  Home_vajda:
+    type: Home
+    name: "VajdaLak"
+    children: 
+      Patient_vajda_lorant:
+        name: Vajda Lóránt
+        type: Patient
+        sfGuardUser: sfGuardUser_vajda_lorant
+        social_security_number: '100 000 003'
+        born_at: '---'
+        address: '---'      

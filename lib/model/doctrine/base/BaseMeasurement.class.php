@@ -9,13 +9,13 @@
  * @property integer $entity_id
  * @property integer $data_source_id
  * @property Entity $About
- * @property DataSource $Source
+ * @property Entity $Source
  * 
  * @method integer     getId()             Returns the current record's "id" value
  * @method integer     getEntityId()       Returns the current record's "entity_id" value
  * @method integer     getDataSourceId()   Returns the current record's "data_source_id" value
  * @method Entity      getAbout()          Returns the current record's "About" value
- * @method DataSource  getSource()         Returns the current record's "Source" value
+ * @method Entity      getSource()         Returns the current record's "Source" value
  * @method Measurement setId()             Sets the current record's "id" value
  * @method Measurement setEntityId()       Sets the current record's "entity_id" value
  * @method Measurement setDataSourceId()   Sets the current record's "data_source_id" value
@@ -54,8 +54,8 @@ abstract class BaseMeasurement extends sfDoctrineRecord
              'local' => 'entity_id',
              'foreign' => 'id'));
 
-        $this->hasOne('DataSource as Source', array(
-             'local' => 'data_source_id',
+        $this->hasOne('Entity as Source', array(
+             'local' => 'entity_id',
              'foreign' => 'id'));
     }
 }

@@ -324,31 +324,6 @@ Motion:
     extends: EmptyTimedMeasurement
   package: emtBasicMeasurementsPlugin.lib.model.doctrine
   package_custom_path: /home/cassus/munka/emt/cce/plugins/emtBasicMeasurementsPlugin/lib/model/doctrine
-Patient:
-  columns:
-    id:
-      type: integer
-      primary: true
-      autoincrement: true
-    social_security_number:
-      type: integer
-      notnull: true
-      comment: 'taj szam'
-    born_at:
-      type: string
-      notnull: true
-      comment: 'szuletesi hely, idopont'
-      length: '255'
-    address:
-      type: string
-      notnull: true
-      comment: lakcim
-      length: '255'
-  relations:
-    sfGuardUser:
-      local: id
-      foreignType: one
-      foreignAlias: PatientRole
 Observer:
   comment: 'Hozzátartozó, felügyelő vagy gondozó'
   columns:
@@ -396,6 +371,32 @@ Entity:
       type: string
       notnull: true
       length: '255'
+  relations:
+    sfGuardUser:
+      local: id
+      foreignType: one
+      foreignAlias: PatientRole
+Patient:
+  inheritance:
+    extends: Entity
+    type: column_aggregation
+  columns:
+    social_security_number:
+      type: integer
+      comment: 'taj szam'
+    born_at:
+      type: string
+      comment: 'szuletesi hely, idopont'
+      length: '255'
+    address:
+      type: string
+      comment: lakcim
+      length: '255'
+  relations:
+    sfGuardUser:
+      local: id
+      foreignType: one
+      foreignAlias: PatientRole
 Home:
   inheritance:
     extends: Entity
@@ -490,7 +491,7 @@ Measurement:
     About:
       class: Entity
     Source:
-      class: DataSource
+      class: Entity
 TimedMeasurement:
   abstract: true
   inheritance:

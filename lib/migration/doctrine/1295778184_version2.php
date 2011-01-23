@@ -12,33 +12,15 @@ class Version2 extends Doctrine_Migration_Base
              'foreign' => 'id',
              'foreignTable' => 'entity',
              ));
-        $this->createForeignKey('activation', 'activation_data_source_id_entity_id', array(
-             'name' => 'activation_data_source_id_entity_id',
-             'local' => 'data_source_id',
-             'foreign' => 'id',
-             'foreignTable' => 'entity',
-             ));
         $this->createForeignKey('activity', 'activity_entity_id_entity_id', array(
              'name' => 'activity_entity_id_entity_id',
              'local' => 'entity_id',
              'foreign' => 'id',
              'foreignTable' => 'entity',
              ));
-        $this->createForeignKey('activity', 'activity_data_source_id_entity_id', array(
-             'name' => 'activity_data_source_id_entity_id',
-             'local' => 'data_source_id',
-             'foreign' => 'id',
-             'foreignTable' => 'entity',
-             ));
         $this->createForeignKey('battery', 'battery_entity_id_entity_id', array(
              'name' => 'battery_entity_id_entity_id',
              'local' => 'entity_id',
-             'foreign' => 'id',
-             'foreignTable' => 'entity',
-             ));
-        $this->createForeignKey('battery', 'battery_data_source_id_entity_id', array(
-             'name' => 'battery_data_source_id_entity_id',
-             'local' => 'data_source_id',
              'foreign' => 'id',
              'foreignTable' => 'entity',
              ));
@@ -78,21 +60,9 @@ class Version2 extends Doctrine_Migration_Base
              'foreign' => 'id',
              'foreignTable' => 'entity',
              ));
-        $this->createForeignKey('e_k_g', 'e_k_g_data_source_id_entity_id', array(
-             'name' => 'e_k_g_data_source_id_entity_id',
-             'local' => 'data_source_id',
-             'foreign' => 'id',
-             'foreignTable' => 'entity',
-             ));
         $this->createForeignKey('humidity', 'humidity_entity_id_entity_id', array(
              'name' => 'humidity_entity_id_entity_id',
              'local' => 'entity_id',
-             'foreign' => 'id',
-             'foreignTable' => 'entity',
-             ));
-        $this->createForeignKey('humidity', 'humidity_data_source_id_entity_id', array(
-             'name' => 'humidity_data_source_id_entity_id',
-             'local' => 'data_source_id',
              'foreign' => 'id',
              'foreignTable' => 'entity',
              ));
@@ -102,33 +72,15 @@ class Version2 extends Doctrine_Migration_Base
              'foreign' => 'id',
              'foreignTable' => 'entity',
              ));
-        $this->createForeignKey('light', 'light_data_source_id_entity_id', array(
-             'name' => 'light_data_source_id_entity_id',
-             'local' => 'data_source_id',
-             'foreign' => 'id',
-             'foreignTable' => 'entity',
-             ));
         $this->createForeignKey('measurement', 'measurement_entity_id_entity_id', array(
              'name' => 'measurement_entity_id_entity_id',
              'local' => 'entity_id',
              'foreign' => 'id',
              'foreignTable' => 'entity',
              ));
-        $this->createForeignKey('measurement', 'measurement_data_source_id_entity_id', array(
-             'name' => 'measurement_data_source_id_entity_id',
-             'local' => 'data_source_id',
-             'foreign' => 'id',
-             'foreignTable' => 'entity',
-             ));
         $this->createForeignKey('motion', 'motion_entity_id_entity_id', array(
              'name' => 'motion_entity_id_entity_id',
              'local' => 'entity_id',
-             'foreign' => 'id',
-             'foreignTable' => 'entity',
-             ));
-        $this->createForeignKey('motion', 'motion_data_source_id_entity_id', array(
-             'name' => 'motion_data_source_id_entity_id',
-             'local' => 'data_source_id',
              'foreign' => 'id',
              'foreignTable' => 'entity',
              ));
@@ -150,33 +102,15 @@ class Version2 extends Doctrine_Migration_Base
              'foreign' => 'id',
              'foreignTable' => 'entity',
              ));
-        $this->createForeignKey('on_off', 'on_off_data_source_id_entity_id', array(
-             'name' => 'on_off_data_source_id_entity_id',
-             'local' => 'data_source_id',
-             'foreign' => 'id',
-             'foreignTable' => 'entity',
-             ));
         $this->createForeignKey('open_close', 'open_close_entity_id_entity_id', array(
              'name' => 'open_close_entity_id_entity_id',
              'local' => 'entity_id',
              'foreign' => 'id',
              'foreignTable' => 'entity',
              ));
-        $this->createForeignKey('open_close', 'open_close_data_source_id_entity_id', array(
-             'name' => 'open_close_data_source_id_entity_id',
-             'local' => 'data_source_id',
-             'foreign' => 'id',
-             'foreignTable' => 'entity',
-             ));
         $this->createForeignKey('temperature', 'temperature_entity_id_entity_id', array(
              'name' => 'temperature_entity_id_entity_id',
              'local' => 'entity_id',
-             'foreign' => 'id',
-             'foreignTable' => 'entity',
-             ));
-        $this->createForeignKey('temperature', 'temperature_data_source_id_entity_id', array(
-             'name' => 'temperature_data_source_id_entity_id',
-             'local' => 'data_source_id',
              'foreign' => 'id',
              'foreignTable' => 'entity',
              ));
@@ -250,34 +184,16 @@ class Version2 extends Doctrine_Migration_Base
               0 => 'entity_id',
              ),
              ));
-        $this->addIndex('activation', 'activation_data_source_id', array(
-             'fields' => 
-             array(
-              0 => 'data_source_id',
-             ),
-             ));
         $this->addIndex('activity', 'activity_entity_id', array(
              'fields' => 
              array(
               0 => 'entity_id',
              ),
              ));
-        $this->addIndex('activity', 'activity_data_source_id', array(
-             'fields' => 
-             array(
-              0 => 'data_source_id',
-             ),
-             ));
         $this->addIndex('battery', 'battery_entity_id', array(
              'fields' => 
              array(
               0 => 'entity_id',
-             ),
-             ));
-        $this->addIndex('battery', 'battery_data_source_id', array(
-             'fields' => 
-             array(
-              0 => 'data_source_id',
              ),
              ));
         $this->addIndex('data_source_realization', 'data_source_realization_data_source_id', array(
@@ -322,22 +238,10 @@ class Version2 extends Doctrine_Migration_Base
               0 => 'entity_id',
              ),
              ));
-        $this->addIndex('e_k_g', 'e_k_g_data_source_id', array(
-             'fields' => 
-             array(
-              0 => 'data_source_id',
-             ),
-             ));
         $this->addIndex('humidity', 'humidity_entity_id', array(
              'fields' => 
              array(
               0 => 'entity_id',
-             ),
-             ));
-        $this->addIndex('humidity', 'humidity_data_source_id', array(
-             'fields' => 
-             array(
-              0 => 'data_source_id',
              ),
              ));
         $this->addIndex('light', 'light_entity_id', array(
@@ -346,34 +250,16 @@ class Version2 extends Doctrine_Migration_Base
               0 => 'entity_id',
              ),
              ));
-        $this->addIndex('light', 'light_data_source_id', array(
-             'fields' => 
-             array(
-              0 => 'data_source_id',
-             ),
-             ));
         $this->addIndex('measurement', 'measurement_entity_id', array(
              'fields' => 
              array(
               0 => 'entity_id',
              ),
              ));
-        $this->addIndex('measurement', 'measurement_data_source_id', array(
-             'fields' => 
-             array(
-              0 => 'data_source_id',
-             ),
-             ));
         $this->addIndex('motion', 'motion_entity_id', array(
              'fields' => 
              array(
               0 => 'entity_id',
-             ),
-             ));
-        $this->addIndex('motion', 'motion_data_source_id', array(
-             'fields' => 
-             array(
-              0 => 'data_source_id',
              ),
              ));
         $this->addIndex('observation', 'observation_observer_id', array(
@@ -394,34 +280,16 @@ class Version2 extends Doctrine_Migration_Base
               0 => 'entity_id',
              ),
              ));
-        $this->addIndex('on_off', 'on_off_data_source_id', array(
-             'fields' => 
-             array(
-              0 => 'data_source_id',
-             ),
-             ));
         $this->addIndex('open_close', 'open_close_entity_id', array(
              'fields' => 
              array(
               0 => 'entity_id',
              ),
              ));
-        $this->addIndex('open_close', 'open_close_data_source_id', array(
-             'fields' => 
-             array(
-              0 => 'data_source_id',
-             ),
-             ));
         $this->addIndex('temperature', 'temperature_entity_id', array(
              'fields' => 
              array(
               0 => 'entity_id',
-             ),
-             ));
-        $this->addIndex('temperature', 'temperature_data_source_id', array(
-             'fields' => 
-             array(
-              0 => 'data_source_id',
              ),
              ));
         $this->addIndex('sf_guard_forgot_password', 'sf_guard_forgot_password_user_id', array(
@@ -477,34 +345,23 @@ class Version2 extends Doctrine_Migration_Base
     public function down()
     {
         $this->dropForeignKey('activation', 'activation_entity_id_entity_id');
-        $this->dropForeignKey('activation', 'activation_data_source_id_entity_id');
         $this->dropForeignKey('activity', 'activity_entity_id_entity_id');
-        $this->dropForeignKey('activity', 'activity_data_source_id_entity_id');
         $this->dropForeignKey('battery', 'battery_entity_id_entity_id');
-        $this->dropForeignKey('battery', 'battery_data_source_id_entity_id');
         $this->dropForeignKey('data_source_realization', 'data_source_realization_data_source_id_entity_id');
         $this->dropForeignKey('data_source_realization', 'data_source_realization_device_id_device_id');
         $this->dropForeignKey('entity', 'entity_locality2_id_entity_id');
         $this->dropForeignKey('entity', 'entity_locality_type_id_locality_type_id');
         $this->dropForeignKey('entity', 'entity_locality_id_entity_id');
         $this->dropForeignKey('e_k_g', 'e_k_g_entity_id_entity_id');
-        $this->dropForeignKey('e_k_g', 'e_k_g_data_source_id_entity_id');
         $this->dropForeignKey('humidity', 'humidity_entity_id_entity_id');
-        $this->dropForeignKey('humidity', 'humidity_data_source_id_entity_id');
         $this->dropForeignKey('light', 'light_entity_id_entity_id');
-        $this->dropForeignKey('light', 'light_data_source_id_entity_id');
         $this->dropForeignKey('measurement', 'measurement_entity_id_entity_id');
-        $this->dropForeignKey('measurement', 'measurement_data_source_id_entity_id');
         $this->dropForeignKey('motion', 'motion_entity_id_entity_id');
-        $this->dropForeignKey('motion', 'motion_data_source_id_entity_id');
         $this->dropForeignKey('observation', 'observation_observer_id_observer_id');
         $this->dropForeignKey('observation', 'observation_entity_id_entity_id');
         $this->dropForeignKey('on_off', 'on_off_entity_id_entity_id');
-        $this->dropForeignKey('on_off', 'on_off_data_source_id_entity_id');
         $this->dropForeignKey('open_close', 'open_close_entity_id_entity_id');
-        $this->dropForeignKey('open_close', 'open_close_data_source_id_entity_id');
         $this->dropForeignKey('temperature', 'temperature_entity_id_entity_id');
-        $this->dropForeignKey('temperature', 'temperature_data_source_id_entity_id');
         $this->dropForeignKey('sf_guard_forgot_password', 'sf_guard_forgot_password_user_id_sf_guard_user_id');
         $this->dropForeignKey('sf_guard_group_permission', 'sf_guard_group_permission_group_id_sf_guard_group_id');
         $this->dropForeignKey('sf_guard_group_permission', 'sf_guard_group_permission_permission_id_sf_guard_permission_id');
@@ -519,34 +376,16 @@ class Version2 extends Doctrine_Migration_Base
               0 => 'entity_id',
              ),
              ));
-        $this->removeIndex('activation', 'activation_data_source_id', array(
-             'fields' => 
-             array(
-              0 => 'data_source_id',
-             ),
-             ));
         $this->removeIndex('activity', 'activity_entity_id', array(
              'fields' => 
              array(
               0 => 'entity_id',
              ),
              ));
-        $this->removeIndex('activity', 'activity_data_source_id', array(
-             'fields' => 
-             array(
-              0 => 'data_source_id',
-             ),
-             ));
         $this->removeIndex('battery', 'battery_entity_id', array(
              'fields' => 
              array(
               0 => 'entity_id',
-             ),
-             ));
-        $this->removeIndex('battery', 'battery_data_source_id', array(
-             'fields' => 
-             array(
-              0 => 'data_source_id',
              ),
              ));
         $this->removeIndex('data_source_realization', 'data_source_realization_data_source_id', array(
@@ -591,22 +430,10 @@ class Version2 extends Doctrine_Migration_Base
               0 => 'entity_id',
              ),
              ));
-        $this->removeIndex('e_k_g', 'e_k_g_data_source_id', array(
-             'fields' => 
-             array(
-              0 => 'data_source_id',
-             ),
-             ));
         $this->removeIndex('humidity', 'humidity_entity_id', array(
              'fields' => 
              array(
               0 => 'entity_id',
-             ),
-             ));
-        $this->removeIndex('humidity', 'humidity_data_source_id', array(
-             'fields' => 
-             array(
-              0 => 'data_source_id',
              ),
              ));
         $this->removeIndex('light', 'light_entity_id', array(
@@ -615,34 +442,16 @@ class Version2 extends Doctrine_Migration_Base
               0 => 'entity_id',
              ),
              ));
-        $this->removeIndex('light', 'light_data_source_id', array(
-             'fields' => 
-             array(
-              0 => 'data_source_id',
-             ),
-             ));
         $this->removeIndex('measurement', 'measurement_entity_id', array(
              'fields' => 
              array(
               0 => 'entity_id',
              ),
              ));
-        $this->removeIndex('measurement', 'measurement_data_source_id', array(
-             'fields' => 
-             array(
-              0 => 'data_source_id',
-             ),
-             ));
         $this->removeIndex('motion', 'motion_entity_id', array(
              'fields' => 
              array(
               0 => 'entity_id',
-             ),
-             ));
-        $this->removeIndex('motion', 'motion_data_source_id', array(
-             'fields' => 
-             array(
-              0 => 'data_source_id',
              ),
              ));
         $this->removeIndex('observation', 'observation_observer_id', array(
@@ -663,34 +472,16 @@ class Version2 extends Doctrine_Migration_Base
               0 => 'entity_id',
              ),
              ));
-        $this->removeIndex('on_off', 'on_off_data_source_id', array(
-             'fields' => 
-             array(
-              0 => 'data_source_id',
-             ),
-             ));
         $this->removeIndex('open_close', 'open_close_entity_id', array(
              'fields' => 
              array(
               0 => 'entity_id',
              ),
              ));
-        $this->removeIndex('open_close', 'open_close_data_source_id', array(
-             'fields' => 
-             array(
-              0 => 'data_source_id',
-             ),
-             ));
         $this->removeIndex('temperature', 'temperature_entity_id', array(
              'fields' => 
              array(
               0 => 'entity_id',
-             ),
-             ));
-        $this->removeIndex('temperature', 'temperature_data_source_id', array(
-             'fields' => 
-             array(
-              0 => 'data_source_id',
              ),
              ));
         $this->removeIndex('sf_guard_forgot_password', 'sf_guard_forgot_password_user_id', array(

@@ -6,45 +6,19 @@
  * @package    cce
  * @subpackage filter
  * @author     Adam Banko (Cassus)
- * @version    SVN: $Id: sfDoctrineFormFilterGeneratedTemplate.php 29570 2010-05-21 14:49:47Z Kris.Wallsmith $
+ * @version    SVN: $Id: sfDoctrineFormFilterGeneratedInheritanceTemplate.php 29570 2010-05-21 14:49:47Z Kris.Wallsmith $
  */
-abstract class BasePatientFormFilter extends BaseFormFilterDoctrine
+abstract class BasePatientFormFilter extends EntityFormFilter
 {
-  public function setup()
+  protected function setupInheritance()
   {
-    $this->setWidgets(array(
-      'social_security_number' => new sfWidgetFormFilterInput(array('with_empty' => false)),
-      'born_at'                => new sfWidgetFormFilterInput(array('with_empty' => false)),
-      'address'                => new sfWidgetFormFilterInput(array('with_empty' => false)),
-    ));
-
-    $this->setValidators(array(
-      'social_security_number' => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
-      'born_at'                => new sfValidatorPass(array('required' => false)),
-      'address'                => new sfValidatorPass(array('required' => false)),
-    ));
+    parent::setupInheritance();
 
     $this->widgetSchema->setNameFormat('patient_filters[%s]');
-
-    $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
-
-    $this->setupInheritance();
-
-    parent::setup();
   }
 
   public function getModelName()
   {
     return 'Patient';
-  }
-
-  public function getFields()
-  {
-    return array(
-      'id'                     => 'Number',
-      'social_security_number' => 'Number',
-      'born_at'                => 'Text',
-      'address'                => 'Text',
-    );
   }
 }

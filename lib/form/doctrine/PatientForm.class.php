@@ -10,7 +10,11 @@
  */
 class PatientForm extends BasePatientForm
 {
+  /**
+   * @see EntityForm
+   */
   public function configure()
   {
+    parent::configure();
   }
 }

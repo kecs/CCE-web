@@ -165,6 +165,24 @@ class Version1 extends Doctrine_Migration_Base
               'notnull' => '1',
               'length' => '255',
              ),
+             'social_security_number' => 
+             array(
+              'type' => 'integer',
+              'comment' => 'taj szam',
+              'length' => '8',
+             ),
+             'born_at' => 
+             array(
+              'type' => 'string',
+              'comment' => 'szuletesi hely, idopont',
+              'length' => '255',
+             ),
+             'address' => 
+             array(
+              'type' => 'string',
+              'comment' => 'lakcim',
+              'length' => '255',
+             ),
              'locality_type_id' => 
              array(
               'type' => 'integer',
@@ -657,43 +675,6 @@ class Version1 extends Doctrine_Migration_Base
              'collate' => 'utf8_general_ci',
              'charset' => 'utf8',
              ));
-        $this->createTable('patient', array(
-             'id' => 
-             array(
-              'type' => 'integer',
-              'primary' => '1',
-              'autoincrement' => '1',
-              'length' => '8',
-             ),
-             'social_security_number' => 
-             array(
-              'type' => 'integer',
-              'notnull' => '1',
-              'comment' => 'taj szam',
-              'length' => '8',
-             ),
-             'born_at' => 
-             array(
-              'type' => 'string',
-              'notnull' => '1',
-              'comment' => 'szuletesi hely, idopont',
-              'length' => '255',
-             ),
-             'address' => 
-             array(
-              'type' => 'string',
-              'notnull' => '1',
-              'comment' => 'lakcim',
-              'length' => '255',
-             ),
-             ), array(
-             'primary' => 
-             array(
-              0 => 'id',
-             ),
-             'collate' => 'utf8_general_ci',
-             'charset' => 'utf8',
-             ));
         $this->createTable('temperature', array(
              'id' => 
              array(
@@ -1122,7 +1103,6 @@ class Version1 extends Doctrine_Migration_Base
         $this->dropTable('observer');
         $this->dropTable('on_off');
         $this->dropTable('open_close');
-        $this->dropTable('patient');
         $this->dropTable('temperature');
         $this->dropTable('sf_guard_forgot_password');
         $this->dropTable('sf_guard_group');

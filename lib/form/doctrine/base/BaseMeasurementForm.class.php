@@ -17,13 +17,13 @@ abstract class BaseMeasurementForm extends BaseFormDoctrine
     $this->setWidgets(array(
       'id'             => new sfWidgetFormInputHidden(),
       'entity_id'      => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('About'), 'add_empty' => false)),
-      'data_source_id' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Source'), 'add_empty' => false)),
+      'data_source_id' => new sfWidgetFormInputText(),
     ));
 
     $this->setValidators(array(
       'id'             => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
       'entity_id'      => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('About'))),
-      'data_source_id' => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Source'))),
+      'data_source_id' => new sfValidatorInteger(),
     ));
 
     $this->widgetSchema->setNameFormat('measurement[%s]');

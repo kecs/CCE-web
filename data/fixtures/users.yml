@@ -95,29 +95,13 @@ sfGuardUser:
     last_login: null
     created_at: '2010-07-07 14:07:38'
     updated_at: '2010-07-15 06:11:40'
-Patient:
-  Patient_1:
-    sfGuardUser: sfGuardUser_patient1
-    social_security_number: '000 000 001'
-    born_at: 'Budapest, 1982. ápr. 11.'
-    address: '1117 Budapest Irinyi J. utca 42.'
-  Patient_2:
-    sfGuardUser: sfGuardUser_patient2
-    social_security_number: '000 000 002'
-    born_at: 'Budapest, 1982. ápr. 11.'
-    address: '1117 Budapest Irinyi J. utca 42.'
-  Patient_hanak_peter:
-    sfGuardUser: sfGuardUser_hanak_peter
-    social_security_number: '100 000 001'
-    born_at: 'Budapest, 1945. dec. 12.'
-    address: '2131 Göd, Lánchíd u. 8.'
-  Patient_horvath_lajos:
-    sfGuardUser: sfGuardUser_horvath_lajos
-    social_security_number: '100 000 002'
-    born_at: '---'
-    address: '---'
-  Patient_vajda_lorant:
-    sfGuardUser: sfGuardUser_vajda_lorant
-    social_security_number: '100 000 003'
-    born_at: '---'
-    address: '---'
+Observer:
+  Observer_admin:
+    sfGuardUser: sfGuardUser_admin
+    Observants:
+      - Patient_1
+      - Patient_2
+      - Patient_hanak_peter
+      - Patient_horvath_lajos
+      - Patient_vajda_lorant
+  

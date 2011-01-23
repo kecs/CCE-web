@@ -21,8 +21,8 @@
  * @property Doctrine_Collection $sfGuardUserGroup
  * @property sfGuardRememberKey $RememberKeys
  * @property sfGuardForgotPassword $ForgotPassword
- * @property Patient $PatientRole
  * @property Observer $ObserverRole
+ * @property Entity $PatientRole
  * 
  * @method string                getFirstName()             Returns the current record's "first_name" value
  * @method string                getLastName()              Returns the current record's "last_name" value
@@ -40,8 +40,8 @@
  * @method Doctrine_Collection   getSfGuardUserGroup()      Returns the current record's "sfGuardUserGroup" collection
  * @method sfGuardRememberKey    getRememberKeys()          Returns the current record's "RememberKeys" value
  * @method sfGuardForgotPassword getForgotPassword()        Returns the current record's "ForgotPassword" value
- * @method Patient               getPatientRole()           Returns the current record's "PatientRole" value
  * @method Observer              getObserverRole()          Returns the current record's "ObserverRole" value
+ * @method Entity                getPatientRole()           Returns the current record's "PatientRole" value
  * @method sfGuardUser           setFirstName()             Sets the current record's "first_name" value
  * @method sfGuardUser           setLastName()              Sets the current record's "last_name" value
  * @method sfGuardUser           setEmailAddress()          Sets the current record's "email_address" value
@@ -58,8 +58,8 @@
  * @method sfGuardUser           setSfGuardUserGroup()      Sets the current record's "sfGuardUserGroup" collection
  * @method sfGuardUser           setRememberKeys()          Sets the current record's "RememberKeys" value
  * @method sfGuardUser           setForgotPassword()        Sets the current record's "ForgotPassword" value
- * @method sfGuardUser           setPatientRole()           Sets the current record's "PatientRole" value
  * @method sfGuardUser           setObserverRole()          Sets the current record's "ObserverRole" value
+ * @method sfGuardUser           setPatientRole()           Sets the current record's "PatientRole" value
  * 
  * @package    cce
  * @subpackage model
@@ -155,11 +155,11 @@ abstract class BasesfGuardUser extends sfDoctrineRecord
              'local' => 'id',
              'foreign' => 'user_id'));
 
-        $this->hasOne('Patient as PatientRole', array(
+        $this->hasOne('Observer as ObserverRole', array(
              'local' => 'id',
              'foreign' => 'id'));
 
-        $this->hasOne('Observer as ObserverRole', array(
+        $this->hasOne('Entity as PatientRole', array(
              'local' => 'id',
              'foreign' => 'id'));
 
