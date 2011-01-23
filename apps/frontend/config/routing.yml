@@ -19,7 +19,7 @@ entity_index:
   url:   /:type/:id
   class:    sfDoctrineRoute
   options:  { model: Entity, type: object }
-  param:    { module: entity, action: index }
+  param:    { module: entity, action: indexRecursive }
   requirements:
     entityType:       \S+
     entityId:         \d+

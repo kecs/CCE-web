@@ -17,4 +17,12 @@ class cceActions extends sfActions
     return parent::getUser();
   }
 
+  /**
+   * @return Doctrine_Record
+   */
+  protected function getObject()
+  {
+    return $this->getRoute()->getObject();
+  }
+
 }
