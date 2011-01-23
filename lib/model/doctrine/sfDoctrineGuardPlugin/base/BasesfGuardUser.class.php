@@ -21,8 +21,8 @@
  * @property Doctrine_Collection $sfGuardUserGroup
  * @property sfGuardRememberKey $RememberKeys
  * @property sfGuardForgotPassword $ForgotPassword
- * @property Doctrine_Collection $Patient
- * @property Doctrine_Collection $Observer
+ * @property Patient $PatientRole
+ * @property Observer $ObserverRole
  * 
  * @method string                getFirstName()             Returns the current record's "first_name" value
  * @method string                getLastName()              Returns the current record's "last_name" value
@@ -40,8 +40,8 @@
  * @method Doctrine_Collection   getSfGuardUserGroup()      Returns the current record's "sfGuardUserGroup" collection
  * @method sfGuardRememberKey    getRememberKeys()          Returns the current record's "RememberKeys" value
  * @method sfGuardForgotPassword getForgotPassword()        Returns the current record's "ForgotPassword" value
- * @method Doctrine_Collection   getPatient()               Returns the current record's "Patient" collection
- * @method Doctrine_Collection   getObserver()              Returns the current record's "Observer" collection
+ * @method Patient               getPatientRole()           Returns the current record's "PatientRole" value
+ * @method Observer              getObserverRole()          Returns the current record's "ObserverRole" value
  * @method sfGuardUser           setFirstName()             Sets the current record's "first_name" value
  * @method sfGuardUser           setLastName()              Sets the current record's "last_name" value
  * @method sfGuardUser           setEmailAddress()          Sets the current record's "email_address" value
@@ -58,8 +58,8 @@
  * @method sfGuardUser           setSfGuardUserGroup()      Sets the current record's "sfGuardUserGroup" collection
  * @method sfGuardUser           setRememberKeys()          Sets the current record's "RememberKeys" value
  * @method sfGuardUser           setForgotPassword()        Sets the current record's "ForgotPassword" value
- * @method sfGuardUser           setPatient()               Sets the current record's "Patient" collection
- * @method sfGuardUser           setObserver()              Sets the current record's "Observer" collection
+ * @method sfGuardUser           setPatientRole()           Sets the current record's "PatientRole" value
+ * @method sfGuardUser           setObserverRole()          Sets the current record's "ObserverRole" value
  * 
  * @package    cce
  * @subpackage model
@@ -155,13 +155,13 @@ abstract class BasesfGuardUser extends sfDoctrineRecord
              'local' => 'id',
              'foreign' => 'user_id'));
 
-        $this->hasMany('Patient', array(
+        $this->hasOne('Patient as PatientRole', array(
              'local' => 'id',
-             'foreign' => 'user_id'));
+             'foreign' => 'id'));
 
-        $this->hasMany('Observer', array(
+        $this->hasOne('Observer as ObserverRole', array(
              'local' => 'id',
-             'foreign' => 'user_id'));
+             'foreign' => 'id'));
 
         $timestampable0 = new Doctrine_Template_Timestampable(array(
              ));

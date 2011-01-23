@@ -276,21 +276,64 @@ EKG:
       notnull: true
   package: emtEKGPlugin.lib.model.doctrine
   package_custom_path: /home/cassus/munka/emt/cce/plugins/emtEKGPlugin/lib/model/doctrine
+Light:
+  inheritance:
+    type: concrete
+    extends: ScalarTimedMeasurement
+  package: emtBasicMeasurementsPlugin.lib.model.doctrine
+  package_custom_path: /home/cassus/munka/emt/cce/plugins/emtBasicMeasurementsPlugin/lib/model/doctrine
+Temperature:
+  inheritance:
+    type: concrete
+    extends: ScalarTimedMeasurement
+  package: emtBasicMeasurementsPlugin.lib.model.doctrine
+  package_custom_path: /home/cassus/munka/emt/cce/plugins/emtBasicMeasurementsPlugin/lib/model/doctrine
+OpenClose:
+  inheritance:
+    type: concrete
+    extends: ScalarTimedMeasurement
+  package: emtBasicMeasurementsPlugin.lib.model.doctrine
+  package_custom_path: /home/cassus/munka/emt/cce/plugins/emtBasicMeasurementsPlugin/lib/model/doctrine
+Battery:
+  inheritance:
+    type: concrete
+    extends: ScalarTimedMeasurement
+  package: emtBasicMeasurementsPlugin.lib.model.doctrine
+  package_custom_path: /home/cassus/munka/emt/cce/plugins/emtBasicMeasurementsPlugin/lib/model/doctrine
+Humidity:
+  inheritance:
+    type: concrete
+    extends: ScalarTimedMeasurement
+  package: emtBasicMeasurementsPlugin.lib.model.doctrine
+  package_custom_path: /home/cassus/munka/emt/cce/plugins/emtBasicMeasurementsPlugin/lib/model/doctrine
+OnOff:
+  inheritance:
+    type: concrete
+    extends: ScalarTimedMeasurement
+  package: emtBasicMeasurementsPlugin.lib.model.doctrine
+  package_custom_path: /home/cassus/munka/emt/cce/plugins/emtBasicMeasurementsPlugin/lib/model/doctrine
+Activation:
+  inheritance:
+    type: concrete
+    extends: EmptyTimedMeasurement
+  package: emtBasicMeasurementsPlugin.lib.model.doctrine
+  package_custom_path: /home/cassus/munka/emt/cce/plugins/emtBasicMeasurementsPlugin/lib/model/doctrine
+Motion:
+  inheritance:
+    type: concrete
+    extends: EmptyTimedMeasurement
+  package: emtBasicMeasurementsPlugin.lib.model.doctrine
+  package_custom_path: /home/cassus/munka/emt/cce/plugins/emtBasicMeasurementsPlugin/lib/model/doctrine
 Patient:
   columns:
     id:
       type: integer
       primary: true
       autoincrement: true
-      length: '4'
-    user_id:
-      type: integer
-      notnull: true
     social_security_number:
       type: integer
       notnull: true
       comment: 'taj szam'
-      length: '4'
     born_at:
       type: string
       notnull: true
@@ -303,7 +346,9 @@ Patient:
       length: '255'
   relations:
     sfGuardUser:
-      local: user_id
+      local: id
+      foreignType: one
+      foreignAlias: PatientRole
 Observer:
   comment: 'Hozzátartozó, felügyelő vagy gondozó'
   columns:
@@ -311,13 +356,11 @@ Observer:
       type: integer
       primary: true
       autoincrement: true
-      length: '4'
-    user_id:
-      type: integer
-      notnull: true
   relations:
     sfGuardUser:
-      local: user_id
+      local: id
+      foreignType: one
+      foreignAlias: ObserverRole
     Observants:
       class: Entity
       refClass: Observation
@@ -327,11 +370,9 @@ Observation:
     observer_id:
       type: integer
       primary: true
-      length: '4'
     entity_id:
       type: integer
       primary: true
-      length: '4'
   relations:
     Observer: null
     Entity: null
@@ -345,7 +386,6 @@ Entity:
       type: integer
       primary: true
       autoincrement: true
-      length: '4'
     name:
       type: string
       notnull: true
@@ -368,7 +408,6 @@ Locality:
   columns:
     locality_type_id:
       type: integer
-      length: '4'
   relations:
     LocalityType: null
 LocalityType:
@@ -377,7 +416,6 @@ LocalityType:
       type: integer
       primary: true
       autoincrement: true
-      length: '4'
     description:
       type: string
       notnull: true
@@ -393,7 +431,6 @@ Window:
   columns:
     locality_id:
       type: integer
-      length: '4'
   relations:
     Locality: null
 Door:
@@ -403,10 +440,8 @@ Door:
   columns:
     locality_id:
       type: integer
-      length: '4'
     locality2_id:
       type: integer
-      length: '4'
   relations:
     Locality1: null
     Locality2:
@@ -425,18 +460,15 @@ DataSourceRealization:
     data_source_id:
       type: integer
       primary: true
-      length: '4'
     device_id:
       type: integer
       primary: true
-      length: '4'
 Device:
   columns:
     id:
       type: integer
       primary: true
       autoincrement: true
-      length: '4'
     guid:
       type: string
       notnull: true
@@ -448,15 +480,12 @@ Measurement:
       type: integer
       primary: true
       autoincrement: true
-      length: '4'
     entity_id:
       type: integer
       notnull: true
-      length: '4'
     data_source_id:
       type: integer
       notnull: true
-      length: '4'
   relations:
     About:
       class: Entity
@@ -471,7 +500,6 @@ TimedMeasurement:
     timestamp:
       type: integer
       notnull: true
-      length: '4'
   indexes:
     timestamp:
       fields: [timestamp]

@@ -32,21 +32,18 @@ abstract class BaseMeasurement extends sfDoctrineRecord
     public function setTableDefinition()
     {
         $this->setTableName('measurement');
-        $this->hasColumn('id', 'integer', 4, array(
+        $this->hasColumn('id', 'integer', null, array(
              'type' => 'integer',
              'primary' => true,
              'autoincrement' => true,
-             'length' => 4,
              ));
-        $this->hasColumn('entity_id', 'integer', 4, array(
+        $this->hasColumn('entity_id', 'integer', null, array(
              'type' => 'integer',
              'notnull' => true,
-             'length' => 4,
              ));
-        $this->hasColumn('data_source_id', 'integer', 4, array(
+        $this->hasColumn('data_source_id', 'integer', null, array(
              'type' => 'integer',
              'notnull' => true,
-             'length' => 4,
              ));
     }
 

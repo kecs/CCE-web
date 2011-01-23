@@ -47,11 +47,10 @@ abstract class BaseEntity extends sfDoctrineRecord
     public function setTableDefinition()
     {
         $this->setTableName('entity');
-        $this->hasColumn('id', 'integer', 4, array(
+        $this->hasColumn('id', 'integer', null, array(
              'type' => 'integer',
              'primary' => true,
              'autoincrement' => true,
-             'length' => 4,
              ));
         $this->hasColumn('name', 'string', 255, array(
              'type' => 'string',
@@ -66,17 +65,14 @@ abstract class BaseEntity extends sfDoctrineRecord
              'notnull' => true,
              'length' => 255,
              ));
-        $this->hasColumn('locality_type_id', 'integer', 4, array(
+        $this->hasColumn('locality_type_id', 'integer', null, array(
              'type' => 'integer',
-             'length' => 4,
              ));
-        $this->hasColumn('locality_id', 'integer', 4, array(
+        $this->hasColumn('locality_id', 'integer', null, array(
              'type' => 'integer',
-             'length' => 4,
              ));
-        $this->hasColumn('locality2_id', 'integer', 4, array(
+        $this->hasColumn('locality2_id', 'integer', null, array(
              'type' => 'integer',
-             'length' => 4,
              ));
 
         $this->setSubClasses(array(

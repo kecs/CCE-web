@@ -29,15 +29,13 @@ abstract class BaseObservation extends sfDoctrineRecord
     public function setTableDefinition()
     {
         $this->setTableName('observation');
-        $this->hasColumn('observer_id', 'integer', 4, array(
+        $this->hasColumn('observer_id', 'integer', null, array(
              'type' => 'integer',
              'primary' => true,
-             'length' => 4,
              ));
-        $this->hasColumn('entity_id', 'integer', 4, array(
+        $this->hasColumn('entity_id', 'integer', null, array(
              'type' => 'integer',
              'primary' => true,
-             'length' => 4,
              ));
     }
 

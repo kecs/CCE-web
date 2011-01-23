@@ -6,25 +6,69 @@ class Version1 extends Doctrine_Migration_Base
 {
     public function up()
     {
+        $this->createTable('activation', array(
+             'id' => 
+             array(
+              'type' => 'integer',
+              'primary' => '1',
+              'autoincrement' => '1',
+              'length' => '8',
+             ),
+             'entity_id' => 
+             array(
+              'type' => 'integer',
+              'notnull' => '1',
+              'length' => '8',
+             ),
+             'data_source_id' => 
+             array(
+              'type' => 'integer',
+              'notnull' => '1',
+              'length' => '8',
+             ),
+             'timestamp' => 
+             array(
+              'type' => 'integer',
+              'notnull' => '1',
+              'length' => '8',
+             ),
+             ), array(
+             'indexes' => 
+             array(
+              'timestamp' => 
+              array(
+              'fields' => 
+              array(
+               0 => 'timestamp',
+              ),
+              ),
+             ),
+             'primary' => 
+             array(
+              0 => 'id',
+             ),
+             'collate' => 'utf8_general_ci',
+             'charset' => 'utf8',
+             ));
         $this->createTable('activity', array(
              'id' => 
              array(
               'type' => 'integer',
               'primary' => '1',
               'autoincrement' => '1',
-              'length' => '4',
+              'length' => '8',
              ),
              'entity_id' => 
              array(
               'type' => 'integer',
               'notnull' => '1',
-              'length' => '4',
+              'length' => '8',
              ),
              'data_source_id' => 
              array(
               'type' => 'integer',
               'notnull' => '1',
-              'length' => '4',
+              'length' => '8',
              ),
              'type' => 
              array(
@@ -52,13 +96,57 @@ class Version1 extends Doctrine_Migration_Base
              'collate' => 'utf8_general_ci',
              'charset' => 'utf8',
              ));
+        $this->createTable('battery', array(
+             'id' => 
+             array(
+              'type' => 'integer',
+              'primary' => '1',
+              'autoincrement' => '1',
+              'length' => '8',
+             ),
+             'entity_id' => 
+             array(
+              'type' => 'integer',
+              'notnull' => '1',
+              'length' => '8',
+             ),
+             'data_source_id' => 
+             array(
+              'type' => 'integer',
+              'notnull' => '1',
+              'length' => '8',
+             ),
+             'timestamp' => 
+             array(
+              'type' => 'integer',
+              'notnull' => '1',
+              'length' => '8',
+             ),
+             ), array(
+             'indexes' => 
+             array(
+              'timestamp' => 
+              array(
+              'fields' => 
+              array(
+               0 => 'timestamp',
+              ),
+              ),
+             ),
+             'primary' => 
+             array(
+              0 => 'id',
+             ),
+             'collate' => 'utf8_general_ci',
+             'charset' => 'utf8',
+             ));
         $this->createTable('entity', array(
              'id' => 
              array(
               'type' => 'integer',
               'primary' => '1',
               'autoincrement' => '1',
-              'length' => '4',
+              'length' => '8',
              ),
              'name' => 
              array(
@@ -80,17 +168,17 @@ class Version1 extends Doctrine_Migration_Base
              'locality_type_id' => 
              array(
               'type' => 'integer',
-              'length' => '4',
+              'length' => '8',
              ),
              'locality_id' => 
              array(
               'type' => 'integer',
-              'length' => '4',
+              'length' => '8',
              ),
              'locality2_id' => 
              array(
               'type' => 'integer',
-              'length' => '4',
+              'length' => '8',
              ),
              'root_id' => 
              array(
@@ -125,13 +213,13 @@ class Version1 extends Doctrine_Migration_Base
              array(
               'type' => 'integer',
               'primary' => '1',
-              'length' => '4',
+              'length' => '8',
              ),
              'device_id' => 
              array(
               'type' => 'integer',
               'primary' => '1',
-              'length' => '4',
+              'length' => '8',
              ),
              ), array(
              'primary' => 
@@ -148,7 +236,7 @@ class Version1 extends Doctrine_Migration_Base
               'type' => 'integer',
               'primary' => '1',
               'autoincrement' => '1',
-              'length' => '4',
+              'length' => '8',
              ),
              'guid' => 
              array(
@@ -171,25 +259,25 @@ class Version1 extends Doctrine_Migration_Base
               'type' => 'integer',
               'primary' => '1',
               'autoincrement' => '1',
-              'length' => '4',
+              'length' => '8',
              ),
              'entity_id' => 
              array(
               'type' => 'integer',
               'notnull' => '1',
-              'length' => '4',
+              'length' => '8',
              ),
              'data_source_id' => 
              array(
               'type' => 'integer',
               'notnull' => '1',
-              'length' => '4',
+              'length' => '8',
              ),
              'timestamp' => 
              array(
               'type' => 'integer',
               'notnull' => '1',
-              'length' => '4',
+              'length' => '8',
              ),
              'started_by' => 
              array(
@@ -255,13 +343,101 @@ class Version1 extends Doctrine_Migration_Base
              'collate' => 'utf8_general_ci',
              'charset' => 'utf8',
              ));
+        $this->createTable('humidity', array(
+             'id' => 
+             array(
+              'type' => 'integer',
+              'primary' => '1',
+              'autoincrement' => '1',
+              'length' => '8',
+             ),
+             'entity_id' => 
+             array(
+              'type' => 'integer',
+              'notnull' => '1',
+              'length' => '8',
+             ),
+             'data_source_id' => 
+             array(
+              'type' => 'integer',
+              'notnull' => '1',
+              'length' => '8',
+             ),
+             'timestamp' => 
+             array(
+              'type' => 'integer',
+              'notnull' => '1',
+              'length' => '8',
+             ),
+             ), array(
+             'indexes' => 
+             array(
+              'timestamp' => 
+              array(
+              'fields' => 
+              array(
+               0 => 'timestamp',
+              ),
+              ),
+             ),
+             'primary' => 
+             array(
+              0 => 'id',
+             ),
+             'collate' => 'utf8_general_ci',
+             'charset' => 'utf8',
+             ));
+        $this->createTable('light', array(
+             'id' => 
+             array(
+              'type' => 'integer',
+              'primary' => '1',
+              'autoincrement' => '1',
+              'length' => '8',
+             ),
+             'entity_id' => 
+             array(
+              'type' => 'integer',
+              'notnull' => '1',
+              'length' => '8',
+             ),
+             'data_source_id' => 
+             array(
+              'type' => 'integer',
+              'notnull' => '1',
+              'length' => '8',
+             ),
+             'timestamp' => 
+             array(
+              'type' => 'integer',
+              'notnull' => '1',
+              'length' => '8',
+             ),
+             ), array(
+             'indexes' => 
+             array(
+              'timestamp' => 
+              array(
+              'fields' => 
+              array(
+               0 => 'timestamp',
+              ),
+              ),
+             ),
+             'primary' => 
+             array(
+              0 => 'id',
+             ),
+             'collate' => 'utf8_general_ci',
+             'charset' => 'utf8',
+             ));
         $this->createTable('locality_type', array(
              'id' => 
              array(
               'type' => 'integer',
               'primary' => '1',
               'autoincrement' => '1',
-              'length' => '4',
+              'length' => '8',
              ),
              'description' => 
              array(
@@ -289,21 +465,65 @@ class Version1 extends Doctrine_Migration_Base
               'type' => 'integer',
               'primary' => '1',
               'autoincrement' => '1',
-              'length' => '4',
+              'length' => '8',
              ),
              'entity_id' => 
              array(
               'type' => 'integer',
               'notnull' => '1',
-              'length' => '4',
+              'length' => '8',
              ),
              'data_source_id' => 
              array(
               'type' => 'integer',
               'notnull' => '1',
-              'length' => '4',
+              'length' => '8',
              ),
              ), array(
+             'primary' => 
+             array(
+              0 => 'id',
+             ),
+             'collate' => 'utf8_general_ci',
+             'charset' => 'utf8',
+             ));
+        $this->createTable('motion', array(
+             'id' => 
+             array(
+              'type' => 'integer',
+              'primary' => '1',
+              'autoincrement' => '1',
+              'length' => '8',
+             ),
+             'entity_id' => 
+             array(
+              'type' => 'integer',
+              'notnull' => '1',
+              'length' => '8',
+             ),
+             'data_source_id' => 
+             array(
+              'type' => 'integer',
+              'notnull' => '1',
+              'length' => '8',
+             ),
+             'timestamp' => 
+             array(
+              'type' => 'integer',
+              'notnull' => '1',
+              'length' => '8',
+             ),
+             ), array(
+             'indexes' => 
+             array(
+              'timestamp' => 
+              array(
+              'fields' => 
+              array(
+               0 => 'timestamp',
+              ),
+              ),
+             ),
              'primary' => 
              array(
               0 => 'id',
@@ -316,13 +536,13 @@ class Version1 extends Doctrine_Migration_Base
              array(
               'type' => 'integer',
               'primary' => '1',
-              'length' => '4',
+              'length' => '8',
              ),
              'entity_id' => 
              array(
               'type' => 'integer',
               'primary' => '1',
-              'length' => '4',
+              'length' => '8',
              ),
              ), array(
              'primary' => 
@@ -339,15 +559,97 @@ class Version1 extends Doctrine_Migration_Base
               'type' => 'integer',
               'primary' => '1',
               'autoincrement' => '1',
-              'length' => '4',
+              'length' => '8',
              ),
-             'user_id' => 
+             ), array(
+             'primary' => 
+             array(
+              0 => 'id',
+             ),
+             'collate' => 'utf8_general_ci',
+             'charset' => 'utf8',
+             ));
+        $this->createTable('on_off', array(
+             'id' => 
+             array(
+              'type' => 'integer',
+              'primary' => '1',
+              'autoincrement' => '1',
+              'length' => '8',
+             ),
+             'entity_id' => 
+             array(
+              'type' => 'integer',
+              'notnull' => '1',
+              'length' => '8',
+             ),
+             'data_source_id' => 
+             array(
+              'type' => 'integer',
+              'notnull' => '1',
+              'length' => '8',
+             ),
+             'timestamp' => 
              array(
               'type' => 'integer',
               'notnull' => '1',
               'length' => '8',
              ),
              ), array(
+             'indexes' => 
+             array(
+              'timestamp' => 
+              array(
+              'fields' => 
+              array(
+               0 => 'timestamp',
+              ),
+              ),
+             ),
+             'primary' => 
+             array(
+              0 => 'id',
+             ),
+             'collate' => 'utf8_general_ci',
+             'charset' => 'utf8',
+             ));
+        $this->createTable('open_close', array(
+             'id' => 
+             array(
+              'type' => 'integer',
+              'primary' => '1',
+              'autoincrement' => '1',
+              'length' => '8',
+             ),
+             'entity_id' => 
+             array(
+              'type' => 'integer',
+              'notnull' => '1',
+              'length' => '8',
+             ),
+             'data_source_id' => 
+             array(
+              'type' => 'integer',
+              'notnull' => '1',
+              'length' => '8',
+             ),
+             'timestamp' => 
+             array(
+              'type' => 'integer',
+              'notnull' => '1',
+              'length' => '8',
+             ),
+             ), array(
+             'indexes' => 
+             array(
+              'timestamp' => 
+              array(
+              'fields' => 
+              array(
+               0 => 'timestamp',
+              ),
+              ),
+             ),
              'primary' => 
              array(
               0 => 'id',
@@ -361,12 +663,6 @@ class Version1 extends Doctrine_Migration_Base
               'type' => 'integer',
               'primary' => '1',
               'autoincrement' => '1',
-              'length' => '4',
-             ),
-             'user_id' => 
-             array(
-              'type' => 'integer',
-              'notnull' => '1',
               'length' => '8',
              ),
              'social_security_number' => 
@@ -374,7 +670,7 @@ class Version1 extends Doctrine_Migration_Base
               'type' => 'integer',
               'notnull' => '1',
               'comment' => 'taj szam',
-              'length' => '4',
+              'length' => '8',
              ),
              'born_at' => 
              array(
@@ -391,6 +687,50 @@ class Version1 extends Doctrine_Migration_Base
               'length' => '255',
              ),
              ), array(
+             'primary' => 
+             array(
+              0 => 'id',
+             ),
+             'collate' => 'utf8_general_ci',
+             'charset' => 'utf8',
+             ));
+        $this->createTable('temperature', array(
+             'id' => 
+             array(
+              'type' => 'integer',
+              'primary' => '1',
+              'autoincrement' => '1',
+              'length' => '8',
+             ),
+             'entity_id' => 
+             array(
+              'type' => 'integer',
+              'notnull' => '1',
+              'length' => '8',
+             ),
+             'data_source_id' => 
+             array(
+              'type' => 'integer',
+              'notnull' => '1',
+              'length' => '8',
+             ),
+             'timestamp' => 
+             array(
+              'type' => 'integer',
+              'notnull' => '1',
+              'length' => '8',
+             ),
+             ), array(
+             'indexes' => 
+             array(
+              'timestamp' => 
+              array(
+              'fields' => 
+              array(
+               0 => 'timestamp',
+              ),
+              ),
+             ),
              'primary' => 
              array(
               0 => 'id',
@@ -766,16 +1106,24 @@ class Version1 extends Doctrine_Migration_Base
 
     public function down()
     {
+        $this->dropTable('activation');
         $this->dropTable('activity');
+        $this->dropTable('battery');
         $this->dropTable('entity');
         $this->dropTable('data_source_realization');
         $this->dropTable('device');
         $this->dropTable('e_k_g');
+        $this->dropTable('humidity');
+        $this->dropTable('light');
         $this->dropTable('locality_type');
         $this->dropTable('measurement');
+        $this->dropTable('motion');
         $this->dropTable('observation');
         $this->dropTable('observer');
+        $this->dropTable('on_off');
+        $this->dropTable('open_close');
         $this->dropTable('patient');
+        $this->dropTable('temperature');
         $this->dropTable('sf_guard_forgot_password');
         $this->dropTable('sf_guard_group');
         $this->dropTable('sf_guard_group_permission');

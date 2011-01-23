@@ -26,11 +26,10 @@ abstract class BaseDevice extends sfDoctrineRecord
     public function setTableDefinition()
     {
         $this->setTableName('device');
-        $this->hasColumn('id', 'integer', 4, array(
+        $this->hasColumn('id', 'integer', null, array(
              'type' => 'integer',
              'primary' => true,
              'autoincrement' => true,
-             'length' => 4,
              ));
         $this->hasColumn('guid', 'string', 255, array(
              'type' => 'string',

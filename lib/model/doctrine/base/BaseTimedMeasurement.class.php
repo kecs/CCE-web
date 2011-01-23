@@ -21,10 +21,9 @@ abstract class BaseTimedMeasurement extends Measurement
     {
         parent::setTableDefinition();
         $this->setTableName('timed_measurement');
-        $this->hasColumn('timestamp', 'integer', 4, array(
+        $this->hasColumn('timestamp', 'integer', null, array(
              'type' => 'integer',
              'notnull' => true,
-             'length' => 4,
              ));
 
 

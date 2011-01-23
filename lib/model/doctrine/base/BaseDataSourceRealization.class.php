@@ -23,15 +23,13 @@ abstract class BaseDataSourceRealization extends sfDoctrineRecord
     public function setTableDefinition()
     {
         $this->setTableName('data_source_realization');
-        $this->hasColumn('data_source_id', 'integer', 4, array(
+        $this->hasColumn('data_source_id', 'integer', null, array(
              'type' => 'integer',
              'primary' => true,
-             'length' => 4,
              ));
-        $this->hasColumn('device_id', 'integer', 4, array(
+        $this->hasColumn('device_id', 'integer', null, array(
              'type' => 'integer',
              'primary' => true,
-             'length' => 4,
              ));
     }
 

@@ -13,14 +13,12 @@ abstract class BasePatientFormFilter extends BaseFormFilterDoctrine
   public function setup()
   {
     $this->setWidgets(array(
-      'user_id'                => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('sfGuardUser'), 'add_empty' => true)),
       'social_security_number' => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'born_at'                => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'address'                => new sfWidgetFormFilterInput(array('with_empty' => false)),
     ));
 
     $this->setValidators(array(
-      'user_id'                => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('sfGuardUser'), 'column' => 'id')),
       'social_security_number' => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'born_at'                => new sfValidatorPass(array('required' => false)),
       'address'                => new sfValidatorPass(array('required' => false)),
@@ -44,7 +42,6 @@ abstract class BasePatientFormFilter extends BaseFormFilterDoctrine
   {
     return array(
       'id'                     => 'Number',
-      'user_id'                => 'ForeignKey',
       'social_security_number' => 'Number',
       'born_at'                => 'Text',
       'address'                => 'Text',
