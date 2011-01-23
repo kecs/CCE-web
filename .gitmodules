@@ -10,4 +10,6 @@
 [submodule "plugins/sfAdminDashPlugin"]
 	path = plugins/sfAdminDashPlugin
 	url = git://github.com/kbond/sfAdminDashPlugin.git
-
+[submodule "web/assets/highcharts"]
+	path = web/assets/highcharts
+	url = https://github.com/highslide-software/highcharts.com.git
