@@ -43,6 +43,7 @@ all:
     standard_helpers:
       - Partial
       - sfAssetsManager
+      - I18N
 
     enabled_modules:
       - sfGuardAuth

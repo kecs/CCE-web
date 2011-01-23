@@ -12,4 +12,10 @@
  */
 class Patient extends BasePatient
 {
+
+  public function getHome()
+  {
+    return $this->getNode()->getParent();
+  }
+
 }
