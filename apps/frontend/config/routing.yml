@@ -15,15 +15,26 @@ datasource:
     channel:          \S+
     sf_method:        post
 
+dynamic_js:
+  url:    /assets/dynamic/entity/indexRecursive.js
+  param:  { module: entity, action: dynamicJavascript, sf_format: js }
+
+measurement_data:
+  #         /:entityType/:entityId/:measurementChannel
+  url:      /:type/:id/:module
+  class:    sfDoctrineRoute
+  options:  { model: Entity, type: object }
+  param:    { action: data }
+  requirements:
+    type:       \S+
+    id:         \d+
+    module:     \S+
+
 entity_index:
-  url:   /:type/:id
+  url:      /:type/:id
   class:    sfDoctrineRoute
   options:  { model: Entity, type: object }
   param:    { module: entity, action: indexRecursive }
   requirements:
-    entityType:       \S+
-    entityId:         \d+
-
-
-#default:
-#  url:   /:entityType/:entityId/*
+    type:       \S+
+    id:         \d+

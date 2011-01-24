@@ -1,0 +1,7 @@
+packages: 
+  entity_indexRecursive:
+    import:
+      - jquery
+      - jquery.urlTemplate
+      - highcharts
+    css: entity/indexRecursive.css

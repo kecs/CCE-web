@@ -1,4 +1,8 @@
 packages: 
+
+  highcharts:
+    js: highcharts/js/highcharts.src.js
+
   jquery:
     js:     jquery-1.4.4.js
 
@@ -92,4 +96,4 @@ packages:
       - jquery
     js:
       - jquery.urlTemplate/jquery.urlTemplate.js
-    
+

@@ -8,6 +8,11 @@ class entityActions extends cceActions
     $this->descendantEntities = $this->getObject()->getNode()->getDescendants(null, true);
   }
 
+  public function executeDynamicJavascript(sfWebRequest $request)
+  {
+
+  }
+
   /**
    * @return Entity
    */
