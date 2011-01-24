@@ -28,20 +28,26 @@ class Entity extends BaseEntity
     return parent::getNode();
   }
 
+  /**
+   *
+   * @return string[]
+   */
   public function getActiveChannels()
   {
-    /* 
-     * TODO ez trükkös
-     * Lehet minden csatornára külön lekérdezni, hogy van-e releváns adat,
-     * de ez elég lassú és kell hozzá az összes regisztrált csatorna listája.
-     * Valószínű viszont, hogy valahol úgy is szükség lesz erre a listára, így
-     * mindenképpen össze kell állítani.
-     * 
-     * Lehetne egy plusz táblát is csinálni, amiben a különböző entitásokon
-     * akív csatornákat kezelhetnénk. Ez lehetne normatív, vagyis csak azokat
-     * az adatok fogadjuk be, ami itt engedélyezve van, vagy leíró, azaz
-     * a bejövő adatok szerint frissítjük. - ez egyfajta cache így
-     */
+    $channels = MeasurementTable::getInstance()->getChannels();
+    $activeChannels = array();
+    foreach ($channels as $channel)
+    {
+      $count = Doctrine_Query::create()
+              ->from("$channel ch")
+              ->andWhere('ch.entity_id = ?', $this->id)
+              ->count();
+      if ($count)
+      {
+        $activeChannels[] = $channel;
+      }
+    }
+    return $activeChannels;
   }
 
 }

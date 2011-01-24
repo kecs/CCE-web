@@ -55,7 +55,7 @@ abstract class BaseMeasurement extends sfDoctrineRecord
              'foreign' => 'id'));
 
         $this->hasOne('Entity as Source', array(
-             'local' => 'entity_id',
+             'local' => 'data_source_id',
              'foreign' => 'id'));
     }
 }

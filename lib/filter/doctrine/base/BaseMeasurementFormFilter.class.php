@@ -14,12 +14,12 @@ abstract class BaseMeasurementFormFilter extends BaseFormFilterDoctrine
   {
     $this->setWidgets(array(
       'entity_id'      => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('About'), 'add_empty' => true)),
-      'data_source_id' => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'data_source_id' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Source'), 'add_empty' => true)),
     ));
 
     $this->setValidators(array(
       'entity_id'      => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('About'), 'column' => 'id')),
-      'data_source_id' => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
+      'data_source_id' => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Source'), 'column' => 'id')),
     ));
 
     $this->widgetSchema->setNameFormat('measurement_filters[%s]');
@@ -41,7 +41,7 @@ abstract class BaseMeasurementFormFilter extends BaseFormFilterDoctrine
     return array(
       'id'             => 'Number',
       'entity_id'      => 'ForeignKey',
-      'data_source_id' => 'Number',
+      'data_source_id' => 'ForeignKey',
     );
   }
 }

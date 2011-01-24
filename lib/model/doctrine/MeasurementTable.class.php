@@ -7,13 +7,31 @@
  */
 class MeasurementTable extends Doctrine_Table
 {
-    /**
-     * Returns an instance of this class.
-     *
-     * @return MeasurementTable
-     */
-    public static function getInstance()
-    {
-        return Doctrine_Core::getTable('Measurement');
-    }
+
+  public function getChannels()
+  {
+    return array(
+        'Activity',
+        'Ekg',
+        'Battery',
+        'Humidity',
+        'Light',
+        'Motion',
+        'OnOff',
+        'OpenClose',
+        'Temperature',
+        'Activation',
+    );
+  }
+
+  /**
+   * Returns an instance of this class.
+   *
+   * @return MeasurementTable
+   */
+  public static function getInstance()
+  {
+    return Doctrine_Core::getTable('Measurement');
+  }
+
 }

@@ -110,9 +110,11 @@ Measurement:
   relations:
     About:
       class: Entity
+      local: entity_id
     Source:
       #practically DataSource
       class: Entity
+      local: data_source_id
 TimedMeasurement:
   abstract: true
   inheritance:
