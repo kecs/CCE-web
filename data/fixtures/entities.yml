@@ -57,3 +57,26 @@ Entity:
         social_security_number: '100 000 003'
         born_at: '---'
         address: '---'      
+  Home_Demo:
+    type: Home
+    name: "Demóház"
+    children: 
+      contactSensor:
+        type: DataSource
+        name: "Ajtó nyitás csukás"
+      motionSensor:
+        type: DataSource
+        name: "Mozgás érzékelés a szobán belül"
+      switchesSensor:
+        type: DataSource
+        name: "Nyomógombok"
+      sirenActuator:
+        type: DataSource
+        name: "Ajtó nyitás csukás"
+      Patient_Demo:
+        name: Patient Demo
+        type: Patient
+        sfGuardUser: sfGuardUser_patient1
+        social_security_number: '000 000 004'
+        born_at: 'Budapest, 1982. ápr. 12.'
+        address: '1111 Budapest Egry József utca 18.'
