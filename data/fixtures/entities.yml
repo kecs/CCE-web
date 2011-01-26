@@ -71,8 +71,8 @@ Entity:
         type: DataSource
         name: "Nyomógombok"
       sirenActuator:
-        type: DataSource
-        name: "Ajtó nyitás csukás"
+        type: DataSink
+        name: "Figyelmeztető jelzés"
       Patient_Demo:
         name: Patient Demo
         type: Patient
