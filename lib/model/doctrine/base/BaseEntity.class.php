@@ -134,7 +134,7 @@ abstract class BaseEntity extends sfDoctrineRecord
         parent::setUp();
         $this->hasOne('sfGuardUser', array(
              'local' => 'id',
-             'foreign' => 'id'));
+             'foreign' => 'patient_id'));
 
         $this->hasMany('Observer as Observers', array(
              'refClass' => 'Observation',

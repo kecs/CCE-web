@@ -1,12 +1,62 @@
+sfGuardUser:
+  actAs: [Timestampable]
+  columns:
+    first_name: string(255)
+    last_name: string(255)
+    email_address:
+      type: string(255)
+      notnull: true
+      unique: true
+    username:
+      type: string(128)
+      notnull: true
+      unique: true
+    algorithm:
+      type: string(128)
+      default: sha1
+      notnull: true
+    salt: string(128)
+    password: string(128)
+    is_active:
+      type: boolean
+      default: 1
+    is_super_admin:
+      type: boolean
+      default: false
+    last_login:
+      type: timestamp
+    patient_id: integer
+    observer_id: integer
+  indexes:
+    is_active_idx:
+      fields: [is_active]
+  relations:
+    Groups:
+      class: sfGuardGroup
+      local: user_id
+      foreign: group_id
+      refClass: sfGuardUserGroup
+      foreignAlias: Users
+    Permissions:
+      class: sfGuardPermission
+      local: user_id
+      foreign: permission_id
+      refClass: sfGuardUserPermission
+      foreignAlias: Users
+    PatientRole:
+      #Patient
+      class: Entity
+      local: patient_id
+      foreignType: one
+    ObserverRole:
+      class: Observer
+      foreignType: one
+
 Observer:
   comment:                Hozzátartozó, felügyelő vagy gondozó
   columns:
     id:                   { type: integer, primary: true, autoincrement: true }
   relations:
-    sfGuardUser:
-      local:        id
-      foreignType:  one
-      foreignAlias: ObserverRole
     Observants:
       class:       Entity
       refClass:    Observation
@@ -29,11 +79,6 @@ Entity:
     name:           { type: string(255), notnull: true }
     comment:        { type: clob }
     type:           { type: string(255), notnull: true }
-  relations:
-    sfGuardUser:
-      local:        id
-      foreignType:  one
-      foreignAlias: PatientRole
 Patient:
   inheritance:
     extends: Entity

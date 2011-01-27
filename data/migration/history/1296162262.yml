@@ -101,6 +101,10 @@ sfGuardUser:
       default: false
     last_login:
       type: timestamp
+    patient_id:
+      type: integer
+    observer_id:
+      type: integer
   indexes:
     is_active_idx:
       fields: [is_active]
@@ -117,6 +121,13 @@ sfGuardUser:
       foreign: permission_id
       refClass: sfGuardUserPermission
       foreignAlias: Users
+    PatientRole:
+      class: Entity
+      local: patient_id
+      foreignType: one
+    ObserverRole:
+      class: Observer
+      foreignType: one
   package: sfDoctrineGuardPlugin.lib.model.doctrine
   package_custom_path: /home/cassus/munka/emt/cce/plugins/sfDoctrineGuardPlugin/lib/model/doctrine
 sfGuardUserPermission:
@@ -296,6 +307,7 @@ OpenClosed:
     value:
       type: enum
       values: [open, closed]
+      notnull: true
   package: emtBasicMeasurementsPlugin.lib.model.doctrine
   package_custom_path: /home/cassus/munka/emt/cce/plugins/emtBasicMeasurementsPlugin/lib/model/doctrine
 Battery:
@@ -325,7 +337,11 @@ Activation:
 Motion:
   inheritance:
     type: concrete
-    extends: EmptyTimedMeasurement
+    extends: ScalarTimedMeasurement
+  columns:
+    value:
+      type: boolean
+      notnull: true
   package: emtBasicMeasurementsPlugin.lib.model.doctrine
   package_custom_path: /home/cassus/munka/emt/cce/plugins/emtBasicMeasurementsPlugin/lib/model/doctrine
 Observer:
@@ -336,10 +352,6 @@ Observer:
       primary: true
       autoincrement: true
   relations:
-    sfGuardUser:
-      local: id
-      foreignType: one
-      foreignAlias: ObserverRole
     Observants:
       class: Entity
       refClass: Observation
@@ -375,11 +387,6 @@ Entity:
       type: string
       notnull: true
       length: '255'
-  relations:
-    sfGuardUser:
-      local: id
-      foreignType: one
-      foreignAlias: PatientRole
 Patient:
   inheritance:
     extends: Entity

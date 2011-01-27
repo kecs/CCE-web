@@ -15,14 +15,16 @@
  * @property boolean $is_active
  * @property boolean $is_super_admin
  * @property timestamp $last_login
+ * @property integer $patient_id
+ * @property integer $observer_id
  * @property Doctrine_Collection $Groups
  * @property Doctrine_Collection $Permissions
+ * @property Entity $PatientRole
+ * @property Observer $ObserverRole
  * @property Doctrine_Collection $sfGuardUserPermission
  * @property Doctrine_Collection $sfGuardUserGroup
  * @property sfGuardRememberKey $RememberKeys
  * @property sfGuardForgotPassword $ForgotPassword
- * @property Observer $ObserverRole
- * @property Entity $PatientRole
  * 
  * @method string                getFirstName()             Returns the current record's "first_name" value
  * @method string                getLastName()              Returns the current record's "last_name" value
@@ -34,14 +36,16 @@
  * @method boolean               getIsActive()              Returns the current record's "is_active" value
  * @method boolean               getIsSuperAdmin()          Returns the current record's "is_super_admin" value
  * @method timestamp             getLastLogin()             Returns the current record's "last_login" value
+ * @method integer               getPatientId()             Returns the current record's "patient_id" value
+ * @method integer               getObserverId()            Returns the current record's "observer_id" value
  * @method Doctrine_Collection   getGroups()                Returns the current record's "Groups" collection
  * @method Doctrine_Collection   getPermissions()           Returns the current record's "Permissions" collection
+ * @method Entity                getPatientRole()           Returns the current record's "PatientRole" value
+ * @method Observer              getObserverRole()          Returns the current record's "ObserverRole" value
  * @method Doctrine_Collection   getSfGuardUserPermission() Returns the current record's "sfGuardUserPermission" collection
  * @method Doctrine_Collection   getSfGuardUserGroup()      Returns the current record's "sfGuardUserGroup" collection
  * @method sfGuardRememberKey    getRememberKeys()          Returns the current record's "RememberKeys" value
  * @method sfGuardForgotPassword getForgotPassword()        Returns the current record's "ForgotPassword" value
- * @method Observer              getObserverRole()          Returns the current record's "ObserverRole" value
- * @method Entity                getPatientRole()           Returns the current record's "PatientRole" value
  * @method sfGuardUser           setFirstName()             Sets the current record's "first_name" value
  * @method sfGuardUser           setLastName()              Sets the current record's "last_name" value
  * @method sfGuardUser           setEmailAddress()          Sets the current record's "email_address" value
@@ -52,14 +56,16 @@
  * @method sfGuardUser           setIsActive()              Sets the current record's "is_active" value
  * @method sfGuardUser           setIsSuperAdmin()          Sets the current record's "is_super_admin" value
  * @method sfGuardUser           setLastLogin()             Sets the current record's "last_login" value
+ * @method sfGuardUser           setPatientId()             Sets the current record's "patient_id" value
+ * @method sfGuardUser           setObserverId()            Sets the current record's "observer_id" value
  * @method sfGuardUser           setGroups()                Sets the current record's "Groups" collection
  * @method sfGuardUser           setPermissions()           Sets the current record's "Permissions" collection
+ * @method sfGuardUser           setPatientRole()           Sets the current record's "PatientRole" value
+ * @method sfGuardUser           setObserverRole()          Sets the current record's "ObserverRole" value
  * @method sfGuardUser           setSfGuardUserPermission() Sets the current record's "sfGuardUserPermission" collection
  * @method sfGuardUser           setSfGuardUserGroup()      Sets the current record's "sfGuardUserGroup" collection
  * @method sfGuardUser           setRememberKeys()          Sets the current record's "RememberKeys" value
  * @method sfGuardUser           setForgotPassword()        Sets the current record's "ForgotPassword" value
- * @method sfGuardUser           setObserverRole()          Sets the current record's "ObserverRole" value
- * @method sfGuardUser           setPatientRole()           Sets the current record's "PatientRole" value
  * 
  * @package    cce
  * @subpackage model
@@ -116,6 +122,12 @@ abstract class BasesfGuardUser extends sfDoctrineRecord
         $this->hasColumn('last_login', 'timestamp', null, array(
              'type' => 'timestamp',
              ));
+        $this->hasColumn('patient_id', 'integer', null, array(
+             'type' => 'integer',
+             ));
+        $this->hasColumn('observer_id', 'integer', null, array(
+             'type' => 'integer',
+             ));
 
 
         $this->index('is_active_idx', array(
@@ -139,6 +151,14 @@ abstract class BasesfGuardUser extends sfDoctrineRecord
              'local' => 'user_id',
              'foreign' => 'permission_id'));
 
+        $this->hasOne('Entity as PatientRole', array(
+             'local' => 'patient_id',
+             'foreign' => 'id'));
+
+        $this->hasOne('Observer as ObserverRole', array(
+             'local' => 'observer_id',
+             'foreign' => 'id'));
+
         $this->hasMany('sfGuardUserPermission', array(
              'local' => 'id',
              'foreign' => 'user_id'));
@@ -154,14 +174,6 @@ abstract class BasesfGuardUser extends sfDoctrineRecord
         $this->hasOne('sfGuardForgotPassword as ForgotPassword', array(
              'local' => 'id',
              'foreign' => 'user_id'));
-
-        $this->hasOne('Observer as ObserverRole', array(
-             'local' => 'id',
-             'foreign' => 'id'));
-
-        $this->hasOne('Entity as PatientRole', array(
-             'local' => 'id',
-             'foreign' => 'id'));
 
         $timestampable0 = new Doctrine_Template_Timestampable(array(
              ));

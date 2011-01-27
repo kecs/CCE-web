@@ -531,6 +531,12 @@ class Version1 extends Doctrine_Migration_Base
               'notnull' => '1',
               'length' => '8',
              ),
+             'value' => 
+             array(
+              'type' => 'boolean',
+              'notnull' => '1',
+              'length' => '25',
+             ),
              ), array(
              'indexes' => 
              array(
@@ -631,7 +637,7 @@ class Version1 extends Doctrine_Migration_Base
              'collate' => 'utf8_general_ci',
              'charset' => 'utf8',
              ));
-        $this->createTable('open_close', array(
+        $this->createTable('open_closed', array(
              'id' => 
              array(
               'type' => 'integer',
@@ -656,6 +662,17 @@ class Version1 extends Doctrine_Migration_Base
               'type' => 'integer',
               'notnull' => '1',
               'length' => '8',
+             ),
+             'value' => 
+             array(
+              'type' => 'enum',
+              'values' => 
+              array(
+              0 => 'open',
+              1 => 'closed',
+              ),
+              'notnull' => '1',
+              'length' => '',
              ),
              ), array(
              'indexes' => 
@@ -985,6 +1002,16 @@ class Version1 extends Doctrine_Migration_Base
               'type' => 'timestamp',
               'length' => '25',
              ),
+             'patient_id' => 
+             array(
+              'type' => 'integer',
+              'length' => '8',
+             ),
+             'observer_id' => 
+             array(
+              'type' => 'integer',
+              'length' => '8',
+             ),
              'created_at' => 
              array(
               'notnull' => '1',
@@ -1102,7 +1129,7 @@ class Version1 extends Doctrine_Migration_Base
         $this->dropTable('observation');
         $this->dropTable('observer');
         $this->dropTable('on_off');
-        $this->dropTable('open_close');
+        $this->dropTable('open_closed');
         $this->dropTable('temperature');
         $this->dropTable('sf_guard_forgot_password');
         $this->dropTable('sf_guard_group');
