@@ -15,9 +15,9 @@ datasource:
     channel:          \S+
     sf_method:        post
 
-dynamic_js:
+javascript:
   url:    /assets/dynamic/entity/indexRecursive.js
-  param:  { module: entity, action: dynamicJavascript, sf_format: js }
+  param:  { module: entity, action: javascript, sf_format: js }
 
 measurement_data:
   url:      /:type/:id/:channel

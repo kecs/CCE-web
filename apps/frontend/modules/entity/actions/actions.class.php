@@ -20,9 +20,9 @@ class entityActions extends cceActions
             $channelTable->getMeasurementsAbout($this->getObject(), new TimePeriod($from, $to)));
   }
 
-  public function executeDynamicJavascript(sfWebRequest $request)
+  public function executeJavascript(sfWebRequest $request)
   {
-
+    $this->setTemplate('indexRecursive');
   }
 
   /**
