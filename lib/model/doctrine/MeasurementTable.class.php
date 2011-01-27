@@ -8,6 +8,17 @@
 class MeasurementTable extends Doctrine_Table
 {
 
+  /**
+   *
+   * @abstract
+   * @param Entity $entity
+   * @param TimePeriod $period
+   */
+  public function getMeasurementsAbout(Entity $entity, TimePeriod $period)
+  {
+
+  }
+
   public function getChannels()
   {
     return array(

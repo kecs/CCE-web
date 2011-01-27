@@ -20,15 +20,16 @@ dynamic_js:
   param:  { module: entity, action: dynamicJavascript, sf_format: js }
 
 measurement_data:
-  #         /:entityType/:entityId/:measurementChannel
-  url:      /:type/:id/:module
+  url:      /:type/:id/:channel
   class:    sfDoctrineRoute
   options:  { model: Entity, type: object }
-  param:    { action: data }
+  param:    { module: entity, action: data }
   requirements:
     type:       \S+
     id:         \d+
-    module:     \S+
+    channel:    \S+
+    from:       \d+
+    to:         \d+
 
 entity_index:
   url:      /:type/:id

@@ -7,13 +7,25 @@
  */
 class PluginActivityTable extends MeasurementTable
 {
-    /**
-     * Returns an instance of this class.
-     *
-     * @return object PluginActivityTable
-     */
-    public static function getInstance()
-    {
-        return Doctrine_Core::getTable('PluginActivity');
-    }
+
+  /**
+   * Returns an instance of this class.
+   *
+   * @return object PluginActivityTable
+   */
+  public static function getInstance()
+  {
+    return Doctrine_Core::getTable('PluginActivity');
+  }
+
+  public function getMeasurementsAbout(Entity $entity, TimePeriod $period)
+  {
+    return $this->createQuery('m')
+            ->select('m.type, m.start_time, m.end_time')
+            ->andWhere('m.entity_id = ?', $entity->id)
+            ->andWhere('m.end_time >= ?', $period->from)
+            ->andWhere('m.start_time <= ?', $period->to)
+            ->execute(array(), Doctrine_Core::HYDRATE_ARRAY);
+  }
+
 }
