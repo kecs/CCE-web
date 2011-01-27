@@ -28,13 +28,30 @@ $(function () {
       channel: channel.data('channel')
     }), {
       from: 1,
-      to: 200
+      to: 1696122139632
     }, callback);
+  }
+
+  function categorySeries(axis, data) {
+    var seriesData = [];
+    if (axis.categories === undefined) {
+      axis.categories = [];
+    }
+    $.each(data, function (i, measurement) {
+      var categoryId = $.inArray(measurement.value, axis.categories);
+      if (categoryId === -1) {
+        categoryId = axis.categories.length;
+        axis.categories.push(measurement.value);
+      }
+      seriesData.push([measurement.timestamp, measurement.value == 'closed' ? 1 : 0]);
+    });
+    return seriesData;
   }
 
   channels.Activity = function (channel) {
     getDataForChannel(channel, function (data) {
       var options = $.extend(true, {}, generalOptions);
+      options.chart.renderTo = channel[0];
       options.yAxis.categories = [];
 
       $.each(data, function (i, measurement) {
@@ -48,21 +65,27 @@ $(function () {
         options.series[0].data.push(null);
       });
 
-      Highcharts.Chart(options);
+      return new Highcharts.Chart(options);
     });
   };
 
   channels.OpenClosed = function (channel) {
     getDataForChannel(channel, function (data) {
       var options = $.extend(true, {}, generalOptions);
-      Highcharts.Chart(options);
+      options.chart.renderTo = channel[0];
+      options.series[0].data = categorySeries(options.yAxis, data);
+      return new Highcharts.Chart(options);
     });
   };
 
   $('.channel').each(function () {
     var channel = $(this);
     var type = channel.data('channel');
-    channels[type](channel);
+    if (channels[type]) {
+      channels[type](channel);
+    } else {
+      channel.text('Error: unkown channel');
+    }
   });
 
 });

@@ -7,13 +7,28 @@
  */
 class PluginOpenClosedTable extends ScalarTimedMeasurementTable
 {
-    /**
-     * Returns an instance of this class.
-     *
-     * @return object PluginOpenClosedTable
-     */
-    public static function getInstance()
+
+  /**
+   * Returns an instance of this class.
+   *
+   * @return object PluginOpenClosedTable
+   */
+  public static function getInstance()
+  {
+    return Doctrine_Core::getTable('PluginOpenClosed');
+  }
+
+  public function getMeasurementsAbout(Entity $entity, TimePeriod $period)
+  {
+    $measurements = parent::getMeasurementsAbout($entity, $period)
+                    ->andWhere('m.timestamp BETWEEN ? AND ?', array($period->from, $period->to))
+                    ->execute();
+    foreach ($measurements as &$measurement)
     {
-        return Doctrine_Core::getTable('PluginOpenClosed');
+      unset ($measurement['id']);
+      $measurement['timestamp'] = (int)$measurement['timestamp'];
     }
+    return $measurements;
+  }
+
 }

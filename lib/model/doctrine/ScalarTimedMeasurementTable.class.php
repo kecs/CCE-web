@@ -7,13 +7,23 @@
  */
 class ScalarTimedMeasurementTable extends TimedMeasurementTable
 {
-    /**
-     * Returns an instance of this class.
-     *
-     * @return ScalarTimedMeasurementTable
-     */
-    public static function getInstance()
-    {
-        return Doctrine_Core::getTable('ScalarTimedMeasurement');
-    }
+
+  /**
+   * Returns an instance of this class.
+   *
+   * @return ScalarTimedMeasurementTable
+   */
+  public static function getInstance()
+  {
+    return Doctrine_Core::getTable('ScalarTimedMeasurement');
+  }
+
+  public function getMeasurementsAbout(Entity $entity, TimePeriod $period)
+  {
+    return $this->createQuery('m')
+            ->select('m.timestamp, m.value')
+            ->andWhere('m.entity_id = ?', $entity->id)
+            ->setHydrationMode(Doctrine_Core::HYDRATE_ARRAY);
+  }
+
 }
