@@ -1,6 +1,6 @@
 <?php
 
-class EntityActions extends sfActions
+class EntityActions extends cceActions
 {
 
   /**
@@ -95,12 +95,6 @@ class EntityActions extends sfActions
 
     $this->getUser()->setFlash('notice', "'{$record}' was deleted.");
     $this->redirect($this->generateUrl('entity'));
-  }
-
-  private function renderJSON($data)
-  {
-    //$this->getResponse()->setHttpHeader('Content-type', 'application/json');
-    return $this->renderText(json_encode($data));
   }
 
 }

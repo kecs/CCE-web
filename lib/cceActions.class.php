@@ -25,4 +25,15 @@ class cceActions extends sfActions
     return $this->getRoute()->getObject();
   }
 
+  protected function renderJSON($data)
+  {
+    $content = json_encode($data);
+
+    if ($this->getRequest()->isXmlHttpRequest())
+    {
+      $this->getResponse()->setHttpHeader('Content-type', 'application/json');
+    }
+    return $this->renderText($content);
+  }
+
 }
