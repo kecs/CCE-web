@@ -43,12 +43,12 @@ battery:
     column:               id
     with_wildcard_routes: true
 
-openClose:
+openClosed:
   class: sfDoctrineRouteCollection
   options:
-    model:                OpenClose
-    module:               openCloseBackend
-    prefix_path:          /openClose
+    model:                OpenClosed
+    module:               openClosedBackend
+    prefix_path:          /openClosed
     column:               id
     with_wildcard_routes: true
 

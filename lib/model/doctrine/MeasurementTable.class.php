@@ -29,7 +29,7 @@ class MeasurementTable extends Doctrine_Table
         'Light',
         'Motion',
         'OnOff',
-        'OpenClose',
+        'OpenClosed',
         'Temperature',
         'Activation',
     );

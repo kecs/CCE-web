@@ -42,8 +42,8 @@ all:
             url:    motion
           OnOff:
             url:    onOff
-          OpenClose:
-            url:    openClose
+          OpenClosed:
+            url:    openClosed
           Temperature:
             url:    temperature
           Activation:
