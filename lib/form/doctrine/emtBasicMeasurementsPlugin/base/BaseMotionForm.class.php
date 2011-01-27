@@ -19,6 +19,9 @@ abstract class BaseMotionForm extends MeasurementForm
     $this->widgetSchema   ['timestamp'] = new sfWidgetFormInputText();
     $this->validatorSchema['timestamp'] = new sfValidatorInteger();
 
+    $this->widgetSchema   ['value'] = new sfWidgetFormInputCheckbox();
+    $this->validatorSchema['value'] = new sfValidatorBoolean();
+
     $this->widgetSchema->setNameFormat('motion[%s]');
   }
 

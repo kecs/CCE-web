@@ -1,4 +1,33 @@
 Entity:
+  Home_Demo:
+    id: 1
+    type: Home
+    name: "Demóház"
+    children:
+      contactSensor:
+        id: 2
+        type: DataSource
+        name: "Ajtó nyitás csukás"
+      motionSensor:
+        id: 3
+        type: DataSource
+        name: "Mozgás érzékelés a szobán belül"
+      switchesSensor:
+        id: 4
+        type: DataSource
+        name: "Nyomógombok"
+      sirenActuator:
+        id: 5
+        type: DataSink
+        name: "Figyelmeztető jelzés"
+      Patient_Demo:
+        id: 6
+        name: Patient Demo
+        type: Patient
+        sfGuardUser: sfGuardUser_patient1
+        social_security_number: '000 000 004'
+        born_at: 'Budapest, 1982. ápr. 12.'
+        address: '1111 Budapest Egry József utca 18.'
   Home_1:
     type: Home
     name: "Mézeskalácsház"
@@ -57,32 +86,3 @@ Entity:
         social_security_number: '100 000 003'
         born_at: '---'
         address: '---'
-  Home_Demo:
-    id: 1
-    type: Home
-    name: "Demóház"
-    children:
-      contactSensor:
-        id: 2
-        type: DataSource
-        name: "Ajtó nyitás csukás"
-      motionSensor:
-        id: 3
-        type: DataSource
-        name: "Mozgás érzékelés a szobán belül"
-      switchesSensor:
-        id: 4
-        type: DataSource
-        name: "Nyomógombok"
-      sirenActuator:
-        id: 5
-        type: DataSink
-        name: "Figyelmeztető jelzés"
-      Patient_Demo:
-        id: 6
-        name: Patient Demo
-        type: Patient
-        sfGuardUser: sfGuardUser_patient1
-        social_security_number: '000 000 004'
-        born_at: 'Budapest, 1982. ápr. 12.'
-        address: '1111 Budapest Egry József utca 18.'

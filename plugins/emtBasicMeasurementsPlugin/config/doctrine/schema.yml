@@ -6,10 +6,12 @@ Temperature:
   inheritance:
     type: concrete
     extends: ScalarTimedMeasurement
-OpenClose:
+OpenClosed:
   inheritance:
     type: concrete
     extends: ScalarTimedMeasurement
+  columns:
+    value: { type: enum, values: [open, closed], notnull: true }
 Battery:
   inheritance:
     type: concrete
@@ -29,4 +31,6 @@ Activation:
 Motion:
   inheritance:
     type: concrete
-    extends: EmptyTimedMeasurement
+    extends: ScalarTimedMeasurement
+  columns:
+    value: { type: boolean, notnull: true }

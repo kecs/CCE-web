@@ -17,6 +17,9 @@ abstract class BaseMotionFormFilter extends MeasurementFormFilter
     $this->widgetSchema   ['timestamp'] = new sfWidgetFormFilterInput(array('with_empty' => false));
     $this->validatorSchema['timestamp'] = new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false)));
 
+    $this->widgetSchema   ['value'] = new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no')));
+    $this->validatorSchema['value'] = new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0)));
+
     $this->widgetSchema->setNameFormat('motion_filters[%s]');
   }
 
@@ -29,6 +32,7 @@ abstract class BaseMotionFormFilter extends MeasurementFormFilter
   {
     return array_merge(parent::getFields(), array(
       'timestamp' => 'Number',
+      'value' => 'Boolean',
     ));
   }
 }

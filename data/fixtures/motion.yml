@@ -1,0 +1,236 @@
+# A mozgásdetektor percenként küld státuszinfót, hogy még mindig van-e mozgás,
+#  vagy még mindig nincsen mozgás. Egyébként aszinkron módon azonnal küldi,
+#  ha esemény van, és kb 5s mozdulatlanság után jelzi, ha nincsen mozgás.
+#  Indításnál kb 2 percet kell várni, míg elkezd működni.
+
+Motion:
+  -
+      Source: motionSensor
+      About: motionSensor
+      timestamp: 1296118080821
+      value:  0
+  -
+      Source: motionSensor
+      About: motionSensor
+      timestamp: 1296118138600
+      value:  1
+  -
+      Source: motionSensor
+      About: motionSensor
+      timestamp: 1296118143496
+      value:  0
+  -
+      Source: motionSensor
+      About: motionSensor
+      timestamp: 1296118167108
+      value:  1
+  -
+      Source: motionSensor
+      About: motionSensor
+      timestamp: 1296118225708
+      value:  1
+  -
+      Source: motionSensor
+      About: motionSensor
+      timestamp: 1296118284325
+      value:  1
+  -
+      Source: motionSensor
+      About: motionSensor
+      timestamp: 1296118298976
+      value:  0
+  -
+      Source: motionSensor
+      About: motionSensor
+      timestamp: 1296118342888
+      value:  0
+  -
+      Source: motionSensor
+      About: motionSensor
+      timestamp: 1296118401460
+      value:  0
+  -
+      Source: motionSensor
+      About: motionSensor
+      timestamp: 1296118420216
+      value:  1
+  -
+      Source: motionSensor
+      About: motionSensor
+      timestamp: 1296118425108
+      value:  0
+  -
+      Source: motionSensor
+      About: motionSensor
+      timestamp: 1296118429688
+      value:  1
+  -
+      Source: motionSensor
+      About: motionSensor
+      timestamp: 1296118678893
+      value:  0
+  -
+      Source: motionSensor
+      About: motionSensor
+      timestamp: 1296118737536
+      value:  0
+  -
+      Source: motionSensor
+      About: motionSensor
+      timestamp: 1296118754051
+      value:  1
+  -
+      Source: motionSensor
+      About: motionSensor
+      timestamp: 1296118774176
+      value:  0
+  -
+      Source: motionSensor
+      About: motionSensor
+      timestamp: 1296118781007
+      value:  1
+  -
+      Source: motionSensor
+      About: motionSensor
+      timestamp: 1296118785904
+      value:  0
+  -
+      Source: motionSensor
+      About: motionSensor
+      timestamp: 1296118790377
+      value:  1
+  -
+      Source: motionSensor
+      About: motionSensor
+      timestamp: 1296118963184
+      value:  0
+  -
+      Source: motionSensor
+      About: motionSensor
+      timestamp: 1296119021829
+      value:  0
+  -
+      Source: motionSensor
+      About: motionSensor
+      timestamp: 1296119080476
+      value:  0
+  -
+      Source: motionSensor
+      About: motionSensor
+      timestamp: 1296119139072
+      value:  0
+  -
+      Source: motionSensor
+      About: motionSensor
+      timestamp: 1296119197664
+      value:  0
+  -
+      Source: motionSensor
+      About: motionSensor
+      timestamp: 1296119256260
+      value:  0
+  -
+      Source: motionSensor
+      About: motionSensor
+      timestamp: 1296119314852
+      value:  0
+  -
+      Source: motionSensor
+      About: motionSensor
+      timestamp: 1296119373448
+      value:  0
+  -
+      Source: motionSensor
+      About: motionSensor
+      timestamp: 1296119432044
+      value:  0
+  -
+      Source: motionSensor
+      About: motionSensor
+      timestamp: 1296119490644
+      value:  0
+  -
+      Source: motionSensor
+      About: motionSensor
+      timestamp: 1296119549236
+      value:  0
+  -
+      Source: motionSensor
+      About: motionSensor
+      timestamp: 1296119607828
+      value:  0
+  -
+      Source: motionSensor
+      About: motionSensor
+      timestamp: 1296119666424
+      value:  0
+  -
+      Source: motionSensor
+      About: motionSensor
+      timestamp: 1296119725016
+      value:  0
+  -
+      Source: motionSensor
+      About: motionSensor
+      timestamp: 1296119783614
+      value:  0
+  -
+      Source: motionSensor
+      About: motionSensor
+      timestamp: 1296119842204
+      value:  0
+  -
+      Source: motionSensor
+      About: motionSensor
+      timestamp: 1296119900792
+      value:  0
+  -
+      Source: motionSensor
+      About: motionSensor
+      timestamp: 1296119959380
+      value:  0
+  -
+      Source: motionSensor
+      About: motionSensor
+      timestamp: 1296120017968
+      value:  0
+  -
+      Source: motionSensor
+      About: motionSensor
+      timestamp: 1296120076560
+      value:  0
+  -
+      Source: motionSensor
+      About: motionSensor
+      timestamp: 1296120135156
+      value:  0
+  -
+      Source: motionSensor
+      About: motionSensor
+      timestamp: 1296120193744
+      value:  0
+  -
+      Source: motionSensor
+      About: motionSensor
+      timestamp: 1296120252336
+      value:  0
+  -
+      Source: motionSensor
+      About: motionSensor
+      timestamp: 1296120310929
+      value:  0
+  -
+      Source: motionSensor
+      About: motionSensor
+      timestamp: 1296120369512
+      value:  0
+  -
+      Source: motionSensor
+      About: motionSensor
+      timestamp: 1296120428104
+      value:  0
+  -
+      Source: motionSensor
+      About: motionSensor
+      timestamp: 1296120478973
+      value:  1

@@ -1,27 +1,13 @@
-sfGuardGroup:
-  sfGuardGroup_admin:
-    name: admin
-    description: 'Administrator group'
-    created_at: '2010-03-30 18:47:39'
-    updated_at: '2010-03-30 18:47:39'
-sfGuardPermission:
-  sfGuardPermission_admin:
-    name: admin
-    description: 'Administrator permission'
-    created_at: '2010-03-30 18:47:39'
-    updated_at: '2010-03-30 18:47:39'
-sfGuardGroupPermission:
-  sfGuardGroupPermission_admin:
-    Group: sfGuardGroup_admin
-    Permission: sfGuardPermission_admin
-    created_at: '2010-03-30 18:47:39'
-    updated_at: '2010-03-30 18:47:39'
-sfGuardUserGroup:
-  sfGuardUserGroup_admin:
-    User: sfGuardUser_admin
-    Group: sfGuardGroup_admin
-    created_at: '2010-03-30 18:47:39'
-    updated_at: '2010-03-30 18:47:39'
+Observer:
+  Observer_admin:
+    sfGuardUser: sfGuardUser_admin
+    Observants:
+      - Patient_1
+      - Patient_2
+      - Patient_hanak_peter
+      - Patient_horvath_lajos
+      - Patient_vajda_lorant
+      - Patient_Demo
 sfGuardUser:
   sfGuardUser_admin:
     username: admin@cce.emt.bme.hu
@@ -95,14 +81,28 @@ sfGuardUser:
     last_login: null
     created_at: '2010-07-07 14:07:38'
     updated_at: '2010-07-15 06:11:40'
-Observer:
-  Observer_admin:
-    sfGuardUser: sfGuardUser_admin
-    Observants:
-      - Patient_1
-      - Patient_2
-      - Patient_hanak_peter
-      - Patient_horvath_lajos
-      - Patient_vajda_lorant
-      - Patient_Demo
+sfGuardGroup:
+  sfGuardGroup_admin:
+    name: admin
+    description: 'Administrator group'
+    created_at: '2010-03-30 18:47:39'
+    updated_at: '2010-03-30 18:47:39'
+sfGuardPermission:
+  sfGuardPermission_admin:
+    name: admin
+    description: 'Administrator permission'
+    created_at: '2010-03-30 18:47:39'
+    updated_at: '2010-03-30 18:47:39'
+sfGuardGroupPermission:
+  sfGuardGroupPermission_admin:
+    Group: sfGuardGroup_admin
+    Permission: sfGuardPermission_admin
+    created_at: '2010-03-30 18:47:39'
+    updated_at: '2010-03-30 18:47:39'
+sfGuardUserGroup:
+  sfGuardUserGroup_admin:
+    User: sfGuardUser_admin
+    Group: sfGuardGroup_admin
+    created_at: '2010-03-30 18:47:39'
+    updated_at: '2010-03-30 18:47:39'
   

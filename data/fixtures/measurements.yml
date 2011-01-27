@@ -1,7 +1,0 @@
-Activity:
-  activity1:
-    Source: activtySensor
-    About: Patient_1
-    type: ActivityTestType1
-    start_time: 1
-    end_time: 2

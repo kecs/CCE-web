@@ -59,6 +59,6 @@ all:
       - lightBackend
       - motionBackend
       - onOffBackend
-      - openCloseBackend
+      - openClosedBackend
       - temperatureBackend
       - activationBackend

@@ -131,7 +131,7 @@ ScalarTimedMeasurement:
     extends: TimedMeasurement
     type: concrete
   columns:
-    #data - scalar field defined in subclasses
+    #value - scalar field defined in subclasses
 EmptyTimedMeasurement:
   abstract: true
   inheritance:

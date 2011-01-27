@@ -1,0 +1,528 @@
+sfGuardGroup:
+  actAs:
+    Timestampable: {  }
+  columns:
+    name:
+      type: string
+      unique: true
+      length: '255'
+    description:
+      type: string
+      length: '1000'
+  relations:
+    Users:
+      class: sfGuardUser
+      refClass: sfGuardUserGroup
+      local: group_id
+      foreign: user_id
+      foreignAlias: Groups
+    Permissions:
+      class: sfGuardPermission
+      local: group_id
+      foreign: permission_id
+      refClass: sfGuardGroupPermission
+      foreignAlias: Groups
+  package: sfDoctrineGuardPlugin.lib.model.doctrine
+  package_custom_path: /home/cassus/munka/emt/cce/plugins/sfDoctrineGuardPlugin/lib/model/doctrine
+sfGuardPermission:
+  actAs:
+    Timestampable: {  }
+  columns:
+    name:
+      type: string
+      unique: true
+      length: '255'
+    description:
+      type: string
+      length: '1000'
+  package: sfDoctrineGuardPlugin.lib.model.doctrine
+  package_custom_path: /home/cassus/munka/emt/cce/plugins/sfDoctrineGuardPlugin/lib/model/doctrine
+sfGuardGroupPermission:
+  options:
+    symfony:
+      form: false
+      filter: false
+  actAs:
+    Timestampable: {  }
+  columns:
+    group_id:
+      type: integer
+      primary: true
+    permission_id:
+      type: integer
+      primary: true
+  relations:
+    Group:
+      class: sfGuardGroup
+      local: group_id
+      onDelete: CASCADE
+    Permission:
+      class: sfGuardPermission
+      local: permission_id
+      onDelete: CASCADE
+  package: sfDoctrineGuardPlugin.lib.model.doctrine
+  package_custom_path: /home/cassus/munka/emt/cce/plugins/sfDoctrineGuardPlugin/lib/model/doctrine
+sfGuardUser:
+  actAs:
+    Timestampable: {  }
+  columns:
+    first_name:
+      type: string
+      length: '255'
+    last_name:
+      type: string
+      length: '255'
+    email_address:
+      type: string
+      notnull: true
+      unique: true
+      length: '255'
+    username:
+      type: string
+      notnull: true
+      unique: true
+      length: '128'
+    algorithm:
+      type: string
+      default: sha1
+      notnull: true
+      length: '128'
+    salt:
+      type: string
+      length: '128'
+    password:
+      type: string
+      length: '128'
+    is_active:
+      type: boolean
+      default: 1
+    is_super_admin:
+      type: boolean
+      default: false
+    last_login:
+      type: timestamp
+  indexes:
+    is_active_idx:
+      fields: [is_active]
+  relations:
+    Groups:
+      class: sfGuardGroup
+      local: user_id
+      foreign: group_id
+      refClass: sfGuardUserGroup
+      foreignAlias: Users
+    Permissions:
+      class: sfGuardPermission
+      local: user_id
+      foreign: permission_id
+      refClass: sfGuardUserPermission
+      foreignAlias: Users
+  package: sfDoctrineGuardPlugin.lib.model.doctrine
+  package_custom_path: /home/cassus/munka/emt/cce/plugins/sfDoctrineGuardPlugin/lib/model/doctrine
+sfGuardUserPermission:
+  options:
+    symfony:
+      form: false
+      filter: false
+  actAs:
+    Timestampable: {  }
+  columns:
+    user_id:
+      type: integer
+      primary: true
+    permission_id:
+      type: integer
+      primary: true
+  relations:
+    User:
+      class: sfGuardUser
+      local: user_id
+      onDelete: CASCADE
+    Permission:
+      class: sfGuardPermission
+      local: permission_id
+      onDelete: CASCADE
+  package: sfDoctrineGuardPlugin.lib.model.doctrine
+  package_custom_path: /home/cassus/munka/emt/cce/plugins/sfDoctrineGuardPlugin/lib/model/doctrine
+sfGuardUserGroup:
+  options:
+    symfony:
+      form: false
+      filter: false
+  actAs:
+    Timestampable: {  }
+  columns:
+    user_id:
+      type: integer
+      primary: true
+    group_id:
+      type: integer
+      primary: true
+  relations:
+    User:
+      class: sfGuardUser
+      local: user_id
+      onDelete: CASCADE
+    Group:
+      class: sfGuardGroup
+      local: group_id
+      onDelete: CASCADE
+  package: sfDoctrineGuardPlugin.lib.model.doctrine
+  package_custom_path: /home/cassus/munka/emt/cce/plugins/sfDoctrineGuardPlugin/lib/model/doctrine
+sfGuardRememberKey:
+  options:
+    symfony:
+      form: false
+      filter: false
+  actAs:
+    Timestampable: {  }
+  columns:
+    user_id:
+      type: integer
+    remember_key:
+      type: string
+      length: '32'
+    ip_address:
+      type: string
+      length: '50'
+  relations:
+    User:
+      class: sfGuardUser
+      local: user_id
+      foreignAlias: RememberKeys
+      foreignType: one
+      onDelete: CASCADE
+  package: sfDoctrineGuardPlugin.lib.model.doctrine
+  package_custom_path: /home/cassus/munka/emt/cce/plugins/sfDoctrineGuardPlugin/lib/model/doctrine
+sfGuardForgotPassword:
+  options:
+    symfony:
+      form: false
+      filter: false
+  actAs:
+    Timestampable: {  }
+  columns:
+    user_id:
+      type: integer
+      notnull: true
+    unique_key:
+      type: string
+      length: '255'
+    expires_at:
+      type: timestamp
+      notnull: true
+  relations:
+    User:
+      class: sfGuardUser
+      local: user_id
+      type: one
+      foreignType: one
+      foreignAlias: ForgotPassword
+      onDelete: CASCADE
+  package: sfDoctrineGuardPlugin.lib.model.doctrine
+  package_custom_path: /home/cassus/munka/emt/cce/plugins/sfDoctrineGuardPlugin/lib/model/doctrine
+Activity:
+  inheritance:
+    type: concrete
+    extends: Measurement
+  columns:
+    type:
+      type: string
+      notnull: true
+      length: '255'
+    start_time:
+      type: integer
+      notnull: true
+      length: '4'
+    end_time:
+      type: integer
+      notnull: true
+      length: '4'
+  package: emtActivityPlugin.lib.model.doctrine
+  package_custom_path: /home/cassus/munka/emt/cce/plugins/emtActivityPlugin/lib/model/doctrine
+EKG:
+  inheritance:
+    type: concrete
+    extends: TimedMeasurement
+  columns:
+    started_by:
+      type: string
+      notnull: true
+      length: '10'
+    heart_rate:
+      type: integer
+      notnull: true
+      length: '2'
+    st_segment_elevation_ch1:
+      type: float
+      notnull: true
+      comment: 'in volts'
+      length: '10'
+      scale: '6'
+    st_segment_elevation_ch2:
+      type: float
+      notnull: true
+      comment: 'in volts'
+      length: '10'
+      scale: '6'
+    commonparams:
+      type: array
+      notnull: true
+    channelparams:
+      type: array
+      notnull: true
+    averages:
+      type: array
+      notnull: true
+  package: emtEKGPlugin.lib.model.doctrine
+  package_custom_path: /home/cassus/munka/emt/cce/plugins/emtEKGPlugin/lib/model/doctrine
+Light:
+  inheritance:
+    type: concrete
+    extends: ScalarTimedMeasurement
+  package: emtBasicMeasurementsPlugin.lib.model.doctrine
+  package_custom_path: /home/cassus/munka/emt/cce/plugins/emtBasicMeasurementsPlugin/lib/model/doctrine
+Temperature:
+  inheritance:
+    type: concrete
+    extends: ScalarTimedMeasurement
+  package: emtBasicMeasurementsPlugin.lib.model.doctrine
+  package_custom_path: /home/cassus/munka/emt/cce/plugins/emtBasicMeasurementsPlugin/lib/model/doctrine
+OpenClosed:
+  inheritance:
+    type: concrete
+    extends: ScalarTimedMeasurement
+  columns:
+    value:
+      type: enum
+      values: [open, closed]
+      notnull: true
+  package: emtBasicMeasurementsPlugin.lib.model.doctrine
+  package_custom_path: /home/cassus/munka/emt/cce/plugins/emtBasicMeasurementsPlugin/lib/model/doctrine
+Battery:
+  inheritance:
+    type: concrete
+    extends: ScalarTimedMeasurement
+  package: emtBasicMeasurementsPlugin.lib.model.doctrine
+  package_custom_path: /home/cassus/munka/emt/cce/plugins/emtBasicMeasurementsPlugin/lib/model/doctrine
+Humidity:
+  inheritance:
+    type: concrete
+    extends: ScalarTimedMeasurement
+  package: emtBasicMeasurementsPlugin.lib.model.doctrine
+  package_custom_path: /home/cassus/munka/emt/cce/plugins/emtBasicMeasurementsPlugin/lib/model/doctrine
+OnOff:
+  inheritance:
+    type: concrete
+    extends: ScalarTimedMeasurement
+  package: emtBasicMeasurementsPlugin.lib.model.doctrine
+  package_custom_path: /home/cassus/munka/emt/cce/plugins/emtBasicMeasurementsPlugin/lib/model/doctrine
+Activation:
+  inheritance:
+    type: concrete
+    extends: EmptyTimedMeasurement
+  package: emtBasicMeasurementsPlugin.lib.model.doctrine
+  package_custom_path: /home/cassus/munka/emt/cce/plugins/emtBasicMeasurementsPlugin/lib/model/doctrine
+Motion:
+  inheritance:
+    type: concrete
+    extends: ScalarTimedMeasurement
+  columns:
+    value:
+      type: boolean
+      notnull: true
+  package: emtBasicMeasurementsPlugin.lib.model.doctrine
+  package_custom_path: /home/cassus/munka/emt/cce/plugins/emtBasicMeasurementsPlugin/lib/model/doctrine
+Observer:
+  comment: 'Hozzátartozó, felügyelő vagy gondozó'
+  columns:
+    id:
+      type: integer
+      primary: true
+      autoincrement: true
+  relations:
+    sfGuardUser:
+      local: id
+      foreignType: one
+      foreignAlias: ObserverRole
+    Observants:
+      class: Entity
+      refClass: Observation
+      foreignAlias: Observers
+Observation:
+  columns:
+    observer_id:
+      type: integer
+      primary: true
+    entity_id:
+      type: integer
+      primary: true
+  relations:
+    Observer: null
+    Entity: null
+Entity:
+  actAs:
+    NestedSet:
+      hasManyRoots: true
+      rootColumnName: root_id
+  columns:
+    id:
+      type: integer
+      primary: true
+      autoincrement: true
+    name:
+      type: string
+      notnull: true
+      length: '255'
+    comment:
+      type: clob
+    type:
+      type: string
+      notnull: true
+      length: '255'
+  relations:
+    sfGuardUser:
+      local: id
+      foreignType: one
+      foreignAlias: PatientRole
+Patient:
+  inheritance:
+    extends: Entity
+    type: column_aggregation
+  columns:
+    social_security_number:
+      type: integer
+      comment: 'taj szam'
+    born_at:
+      type: string
+      comment: 'szuletesi hely, idopont'
+      length: '255'
+    address:
+      type: string
+      comment: lakcim
+      length: '255'
+  relations:
+    sfGuardUser:
+      local: id
+      foreignType: one
+      foreignAlias: PatientRole
+Home:
+  inheritance:
+    extends: Entity
+    type: column_aggregation
+  columns: null
+Locality:
+  inheritance:
+    extends: Entity
+    type: column_aggregation
+  columns:
+    locality_type_id:
+      type: integer
+  relations:
+    LocalityType: null
+LocalityType:
+  columns:
+    id:
+      type: integer
+      primary: true
+      autoincrement: true
+    description:
+      type: string
+      notnull: true
+      length: '255'
+    leiras:
+      type: string
+      notnull: true
+      length: '255'
+Window:
+  inheritance:
+    extends: Entity
+    type: column_aggregation
+  columns:
+    locality_id:
+      type: integer
+  relations:
+    Locality: null
+Door:
+  inheritance:
+    extends: Entity
+    type: column_aggregation
+  columns:
+    locality_id:
+      type: integer
+    locality2_id:
+      type: integer
+  relations:
+    Locality1: null
+    Locality2:
+      class: Locality
+      local: locality2_id
+DataSource:
+  inheritance:
+    extends: Entity
+    type: column_aggregation
+  relations:
+    Devices:
+      class: Device
+      refClass: DataSourceRealization
+DataSourceRealization:
+  columns:
+    data_source_id:
+      type: integer
+      primary: true
+    device_id:
+      type: integer
+      primary: true
+Device:
+  columns:
+    id:
+      type: integer
+      primary: true
+      autoincrement: true
+    guid:
+      type: string
+      notnull: true
+      unique: true
+      length: '255'
+Measurement:
+  columns:
+    id:
+      type: integer
+      primary: true
+      autoincrement: true
+    entity_id:
+      type: integer
+      notnull: true
+    data_source_id:
+      type: integer
+      notnull: true
+  relations:
+    About:
+      class: Entity
+      local: entity_id
+    Source:
+      class: Entity
+      local: data_source_id
+TimedMeasurement:
+  abstract: true
+  inheritance:
+    extends: Measurement
+    type: concrete
+  columns:
+    timestamp:
+      type: integer
+      notnull: true
+  indexes:
+    timestamp:
+      fields: [timestamp]
+ScalarTimedMeasurement:
+  abstract: true
+  inheritance:
+    extends: TimedMeasurement
+    type: concrete
+  columns: null
+EmptyTimedMeasurement:
+  abstract: true
+  inheritance:
+    extends: TimedMeasurement
+    type: concrete

@@ -1,14 +1,14 @@
 <?php
 
 /**
- * OpenClose filter form.
+ * OpenClosed filter form.
  *
  * @package    cce
  * @subpackage filter
  * @author     Adam Banko (Cassus)
  * @version    SVN: $Id: sfDoctrinePluginFormFilterTemplate.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
  */
-class OpenCloseFormFilter extends PluginOpenCloseFormFilter
+class OpenClosedFormFilter extends PluginOpenClosedFormFilter
 {
   /**
    * @see MeasurementFormFilter

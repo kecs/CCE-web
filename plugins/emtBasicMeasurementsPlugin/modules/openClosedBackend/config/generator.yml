@@ -1,7 +1,7 @@
 generator:
   class: sfDoctrineGenerator
   param:
-    model_class:           OpenClose
+    model_class:           OpenClosed
     theme:                 admin
     non_verbose_templates: true
     with_show:             false
