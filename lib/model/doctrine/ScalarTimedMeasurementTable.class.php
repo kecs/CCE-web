@@ -20,10 +20,18 @@ class ScalarTimedMeasurementTable extends TimedMeasurementTable
 
   public function getMeasurementsAbout(Entity $entity, TimePeriod $period)
   {
-    return $this->createQuery('m')
-            ->select('m.timestamp, m.value')
-            ->andWhere('m.entity_id = ?', $entity->id)
-            ->setHydrationMode(Doctrine_Core::HYDRATE_ARRAY);
+    $measurements = $this->createQuery('m')
+                    ->select('m.timestamp, m.value')
+                    ->andWhere('m.entity_id = ?', $entity->id)
+                    ->setHydrationMode(Doctrine_Core::HYDRATE_ARRAY)
+                    ->andWhere('m.timestamp BETWEEN ? AND ?', array($period->from, $period->to))
+                    ->execute();
+    foreach ($measurements as &$measurement)
+    {
+      unset($measurement['id']);
+      $measurement['timestamp'] = (int) $measurement['timestamp'];
+    }
+    return $measurements;
   }
 
 }

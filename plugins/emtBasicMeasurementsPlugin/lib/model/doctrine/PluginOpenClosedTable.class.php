@@ -18,17 +18,4 @@ class PluginOpenClosedTable extends ScalarTimedMeasurementTable
     return Doctrine_Core::getTable('PluginOpenClosed');
   }
 
-  public function getMeasurementsAbout(Entity $entity, TimePeriod $period)
-  {
-    $measurements = parent::getMeasurementsAbout($entity, $period)
-                    ->andWhere('m.timestamp BETWEEN ? AND ?', array($period->from, $period->to))
-                    ->execute();
-    foreach ($measurements as &$measurement)
-    {
-      unset ($measurement['id']);
-      $measurement['timestamp'] = (int)$measurement['timestamp'];
-    }
-    return $measurements;
-  }
-
 }

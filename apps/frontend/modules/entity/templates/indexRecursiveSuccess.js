@@ -32,18 +32,29 @@ $(function () {
     }, callback);
   }
 
-  function categorySeries(axis, data) {
+  function categorySeries(axis, data, processDataRow) {
     var seriesData = [];
     if (axis.categories === undefined) {
       axis.categories = [];
     }
-    $.each(data, function (i, measurement) {
-      var categoryId = $.inArray(measurement.value, axis.categories);
-      if (categoryId === -1) {
-        categoryId = axis.categories.length;
-        axis.categories.push(measurement.value);
+    $.each(data, function (i, dataRow) {
+      var measurements = processDataRow(dataRow);
+      if (measurements[0] === undefined) {
+        measurements = [measurements];
       }
-      seriesData.push([measurement.timestamp, measurement.value == 'closed' ? 1 : 0]);
+      $.each(measurements, function (i, measurement) {
+        if (measurement.category) {
+
+          var categoryId = $.inArray(measurement.category, axis.categories);
+          if (categoryId === -1) {
+            categoryId = axis.categories.length;
+            axis.categories.push(measurement.category);
+          }
+          seriesData.push([measurement.value, categoryId]);
+        } else {
+          seriesData.push(measurement);
+        }
+      });
     });
     return seriesData;
   }
@@ -52,28 +63,48 @@ $(function () {
     getDataForChannel(channel, function (data) {
       var options = $.extend(true, {}, generalOptions);
       options.chart.renderTo = channel[0];
-      options.yAxis.categories = [];
-
-      $.each(data, function (i, measurement) {
-        var categoryId = $.inArray(measurement.type, options.yAxis.categories);
-        if (categoryId === -1) {
-          categoryId = options.yAxis.categories.length;
-          options.yAxis.categories.push(measurement.type);
-        }
-        options.series[0].data.push([measurement.start_time, categoryId]);
-        options.series[0].data.push([measurement.end_time, categoryId]);
-        options.series[0].data.push(null);
+      options.series[0] = categorySeries(options.yAxis, data, function (row) {
+        return [
+        {
+          category: row.type,
+          value: row.start_time
+        },
+        {
+          category: row.type,
+          value: row.end_time
+        },
+        null
+        ];
       });
-
       return new Highcharts.Chart(options);
     });
   };
+
 
   channels.OpenClosed = function (channel) {
     getDataForChannel(channel, function (data) {
       var options = $.extend(true, {}, generalOptions);
       options.chart.renderTo = channel[0];
-      options.series[0].data = categorySeries(options.yAxis, data);
+      options.series[0].data = categorySeries(options.yAxis, data, function (measurement) {
+        return {
+          category: measurement.value,
+          value: measurement.timestamp
+        };
+      });
+      return new Highcharts.Chart(options);
+    });
+  };
+
+  channels.Motion = function (channel) {
+    getDataForChannel(channel, function (data) {
+      var options = $.extend(true, {}, generalOptions);
+      options.chart.renderTo = channel[0];
+      options.series[0].data = categorySeries(options.yAxis, data, function (measurement) {
+        return {
+          category: measurement.value ? 'true' : 'false',
+          value: measurement.timestamp
+        };
+      });
       return new Highcharts.Chart(options);
     });
   };
@@ -84,7 +115,7 @@ $(function () {
     if (channels[type]) {
       channels[type](channel);
     } else {
-      channel.text('Error: unkown channel');
+      channel.text('Error: unkown channel ' + type);
     }
   });
 
