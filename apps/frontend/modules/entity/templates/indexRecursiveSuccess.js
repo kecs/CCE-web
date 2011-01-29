@@ -1,4 +1,4 @@
-/*jslint newcap: true, undef: true, nomen: true, regexp: true, bitwise: true, strict: true, maxerr: 50, indent: 2 */
+/*jslint newcap: true, undef: true, nomen: true, regexp: true, bitwise: true, strict: true */
 /*global jQuery, $, Highcharts */
 
 $(function () {
@@ -6,18 +6,12 @@ $(function () {
 
   var URL_MEASUREMENT_DATA = $.urlTemplate('<?php echo url_for("measurement_data", array("type" => ":type", "id" => ":id", "channel" => ":channel")) ?>');
   var channels = {};
-  var generalOptions = {
-    chart: {
-    },
-    xAxis: {
-      type: 'datetime'
-    },
-    yAxis: {
-    },
-    series: [{
-      data : []
-    }]
-  };
+
+  Highcharts.setOptions({
+    global: {
+      useUTC: false //az adatok UTC-ben jonnek at, de a helyi idozonaban kell megjeleniteni oket
+    }
+  });
 
   function getDataForChannel(channel, callback) {
     var entity = channel.closest('.entity');
@@ -59,10 +53,42 @@ $(function () {
     return seriesData;
   }
 
+  function Options(channel) {
+    return {
+      chart: {
+        renderTo: channel[0],
+        zoomType: 'x'
+      },
+      credits: {
+        enabled: false
+      },
+      legend: {
+        enabled: false
+      },
+      plotOptions: {
+        series: {
+      }
+      },
+      title: {
+        text: ""
+      },
+      xAxis: {
+        type: 'datetime'
+      //  min: timePeriod.from,
+      //  max: timePeriod.to
+      },
+      yAxis: {
+        title: ""
+      },
+      series: []
+    };
+
+  }
+
   channels.Activity = function (channel) {
     getDataForChannel(channel, function (data) {
-      var options = $.extend(true, {}, generalOptions);
-      options.chart.renderTo = channel[0];
+      var options = new Options(channel);
+      options.series[0] = {};
       options.series[0] = categorySeries(options.yAxis, data, function (row) {
         return [
         {
@@ -83,8 +109,8 @@ $(function () {
 
   channels.OpenClosed = function (channel) {
     getDataForChannel(channel, function (data) {
-      var options = $.extend(true, {}, generalOptions);
-      options.chart.renderTo = channel[0];
+      var options = new Options(channel);
+      options.series[0] = {};
       options.series[0].data = categorySeries(options.yAxis, data, function (measurement) {
         return {
           category: measurement.value,
@@ -97,11 +123,25 @@ $(function () {
 
   channels.Motion = function (channel) {
     getDataForChannel(channel, function (data) {
-      var options = $.extend(true, {}, generalOptions);
-      options.chart.renderTo = channel[0];
+      var options = new Options(channel);
+      options.series[0] = {};
       options.series[0].data = categorySeries(options.yAxis, data, function (measurement) {
         return {
           category: measurement.value ? 'true' : 'false',
+          value: measurement.timestamp
+        };
+      });
+      return new Highcharts.Chart(options);
+    });
+  };
+
+  channels.Activation = function (channel) {
+    getDataForChannel(channel, function (data) {
+      var options = new Options(channel);
+      options.series[0] = {};
+      options.series[0].data = categorySeries(options.yAxis, data, function (measurement) {
+        return {
+          category: 'activation',
           value: measurement.timestamp
         };
       });
