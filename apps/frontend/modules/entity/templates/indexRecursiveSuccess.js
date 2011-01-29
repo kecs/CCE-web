@@ -6,6 +6,12 @@ $(function () {
 
   var URL_MEASUREMENT_DATA = $.urlTemplate('<?php echo url_for("measurement_data", array("type" => ":type", "id" => ":id", "channel" => ":channel")) ?>');
   var channels = {};
+  var syncedCharts = [];
+
+  var timePeriod = {
+    from: 1295956560000,
+    to:   1296145800000
+  };
 
   Highcharts.setOptions({
     global: {
@@ -20,10 +26,7 @@ $(function () {
       id: entity.data('id'),
       type: entity.data('type'),
       channel: channel.data('channel')
-    }), {
-      from: 1,
-      to: 1696122139632
-    }, callback);
+    }), timePeriod, callback);
   }
 
   function categorySeries(axis, data, processDataRow) {
@@ -53,11 +56,39 @@ $(function () {
     return seriesData;
   }
 
+  function makeSyncedChart(options) {
+    var chart = new Highcharts.Chart(options);
+    syncedCharts.push(chart);
+    return chart;
+  }
+  
+  function zoom(event) {
+    var newTimePeriod = {
+      from: event.xAxis[0].min,
+      to:   event.xAxis[0].max
+    };
+
+    $.each(syncedCharts, function (i, chart) {
+      chart.xAxis[0].setExtremes(newTimePeriod.from, newTimePeriod.to);
+    });
+
+    event.preventDefault();
+  }
+
   function Options(channel) {
     return {
       chart: {
         renderTo: channel[0],
-        zoomType: 'x'
+        zoomType: 'x',
+        borderWidth: 1, //debug only
+        marginTop: 10,
+        marginRight: 10,
+        marginBottom: 30,
+        marginLeft: 80,
+        events: {
+          selection: zoom
+        }
+
       },
       credits: {
         enabled: false
@@ -73,9 +104,9 @@ $(function () {
         text: ""
       },
       xAxis: {
-        type: 'datetime'
-      //  min: timePeriod.from,
-      //  max: timePeriod.to
+        type: 'datetime',
+        min: timePeriod.from,
+        max: timePeriod.to
       },
       yAxis: {
         title: ""
@@ -117,7 +148,7 @@ $(function () {
           value: measurement.timestamp
         };
       });
-      return new Highcharts.Chart(options);
+      makeSyncedChart(options);
     });
   };
 
@@ -131,7 +162,7 @@ $(function () {
           value: measurement.timestamp
         };
       });
-      return new Highcharts.Chart(options);
+      makeSyncedChart(options);
     });
   };
 
@@ -145,7 +176,7 @@ $(function () {
           value: measurement.timestamp
         };
       });
-      return new Highcharts.Chart(options);
+      makeSyncedChart(options);
     });
   };
 
