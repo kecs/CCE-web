@@ -13,3 +13,6 @@
 [submodule "web/assets/highcharts"]
 	path = web/assets/highcharts
 	url = https://github.com/highslide-software/highcharts.com.git
+[submodule "web/assets/jquery.mousewheel"]
+	path = web/assets/jquery.mousewheel
+	url = https://github.com/brandonaaron/jquery-mousewheel.git

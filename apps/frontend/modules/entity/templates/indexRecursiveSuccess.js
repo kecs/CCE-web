@@ -28,11 +28,43 @@
       this.entityChannel = entityChannel;
       this.entityChannel.data('channelObj', this);
       this.chart = new Highcharts.Chart(this.getInitOptions());
+
+      this.entityChannel.bind('mousewheel', function(event, delta, deltaX, deltaY) {
+        if (deltaY === 0) {
+          return;
+        }
+        event.preventDefault();
+        var currentTimePeriod = channel.getTimePeriod();
+        var dt = currentTimePeriod.to - currentTimePeriod.from;
+
+        var newTimePeriod;
+        if (deltaY > 0) {
+          newTimePeriod = {
+            from: currentTimePeriod.from + dt/3,
+            to: currentTimePeriod.to - dt/3
+          };
+        }
+        if (deltaY < 0) {
+          newTimePeriod = {
+            from: currentTimePeriod.from - dt,
+            to: currentTimePeriod.to + dt
+          };
+        }
+        channel.zoomTo(newTimePeriod);
+      });
     };
 
     channel.entityChannel = undefined;
     channel.chart = undefined;
 
+    channel.getTimePeriod = function () {
+      var extremes = channel.chart.xAxis[0].getExtremes();
+      return {
+        from: extremes.min,
+        to: extremes.max
+      };
+    };
+    
     channel.update = function (timePeriod) {
       channel.chart.xAxis[0].setExtremes(timePeriod.from, timePeriod.to);
       channel.chart.showLoading();
@@ -81,7 +113,7 @@
           marginBottom: 30,
           marginLeft: 80,
           events: {
-            selection: channel.zoom
+            selection: channel.selectEvent
           }
 
         },
@@ -110,22 +142,19 @@
       };
     };
 
-    channel.zoom = function (event) {
+    channel.zoomTo = function (timePeriod) {
+      $('.channel').each(function () {
+        var channel = $(this).data('channelObj');
+        channel.update(timePeriod);
+      });
+    };
+    channel.selectEvent = function (event) {
+      event.preventDefault();
       var timePeriod = {
         from: event.xAxis[0].min,
         to:   event.xAxis[0].max
       };
-
-      $('.channel').each(function () {
-        var channel = $(this).data('channelObj');
-        
-        channel.chart.xAxis[0].setExtremes(timePeriod.from, timePeriod.to);
-        
-        channel.update(timePeriod);
-      });
-    
-
-      event.preventDefault();
+      channel.zoomTo(timePeriod);
     };
 
     channel.getEntity = function () {

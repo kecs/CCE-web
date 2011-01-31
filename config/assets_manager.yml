@@ -97,3 +97,9 @@ packages:
     js:
       - jquery.urlTemplate/jquery.urlTemplate.js
 
+  jquery.mousewheel:
+    import:
+      - jquery
+    js:
+      - jquery.mousewheel/jquery.mousewheel.js
+

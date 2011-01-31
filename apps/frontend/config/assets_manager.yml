@@ -3,5 +3,6 @@ packages:
     import:
       - jquery
       - jquery.urlTemplate
+      - jquery.mousewheel
       - highcharts
     css: entity/indexRecursive.css
