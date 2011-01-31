@@ -1,12 +1,8 @@
 /*jslint newcap: true, undef: true, nomen: true, regexp: true, bitwise: true, strict: true */
 /*global jQuery, $, Highcharts */
 
-$(function () {
+(function () {
   "use strict";
-
-  var URL_MEASUREMENT_DATA = $.urlTemplate('<?php echo url_for("measurement_data", array("type" => ":type", "id" => ":id", "channel" => ":channel")) ?>');
-  var channels = {};
-  var syncedCharts = [];
 
   Highcharts.setOptions({
     global: {
@@ -14,180 +10,199 @@ $(function () {
     }
   });
 
-  function getDataForChannel(channel, timePeriod, callback) {
-    var entity = channel.closest('.entity');
-
-    jQuery.get(URL_MEASUREMENT_DATA.generate({
-      id: entity.data('id'),
-      type: entity.data('type'),
-      channel: channel.data('channel')
-    }), timePeriod, callback);
-  }
-
-  function categorySeries(axis, data, processDataRow) {
-    var seriesData = [];
-    if (axis.categories === undefined) {
-      axis.categories = [];
+  var channelMaker = function (entityChannel, timePeriod) {
+    var channelType = entityChannel.data('channel');
+    if (channelMaker[channelType] === undefined) {
+      entityChannel.text('Error: unkown channel ' + channelType);
+      return;
     }
-    $.each(data, function (i, dataRow) {
-      var measurements = processDataRow(dataRow);
-      if (measurements[0] === undefined) {
-        measurements = [measurements];
-      }
-      $.each(measurements, function (i, measurement) {
-        if (measurement.category) {
+    var channel = channelMaker[channelType]();
+    channel.init(entityChannel);
+    channel.update(timePeriod);
+  };
 
-          var categoryId = $.inArray(measurement.category, axis.categories);
-          if (categoryId === -1) {
-            categoryId = axis.categories.length;
-            axis.categories.push(measurement.category);
+  channelMaker.Base = function () {
+    var channel = {};
+
+    channel.init = function (entityChannel) {
+      this.entityChannel = entityChannel;
+      this.entityChannel.data('channelObj', this);
+      this.chart = new Highcharts.Chart(this.getInitOptions());
+    };
+
+    channel.entityChannel = undefined;
+    channel.chart = undefined;
+
+    channel.update = function (timePeriod) {
+      channel.chart.xAxis[0].setExtremes(timePeriod.from, timePeriod.to);
+      channel.chart.showLoading();
+      jQuery.get($.urlTemplate('<?php echo url_for("measurement_data", array("type" => ":type", "id" => ":id", "channel" => ":channel")) ?>').generate({
+        id: this.getEntityId(),
+        type: this.getEntityType(),
+        channel: this.getChannelType()
+      }), timePeriod, function (data) {
+        channel.doUpdate(data);
+        channel.chart.hideLoading();
+      });
+    };
+
+    channel.updateCategorySeries = function (data, processDataRow) {
+      var seriesData = [];
+      var categories = [];
+      $.each(data, function (i, dataRow) {
+        var measurements = processDataRow(dataRow);
+        if (measurements[0] === undefined) {
+          measurements = [measurements];
+        }
+        $.each(measurements, function (i, measurement) {
+          if (measurement.category) {
+            var categoryId = $.inArray(measurement.category, categories);
+            if (categoryId === -1) {
+              categoryId = categories.length;
+              categories.push(measurement.category);
+            }
+            seriesData.push([measurement.value, categoryId]);
+          } else {
+            seriesData.push(measurement);
           }
-          seriesData.push([measurement.value, categoryId]);
-        } else {
-          seriesData.push(measurement);
-        }
+        });
       });
-    });
-    return seriesData;
-  }
-
-  function makeSyncedChart(options) {
-    var chart = new Highcharts.Chart(options);
-    syncedCharts.push(chart);
-    return chart;
-  }
-  
-  function zoom(event) {
-    var newTimePeriod = {
-      from: event.xAxis[0].min,
-      to:   event.xAxis[0].max
+      this.chart.yAxis[0].setCategories(categories, false);
+      this.chart.series[0].setData(seriesData, false);
     };
 
-    $.each(syncedCharts, function (i, chart) {
-      chart.xAxis[0].setExtremes(newTimePeriod.from, newTimePeriod.to);
-    });
+    channel.getInitOptions = function() {
+      return {
+        chart: {
+          renderTo: this.entityChannel[0],
+          zoomType: 'x',
+          marginTop: 10,
+          marginRight: 10,
+          marginBottom: 30,
+          marginLeft: 80,
+          events: {
+            selection: channel.zoom
+          }
 
-    event.preventDefault();
-  }
-
-  function Options(channel, timePeriod) {
-    return {
-      chart: {
-        renderTo: channel[0],
-        zoomType: 'x',
-        borderWidth: 1, //debug only
-        marginTop: 10,
-        marginRight: 10,
-        marginBottom: 30,
-        marginLeft: 80,
-        events: {
-          selection: zoom
+        },
+        credits: {
+          enabled: false
+        },
+        legend: {
+          enabled: false
+        },
+        plotOptions: {
+          series: {
         }
-
-      },
-      credits: {
-        enabled: false
-      },
-      legend: {
-        enabled: false
-      },
-      plotOptions: {
-        series: {
-      }
-      },
-      title: {
-        text: ""
-      },
-      xAxis: {
-        type: 'datetime',
-        min: timePeriod.from,
-        max: timePeriod.to
-      },
-      yAxis: {
-        title: ""
-      },
-      series: []
+        },
+        title: {
+          text: ""
+        },
+        xAxis: {
+          type: 'datetime'
+        },
+        yAxis: {
+          title: ""
+        },
+        series: [{
+          data:[]
+        }]
+      };
     };
 
-  }
+    channel.zoom = function (event) {
+      var timePeriod = {
+        from: event.xAxis[0].min,
+        to:   event.xAxis[0].max
+      };
 
-  channels.Activity = function (channel, timePeriod) {
-    getDataForChannel(channel, timePeriod, function (data) {
-      var options = new Options(channel, timePeriod);
-      options.series[0] = {};
-      options.series[0] = categorySeries(options.yAxis, data, function (row) {
-        return [
-        {
-          category: row.type,
-          value: row.start_time
-        },
-        {
-          category: row.type,
-          value: row.end_time
-        },
-        null
-        ];
+      $('.channel').each(function () {
+        var channel = $(this).data('channelObj');
+        
+        channel.chart.xAxis[0].setExtremes(timePeriod.from, timePeriod.to);
+        
+        channel.update(timePeriod);
       });
-      return new Highcharts.Chart(options);
-    });
+    
+
+      event.preventDefault();
+    };
+
+    channel.getEntity = function () {
+      return this.entityChannel.closest('.entity');
+    };
+    channel.getEntityId = function () {
+      return this.getEntity().data('id');
+    };
+    channel.getEntityType = function () {
+      return this.getEntity().data('type');
+    };
+    channel.getChannelType = function () {
+      return this.entityChannel.data('channel');
+    };
+
+    return channel;
   };
 
+  channelMaker.OpenClosed = function () {
+    var channel = channelMaker.Base();
 
-  channels.OpenClosed = function (channel, timePeriod) {
-    getDataForChannel(channel, timePeriod, function (data) {
-      var options = new Options(channel, timePeriod);
-      options.series[0] = {};
-      options.series[0].data = categorySeries(options.yAxis, data, function (measurement) {
+    channel.doUpdate = function (data) {
+      this.updateCategorySeries(data, function (row) {
         return {
-          category: measurement.value,
-          value: measurement.timestamp
+          category: row.value,
+          value: row.timestamp
         };
       });
-      makeSyncedChart(options);
-    });
+      this.chart.redraw();
+    };
+
+    return channel;
   };
 
-  channels.Motion = function (channel, timePeriod) {
-    getDataForChannel(channel, timePeriod, function (data) {
-      var options = new Options(channel, timePeriod);
-      options.series[0] = {};
-      options.series[0].data = categorySeries(options.yAxis, data, function (measurement) {
+  channelMaker.Motion = function () {
+    var channel = channelMaker.Base();
+
+    channel.doUpdate = function (data) {
+      this.updateCategorySeries(data, function (row) {
         return {
-          category: measurement.value ? 'true' : 'false',
-          value: measurement.timestamp
+          category: row.value ? 'true' : 'false',
+          value: row.timestamp
         };
       });
-      makeSyncedChart(options);
-    });
+      this.chart.redraw();
+    };
+
+    return channel;
   };
 
-  channels.Activation = function (channel, timePeriod) {
-    getDataForChannel(channel, timePeriod, function (data) {
-      var options = new Options(channel, timePeriod);
-      options.series[0] = {};
-      options.series[0].data = categorySeries(options.yAxis, data, function (measurement) {
+  channelMaker.Activation = function (chart, data) {
+    var channel = channelMaker.Base();
+
+    channel.doUpdate = function (data) {
+      this.updateCategorySeries(data, function (row) {
         return {
           category: 'activation',
-          value: measurement.timestamp
+          value: row.timestamp
         };
       });
-      makeSyncedChart(options);
-    });
-  };
-
-  $('.channel').each(function () {
-    var channel = $(this);
-    var type = channel.data('channel');
-    var timePeriod = {
-      from: 1295956560000,
-      to:   1296145800000
+      this.chart.redraw();
     };
 
-    if (channels[type]) {
-      channels[type](channel, timePeriod);
-    } else {
-      channel.text('Error: unkown channel ' + type);
-    }
+    return channel;
+
+  };
+
+  $(function () {
+    $('.channel').each(function () {
+      var channel = $(this);
+      var timePeriod = {
+        from: 1295956560000,
+        to:   1296145800000
+      };
+      
+      channelMaker(channel, timePeriod);
+    });
   });
 
-});
+}());
