@@ -8,18 +8,13 @@ $(function () {
   var channels = {};
   var syncedCharts = [];
 
-  var timePeriod = {
-    from: 1295956560000,
-    to:   1296145800000
-  };
-
   Highcharts.setOptions({
     global: {
       useUTC: false //az adatok UTC-ben jonnek at, de a helyi idozonaban kell megjeleniteni oket
     }
   });
 
-  function getDataForChannel(channel, callback) {
+  function getDataForChannel(channel, timePeriod, callback) {
     var entity = channel.closest('.entity');
 
     jQuery.get(URL_MEASUREMENT_DATA.generate({
@@ -75,7 +70,7 @@ $(function () {
     event.preventDefault();
   }
 
-  function Options(channel) {
+  function Options(channel, timePeriod) {
     return {
       chart: {
         renderTo: channel[0],
@@ -116,9 +111,9 @@ $(function () {
 
   }
 
-  channels.Activity = function (channel) {
-    getDataForChannel(channel, function (data) {
-      var options = new Options(channel);
+  channels.Activity = function (channel, timePeriod) {
+    getDataForChannel(channel, timePeriod, function (data) {
+      var options = new Options(channel, timePeriod);
       options.series[0] = {};
       options.series[0] = categorySeries(options.yAxis, data, function (row) {
         return [
@@ -138,9 +133,9 @@ $(function () {
   };
 
 
-  channels.OpenClosed = function (channel) {
-    getDataForChannel(channel, function (data) {
-      var options = new Options(channel);
+  channels.OpenClosed = function (channel, timePeriod) {
+    getDataForChannel(channel, timePeriod, function (data) {
+      var options = new Options(channel, timePeriod);
       options.series[0] = {};
       options.series[0].data = categorySeries(options.yAxis, data, function (measurement) {
         return {
@@ -152,9 +147,9 @@ $(function () {
     });
   };
 
-  channels.Motion = function (channel) {
-    getDataForChannel(channel, function (data) {
-      var options = new Options(channel);
+  channels.Motion = function (channel, timePeriod) {
+    getDataForChannel(channel, timePeriod, function (data) {
+      var options = new Options(channel, timePeriod);
       options.series[0] = {};
       options.series[0].data = categorySeries(options.yAxis, data, function (measurement) {
         return {
@@ -166,9 +161,9 @@ $(function () {
     });
   };
 
-  channels.Activation = function (channel) {
-    getDataForChannel(channel, function (data) {
-      var options = new Options(channel);
+  channels.Activation = function (channel, timePeriod) {
+    getDataForChannel(channel, timePeriod, function (data) {
+      var options = new Options(channel, timePeriod);
       options.series[0] = {};
       options.series[0].data = categorySeries(options.yAxis, data, function (measurement) {
         return {
@@ -183,12 +178,16 @@ $(function () {
   $('.channel').each(function () {
     var channel = $(this);
     var type = channel.data('channel');
+    var timePeriod = {
+      from: 1295956560000,
+      to:   1296145800000
+    };
+
     if (channels[type]) {
-      channels[type](channel);
+      channels[type](channel, timePeriod);
     } else {
       channel.text('Error: unkown channel ' + type);
     }
   });
 
 });
-
