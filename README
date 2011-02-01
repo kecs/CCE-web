@@ -12,6 +12,21 @@ Installation
     ./symfony project:permissions
     ./symfony model:update --reload --trace
 
+Upgrade
+=======
+
+    git pull
+    git submodule sync
+    git submodule update --init --recursive
+    ./symfony cache:clear
+    ./symfony project:autoconfig config/autoconfig.yml
+    ./symfony model:update --trace
+
+Reload test fixtures to database
+================================
+
+    ./symfony model:update --reload --trace
+
 Development
 ===========
 
