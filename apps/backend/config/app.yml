@@ -12,20 +12,14 @@ all:
             url:    patient
           Observers:
             url:    observer
-      Entities:
+      Config:
         items:
-          All entities:
+          Entity tree editor:
             url:    entity
-          Home:
-            url:    home
-          Locality:
-            url:    locality
-          Window:
-            url:    window
-          Door:
-            url:    door
-          DataSource:
-            url:    data_source
+          Locality types:
+            url:    locality_type
+          Devices:
+            url:    device
       Measurements:
         items:
           Activity:
@@ -48,10 +42,4 @@ all:
             url:    temperature
           Activation:
             url:    activation
-      Misc:
-        items:
-          LocalityType:
-            url:    locality_type
-          Device:
-            url:    device
             
