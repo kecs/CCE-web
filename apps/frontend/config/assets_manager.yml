@@ -5,4 +5,5 @@ packages:
       - jquery.urlTemplate
       - jquery.mousewheel
       - highcharts
+      - jquery.ui.draggable
     css: entity/indexRecursive.css
