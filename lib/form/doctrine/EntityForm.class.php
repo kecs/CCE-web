@@ -46,7 +46,7 @@ class EntityForm extends BaseEntityForm
    *
    * @param Doctrine_Connection $con An optional connection parameter
    */
-  public function doSave($con = null)
+  protected function doSave($con = null)
   {
     // save the record itself
     parent::doSave($con);
