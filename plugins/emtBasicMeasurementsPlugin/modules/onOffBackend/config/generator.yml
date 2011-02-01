@@ -7,7 +7,7 @@ generator:
     with_show:             false
     singular:              ~
     plural:                ~
-    route_prefix:          on_off
+    route_prefix:          onOff
     with_doctrine_route:   true
     actions_base_class:    sfActions
     css:                   false
