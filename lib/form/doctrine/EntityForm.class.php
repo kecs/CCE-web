@@ -52,30 +52,33 @@ class EntityForm extends BaseEntityForm
     parent::doSave($con);
 
     //if parent has changed
-    if ($this->getValue('parent') != $this->getObject()->getNode()->getParent()->getId())
+    // if a parent has been specified, add/move this node to be the child of that node
+    if ($this->getValue('parent'))
     {
-      // if a parent has been specified, add/move this node to be the child of that node
-      if ($this->getValue('parent'))
+      $parent = EntityTable::getInstance()->findOneById($this->getValue('parent'));
+      if ($this->isNew())
       {
-        $parent = EntityTable::getInstance()->findOneById($this->getValue('parent'));
-        if ($this->isNew())
-        {
-          $this->getObject()->getNode()->insertAsLastChildOf($parent);
-        }
-        else
+        $this->getObject()->getNode()->insertAsLastChildOf($parent);
+      }
+      else
+      {
+        if ($parent != $this->getObject()->getNode()->getParent()) //skip move if the node it at the right place
         {
           $this->getObject()->getNode()->moveAsLastChildOf($parent);
         }
       }
-      // if no parent was selected, add/move this node to be a new root in the tree
+    }
+    // if no parent was selected, add/move this node to be a new root in the tree
+    else
+    {
+      $entityTree = EntityTable::getInstance()->getTree();
+      if ($this->isNew())
+      {
+        $entityTree->createRoot($this->getObject());
+      }
       else
       {
-        $entityTree = EntityTable::getInstance()->getTree();
-        if ($this->isNew())
-        {
-          $entityTree->createRoot($this->getObject());
-        }
-        else
+        if (!$this->getObject()->getNode()->isRoot())
         {
           $this->getObject()->getNode()->makeRoot($this->getObject()->getId());
         }
