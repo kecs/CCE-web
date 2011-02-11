@@ -42,24 +42,6 @@ class Version2 extends Doctrine_Migration_Base
              'foreign' => 'id',
              'foreignTable' => 'entity',
              ));
-        $this->createForeignKey('data_source_realization', 'data_source_realization_data_source_id_entity_id', array(
-             'name' => 'data_source_realization_data_source_id_entity_id',
-             'local' => 'data_source_id',
-             'foreign' => 'id',
-             'foreignTable' => 'entity',
-             ));
-        $this->createForeignKey('data_source_realization', 'data_source_realization_device_id_device_id', array(
-             'name' => 'data_source_realization_device_id_device_id',
-             'local' => 'device_id',
-             'foreign' => 'id',
-             'foreignTable' => 'device',
-             ));
-        $this->createForeignKey('entity', 'entity_locality2_id_entity_id', array(
-             'name' => 'entity_locality2_id_entity_id',
-             'local' => 'locality2_id',
-             'foreign' => 'id',
-             'foreignTable' => 'entity',
-             ));
         $this->createForeignKey('entity', 'entity_locality_type_id_locality_type_id', array(
              'name' => 'entity_locality_type_id_locality_type_id',
              'local' => 'locality_type_id',
@@ -71,6 +53,24 @@ class Version2 extends Doctrine_Migration_Base
              'local' => 'locality_id',
              'foreign' => 'id',
              'foreignTable' => 'entity',
+             ));
+        $this->createForeignKey('entity', 'entity_locality2_id_entity_id', array(
+             'name' => 'entity_locality2_id_entity_id',
+             'local' => 'locality2_id',
+             'foreign' => 'id',
+             'foreignTable' => 'entity',
+             ));
+        $this->createForeignKey('data_source_realization', 'data_source_realization_data_source_id_entity_id', array(
+             'name' => 'data_source_realization_data_source_id_entity_id',
+             'local' => 'data_source_id',
+             'foreign' => 'id',
+             'foreignTable' => 'entity',
+             ));
+        $this->createForeignKey('data_source_realization', 'data_source_realization_device_id_device_id', array(
+             'name' => 'data_source_realization_device_id_device_id',
+             'local' => 'device_id',
+             'foreign' => 'id',
+             'foreignTable' => 'device',
              ));
         $this->createForeignKey('e_k_g', 'e_k_g_entity_id_entity_id', array(
              'name' => 'e_k_g_entity_id_entity_id',
@@ -296,16 +296,16 @@ class Version2 extends Doctrine_Migration_Base
               0 => 'data_source_id',
              ),
              ));
-        $this->addIndex('data_source_realization', 'data_source_realization_data_source_id', array(
+        $this->addIndex('entity', 'entity_locality_type_id', array(
              'fields' => 
              array(
-              0 => 'data_source_id',
+              0 => 'locality_type_id',
              ),
              ));
-        $this->addIndex('data_source_realization', 'data_source_realization_device_id', array(
+        $this->addIndex('entity', 'entity_locality_id', array(
              'fields' => 
              array(
-              0 => 'device_id',
+              0 => 'locality_id',
              ),
              ));
         $this->addIndex('entity', 'entity_locality2_id', array(
@@ -320,16 +320,16 @@ class Version2 extends Doctrine_Migration_Base
               0 => 'type',
              ),
              ));
-        $this->addIndex('entity', 'entity_locality_type_id', array(
+        $this->addIndex('data_source_realization', 'data_source_realization_data_source_id', array(
              'fields' => 
              array(
-              0 => 'locality_type_id',
+              0 => 'data_source_id',
              ),
              ));
-        $this->addIndex('entity', 'entity_locality_id', array(
+        $this->addIndex('data_source_realization', 'data_source_realization_device_id', array(
              'fields' => 
              array(
-              0 => 'locality_id',
+              0 => 'device_id',
              ),
              ));
         $this->addIndex('e_k_g', 'e_k_g_entity_id', array(
@@ -510,11 +510,11 @@ class Version2 extends Doctrine_Migration_Base
         $this->dropForeignKey('activity', 'activity_data_source_id_entity_id');
         $this->dropForeignKey('battery', 'battery_entity_id_entity_id');
         $this->dropForeignKey('battery', 'battery_data_source_id_entity_id');
-        $this->dropForeignKey('data_source_realization', 'data_source_realization_data_source_id_entity_id');
-        $this->dropForeignKey('data_source_realization', 'data_source_realization_device_id_device_id');
-        $this->dropForeignKey('entity', 'entity_locality2_id_entity_id');
         $this->dropForeignKey('entity', 'entity_locality_type_id_locality_type_id');
         $this->dropForeignKey('entity', 'entity_locality_id_entity_id');
+        $this->dropForeignKey('entity', 'entity_locality2_id_entity_id');
+        $this->dropForeignKey('data_source_realization', 'data_source_realization_data_source_id_entity_id');
+        $this->dropForeignKey('data_source_realization', 'data_source_realization_device_id_device_id');
         $this->dropForeignKey('e_k_g', 'e_k_g_entity_id_entity_id');
         $this->dropForeignKey('e_k_g', 'e_k_g_data_source_id_entity_id');
         $this->dropForeignKey('humidity', 'humidity_entity_id_entity_id');
@@ -579,16 +579,16 @@ class Version2 extends Doctrine_Migration_Base
               0 => 'data_source_id',
              ),
              ));
-        $this->removeIndex('data_source_realization', 'data_source_realization_data_source_id', array(
+        $this->removeIndex('entity', 'entity_locality_type_id', array(
              'fields' => 
              array(
-              0 => 'data_source_id',
+              0 => 'locality_type_id',
              ),
              ));
-        $this->removeIndex('data_source_realization', 'data_source_realization_device_id', array(
+        $this->removeIndex('entity', 'entity_locality_id', array(
              'fields' => 
              array(
-              0 => 'device_id',
+              0 => 'locality_id',
              ),
              ));
         $this->removeIndex('entity', 'entity_locality2_id', array(
@@ -603,16 +603,16 @@ class Version2 extends Doctrine_Migration_Base
               0 => 'type',
              ),
              ));
-        $this->removeIndex('entity', 'entity_locality_type_id', array(
+        $this->removeIndex('data_source_realization', 'data_source_realization_data_source_id', array(
              'fields' => 
              array(
-              0 => 'locality_type_id',
+              0 => 'data_source_id',
              ),
              ));
-        $this->removeIndex('entity', 'entity_locality_id', array(
+        $this->removeIndex('data_source_realization', 'data_source_realization_device_id', array(
              'fields' => 
              array(
-              0 => 'locality_id',
+              0 => 'device_id',
              ),
              ));
         $this->removeIndex('e_k_g', 'e_k_g_entity_id', array(
