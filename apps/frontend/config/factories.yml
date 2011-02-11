@@ -56,4 +56,5 @@ all:
         xml:  [text/xml, application/xml, application/x-xml]
         rdf:  application/rdf+xml
         atom: application/atom+xml
+        conf: text/plain
         decoded: application/x-www-form-urlencoded

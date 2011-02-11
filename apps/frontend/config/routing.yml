@@ -15,6 +15,14 @@ datasource:
     channel:          \S+
     sf_method:        post
 
+config:
+  url:      /home/:id/config/:action.:sf_format
+  class:    sfDoctrineRoute
+  options:  { model: Home, type: object }
+  param:    { module: config }
+  requirements:
+    id:               \d+
+
 javascript:
   url:    /assets/dynamic/entity/indexRecursive.js
   param:  { module: entity, action: javascript, sf_format: js }
