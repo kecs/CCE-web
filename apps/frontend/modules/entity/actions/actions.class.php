@@ -3,6 +3,11 @@
 class entityActions extends cceActions
 {
 
+  public function executeIndex(sfWebRequest $request)
+  {
+    $this->observants = $this->getUser()->getGuardUser()->ObserverRole->Observants;
+  }
+
   public function executeIndexRecursive(sfWebRequest $request)
   {
     $this->descendantEntities = $this->getObject()->getNode()->getDescendants(null, true);

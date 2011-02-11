@@ -10,7 +10,11 @@
  */
 class ObserverForm extends BaseObserverForm
 {
+
   public function configure()
   {
+    $this->setWidget('observants_list', new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'Home')));
+    $this->setValidator('observants_list', new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'Home', 'required' => false)));
   }
+
 }

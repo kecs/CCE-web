@@ -3,7 +3,7 @@
 
 homepage:
   url:    /
-  param:  { module: patient, action: index }
+  param:  { module: entity, action: index }
 
 datasource:
   url:      /datasource/:id/:channel
