@@ -8,15 +8,18 @@
  * @property integer $id
  * @property string $description
  * @property string $leiras
+ * @property Doctrine_Collection $Entity
  * @property Doctrine_Collection $Locality
  * 
  * @method integer             getId()          Returns the current record's "id" value
  * @method string              getDescription() Returns the current record's "description" value
  * @method string              getLeiras()      Returns the current record's "leiras" value
+ * @method Doctrine_Collection getEntity()      Returns the current record's "Entity" collection
  * @method Doctrine_Collection getLocality()    Returns the current record's "Locality" collection
  * @method LocalityType        setId()          Sets the current record's "id" value
  * @method LocalityType        setDescription() Sets the current record's "description" value
  * @method LocalityType        setLeiras()      Sets the current record's "leiras" value
+ * @method LocalityType        setEntity()      Sets the current record's "Entity" collection
  * @method LocalityType        setLocality()    Sets the current record's "Locality" collection
  * 
  * @package    cce
@@ -49,6 +52,10 @@ abstract class BaseLocalityType extends sfDoctrineRecord
     public function setUp()
     {
         parent::setUp();
+        $this->hasMany('Entity', array(
+             'local' => 'id',
+             'foreign' => 'locality_type_id'));
+
         $this->hasMany('Locality', array(
              'local' => 'id',
              'foreign' => 'locality_type_id'));

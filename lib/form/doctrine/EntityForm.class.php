@@ -13,20 +13,18 @@ class EntityForm extends BaseEntityForm
 
   public function configure()
   {
+    $this->useFields(array('name', 'comment', 'parent'));
+  }
+
+  protected function setupInheritance()
+  {
+    parent::setupInheritance();
+
     // create a new widget to represent this category's "parent"
     $this->setWidget('parent', new sfWidgetFormDoctrineChoiceNestedSet(array(
                 'model' => 'Entity',
                 'add_empty' => true,
             )));
-
-    // if the current category has a parent, make it the default choice
-    if ($this->getObject()->getNode()->hasParent())
-    {
-      $this->setDefault('parent', $this->getObject()->getNode()->getParent()->getId());
-    }
-
-
-    $this->useFields(array('name', 'comment', 'parent'));
 
     // set a validator for parent which prevents a category being moved to one of its own descendants
     $this->setValidator('parent', new sfValidatorDoctrineChoiceNestedSet(array(
@@ -36,7 +34,12 @@ class EntityForm extends BaseEntityForm
             )));
     $this->getValidator('parent')->setMessage('node', 'A category cannot be made a descendent of itself.');
 
-    $this->setValidator('comment', new sfValidatorString(array('max_length' => 255, 'required' => false)));
+
+    // if the current category has a parent, make it the default choice
+    if ($this->getObject()->getNode()->hasParent())
+    {
+      $this->setDefault('parent', $this->getObject()->getNode()->getParent()->getId());
+    }
   }
 
   /**

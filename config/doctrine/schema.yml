@@ -81,6 +81,13 @@ Entity:
     name:           { type: string(255), notnull: true }
     comment:        { type: clob }
     type:           { type: string(255), notnull: true }
+  relations:
+    LocalityType:
+    Locality:
+    Locality1:
+    Locality2:
+      class: Locality
+      local: locality2_id
 Patient:
   inheritance:
     extends: Entity
@@ -89,11 +96,6 @@ Patient:
     social_security_number: { type: integer, comment: 'taj szam'}
     born_at:                { type: string(255), comment: 'szuletesi hely, idopont'}
     address:                { type: string(255), comment: 'lakcim' }
-  relations:
-    sfGuardUser:
-      local:        id
-      foreignType:  one
-      foreignAlias: PatientRole
 Home:
   inheritance:
     extends: Entity

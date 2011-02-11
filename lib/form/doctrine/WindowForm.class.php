@@ -15,6 +15,11 @@ class WindowForm extends BaseWindowForm
    */
   public function configure()
   {
-    parent::configure();
+    $this->useFields(array(
+        'name',
+        'comment',
+        'parent',
+        'locality_id',
+    ));
   }
 }

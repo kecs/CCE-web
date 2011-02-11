@@ -15,6 +15,9 @@
  * @property integer $locality_type_id
  * @property integer $locality_id
  * @property integer $locality2_id
+ * @property LocalityType $LocalityType
+ * @property Locality $Locality
+ * @property Locality $Locality2
  * @property sfGuardUser $sfGuardUser
  * @property Doctrine_Collection $Observers
  * @property Doctrine_Collection $Observation
@@ -30,6 +33,9 @@
  * @method integer             getLocalityTypeId()         Returns the current record's "locality_type_id" value
  * @method integer             getLocalityId()             Returns the current record's "locality_id" value
  * @method integer             getLocality2Id()            Returns the current record's "locality2_id" value
+ * @method LocalityType        getLocalityType()           Returns the current record's "LocalityType" value
+ * @method Locality            getLocality()               Returns the current record's "Locality" value
+ * @method Locality            getLocality2()              Returns the current record's "Locality2" value
  * @method sfGuardUser         getSfGuardUser()            Returns the current record's "sfGuardUser" value
  * @method Doctrine_Collection getObservers()              Returns the current record's "Observers" collection
  * @method Doctrine_Collection getObservation()            Returns the current record's "Observation" collection
@@ -44,6 +50,9 @@
  * @method Entity              setLocalityTypeId()         Sets the current record's "locality_type_id" value
  * @method Entity              setLocalityId()             Sets the current record's "locality_id" value
  * @method Entity              setLocality2Id()            Sets the current record's "locality2_id" value
+ * @method Entity              setLocalityType()           Sets the current record's "LocalityType" value
+ * @method Entity              setLocality()               Sets the current record's "Locality" value
+ * @method Entity              setLocality2()              Sets the current record's "Locality2" value
  * @method Entity              setSfGuardUser()            Sets the current record's "sfGuardUser" value
  * @method Entity              setObservers()              Sets the current record's "Observers" collection
  * @method Entity              setObservation()            Sets the current record's "Observation" collection
@@ -132,6 +141,18 @@ abstract class BaseEntity extends sfDoctrineRecord
     public function setUp()
     {
         parent::setUp();
+        $this->hasOne('LocalityType', array(
+             'local' => 'locality_type_id',
+             'foreign' => 'id'));
+
+        $this->hasOne('Locality', array(
+             'local' => 'locality_id',
+             'foreign' => 'id'));
+
+        $this->hasOne('Locality as Locality2', array(
+             'local' => 'locality2_id',
+             'foreign' => 'id'));
+
         $this->hasOne('sfGuardUser', array(
              'local' => 'id',
              'foreign' => 'patient_id'));

@@ -10,11 +10,18 @@
  */
 class LocalityForm extends BaseLocalityForm
 {
+
   /**
    * @see EntityForm
    */
   public function configure()
   {
-    parent::configure();
+    $this->useFields(array(
+        'name',
+        'comment',
+        'parent',
+        'locality_type_id',
+    ));
   }
+
 }

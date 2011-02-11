@@ -15,6 +15,11 @@ class DataSourceForm extends BaseDataSourceForm
    */
   public function configure()
   {
-    parent::configure();
+    $this->useFields(array(
+        'name',
+        'comment',
+        'parent',
+        'devices_list',
+    ));
   }
 }

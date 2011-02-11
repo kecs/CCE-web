@@ -10,11 +10,20 @@
  */
 class PatientForm extends BasePatientForm
 {
+
   /**
    * @see EntityForm
    */
   public function configure()
   {
-    parent::configure();
+    $this->useFields(array(
+        'name',
+        'comment',
+        'parent',
+        'social_security_number',
+        'born_at',
+        'address',
+    ));
   }
+
 }

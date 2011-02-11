@@ -15,6 +15,12 @@ class DoorForm extends BaseDoorForm
    */
   public function configure()
   {
-    parent::configure();
+    $this->useFields(array(
+        'name',
+        'comment',
+        'parent',
+        'locality_id',
+        'locality2_id',
+    ));
   }
 }
