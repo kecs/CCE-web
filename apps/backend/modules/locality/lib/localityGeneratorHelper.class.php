@@ -10,4 +10,10 @@
  */
 class localityGeneratorHelper extends BaseLocalityGeneratorHelper
 {
+
+  public function linkToTree($entity, $params) /* @var $entity Entity */
+  {
+    return '<li class="sf_admin_action_list">' . link_to(__($params['label'], array(), 'sf_admin'), 'entity_index', $entity->getTreeRoot()) . '</li>';
+  }
+
 }

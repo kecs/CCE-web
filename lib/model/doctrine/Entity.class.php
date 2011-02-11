@@ -13,6 +13,11 @@
 class Entity extends BaseEntity
 {
 
+  public function getTreeRoot()
+  {
+    return EntityTable::getInstance()->find($this->getNode()->getRootValue());
+  }
+
   public function __toString()
   {
     return "{$this->name} ({$this->type} {$this->id})";
