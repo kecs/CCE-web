@@ -6,16 +6,12 @@ all:
     site:                         CCE-web
     include_jquery:               false
     categories:
-      Users:
-        items:
-          Patients:
-            url:    patient
-          Observers:
-            url:    observer
       Config:
         items:
-          Entity tree editor:
+          Entities:
             url:    entity
+          Users:
+            url:    user
           Locality types:
             url:    locality_type
           Devices:

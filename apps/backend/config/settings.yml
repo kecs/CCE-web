@@ -47,9 +47,6 @@ all:
     enabled_modules:
       - sfAdminDash
       - sfGuardAuth
-      - sfGuardGroup
-      - sfGuardUser
-      - sfGuardPermission
       - sfJqueryTreeDoctrineManager
       #Measurement plugin backend modules
       - activityBackend

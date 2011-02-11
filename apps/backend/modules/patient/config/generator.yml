@@ -14,7 +14,8 @@ generator:
     config:
       actions: ~
       fields:  ~
-      list:    ~
+      list:
+        display: [=name, comment, social_security_number, born_at, address ]
       filter:  ~
       form:    ~
       edit:    ~

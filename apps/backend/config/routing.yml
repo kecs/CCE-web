@@ -1,3 +1,12 @@
+user:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                sfGuardUser
+    module:               sf_guard_user
+    prefix_path:          /user
+    column:               id
+    with_wildcard_routes: true
+
 motion:
   class: sfDoctrineRouteCollection
   options:
@@ -219,7 +228,6 @@ entity_move:
   requirements:
     id: \d+
     sf_method: [post]
-  
 
 homepage:
   url:   /
