@@ -18,5 +18,6 @@ generator:
       list:    ~
       filter:  ~
       form:    ~
-      edit:    ~
+      edit:
+        title: Editing Observer "%%username%%"
       new:     ~

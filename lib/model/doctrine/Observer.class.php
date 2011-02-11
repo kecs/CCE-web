@@ -12,4 +12,10 @@
  */
 class Observer extends BaseObserver
 {
+
+  public function getUsername()
+  {
+    return $this->sfGuardUser->username;
+  }
+
 }

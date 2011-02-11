@@ -48,9 +48,11 @@ sfGuardUser:
       class: Entity
       local: patient_id
       foreignType: one
+      onDelete: set null
     ObserverRole:
       class: Observer
       foreignType: one
+      onDelete: set null
 
 Observer:
   comment:                Hozzátartozó, felügyelő vagy gondozó

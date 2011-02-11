@@ -1,7 +1,7 @@
 <?php
 
-require_once dirname(__FILE__).'/../lib/observerGeneratorConfiguration.class.php';
-require_once dirname(__FILE__).'/../lib/observerGeneratorHelper.class.php';
+require_once dirname(__FILE__) . '/../lib/observerGeneratorConfiguration.class.php';
+require_once dirname(__FILE__) . '/../lib/observerGeneratorHelper.class.php';
 
 /**
  * observer actions.
@@ -13,4 +13,10 @@ require_once dirname(__FILE__).'/../lib/observerGeneratorHelper.class.php';
  */
 class observerActions extends autoObserverActions
 {
+
+  public function executeIndex(sfWebRequest $request)
+  {
+    $this->redirect($this->generateUrl('user'));
+  }
+
 }

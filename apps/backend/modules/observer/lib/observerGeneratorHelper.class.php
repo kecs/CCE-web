@@ -10,4 +10,10 @@
  */
 class observerGeneratorHelper extends BaseObserverGeneratorHelper
 {
+
+  public function getUrlForAction($action)
+  {
+    return 'list' == $action ? 'user' : 'observer_' . $action;
+  }
+
 }

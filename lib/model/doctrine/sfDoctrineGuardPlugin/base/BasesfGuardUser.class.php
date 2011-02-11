@@ -153,11 +153,13 @@ abstract class BasesfGuardUser extends sfDoctrineRecord
 
         $this->hasOne('Entity as PatientRole', array(
              'local' => 'patient_id',
-             'foreign' => 'id'));
+             'foreign' => 'id',
+             'onDelete' => 'set null'));
 
         $this->hasOne('Observer as ObserverRole', array(
              'local' => 'observer_id',
-             'foreign' => 'id'));
+             'foreign' => 'id',
+             'onDelete' => 'set null'));
 
         $this->hasMany('sfGuardUserPermission', array(
              'local' => 'id',

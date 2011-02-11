@@ -6,6 +6,9 @@ user:
     prefix_path:          /user
     column:               id
     with_wildcard_routes: true
+    object_actions:
+      createObserverRole: post
+      createPatientRole:  post
 
 motion:
   class: sfDoctrineRouteCollection

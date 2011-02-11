@@ -217,12 +217,16 @@ class Version2 extends Doctrine_Migration_Base
              'local' => 'patient_id',
              'foreign' => 'id',
              'foreignTable' => 'entity',
+             'onUpdate' => '',
+             'onDelete' => 'set null',
              ));
         $this->createForeignKey('sf_guard_user', 'sf_guard_user_observer_id_observer_id', array(
              'name' => 'sf_guard_user_observer_id_observer_id',
              'local' => 'observer_id',
              'foreign' => 'id',
              'foreignTable' => 'observer',
+             'onUpdate' => '',
+             'onDelete' => 'set null',
              ));
         $this->createForeignKey('sf_guard_user_group', 'sf_guard_user_group_user_id_sf_guard_user_id', array(
              'name' => 'sf_guard_user_group_user_id_sf_guard_user_id',

@@ -125,9 +125,11 @@ sfGuardUser:
       class: Entity
       local: patient_id
       foreignType: one
+      onDelete: 'set null'
     ObserverRole:
       class: Observer
       foreignType: one
+      onDelete: 'set null'
   package: sfDoctrineGuardPlugin.lib.model.doctrine
   package_custom_path: /home/cassus/munka/emt/cce/plugins/sfDoctrineGuardPlugin/lib/model/doctrine
 sfGuardUserPermission:
