@@ -13,7 +13,7 @@ class observerGeneratorHelper extends BaseObserverGeneratorHelper
 
   public function getUrlForAction($action)
   {
-    return 'list' == $action ? 'user' : 'observer_' . $action;
+    return 'list' == $action ? 'user' : parent::getUrlForAction($action);
   }
 
 }
