@@ -14,39 +14,11 @@ abstract class BaseDataSourceFormFilter extends EntityFormFilter
   {
     parent::setupInheritance();
 
-    $this->widgetSchema   ['devices_list'] = new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'Device'));
-    $this->validatorSchema['devices_list'] = new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'Device', 'required' => false));
-
     $this->widgetSchema->setNameFormat('data_source_filters[%s]');
-  }
-
-  public function addDevicesListColumnQuery(Doctrine_Query $query, $field, $values)
-  {
-    if (!is_array($values))
-    {
-      $values = array($values);
-    }
-
-    if (!count($values))
-    {
-      return;
-    }
-
-    $query
-      ->leftJoin($query->getRootAlias().'.DataSourceRealization DataSourceRealization')
-      ->andWhereIn('DataSourceRealization.device_id', $values)
-    ;
   }
 
   public function getModelName()
   {
     return 'DataSource';
-  }
-
-  public function getFields()
-  {
-    return array_merge(parent::getFields(), array(
-      'devices_list' => 'ManyKey',
-    ));
   }
 }

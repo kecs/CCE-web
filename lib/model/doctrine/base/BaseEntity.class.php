@@ -21,6 +21,7 @@
  * @property sfGuardUser $sfGuardUser
  * @property Doctrine_Collection $Observers
  * @property Doctrine_Collection $Observation
+ * @property Doctrine_Collection $Device
  * @property Doctrine_Collection $Measurement
  * 
  * @method integer             getId()                     Returns the current record's "id" value
@@ -39,6 +40,7 @@
  * @method sfGuardUser         getSfGuardUser()            Returns the current record's "sfGuardUser" value
  * @method Doctrine_Collection getObservers()              Returns the current record's "Observers" collection
  * @method Doctrine_Collection getObservation()            Returns the current record's "Observation" collection
+ * @method Doctrine_Collection getDevice()                 Returns the current record's "Device" collection
  * @method Doctrine_Collection getMeasurement()            Returns the current record's "Measurement" collection
  * @method Entity              setId()                     Sets the current record's "id" value
  * @method Entity              setName()                   Sets the current record's "name" value
@@ -56,6 +58,7 @@
  * @method Entity              setSfGuardUser()            Sets the current record's "sfGuardUser" value
  * @method Entity              setObservers()              Sets the current record's "Observers" collection
  * @method Entity              setObservation()            Sets the current record's "Observation" collection
+ * @method Entity              setDevice()                 Sets the current record's "Device" collection
  * @method Entity              setMeasurement()            Sets the current record's "Measurement" collection
  * 
  * @package    cce
@@ -165,6 +168,10 @@ abstract class BaseEntity extends sfDoctrineRecord
         $this->hasMany('Observation', array(
              'local' => 'id',
              'foreign' => 'entity_id'));
+
+        $this->hasMany('Device', array(
+             'local' => 'id',
+             'foreign' => 'data_source_id'));
 
         $this->hasMany('Measurement', array(
              'local' => 'id',

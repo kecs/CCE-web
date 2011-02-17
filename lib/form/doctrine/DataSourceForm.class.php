@@ -19,7 +19,6 @@ class DataSourceForm extends BaseDataSourceForm
         'name',
         'comment',
         'parent',
-        'devices_list',
     ));
   }
 }

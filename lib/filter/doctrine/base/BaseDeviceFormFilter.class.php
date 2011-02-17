@@ -13,13 +13,13 @@ abstract class BaseDeviceFormFilter extends BaseFormFilterDoctrine
   public function setup()
   {
     $this->setWidgets(array(
-      'guid'             => new sfWidgetFormFilterInput(array('with_empty' => false)),
-      'data_source_list' => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'DataSource')),
+      'guid'           => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'data_source_id' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('DataSource'), 'add_empty' => true)),
     ));
 
     $this->setValidators(array(
-      'guid'             => new sfValidatorPass(array('required' => false)),
-      'data_source_list' => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'DataSource', 'required' => false)),
+      'guid'           => new sfValidatorPass(array('required' => false)),
+      'data_source_id' => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('DataSource'), 'column' => 'id')),
     ));
 
     $this->widgetSchema->setNameFormat('device_filters[%s]');
@@ -31,24 +31,6 @@ abstract class BaseDeviceFormFilter extends BaseFormFilterDoctrine
     parent::setup();
   }
 
-  public function addDataSourceListColumnQuery(Doctrine_Query $query, $field, $values)
-  {
-    if (!is_array($values))
-    {
-      $values = array($values);
-    }
-
-    if (!count($values))
-    {
-      return;
-    }
-
-    $query
-      ->leftJoin($query->getRootAlias().'.DataSourceRealization DataSourceRealization')
-      ->andWhereIn('DataSourceRealization.data_source_id', $values)
-    ;
-  }
-
   public function getModelName()
   {
     return 'Device';
@@ -57,9 +39,9 @@ abstract class BaseDeviceFormFilter extends BaseFormFilterDoctrine
   public function getFields()
   {
     return array(
-      'id'               => 'Number',
-      'guid'             => 'Text',
-      'data_source_list' => 'ManyKey',
+      'id'             => 'Number',
+      'guid'           => 'Text',
+      'data_source_id' => 'ForeignKey',
     );
   }
 }

@@ -138,18 +138,16 @@ DataSource:
   inheritance:
     extends: Entity
     type: column_aggregation
-  relations:
-    Devices:
-      class: Device
-      refClass: DataSourceRealization
-DataSourceRealization:
-  columns:
-    data_source_id:   { type: integer, primary: true }
-    device_id:        { type: integer, primary: true }
 Device:
   columns:
     id:               { type: integer, primary: true, autoincrement: true }
     guid:             { type: string(255), notnull: true, unique: true }
+    data_source_id:   { type: integer }
+  relations:
+    DataSource:
+      class: Entity
+      local: data_source_id
+      #Device class in reality
 
 Measurement:
   columns:

@@ -226,28 +226,6 @@ class Version1 extends Doctrine_Migration_Base
              'collate' => 'utf8_general_ci',
              'charset' => 'utf8',
              ));
-        $this->createTable('data_source_realization', array(
-             'data_source_id' => 
-             array(
-              'type' => 'integer',
-              'primary' => '1',
-              'length' => '8',
-             ),
-             'device_id' => 
-             array(
-              'type' => 'integer',
-              'primary' => '1',
-              'length' => '8',
-             ),
-             ), array(
-             'primary' => 
-             array(
-              0 => 'data_source_id',
-              1 => 'device_id',
-             ),
-             'collate' => 'utf8_general_ci',
-             'charset' => 'utf8',
-             ));
         $this->createTable('device', array(
              'id' => 
              array(
@@ -262,6 +240,11 @@ class Version1 extends Doctrine_Migration_Base
               'notnull' => '1',
               'unique' => '1',
               'length' => '255',
+             ),
+             'data_source_id' => 
+             array(
+              'type' => 'integer',
+              'length' => '8',
              ),
              ), array(
              'primary' => 
@@ -1118,7 +1101,6 @@ class Version1 extends Doctrine_Migration_Base
         $this->dropTable('activity');
         $this->dropTable('battery');
         $this->dropTable('entity');
-        $this->dropTable('data_source_realization');
         $this->dropTable('device');
         $this->dropTable('e_k_g');
         $this->dropTable('humidity');

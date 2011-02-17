@@ -10,7 +10,11 @@
  */
 class DeviceForm extends BaseDeviceForm
 {
+
   public function configure()
   {
+    $this->setWidget('data_source_id', new sfWidgetFormDoctrineChoice(array('model' => 'DataSource', 'add_empty' => true)));
+    $this->setValidator('data_source_id', new sfValidatorDoctrineChoice(array('model' => 'DataSource', 'required' => false)));
   }
+
 }

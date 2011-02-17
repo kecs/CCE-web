@@ -7,14 +7,17 @@
  * 
  * @property integer $id
  * @property string $guid
- * @property Doctrine_Collection $DataSource
+ * @property integer $data_source_id
+ * @property Entity $DataSource
  * 
- * @method integer             getId()         Returns the current record's "id" value
- * @method string              getGuid()       Returns the current record's "guid" value
- * @method Doctrine_Collection getDataSource() Returns the current record's "DataSource" collection
- * @method Device              setId()         Sets the current record's "id" value
- * @method Device              setGuid()       Sets the current record's "guid" value
- * @method Device              setDataSource() Sets the current record's "DataSource" collection
+ * @method integer getId()             Returns the current record's "id" value
+ * @method string  getGuid()           Returns the current record's "guid" value
+ * @method integer getDataSourceId()   Returns the current record's "data_source_id" value
+ * @method Entity  getDataSource()     Returns the current record's "DataSource" value
+ * @method Device  setId()             Sets the current record's "id" value
+ * @method Device  setGuid()           Sets the current record's "guid" value
+ * @method Device  setDataSourceId()   Sets the current record's "data_source_id" value
+ * @method Device  setDataSource()     Sets the current record's "DataSource" value
  * 
  * @package    cce
  * @subpackage model
@@ -37,14 +40,16 @@ abstract class BaseDevice extends sfDoctrineRecord
              'unique' => true,
              'length' => 255,
              ));
+        $this->hasColumn('data_source_id', 'integer', null, array(
+             'type' => 'integer',
+             ));
     }
 
     public function setUp()
     {
         parent::setUp();
-        $this->hasMany('DataSource', array(
-             'refClass' => 'DataSourceRealization',
-             'local' => 'device_id',
-             'foreign' => 'data_source_id'));
+        $this->hasOne('Entity as DataSource', array(
+             'local' => 'data_source_id',
+             'foreign' => 'id'));
     }
 }

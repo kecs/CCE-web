@@ -467,18 +467,6 @@ DataSource:
   inheritance:
     extends: Entity
     type: column_aggregation
-  relations:
-    Devices:
-      class: Device
-      refClass: DataSourceRealization
-DataSourceRealization:
-  columns:
-    data_source_id:
-      type: integer
-      primary: true
-    device_id:
-      type: integer
-      primary: true
 Device:
   columns:
     id:
@@ -490,6 +478,12 @@ Device:
       notnull: true
       unique: true
       length: '255'
+    data_source_id:
+      type: integer
+  relations:
+    DataSource:
+      class: Entity
+      local: data_source_id
 Measurement:
   columns:
     id:
