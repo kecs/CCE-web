@@ -1,27 +1,40 @@
 Entity:
   Home_Demo:
-    id: 1
     type: Home
     name: "Demóház"
     children:
-      contactSensor:
-        id: 2
-        type: DataSource
-        name: "Ajtó nyitás csukás"
-      motionSensor:
-        id: 3
-        type: DataSource
-        name: "Mozgás érzékelés a szobán belül"
-      switchesSensor:
-        id: 4
-        type: DataSource
-        name: "Nyomógombok"
-      sirenActuator:
-        id: 5
-        type: DataSink
-        name: "Figyelmeztető jelzés"
+      eloterDemo:
+        name: Előtér
+        type: Locality
+        LocalityType: Anteroom
+        children:
+          bejaratiAjtoDemo:
+            name: Bejárati ajtó
+            type: Door
+            children:
+              contactSensor:
+                type: DataSource
+                name: "Ajtó nyitás csukás"
+          motionSensor:
+            type: DataSource
+            name: "Mozgás érzékelés a szobán belül"
+      nappaliDemo:
+        name: Nappali
+        type: Locality
+        LocalityType: Living Room
+        children:
+          switchesSensor:
+            type: DataSource
+            name: "Nyomógombok"
+          sirenActuator:
+            type: DataSink
+            name: "Figyelmeztető jelzés"
+      ajtoDemo:
+        name: Ajtó (előtér - nappali)
+        type: Door
+        Locality1:  eloterDemo
+        Locality2:  nappaliDemo
       Patient_Demo:
-        id: 6
         type: Patient
         sfGuardUser: sfGuardUser_patientDemo
         social_security_number: '000 000 004'

@@ -19,7 +19,6 @@ class WindowForm extends BaseWindowForm
         'name',
         'comment',
         'parent',
-        'locality_id',
     ));
   }
 }

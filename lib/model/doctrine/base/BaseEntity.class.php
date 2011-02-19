@@ -16,11 +16,13 @@
  * @property integer $locality_id
  * @property integer $locality2_id
  * @property LocalityType $LocalityType
- * @property Locality $Locality
- * @property Locality $Locality2
+ * @property Entity $Locality1
+ * @property Entity $Locality2
  * @property sfGuardUser $sfGuardUser
  * @property Doctrine_Collection $Observers
  * @property Doctrine_Collection $Observation
+ * @property Doctrine_Collection $Entity
+ * @property Doctrine_Collection $Door
  * @property Doctrine_Collection $Device
  * @property Doctrine_Collection $Measurement
  * 
@@ -35,11 +37,13 @@
  * @method integer             getLocalityId()             Returns the current record's "locality_id" value
  * @method integer             getLocality2Id()            Returns the current record's "locality2_id" value
  * @method LocalityType        getLocalityType()           Returns the current record's "LocalityType" value
- * @method Locality            getLocality()               Returns the current record's "Locality" value
- * @method Locality            getLocality2()              Returns the current record's "Locality2" value
+ * @method Entity              getLocality1()              Returns the current record's "Locality1" value
+ * @method Entity              getLocality2()              Returns the current record's "Locality2" value
  * @method sfGuardUser         getSfGuardUser()            Returns the current record's "sfGuardUser" value
  * @method Doctrine_Collection getObservers()              Returns the current record's "Observers" collection
  * @method Doctrine_Collection getObservation()            Returns the current record's "Observation" collection
+ * @method Doctrine_Collection getEntity()                 Returns the current record's "Entity" collection
+ * @method Doctrine_Collection getDoor()                   Returns the current record's "Door" collection
  * @method Doctrine_Collection getDevice()                 Returns the current record's "Device" collection
  * @method Doctrine_Collection getMeasurement()            Returns the current record's "Measurement" collection
  * @method Entity              setId()                     Sets the current record's "id" value
@@ -53,11 +57,13 @@
  * @method Entity              setLocalityId()             Sets the current record's "locality_id" value
  * @method Entity              setLocality2Id()            Sets the current record's "locality2_id" value
  * @method Entity              setLocalityType()           Sets the current record's "LocalityType" value
- * @method Entity              setLocality()               Sets the current record's "Locality" value
+ * @method Entity              setLocality1()              Sets the current record's "Locality1" value
  * @method Entity              setLocality2()              Sets the current record's "Locality2" value
  * @method Entity              setSfGuardUser()            Sets the current record's "sfGuardUser" value
  * @method Entity              setObservers()              Sets the current record's "Observers" collection
  * @method Entity              setObservation()            Sets the current record's "Observation" collection
+ * @method Entity              setEntity()                 Sets the current record's "Entity" collection
+ * @method Entity              setDoor()                   Sets the current record's "Door" collection
  * @method Entity              setDevice()                 Sets the current record's "Device" collection
  * @method Entity              setMeasurement()            Sets the current record's "Measurement" collection
  * 
@@ -148,11 +154,11 @@ abstract class BaseEntity extends sfDoctrineRecord
              'local' => 'locality_type_id',
              'foreign' => 'id'));
 
-        $this->hasOne('Locality', array(
+        $this->hasOne('Entity as Locality1', array(
              'local' => 'locality_id',
              'foreign' => 'id'));
 
-        $this->hasOne('Locality as Locality2', array(
+        $this->hasOne('Entity as Locality2', array(
              'local' => 'locality2_id',
              'foreign' => 'id'));
 
@@ -168,6 +174,14 @@ abstract class BaseEntity extends sfDoctrineRecord
         $this->hasMany('Observation', array(
              'local' => 'id',
              'foreign' => 'entity_id'));
+
+        $this->hasMany('Entity', array(
+             'local' => 'id',
+             'foreign' => 'locality_id'));
+
+        $this->hasMany('Door', array(
+             'local' => 'id',
+             'foreign' => 'locality_id'));
 
         $this->hasMany('Device', array(
              'local' => 'id',

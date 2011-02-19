@@ -83,10 +83,13 @@ Entity:
     type:           { type: string(255), notnull: true }
   relations:
     LocalityType:
-    Locality:
     Locality1:
+      class: Entity
+      #Locality in reality
+      local: locality_id
     Locality2:
-      class: Locality
+      class: Entity
+      #Locality in reality
       local: locality2_id
 Patient:
   inheritance:
@@ -119,10 +122,6 @@ Window:
   inheritance:
     extends: Entity
     type: column_aggregation
-  columns:
-    locality_id:  { type: integer }
-  relations:
-    Locality:
 Door:
   inheritance:
     extends: Entity
@@ -132,8 +131,12 @@ Door:
     locality2_id:     { type: integer }
   relations:
     Locality1:
+      class: Entity
+      #Locality in reality
+      local: locality_id
     Locality2:
-      class: Locality
+      class: Entity
+      #Locality in reality
       local: locality2_id
 DataSource:
   inheritance:
