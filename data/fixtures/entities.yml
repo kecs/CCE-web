@@ -23,7 +23,7 @@ Entity:
       Patient_Demo:
         id: 6
         type: Patient
-        sfGuardUser: sfGuardUser_patient1
+        sfGuardUser: sfGuardUser_patientDemo
         social_security_number: '000 000 004'
         born_at: 'Budapest, 1982. ápr. 12.'
         address: '1111 Budapest Egry József utca 18.'

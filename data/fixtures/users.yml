@@ -28,6 +28,16 @@ sfGuardUser:
     last_login: null
     created_at: '2010-03-30 18:47:39'
     updated_at: '2010-03-30 18:47:39'
+  sfGuardUser_patientDemo:
+    first_name: Patient Demo
+    username: patient_demo@cce.emt.bme.hu
+    algorithm: sha1
+    password: patient_demo
+    is_active: true
+    is_super_admin: false
+    last_login: null
+    created_at: '2010-04-15 19:47:39'
+    updated_at: '2010-04-15 19:47:39'
   sfGuardUser_doctor1:
     first_name: Doctor 1
     username: doctor1@cce.emt.bme.hu
