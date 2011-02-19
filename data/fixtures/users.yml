@@ -2,12 +2,12 @@ Observer:
   Observer_admin:
     sfGuardUser: sfGuardUser_admin
     Observants:
-      - Patient_1
-      - Patient_2
-      - Patient_hanak_peter
-      - Patient_horvath_lajos
-      - Patient_vajda_lorant
-      - Patient_Demo
+      - Home_Demo
+      - Home_1
+      - Home_2
+      - Home_hanak
+      - Home_Horvath
+      - Home_vajda
 sfGuardUser:
   sfGuardUser_admin:
     username: admin@cce.emt.bme.hu
