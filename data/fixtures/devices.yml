@@ -1,0 +1,5 @@
+Device:
+  - { guid: contactSensor112, DataSource: contactSensor }
+  - { guid: motionSensor112, DataSource: motionSensor }
+  - { guid: switchesSensor112, DataSource: switchesSensor }
+  - { guid: sirenActuator112, DataSource: sirenActuator }
