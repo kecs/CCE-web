@@ -19,5 +19,6 @@ generator:
         display: [=name, comment, social_security_number, born_at, address ]
       filter:  ~
       form:    ~
-      edit:    ~
+      edit:
+        title:  'Edit patient %%name%%'
       new:     ~

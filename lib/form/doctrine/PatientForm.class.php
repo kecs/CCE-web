@@ -17,7 +17,6 @@ class PatientForm extends BasePatientForm
   public function configure()
   {
     $this->useFields(array(
-        'name',
         'comment',
         'parent',
         'social_security_number',

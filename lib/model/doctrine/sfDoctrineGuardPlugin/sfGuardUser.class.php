@@ -19,4 +19,14 @@ class sfGuardUser extends PluginsfGuardUser
     $this->email_address = $username;
   }
 
+  public function getName()
+  {
+    $name = trim("{$this->getFirstName()} {$this->getLastName()}");
+    if (empty($name))
+    {
+      $name = $this->getEmailAddress();
+    }
+    return $name;
+  }
+
 }

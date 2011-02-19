@@ -22,7 +22,6 @@ Entity:
         name: "Figyelmeztető jelzés"
       Patient_Demo:
         id: 6
-        name: Patient Demo
         type: Patient
         sfGuardUser: sfGuardUser_patient1
         social_security_number: '000 000 004'
@@ -36,7 +35,6 @@ Entity:
         type: DataSource
         name: "Mézeskalácsház aktivitás"
       Patient_1:
-        name: Patient 1
         type: Patient
         sfGuardUser: sfGuardUser_patient1
         social_security_number: '000 000 001'
@@ -47,7 +45,6 @@ Entity:
     name: "Home 2"
     children: 
       Patient_2:
-        name: Patient 2
         type: Patient
         sfGuardUser: sfGuardUser_patient2
         social_security_number: '000 000 002'
@@ -58,7 +55,6 @@ Entity:
     name: "HanákLak"
     children: 
       Patient_hanak_peter:
-        name: Hanák Péter
         type: Patient
         sfGuardUser: sfGuardUser_hanak_peter
         social_security_number: '100 000 001'
@@ -69,7 +65,6 @@ Entity:
     name: "HorváthLak"
     children: 
       Patient_horvath_lajos:
-        name: Horváth Lajos
         type: Patient
         sfGuardUser: sfGuardUser_horvath_lajos
         social_security_number: '100 000 002'
@@ -80,7 +75,6 @@ Entity:
     name: "VajdaLak"
     children: 
       Patient_vajda_lorant:
-        name: Vajda Lóránt
         type: Patient
         sfGuardUser: sfGuardUser_vajda_lorant
         social_security_number: '100 000 003'

@@ -93,6 +93,7 @@ Patient:
     extends: Entity
     type: column_aggregation
   columns:
+    #name feluldefinialva az sfGuardUser-beli nevvel
     social_security_number: { type: integer, comment: 'taj szam'}
     born_at:                { type: string(255), comment: 'szuletesi hely, idopont'}
     address:                { type: string(255), comment: 'lakcim' }

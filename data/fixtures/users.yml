@@ -19,6 +19,7 @@ sfGuardUser:
     created_at: '2010-03-30 18:47:39'
     updated_at: '2010-07-20 12:15:28'
   sfGuardUser_patient1:
+    first_name: Patient 1
     username: patient1@cce.emt.bme.hu
     algorithm: sha1
     password: patient1
@@ -28,6 +29,7 @@ sfGuardUser:
     created_at: '2010-03-30 18:47:39'
     updated_at: '2010-03-30 18:47:39'
   sfGuardUser_doctor1:
+    first_name: Doctor 1
     username: doctor1@cce.emt.bme.hu
     algorithm: sha1
     password: doctor1
@@ -55,6 +57,8 @@ sfGuardUser:
     created_at: '2010-07-08 11:22:48'
     updated_at: '2010-07-08 11:22:48'
   sfGuardUser_hanak_peter:
+    first_name: Péter
+    last_name: Hanák
     username: hanak@emt.bme.hu
     algorithm: sha1
     password: pibba112sg
@@ -64,6 +68,8 @@ sfGuardUser:
     created_at: '2010-06-30 08:51:52'
     updated_at: '2010-07-20 09:22:21'
   sfGuardUser_horvath_lajos:
+    first_name: Lajos
+    last_name: Horváth
     username: lhorvath.profitexpert@invitel.hu
     algorithm: sha1
     password: pibba112sg
@@ -73,6 +79,8 @@ sfGuardUser:
     created_at: '2010-07-07 11:54:25'
     updated_at: '2010-07-20 06:04:22'
   sfGuardUser_vajda_lorant:
+    first_name: Lóránt
+    last_name: Vajda
     username: vajda@ikti.hu
     algorithm: sha1
     password: pibba112sg

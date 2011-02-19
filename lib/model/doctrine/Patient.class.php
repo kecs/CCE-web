@@ -18,4 +18,9 @@ class Patient extends BasePatient
     return $this->getNode()->getParent();
   }
 
+  public function getName()
+  {
+    return $this->sfGuardUser->getName();
+  }
+
 }
