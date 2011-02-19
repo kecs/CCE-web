@@ -9,6 +9,7 @@ class PhysicalEnvironmentAction extends sfAction
   public function execute($request)
   {
     $this->localityTypes = LocalityTypeTable::getInstance()->findAll();
+    return '';
   }
 
 }
