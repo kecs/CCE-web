@@ -1,75 +1,75 @@
 LocalityType:
-  - {id: 1, description: "Atrium", leiras: "Előcsarnok"}
-  - {id: 2, description: "Bar", leiras: "Bár"}
-  - {id: 3, description: "Courtyard", leiras: "Udvar"}
-  - {id: 4, description: "Bathroom", leiras: "Fürdőszoba"}
-  - {id: 5, description: "Bedroom", leiras: "Hálószoba"}
-  - {id: 6, description: "Billiard Room", leiras: "Biliárd szoba"}
-  - {id: 7, description: "Utility Room", leiras: "Szertár"}
-  - {id: 8, description: "Cellar", leiras: "Pince"}
-  - {id: 9, description: "Closet", leiras: "Wc"}
-  - {id: 10, description: "Theater", leiras: "Színház"}
-  - {id: 11, description: "Office", leiras: "Iroda"}
-  - {id: 12, description: "Deck", leiras: "Fedélzet"}
-  - {id: 13, description: "Den", leiras: "Dolgozószoba"}
-  - {id: 14, description: "Dining Room", leiras: "Ebédlő"}
-  - {id: 15, description: "Electrical Room", leiras: "Elektromos szoba"}
-  - {id: 16, description: "Elevator", leiras: "Lift"}
-  - {id: 17, description: "Entry", leiras: "Bejárat"}
-  - {id: 18, description: "Family Room", leiras: "Családi szoba"}
-  - {id: 19, description: "Main Floor", leiras: "Main Floor"}
-  - {id: 20, description: "Upstairs", leiras: "Emelet"}
-  - {id: 21, description: "Downstairs", leiras: "Alagsor"}
-  - {id: 22, description: "Basement/Lower Level", leiras: "Alagsor"}
-  - {id: 23, description: "Gallery", leiras: "Galéria"}
-  - {id: 24, description: "Game Room", leiras: "Játék szoba"}
-  - {id: 25, description: "Garage", leiras: "Garázs"}
-  - {id: 26, description: "Gym", leiras: "Tornaterem"}
-  - {id: 27, description: "Hallway", leiras: "Folyosó"}
-  - {id: 28, description: "House", leiras: "Ház"}
-  - {id: 29, description: "Kitchen", leiras: "Konyha"}
-  - {id: 30, description: "Laundry Room", leiras: "Mosókonyha"}
-  - {id: 31, description: "Library", leiras: "Könyvtár"}
-  - {id: 32, description: "Master Bedroom", leiras: "Hálószoba (családfő)"}
-  - {id: 33, description: "Mud Room (small room for coats and boots)", leiras: "Mud Room (small room for coats and boots)"}
-  - {id: 34, description: "Nursery", leiras: "Gyerekszoba"}
-  - {id: 35, description: "Pantry", leiras: "Kamra"}
-  - {id: 36, description: "Office", leiras: "Iroda"}
-  - {id: 37, description: "Outside", leiras: "Külvilág"}
-  - {id: 38, description: "Pool", leiras: "Medence"}
-  - {id: 39, description: "Porch", leiras: "Tornác"}
-  - {id: 40, description: "Sewing Room", leiras: "Varrószoba"}
-  - {id: 41, description: "Sitting Room", leiras: "Nappali"}
-  - {id: 42, description: "Stairway", leiras: "Lépcsőház"}
-  - {id: 43, description: "Yard", leiras: "Udvar"}
-  - {id: 44, description: "Attic", leiras: "Padlás"}
-  - {id: 45, description: "Hot Tub", leiras: "Jakuzzi"}
-  - {id: 46, description: "Living Room", leiras: "Nappali"}
-  - {id: 47, description: "Sauna", leiras: "Szauna"}
-  - {id: 48, description: "Shop/Workshop", leiras: "Műhely"}
-  - {id: 49, description: "Guest Bedroom", leiras: "Vendég hálószoba"}
-  - {id: 50, description: "Guest Bath", leiras: "Vendég fürdőszoba"}
-  - {id: 51, description: "Powder Room (1/2 bath)", leiras: "wc+fürdőszoba"}
-  - {id: 52, description: "Back Yard", leiras: "Hátsó udvar"}
-  - {id: 53, description: "Front Yard", leiras: "Elülső udvar"}
-  - {id: 54, description: "Patio", leiras: "Terasz"}
-  - {id: 55, description: "Driveway", leiras: "Kocsibehajtó"}
-  - {id: 56, description: "Sun Room", leiras: "Sun Room"}
-  - {id: 57, description: "Living Room", leiras: "Nappali"}
-  - {id: 58, description: "Spa", leiras: "Gyógyfürdő"}
-  - {id: 59, description: "Spa", leiras: "Whirlpool"}
-  - {id: 60, description: "Shed", leiras: "Barakk"}
-  - {id: 61, description: "Equipment Storage", leiras: "Felszerelés raktár"}
-  - {id: 62, description: "Hobby/Craft Room", leiras: "Hobbi szoba"}
-  - {id: 63, description: "Fountain", leiras: "Szökőkút"}
-  - {id: 64, description: "Pond", leiras: "Tó"}
-  - {id: 65, description: "Reception Room", leiras: "Fogadó szoba"}
-  - {id: 66, description: "Breakfast Room", leiras: "Reggeliző szoba"}
-  - {id: 67, description: "Nook", leiras: "Zug"}
-  - {id: 68, description: "Garden", leiras: "Kert"}
-  - {id: 69, description: "Balcony", leiras: "Erkély"}
-  - {id: 70, description: "Panic Room", leiras: "Pánikszoba"}
-  - {id: 71, description: "Terrace", leiras: "Terasz"}
-  - {id: 72, description: "Roof", leiras: "Tető"}
-  - {id: 73, description: "Room", leiras: "Szoba"}
-  - {id: 74, description: "Anteroom", leiras: "Előszoba"}
+  Atrium: {id: 1, description: "Atrium", leiras: "Előcsarnok"}
+  Bar: {id: 2, description: "Bar", leiras: "Bár"}
+  Courtyard: {id: 3, description: "Courtyard", leiras: "Udvar"}
+  Bathroom: {id: 4, description: "Bathroom", leiras: "Fürdőszoba"}
+  Bedroom: {id: 5, description: "Bedroom", leiras: "Hálószoba"}
+  Billiard Room: {id: 6, description: "Billiard Room", leiras: "Biliárd szoba"}
+  Utility Room: {id: 7, description: "Utility Room", leiras: "Szertár"}
+  Cellar: {id: 8, description: "Cellar", leiras: "Pince"}
+  Closet: {id: 9, description: "Closet", leiras: "Wc"}
+  Theater: {id: 10, description: "Theater", leiras: "Színház"}
+  Office: {id: 11, description: "Office", leiras: "Iroda"}
+  Deck: {id: 12, description: "Deck", leiras: "Fedélzet"}
+  Den: {id: 13, description: "Den", leiras: "Dolgozószoba"}
+  Dining Room: {id: 14, description: "Dining Room", leiras: "Ebédlő"}
+  Electrical Room: {id: 15, description: "Electrical Room", leiras: "Elektromos szoba"}
+  Elevator: {id: 16, description: "Elevator", leiras: "Lift"}
+  Entry: {id: 17, description: "Entry", leiras: "Bejárat"}
+  Family Room: {id: 18, description: "Family Room", leiras: "Családi szoba"}
+  Main Floor: {id: 19, description: "Main Floor", leiras: "Main Floor"}
+  Upstairs: {id: 20, description: "Upstairs", leiras: "Emelet"}
+  Downstairs: {id: 21, description: "Downstairs", leiras: "Alagsor"}
+  Basement: {id: 22, description: "Basement/Lower Level", leiras: "Alagsor"}
+  Gallery: {id: 23, description: "Gallery", leiras: "Galéria"}
+  Game Room: {id: 24, description: "Game Room", leiras: "Játék szoba"}
+  Garage: {id: 25, description: "Garage", leiras: "Garázs"}
+  Gym: {id: 26, description: "Gym", leiras: "Tornaterem"}
+  Hallway: {id: 27, description: "Hallway", leiras: "Folyosó"}
+  House: {id: 28, description: "House", leiras: "Ház"}
+  Kitchen: {id: 29, description: "Kitchen", leiras: "Konyha"}
+  Laundry Room: {id: 30, description: "Laundry Room", leiras: "Mosókonyha"}
+  Library: {id: 31, description: "Library", leiras: "Könyvtár"}
+  Master Bedroom: {id: 32, description: "Master Bedroom", leiras: "Hálószoba (családfő)"}
+  Mud Room: {id: 33, description: "Mud Room (small room for coats and boots)", leiras: "Mud Room (small room for coats and boots)"}
+  Nursery: {id: 34, description: "Nursery", leiras: "Gyerekszoba"}
+  Pantry: {id: 35, description: "Pantry", leiras: "Kamra"}
+  Office: {id: 36, description: "Office", leiras: "Iroda"}
+  Outside: {id: 37, description: "Outside", leiras: "Külvilág"}
+  Pool: {id: 38, description: "Pool", leiras: "Medence"}
+  Porch: {id: 39, description: "Porch", leiras: "Tornác"}
+  Sewing Room: {id: 40, description: "Sewing Room", leiras: "Varrószoba"}
+  Sitting Room: {id: 41, description: "Sitting Room", leiras: "Nappali"}
+  Stairway: {id: 42, description: "Stairway", leiras: "Lépcsőház"}
+  Yard: {id: 43, description: "Yard", leiras: "Udvar"}
+  Attic: {id: 44, description: "Attic", leiras: "Padlás"}
+  Hot Tub: {id: 45, description: "Hot Tub", leiras: "Jakuzzi"}
+  Living Room: {id: 46, description: "Living Room", leiras: "Nappali"}
+  Sauna: {id: 47, description: "Sauna", leiras: "Szauna"}
+  Workshop: {id: 48, description: "Shop/Workshop", leiras: "Műhely"}
+  Guest Bedroom: {id: 49, description: "Guest Bedroom", leiras: "Vendég hálószoba"}
+  Guest Bath: {id: 50, description: "Guest Bath", leiras: "Vendég fürdőszoba"}
+  Powder Room: {id: 51, description: "Powder Room (1/2 bath)", leiras: "wc+fürdőszoba"}
+  Back Yard: {id: 52, description: "Back Yard", leiras: "Hátsó udvar"}
+  Front Yard: {id: 53, description: "Front Yard", leiras: "Elülső udvar"}
+  Patio: {id: 54, description: "Patio", leiras: "Terasz"}
+  Driveway: {id: 55, description: "Driveway", leiras: "Kocsibehajtó"}
+  Sun Room: {id: 56, description: "Sun Room", leiras: "Sun Room"}
+  Living Room: {id: 57, description: "Living Room", leiras: "Nappali"}
+  Spa: {id: 58, description: "Spa", leiras: "Gyógyfürdő"}
+  Spa: {id: 59, description: "Spa", leiras: "Whirlpool"}
+  Shed: {id: 60, description: "Shed", leiras: "Barakk"}
+  Equipment Storage: {id: 61, description: "Equipment Storage", leiras: "Felszerelés raktár"}
+  Craft Room: {id: 62, description: "Hobby/Craft Room", leiras: "Hobbi szoba"}
+  Fountain: {id: 63, description: "Fountain", leiras: "Szökőkút"}
+  Pond: {id: 64, description: "Pond", leiras: "Tó"}
+  Reception Room: {id: 65, description: "Reception Room", leiras: "Fogadó szoba"}
+  Breakfast Room: {id: 66, description: "Breakfast Room", leiras: "Reggeliző szoba"}
+  Nook: {id: 67, description: "Nook", leiras: "Zug"}
+  Garden: {id: 68, description: "Garden", leiras: "Kert"}
+  Balcony: {id: 69, description: "Balcony", leiras: "Erkély"}
+  Panic Room: {id: 70, description: "Panic Room", leiras: "Pánikszoba"}
+  Terrace: {id: 71, description: "Terrace", leiras: "Terasz"}
+  Roof: {id: 72, description: "Roof", leiras: "Tető"}
+  Room: {id: 73, description: "Room", leiras: "Szoba"}
+  Anteroom: {id: 74, description: "Anteroom", leiras: "Előszoba"}
