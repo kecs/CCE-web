@@ -47,6 +47,12 @@ class EntityActions extends cceActions
     $parent = $this->getRoute()->getObject(); /* @var $parent Entity */
     $type = $this->getRequestParameter('type');
 
+    if ($type == 'Patient')
+    {
+      $this->getUser()->setFlash('error', "To add a Patient create the user first and then add the Patient to the user.");
+      $this->redirect($this->generateUrl('user'));
+    }
+
     $child = new $type;
     $parent->getNode()->addChild($child);
 
