@@ -40,6 +40,21 @@ class EntityForm extends BaseEntityForm
     {
       $this->setDefault('parent', $this->getObject()->getNode()->getParent()->getId());
     }
+
+    $localLocalityQuery = LocalityTable::getInstance()->createQuery('locality')
+                    ->andWhere('locality.root_id = ?', $this->getObject()->root_id);
+    $this->setWidget('locality_id', new sfWidgetFormDoctrineChoice(array(
+                'model' => 'Locality',
+                'add_empty' => true,
+                'query' => $localLocalityQuery
+            )));
+    $this->setWidget('locality2_id', clone $this->getWidget('locality_id'));
+    $this->setValidator('locality_id', new sfValidatorDoctrineChoice(array(
+                'model' => 'Locality',
+                'required' => false,
+                'query' => $localLocalityQuery
+            )));
+    $this->setValidator('locality2_id', clone $this->getValidator('locality_id'));
   }
 
   /**
