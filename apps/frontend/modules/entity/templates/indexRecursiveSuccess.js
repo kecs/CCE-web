@@ -47,8 +47,8 @@
 
     channel.pagePositionToAxisValues = function (position) {
       return {
-        x: channel.chart.xAxis[0].translate(position.left - channel.entityChannel.offset().left, true),
-        y: channel.chart.yAxis[0].translate(position.top - channel.entityChannel.offset().top, true)
+        x: channel.chart.xAxis[0].translate(position.left - channel.entityChannel.offset().left - channel.chart.plotLeft, true),
+        y: channel.chart.yAxis[0].translate(position.top - channel.entityChannel.offset().top - channel.chart.plotTop, true)
       };
     };
 
@@ -80,21 +80,23 @@
       }
       event.preventDefault();
       var currentTimePeriod = channel.getTimePeriod();
-      var dt = currentTimePeriod.to - currentTimePeriod.from;
+      var focus = channel.pagePositionToAxisValues({
+        left: event.pageX,
+        top: event.pageY
+      }).x;
 
-      var newTimePeriod;
-      if (deltaY > 0) {
-        newTimePeriod = {
-          from: currentTimePeriod.from + dt/3,
-          to: currentTimePeriod.to - dt/3
-        };
-      }
+      var zoomFactor;
       if (deltaY < 0) {
-        newTimePeriod = {
-          from: currentTimePeriod.from - dt,
-          to: currentTimePeriod.to + dt
-        };
+        zoomFactor = 2;
       }
+      else {
+        zoomFactor = 1/2;
+      }
+      var newTimePeriod = {
+        from: focus - (focus - currentTimePeriod.from) * zoomFactor,
+        to: focus + (currentTimePeriod.to - focus) * zoomFactor
+      };
+      
       channel.zoomTo(newTimePeriod);
     };
 
