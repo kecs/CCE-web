@@ -29,6 +29,12 @@ Entity:
           sirenActuator:
             type: DataSink
             name: "Figyelmeztető jelzés"
+          nappaliAblak1Demo:
+            type: Window
+            name: "Bal nappali ablak"
+          nappaliAblak2Demo:
+            type: Window
+            name: "Jobb nappali ablak"
       ajtoDemo:
         name: Ajtó (előtér - nappali)
         type: Door
