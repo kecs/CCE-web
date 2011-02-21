@@ -14,10 +14,10 @@ Entity:
             children:
               contactSensor:
                 type: DataSource
-                name: "Ajtó nyitás csukás"
+                name: "Ajtónyitás-csukás"
           motionSensor:
             type: DataSource
-            name: "Mozgás érzékelés a szobán belül"
+            name: "Mozgásérzékelés a szobán belül"
       nappaliDemo:
         name: Nappali
         type: Locality
