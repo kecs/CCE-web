@@ -40,6 +40,9 @@ all:
     secure_module:          sfGuardAuth
     secure_action:          secure
 
+    i18n:                   true
+    default_culture:        hu_HU
+
     standard_helpers:
       - Partial
       - sfAssetsManager

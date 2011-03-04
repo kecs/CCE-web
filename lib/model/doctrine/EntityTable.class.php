@@ -16,4 +16,9 @@ class EntityTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('Entity');
     }
+
+    public function getDescription()
+    {
+      return $this->getComponentName();
+    }
 }
