@@ -94,13 +94,22 @@ class EntityActions extends cceActions
   /**
    * Recursively delete
    */
-  public function executeDelete()
+  public function executeDelete(sfWebRequest $request)
   {
-    $record = $this->getRoute()->getObject();
-    $record->getNode()->delete();
+    $record = $this->getRoute()->getObject(); /* @var $record Entity */
 
+    $isRoot = $record->getNode()->isRoot();
+    $record->getNode()->delete();
     $this->getUser()->setFlash('notice', "'{$record}' was deleted.");
-    $this->redirect($this->generateUrl('entity'));
+
+    if ($isRoot)
+    {
+      $this->redirect($this->generateUrl('entity'));
+    }
+    else
+    {
+      $this->redirect($request->getReferer());
+    }
   }
 
 }
