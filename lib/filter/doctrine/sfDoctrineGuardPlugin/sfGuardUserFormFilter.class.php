@@ -10,7 +10,10 @@
  */
 class sfGuardUserFormFilter extends PluginsfGuardUserFormFilter
 {
+
   public function configure()
   {
+    unset($this['username']);
   }
+
 }

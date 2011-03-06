@@ -13,10 +13,16 @@
 class sfGuardUser extends PluginsfGuardUser
 {
 
-  public function setUsername($username)
+  public function setUsername($email)
   {
-    $this->_set('username', $username);
-    $this->email_address = $username;
+    $this->_set('username', $email);
+    $this->_set('email_address', $email);
+  }
+
+  public function setEmailAddress($email)
+  {
+    $this->_set('username', $email);
+    $this->_set('email_address', $email);
   }
 
   public function getName()
