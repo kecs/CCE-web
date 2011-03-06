@@ -44,10 +44,12 @@ abstract class BaseObservation extends sfDoctrineRecord
         parent::setUp();
         $this->hasOne('Observer', array(
              'local' => 'observer_id',
-             'foreign' => 'id'));
+             'foreign' => 'id',
+             'onDelete' => 'CASCADE'));
 
         $this->hasOne('Entity', array(
              'local' => 'entity_id',
-             'foreign' => 'id'));
+             'foreign' => 'id',
+             'onDelete' => 'CASCADE'));
     }
 }

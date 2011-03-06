@@ -69,7 +69,9 @@ Observation:
     entity_id:    { type: integer, primary: true }
   relations:
     Observer:
+      onDelete: CASCADE
     Entity:
+      onDelete: CASCADE
 
 Entity:
   actAs:
