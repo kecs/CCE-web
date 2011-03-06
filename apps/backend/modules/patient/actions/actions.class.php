@@ -1,7 +1,7 @@
 <?php
 
-require_once dirname(__FILE__).'/../lib/patientGeneratorConfiguration.class.php';
-require_once dirname(__FILE__).'/../lib/patientGeneratorHelper.class.php';
+require_once dirname(__FILE__) . '/../lib/patientGeneratorConfiguration.class.php';
+require_once dirname(__FILE__) . '/../lib/patientGeneratorHelper.class.php';
 
 /**
  * patient actions.
@@ -13,4 +13,10 @@ require_once dirname(__FILE__).'/../lib/patientGeneratorHelper.class.php';
  */
 class patientActions extends autoPatientActions
 {
+
+  public function executeIndex(sfWebRequest $request)
+  {
+    $this->redirect($this->generateUrl('user'));
+  }
+
 }
