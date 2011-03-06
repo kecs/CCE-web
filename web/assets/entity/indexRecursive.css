@@ -2,3 +2,11 @@ div.chart {
   height: 100px;
   width: 600px;
 }
+
+.entity .details .note {
+  vertical-align: text-bottom;
+  color: #464646;
+  font-size: smaller;
+  line-height: normal;
+  margin-left: 45px;
+}
