@@ -12,4 +12,17 @@
  */
 class DataSource extends BaseDataSource
 {
+
+  public function getLocality()
+  {
+    $tree = LocalityTable::getInstance()->getTree(); /* @var $tree Doctrine_Tree_NestedSet */
+    $baseAlias = $tree->getBaseAlias();
+    $q = $tree->getBaseQuery(); /* @var $q Doctrine_Query */
+    $q->addWhere("$baseAlias.lft < ? AND $baseAlias.rgt > ?", array($this->getNode()->getLeftValue(), $this->getNode()->getRightValue()))
+            ->addOrderBy("$baseAlias.lft desc")
+            ->limit(1);
+    $q = $tree->returnQueryWithRootId($q, $this->getNode()->getRootValue());
+    return $q->fetchOne();
+  }
+
 }

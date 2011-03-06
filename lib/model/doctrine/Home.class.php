@@ -13,6 +13,16 @@
 class Home extends BaseHome
 {
 
+  public function getDataSources()
+  {
+    $q = DataSourceTable::getInstance()->createQuery('dataSource');
+    $tree = DataSourceTable::getInstance()->getTree(); /* @var $tree Doctrine_Tree_NestedSet */
+    $tree->setBaseQuery($q);
+    $ret = $tree->fetchTree(array('root_id' => $this->getNode()->getRootValue()));
+    $tree->resetBaseQuery();
+    return $ret;
+  }
+
   public function getLocalities()
   {
     $q = LocalityTable::getInstance()->createQuery('locality');
