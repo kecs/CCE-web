@@ -10,11 +10,15 @@
  */
 class HomeForm extends BaseHomeForm
 {
+
   /**
    * @see EntityForm
    */
   public function configure()
   {
     parent::configure();
+
+    unset($this['parent']);
   }
+
 }
