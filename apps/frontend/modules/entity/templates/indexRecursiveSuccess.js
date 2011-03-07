@@ -44,6 +44,7 @@
 
     channel.entityChannel = undefined;
     channel.chart = undefined;
+    channel.activeRequest = false;
 
     channel.pagePositionToAxisValues = function (position) {
       return {
@@ -109,11 +110,16 @@
     };
     channel.update = function (timePeriod) {
       channel.chart.showLoading();
-      jQuery.get($.urlTemplate('<?php echo url_for("measurement_data", array("type" => ":type", "id" => ":id", "channel" => ":channel")) ?>').generate({
+      if (channel.activeRequest) {
+        channel.activeRequest.abort();
+      }
+      channel.activeRequest = jQuery.get($.urlTemplate(
+        '<?php echo url_for("measurement_data", array("type" => ":type", "id" => ":id", "channel" => ":channel")) ?>').generate({
         id: this.getEntityId(),
         type: this.getEntityType(),
         channel: this.getChannelType()
       }), timePeriod, function (data) {
+        channel.activeRequest = false;
         channel.chart.hideLoading();
         channel.chart.xAxis[0].setExtremes(timePeriod.from, timePeriod.to);
         channel.doUpdate(data);
