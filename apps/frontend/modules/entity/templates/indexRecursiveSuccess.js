@@ -182,10 +182,12 @@
           text: ""
         },
         xAxis: {
-          type: 'datetime'
+          type: 'datetime',
+          labels: {}
         },
         yAxis: {
-          title: ""
+          title: "",
+          labels: {}
         },
         series: [{
           data:[]
@@ -227,13 +229,38 @@
   channelMaker.OpenClosed = function () {
     var channel = channelMaker.Base();
 
+    var parentFunction = $.proxy(channel.getInitOptions, channel);
+    channel.getInitOptions = function() {
+      var options = parentFunction();
+      
+      options.yAxis.gridLineWidth = 0;
+      options.yAxis.labels.enabled = false;
+      
+      return options;
+    };
+
     channel.doUpdate = function (data) {
-      this.updateCategorySeries(data, function (row) {
-        return {
-          category: row.value,
-          value: row.timestamp
+      var seriesData = [];
+      $.each(data, function (i, dataRow) {
+        var dataPoint = {
+          x: dataRow.timestamp,
+          y: 0,
+          marker: {}
         };
+        if (dataRow.value == 'closed') {
+          dataPoint.marker.symbol = 'triangle';
+          dataPoint.marker.fillColor = 'rgb(192,192,192)';
+        }
+        if (dataRow.value == 'open') {
+          dataPoint.marker.symbol = 'triangle-down';
+          dataPoint.marker.fillColor = '#CC0000';
+          dataPoint.y = 1;
+        }
+
+        seriesData.push(dataPoint);
       });
+
+      this.chart.series[0].setData(seriesData, false);
       this.chart.redraw();
     };
 
