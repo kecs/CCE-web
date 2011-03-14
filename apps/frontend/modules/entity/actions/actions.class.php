@@ -5,6 +5,7 @@ class entityActions extends cceActions
 
   public function executeIndex(sfWebRequest $request)
   {
+
   }
 
   public function executeIndexRecursive(sfWebRequest $request)
@@ -20,8 +21,11 @@ class entityActions extends cceActions
     $this->forward404Unless($from = $request->getParameter('from'));
     $this->forward404Unless($to = $request->getParameter('to'));
 
+    $timePeriod = new TimePeriod($from, $to);
+    $timePeriod->zomm(3); //return some context so we can have lines going off the chart
+
     return $this->renderJSON(
-            $channelTable->getMeasurementsAbout($this->getObject(), new TimePeriod($from, $to)));
+            $channelTable->getMeasurementsAbout($this->getObject(), $timePeriod));
   }
 
   public function executeJavascript(sfWebRequest $request)
