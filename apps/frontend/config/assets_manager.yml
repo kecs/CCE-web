@@ -1,4 +1,6 @@
 packages: 
+  layout:
+    css: frontend/layout.css
   entity_indexRecursive:
     import:
       - jquery
