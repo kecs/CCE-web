@@ -10,7 +10,8 @@
     }
   });
 
-  var channelMaker = function (entityChannel, timePeriod) {
+  var channelMaker;
+  channelMaker = function (entityChannel, timePeriod) {
     var channelType = entityChannel.data('channel');
     if (channelMaker[channelType] === undefined) {
       entityChannel.text('Error: unkown channel ' + channelType);
