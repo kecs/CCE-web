@@ -1,0 +1,35 @@
+fridge:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                Fridge
+    module:               fridgeBackend
+    prefix_path:          /fridgeBackend
+    column:               id
+    with_wildcard_routes: true
+
+wardrobe:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                Wardrobe
+    module:               wardrobeBackend
+    prefix_path:          /wardrobeBackend
+    column:               id
+    with_wildcard_routes: true
+
+cupboard:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                Cupboard
+    module:               cupboardBackend
+    prefix_path:          /cupboardBackend
+    column:               id
+    with_wildcard_routes: true
+
+electric_stove:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                ElectricStove
+    module:               electricStoveBackend
+    prefix_path:          /electricStoveBackend
+    column:               id
+    with_wildcard_routes: true

@@ -59,3 +59,7 @@ all:
       - openClosedBackend
       - temperatureBackend
       - activationBackend
+      - cupboardBackend
+      - electricStoveBackend
+      - fridgeBackend
+      - wardrobeBackend
