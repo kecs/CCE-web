@@ -73,6 +73,14 @@ Observation:
     Entity:
       onDelete: CASCADE
 
+EntityType:
+  actAs:
+    I18n:
+      fields: [name]
+  columns:
+    id:             { type: integer, primary: true, autoincrement: true }
+    name:           { type: string(255), notnull: true }
+    className:      { type: string(255), notnull: true }
 Entity:
   actAs:
     NestedSet:
