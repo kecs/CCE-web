@@ -263,8 +263,7 @@
         category: row.value,
         value: row.timestamp,
         marker: {
-          symbol: (row.value === 'closed') ? 'triangle' : 'triangle-down',
-          fillColor: (row.value === 'closed') ? '#C0C0C0' : '#CC0000'
+          fillColor: (row.value === 'open') ? '#CC0000' : null
         }
       };
     };
