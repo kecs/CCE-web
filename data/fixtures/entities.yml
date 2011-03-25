@@ -99,3 +99,8 @@ Entity:
         social_security_number: '100 000 003'
         born_at: '---'
         address: '---'
+
+DataSourceAffected:
+  DataSourceAffected_demo:
+    DataSource: motionSensor
+    HasEffect: nappaliDemo
