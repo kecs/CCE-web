@@ -10,6 +10,7 @@
  */
 class DataSourceForm extends BaseDataSourceForm
 {
+
   /**
    * @see EntityForm
    */
@@ -22,4 +23,24 @@ class DataSourceForm extends BaseDataSourceForm
         'affected_by_list',
     ));
   }
+
+  protected function setupInheritance()
+  {
+    parent::setupInheritance();
+
+    $localEntityQuery = EntityTable::getInstance()->createQuery('entity')
+                    ->andWhere('entity.root_id = ?', $this->getObject()->root_id);
+    $this->setWidget('affected_by_list', new sfWidgetFormDoctrineChoice(array(
+                'multiple' => true,
+                'model' => 'Entity',
+                'query' => $localEntityQuery,
+            )));
+    $this->setValidator('affected_by_list', new sfValidatorDoctrineChoice(array(
+                'multiple' => true,
+                'model' => 'Entity',
+                'required' => false,
+                'query' => $localEntityQuery,
+            )));
+  }
+
 }
