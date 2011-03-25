@@ -1,0 +1,10 @@
+EntityType:
+  - {id: 1, className: "Locality", Translation: {en: "Locality", hu: "Helység"}}
+  - {id: 2, className: "Fridge", Translation: {en: "Fridge", hu: "Hűtőszekrény"}}
+  - {id: 3, className: "Wardrobe", Translation: {en: "Wardrobe", hu: "Szekrény"}}
+  - {id: 4, className: "Cupboard", Translation: {en: "Cupboard", hu: "Konyhaszekrény"}}
+  - {id: 5, className: "Window", Translation: {en: "Window", hu: "Ablak"}}
+  - {id: 6, className: "Door", Translation: {en: "Door", hu: "Ajtó"}}
+  - {id: 7, className: "ElectricStove", Translation: {en: "Electric stove", hu: "Villanytűzhely"}}
+  - {id: 8, className: "Home", Translation: {en: "Home", hu: "Lakás"}}
+  - {id: 9, className: "DataSource", Translation: {en: "DataSource", hu: "AdatForrás"}}
