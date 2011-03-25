@@ -19,6 +19,7 @@ class DataSourceForm extends BaseDataSourceForm
         'name',
         'comment',
         'parent',
+        'affected_by_list',
     ));
   }
 }
