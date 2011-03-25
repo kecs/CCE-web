@@ -1,4 +1,4 @@
-/*jslint newcap: true, undef: true, nomen: true, regexp: true, bitwise: true, strict: true */
+/*jslint newcap: true, undef: true, nomen: true, regexp: true, bitwise: true, strict: true, nomen: false */
 /*global jQuery, $, Highcharts */
 
 (function () {
@@ -126,31 +126,6 @@
       });
     };
 
-    channel.updateCategorySeries = function (data, processDataRow) {
-      var seriesData = [];
-      var categories = [];
-      $.each(data, function (i, dataRow) {
-        var measurements = processDataRow(dataRow);
-        if (measurements[0] === undefined) {
-          measurements = [measurements];
-        }
-        $.each(measurements, function (i, measurement) {
-          if (measurement.category) {
-            var categoryId = $.inArray(measurement.category, categories);
-            if (categoryId === -1) {
-              categoryId = categories.length;
-              categories.push(measurement.category);
-            }
-            seriesData.push([measurement.value, categoryId]);
-          } else {
-            seriesData.push(measurement);
-          }
-        });
-      });
-      this.chart.yAxis[0].setCategories(categories, false);
-      this.chart.series[0].setData(seriesData, false);
-    };
-
     channel.getInitOptions = function() {
       return {
         chart: {
@@ -226,78 +201,87 @@
     return channel;
   };
 
-  channelMaker.OpenClosed = function () {
+  channelMaker.Category = function () {
     var channel = channelMaker.Base();
 
-    var _parentMethod = $.proxy(channel.getInitOptions, channel);
-    channel.getInitOptions = function() {
-      var options = _parentMethod();
-      
-      options.yAxis.gridLineWidth = 0;
-      options.yAxis.labels.enabled = false;
-      
-      return options;
+    channel.updateCategorySeries = function (data, processDataRow) {
+      var seriesData = [];
+      var categories = [];
+      $.each(data, function (i, dataRow) {
+        var measurements = processDataRow(dataRow);
+        if (measurements[0] === undefined) {
+          measurements = [measurements];
+        }
+        $.each(measurements, function (i, measurement) {
+          if (measurement.category) {
+            var categoryId = $.inArray(measurement.category, categories);
+            if (categoryId === -1) {
+              categoryId = categories.length;
+              categories.push(measurement.category);
+            }
+
+            //extend the data point with concrete coordinates
+            measurement.x = measurement.value;
+            measurement.y = categoryId;
+            seriesData.push(measurement);
+          } else {
+            seriesData.push(measurement);
+          }
+        });
+      });
+      this.chart.yAxis[0].setCategories(categories, false);
+      this.chart.series[0].setData(seriesData, false);
     };
 
     channel.doUpdate = function (data) {
-      var seriesData = [];
-      $.each(data, function (i, dataRow) {
-        var dataPoint = {
-          x: dataRow.timestamp,
-          y: 0,
-          marker: {}
-        };
-        if (dataRow.value == 'closed') {
-          dataPoint.marker.symbol = 'triangle';
-          dataPoint.marker.fillColor = 'rgb(192,192,192)';
-        }
-        if (dataRow.value == 'open') {
-          dataPoint.marker.symbol = 'triangle-down';
-          dataPoint.marker.fillColor = '#CC0000';
-          dataPoint.y = 1;
-        }
-
-        seriesData.push(dataPoint);
-      });
-
-      this.chart.series[0].setData(seriesData, false);
+      this.updateCategorySeries(data, channel.processDataRow);
       this.chart.redraw();
+    };
+
+    return channel;
+  };
+
+  channelMaker.OpenClosed = function () {
+    var channel = channelMaker.Category();
+
+    channel.processDataRow = function (row) {
+      return {
+        category: row.value,
+        value: row.timestamp,
+        marker: {
+          symbol: (row.value === 'closed') ? 'triangle' : 'triangle-down',
+          fillColor: (row.value === 'closed') ? '#C0C0C0' : '#CC0000'
+        }
+      };
     };
 
     return channel;
   };
 
   channelMaker.Motion = function () {
-    var channel = channelMaker.Base();
+    var channel = channelMaker.Category();
 
-    channel.doUpdate = function (data) {
-      this.updateCategorySeries(data, function (row) {
-        return {
-          category: row.value ? 'true' : 'false',
-          value: row.timestamp
-        };
-      });
-      this.chart.redraw();
+    channel.processDataRow = function (row) {
+      return {
+        category: row.value ? 'true' : 'false',
+        value: row.timestamp
+      };
     };
 
     return channel;
   };
 
   channelMaker.Activation = function (chart, data) {
-    var channel = channelMaker.Base();
+    var channel = channelMaker.Category();
 
-    channel.doUpdate = function (data) {
-      this.updateCategorySeries(data, function (row) {
-        return {
-          category: 'activation',
-          value: row.timestamp
-        };
-      });
-      this.chart.redraw();
+    channel.processDataRow = function (row) {
+      return {
+        category: 'activation',
+        value: row.timestamp
+      };
     };
 
     return channel;
-
   };
 
   $(function () {
