@@ -20,6 +20,7 @@ class ProjectConfiguration extends sfProjectConfiguration
         'emtActivityPlugin',
         'emtEKGPlugin',
         'emtBasicMeasurementsPlugin',
+        'emtExtraEntitiesPlugin',
     ));
   }
 

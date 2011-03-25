@@ -126,6 +126,22 @@ abstract class BaseEntity extends sfDoctrineRecord
              ));
 
         $this->setSubClasses(array(
+             'ElectricStove' => 
+             array(
+              'type' => 'ElectricStove',
+             ),
+             'Cupboard' => 
+             array(
+              'type' => 'Cupboard',
+             ),
+             'Wardrobe' => 
+             array(
+              'type' => 'Wardrobe',
+             ),
+             'Fridge' => 
+             array(
+              'type' => 'Fridge',
+             ),
              'Patient' => 
              array(
               'type' => 'Patient',

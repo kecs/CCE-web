@@ -1,0 +1,16 @@
+ElectricStove:
+  inheritance:
+    extends: Entity
+    type: column_aggregation
+Cupboard:
+  inheritance:
+    extends: Entity
+    type: column_aggregation
+Wardrobe:
+  inheritance:
+    extends: Entity
+    type: column_aggregation
+Fridge:
+  inheritance:
+    extends: Entity
+    type: column_aggregation
