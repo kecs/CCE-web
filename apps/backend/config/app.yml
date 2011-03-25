@@ -16,6 +16,8 @@ all:
             url:    locality_type
           Devices:
             url:    device
+          Entity types:
+            url:    entity_type
       Measurements:
         items:
           Activity:
