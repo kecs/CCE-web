@@ -144,6 +144,25 @@ DataSource:
   inheritance:
     extends: Entity
     type: column_aggregation
+  relations:
+    AffectedBy:
+      class: Entity
+      local: id
+      foreign: data_source_id
+      refClass: DataSourceAffected
+      foreignAlias: AffectedDataSources
+DataSourceAffected:
+  columns:
+    data_source_id:   { type: integer, primary: true }
+    entity_id:        { type: integer, primary: true }
+  relations:
+    DataSource:
+      #practically DataSource
+      class: Entity
+      local: data_source_id
+    HasEffect:
+      class: Entity
+      local: entity_id
 Device:
   columns:
     id:               { type: integer, primary: true, autoincrement: true }

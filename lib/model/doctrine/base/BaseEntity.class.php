@@ -23,6 +23,8 @@
  * @property Doctrine_Collection $Observation
  * @property Doctrine_Collection $Entity
  * @property Doctrine_Collection $Door
+ * @property Doctrine_Collection $AffectedDataSources
+ * @property Doctrine_Collection $DataSourceAffected
  * @property Doctrine_Collection $Device
  * @property Doctrine_Collection $Measurement
  * 
@@ -44,6 +46,8 @@
  * @method Doctrine_Collection getObservation()            Returns the current record's "Observation" collection
  * @method Doctrine_Collection getEntity()                 Returns the current record's "Entity" collection
  * @method Doctrine_Collection getDoor()                   Returns the current record's "Door" collection
+ * @method Doctrine_Collection getAffectedDataSources()    Returns the current record's "AffectedDataSources" collection
+ * @method Doctrine_Collection getDataSourceAffected()     Returns the current record's "DataSourceAffected" collection
  * @method Doctrine_Collection getDevice()                 Returns the current record's "Device" collection
  * @method Doctrine_Collection getMeasurement()            Returns the current record's "Measurement" collection
  * @method Entity              setId()                     Sets the current record's "id" value
@@ -64,13 +68,15 @@
  * @method Entity              setObservation()            Sets the current record's "Observation" collection
  * @method Entity              setEntity()                 Sets the current record's "Entity" collection
  * @method Entity              setDoor()                   Sets the current record's "Door" collection
+ * @method Entity              setAffectedDataSources()    Sets the current record's "AffectedDataSources" collection
+ * @method Entity              setDataSourceAffected()     Sets the current record's "DataSourceAffected" collection
  * @method Entity              setDevice()                 Sets the current record's "Device" collection
  * @method Entity              setMeasurement()            Sets the current record's "Measurement" collection
  * 
  * @package    cce
  * @subpackage model
  * @author     Adam Banko (Cassus)
- * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
+ * @version    SVN: $Id: Builder.php 7691 2011-02-04 15:43:29Z jwage $
  */
 abstract class BaseEntity extends sfDoctrineRecord
 {
@@ -182,6 +188,15 @@ abstract class BaseEntity extends sfDoctrineRecord
         $this->hasMany('Door', array(
              'local' => 'id',
              'foreign' => 'locality_id'));
+
+        $this->hasMany('DataSource as AffectedDataSources', array(
+             'refClass' => 'DataSourceAffected',
+             'local' => 'data_source_id',
+             'foreign' => 'id'));
+
+        $this->hasMany('DataSourceAffected', array(
+             'local' => 'id',
+             'foreign' => 'data_source_id'));
 
         $this->hasMany('Device', array(
              'local' => 'id',

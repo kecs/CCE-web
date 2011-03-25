@@ -14,11 +14,39 @@ abstract class BaseDataSourceFormFilter extends EntityFormFilter
   {
     parent::setupInheritance();
 
+    $this->widgetSchema   ['affected_by_list'] = new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'Entity'));
+    $this->validatorSchema['affected_by_list'] = new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'Entity', 'required' => false));
+
     $this->widgetSchema->setNameFormat('data_source_filters[%s]');
+  }
+
+  public function addAffectedByListColumnQuery(Doctrine_Query $query, $field, $values)
+  {
+    if (!is_array($values))
+    {
+      $values = array($values);
+    }
+
+    if (!count($values))
+    {
+      return;
+    }
+
+    $query
+      ->leftJoin($query->getRootAlias().'.DataSourceAffected DataSourceAffected')
+      ->andWhereIn('DataSourceAffected.data_source_id', $values)
+    ;
   }
 
   public function getModelName()
   {
     return 'DataSource';
+  }
+
+  public function getFields()
+  {
+    return array_merge(parent::getFields(), array(
+      'affected_by_list' => 'ManyKey',
+    ));
   }
 }

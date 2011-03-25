@@ -15,39 +15,41 @@ abstract class BaseEntityForm extends BaseFormDoctrine
   public function setup()
   {
     $this->setWidgets(array(
-      'id'                     => new sfWidgetFormInputHidden(),
-      'name'                   => new sfWidgetFormInputText(),
-      'comment'                => new sfWidgetFormTextarea(),
-      'type'                   => new sfWidgetFormInputText(),
-      'social_security_number' => new sfWidgetFormInputText(),
-      'born_at'                => new sfWidgetFormInputText(),
-      'address'                => new sfWidgetFormInputText(),
-      'locality_type_id'       => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('LocalityType'), 'add_empty' => true)),
-      'locality_id'            => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Locality1'), 'add_empty' => true)),
-      'locality2_id'           => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Locality2'), 'add_empty' => true)),
-      'root_id'                => new sfWidgetFormInputText(),
-      'lft'                    => new sfWidgetFormInputText(),
-      'rgt'                    => new sfWidgetFormInputText(),
-      'level'                  => new sfWidgetFormInputText(),
-      'observers_list'         => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'Observer')),
+      'id'                         => new sfWidgetFormInputHidden(),
+      'name'                       => new sfWidgetFormInputText(),
+      'comment'                    => new sfWidgetFormTextarea(),
+      'type'                       => new sfWidgetFormInputText(),
+      'social_security_number'     => new sfWidgetFormInputText(),
+      'born_at'                    => new sfWidgetFormInputText(),
+      'address'                    => new sfWidgetFormInputText(),
+      'locality_type_id'           => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('LocalityType'), 'add_empty' => true)),
+      'locality_id'                => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Locality1'), 'add_empty' => true)),
+      'locality2_id'               => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Locality2'), 'add_empty' => true)),
+      'root_id'                    => new sfWidgetFormInputText(),
+      'lft'                        => new sfWidgetFormInputText(),
+      'rgt'                        => new sfWidgetFormInputText(),
+      'level'                      => new sfWidgetFormInputText(),
+      'observers_list'             => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'Observer')),
+      'affected_data_sources_list' => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'DataSource')),
     ));
 
     $this->setValidators(array(
-      'id'                     => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
-      'name'                   => new sfValidatorString(array('max_length' => 255)),
-      'comment'                => new sfValidatorString(array('required' => false)),
-      'type'                   => new sfValidatorString(array('max_length' => 255)),
-      'social_security_number' => new sfValidatorInteger(array('required' => false)),
-      'born_at'                => new sfValidatorString(array('max_length' => 255, 'required' => false)),
-      'address'                => new sfValidatorString(array('max_length' => 255, 'required' => false)),
-      'locality_type_id'       => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('LocalityType'), 'required' => false)),
-      'locality_id'            => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Locality1'), 'required' => false)),
-      'locality2_id'           => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Locality2'), 'required' => false)),
-      'root_id'                => new sfValidatorInteger(array('required' => false)),
-      'lft'                    => new sfValidatorInteger(array('required' => false)),
-      'rgt'                    => new sfValidatorInteger(array('required' => false)),
-      'level'                  => new sfValidatorInteger(array('required' => false)),
-      'observers_list'         => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'Observer', 'required' => false)),
+      'id'                         => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
+      'name'                       => new sfValidatorString(array('max_length' => 255)),
+      'comment'                    => new sfValidatorString(array('required' => false)),
+      'type'                       => new sfValidatorString(array('max_length' => 255)),
+      'social_security_number'     => new sfValidatorInteger(array('required' => false)),
+      'born_at'                    => new sfValidatorString(array('max_length' => 255, 'required' => false)),
+      'address'                    => new sfValidatorString(array('max_length' => 255, 'required' => false)),
+      'locality_type_id'           => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('LocalityType'), 'required' => false)),
+      'locality_id'                => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Locality1'), 'required' => false)),
+      'locality2_id'               => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Locality2'), 'required' => false)),
+      'root_id'                    => new sfValidatorInteger(array('required' => false)),
+      'lft'                        => new sfValidatorInteger(array('required' => false)),
+      'rgt'                        => new sfValidatorInteger(array('required' => false)),
+      'level'                      => new sfValidatorInteger(array('required' => false)),
+      'observers_list'             => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'Observer', 'required' => false)),
+      'affected_data_sources_list' => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'DataSource', 'required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('entity[%s]');
@@ -73,11 +75,17 @@ abstract class BaseEntityForm extends BaseFormDoctrine
       $this->setDefault('observers_list', $this->object->Observers->getPrimaryKeys());
     }
 
+    if (isset($this->widgetSchema['affected_data_sources_list']))
+    {
+      $this->setDefault('affected_data_sources_list', $this->object->AffectedDataSources->getPrimaryKeys());
+    }
+
   }
 
   protected function doSave($con = null)
   {
     $this->saveObserversList($con);
+    $this->saveAffectedDataSourcesList($con);
 
     parent::doSave($con);
   }
@@ -117,6 +125,44 @@ abstract class BaseEntityForm extends BaseFormDoctrine
     if (count($link))
     {
       $this->object->link('Observers', array_values($link));
+    }
+  }
+
+  public function saveAffectedDataSourcesList($con = null)
+  {
+    if (!$this->isValid())
+    {
+      throw $this->getErrorSchema();
+    }
+
+    if (!isset($this->widgetSchema['affected_data_sources_list']))
+    {
+      // somebody has unset this widget
+      return;
+    }
+
+    if (null === $con)
+    {
+      $con = $this->getConnection();
+    }
+
+    $existing = $this->object->AffectedDataSources->getPrimaryKeys();
+    $values = $this->getValue('affected_data_sources_list');
+    if (!is_array($values))
+    {
+      $values = array();
+    }
+
+    $unlink = array_diff($existing, $values);
+    if (count($unlink))
+    {
+      $this->object->unlink('AffectedDataSources', array_values($unlink));
+    }
+
+    $link = array_diff($values, $existing);
+    if (count($link))
+    {
+      $this->object->link('AffectedDataSources', array_values($link));
     }
   }
 
