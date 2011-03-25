@@ -178,9 +178,9 @@ Device:
     data_source_id:   { type: integer }
   relations:
     DataSource:
+      #Device class in reality
       class: Entity
       local: data_source_id
-      #Device class in reality
 
 Measurement:
   columns:
