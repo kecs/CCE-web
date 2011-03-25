@@ -204,6 +204,20 @@
   channelMaker.Category = function () {
     var channel = channelMaker.Base();
 
+    //override getInitOptions
+    (function () {
+      var _parentMethod = $.proxy(channel.getInitOptions, channel);
+      channel.getInitOptions = function() {
+        var options = _parentMethod();
+
+        options.yAxis.startOnTick = false;
+        options.yAxis.endOnTick = false;
+        options.xAxis.lineColor = null;
+
+        return options;
+      };
+    }());
+
     channel.updateCategorySeries = function (data, processDataRow) {
       var seriesData = [];
       var categories = [];
