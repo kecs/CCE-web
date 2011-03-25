@@ -229,9 +229,9 @@
   channelMaker.OpenClosed = function () {
     var channel = channelMaker.Base();
 
-    var parentFunction = $.proxy(channel.getInitOptions, channel);
+    var _parentMethod = $.proxy(channel.getInitOptions, channel);
     channel.getInitOptions = function() {
-      var options = parentFunction();
+      var options = _parentMethod();
       
       options.yAxis.gridLineWidth = 0;
       options.yAxis.labels.enabled = false;
