@@ -8,17 +8,7 @@ class ObservedDevicesAction extends sfAction
    */
   public function execute($request)
   {
-    $subClassNames = EntityTable::getInstance()->getOption('subclasses');
-    $subClasses = array(
-        EntityTable::getInstance()
-    );
-
-    foreach ($subClassNames as $name)
-    {
-      $subClasses[] = Doctrine::getTable($name);
-    }
-    
-    $this->entityTables = $subClasses;
+    $this->entityTypes = EntityTypeTable::getInstance()->findAll();
     return '';
   }
 

@@ -13,11 +13,11 @@ abstract class BaseEntityTypeTranslationFormFilter extends BaseFormFilterDoctrin
   public function setup()
   {
     $this->setWidgets(array(
-      'name' => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'name'      => new sfWidgetFormFilterInput(array('with_empty' => false)),
     ));
 
     $this->setValidators(array(
-      'name' => new sfValidatorPass(array('required' => false)),
+      'name'      => new sfValidatorPass(array('required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('entity_type_translation_filters[%s]');
@@ -37,9 +37,9 @@ abstract class BaseEntityTypeTranslationFormFilter extends BaseFormFilterDoctrin
   public function getFields()
   {
     return array(
-      'id'   => 'Number',
-      'name' => 'Text',
-      'lang' => 'Text',
+      'className' => 'Text',
+      'name'      => 'Text',
+      'lang'      => 'Text',
     );
   }
 }

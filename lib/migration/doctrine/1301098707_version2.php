@@ -60,6 +60,24 @@ class Version2 extends Doctrine_Migration_Base
              'foreign' => 'id',
              'foreignTable' => 'entity',
              ));
+        $this->createForeignKey('entity', 'entity_type_entity_type_classname', array(
+             'name' => 'entity_type_entity_type_classname',
+             'local' => 'type',
+             'foreign' => 'classname',
+             'foreignTable' => 'entity_type',
+             ));
+        $this->createForeignKey('data_source_affected', 'data_source_affected_data_source_id_entity_id', array(
+             'name' => 'data_source_affected_data_source_id_entity_id',
+             'local' => 'data_source_id',
+             'foreign' => 'id',
+             'foreignTable' => 'entity',
+             ));
+        $this->createForeignKey('data_source_affected', 'data_source_affected_entity_id_entity_id', array(
+             'name' => 'data_source_affected_entity_id_entity_id',
+             'local' => 'entity_id',
+             'foreign' => 'id',
+             'foreignTable' => 'entity',
+             ));
         $this->createForeignKey('device', 'device_data_source_id_entity_id', array(
              'name' => 'device_data_source_id_entity_id',
              'local' => 'data_source_id',
@@ -131,12 +149,16 @@ class Version2 extends Doctrine_Migration_Base
              'local' => 'observer_id',
              'foreign' => 'id',
              'foreignTable' => 'observer',
+             'onUpdate' => '',
+             'onDelete' => 'CASCADE',
              ));
         $this->createForeignKey('observation', 'observation_entity_id_entity_id', array(
              'name' => 'observation_entity_id_entity_id',
              'local' => 'entity_id',
              'foreign' => 'id',
              'foreignTable' => 'entity',
+             'onUpdate' => '',
+             'onDelete' => 'CASCADE',
              ));
         $this->createForeignKey('on_off', 'on_off_entity_id_entity_id', array(
              'name' => 'on_off_entity_id_entity_id',
@@ -254,6 +276,14 @@ class Version2 extends Doctrine_Migration_Base
              'onUpdate' => '',
              'onDelete' => 'CASCADE',
              ));
+        $this->createForeignKey('entity_type_translation', 'entity_type_translation_classname_entity_type_classname', array(
+             'name' => 'entity_type_translation_classname_entity_type_classname',
+             'local' => 'classname',
+             'foreign' => 'classname',
+             'foreignTable' => 'entity_type',
+             'onUpdate' => 'CASCADE',
+             'onDelete' => 'CASCADE',
+             ));
         $this->addIndex('activation', 'activation_entity_id', array(
              'fields' => 
              array(
@@ -312,6 +342,18 @@ class Version2 extends Doctrine_Migration_Base
              'fields' => 
              array(
               0 => 'type',
+             ),
+             ));
+        $this->addIndex('data_source_affected', 'data_source_affected_data_source_id', array(
+             'fields' => 
+             array(
+              0 => 'data_source_id',
+             ),
+             ));
+        $this->addIndex('data_source_affected', 'data_source_affected_entity_id', array(
+             'fields' => 
+             array(
+              0 => 'entity_id',
              ),
              ));
         $this->addIndex('device', 'device_data_source_id', array(
@@ -488,6 +530,12 @@ class Version2 extends Doctrine_Migration_Base
               0 => 'permission_id',
              ),
              ));
+        $this->addIndex('entity_type_translation', 'entity_type_translation_classname', array(
+             'fields' => 
+             array(
+              0 => 'classname',
+             ),
+             ));
     }
 
     public function down()
@@ -501,6 +549,9 @@ class Version2 extends Doctrine_Migration_Base
         $this->dropForeignKey('entity', 'entity_locality_type_id_locality_type_id');
         $this->dropForeignKey('entity', 'entity_locality_id_entity_id');
         $this->dropForeignKey('entity', 'entity_locality2_id_entity_id');
+        $this->dropForeignKey('entity', 'entity_type_entity_type_classname');
+        $this->dropForeignKey('data_source_affected', 'data_source_affected_data_source_id_entity_id');
+        $this->dropForeignKey('data_source_affected', 'data_source_affected_entity_id_entity_id');
         $this->dropForeignKey('device', 'device_data_source_id_entity_id');
         $this->dropForeignKey('e_k_g', 'e_k_g_entity_id_entity_id');
         $this->dropForeignKey('e_k_g', 'e_k_g_data_source_id_entity_id');
@@ -530,6 +581,7 @@ class Version2 extends Doctrine_Migration_Base
         $this->dropForeignKey('sf_guard_user_group', 'sf_guard_user_group_group_id_sf_guard_group_id');
         $this->dropForeignKey('sf_guard_user_permission', 'sf_guard_user_permission_user_id_sf_guard_user_id');
         $this->dropForeignKey('sf_guard_user_permission', 'sf_guard_user_permission_permission_id_sf_guard_permission_id');
+        $this->dropForeignKey('entity_type_translation', 'entity_type_translation_classname_entity_type_classname');
         $this->removeIndex('activation', 'activation_entity_id', array(
              'fields' => 
              array(
@@ -588,6 +640,18 @@ class Version2 extends Doctrine_Migration_Base
              'fields' => 
              array(
               0 => 'type',
+             ),
+             ));
+        $this->removeIndex('data_source_affected', 'data_source_affected_data_source_id', array(
+             'fields' => 
+             array(
+              0 => 'data_source_id',
+             ),
+             ));
+        $this->removeIndex('data_source_affected', 'data_source_affected_entity_id', array(
+             'fields' => 
+             array(
+              0 => 'entity_id',
              ),
              ));
         $this->removeIndex('device', 'device_data_source_id', array(
@@ -762,6 +826,12 @@ class Version2 extends Doctrine_Migration_Base
              'fields' => 
              array(
               0 => 'permission_id',
+             ),
+             ));
+        $this->removeIndex('entity_type_translation', 'entity_type_translation_classname', array(
+             'fields' => 
+             array(
+              0 => 'classname',
              ),
              ));
     }

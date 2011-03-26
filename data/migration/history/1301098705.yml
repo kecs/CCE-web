@@ -400,14 +400,14 @@ EntityType:
     I18n:
       fields: [name]
   columns:
+    className:
+      type: string
+      primary: true
+      length: '255'
     id:
       type: integer
-      primary: true
+      unique: true
     name:
-      type: string
-      notnull: true
-      length: '255'
-    className:
       type: string
       notnull: true
       length: '255'
@@ -429,7 +429,7 @@ Entity:
       type: clob
     type:
       type: string
-      notnull: true
+      notnull: false
       length: '255'
   relations:
     LocalityType: null
@@ -439,6 +439,10 @@ Entity:
     Locality2:
       class: Entity
       local: locality2_id
+    EntityType:
+      class: EntityType
+      local: type
+      foreign: className
 Patient:
   inheritance:
     extends: Entity

@@ -15,14 +15,18 @@ abstract class BaseEntityTypeForm extends BaseFormDoctrine
   public function setup()
   {
     $this->setWidgets(array(
-      'id'        => new sfWidgetFormInputHidden(),
-      'className' => new sfWidgetFormInputText(),
+      'className' => new sfWidgetFormInputHidden(),
+      'id'        => new sfWidgetFormInputText(),
     ));
 
     $this->setValidators(array(
-      'id'        => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
-      'className' => new sfValidatorString(array('max_length' => 255)),
+      'className' => new sfValidatorChoice(array('choices' => array($this->getObject()->get('className')), 'empty_value' => $this->getObject()->get('className'), 'required' => false)),
+      'id'        => new sfValidatorInteger(array('required' => false)),
     ));
+
+    $this->validatorSchema->setPostValidator(
+      new sfValidatorDoctrineUnique(array('model' => 'EntityType', 'column' => array('id')))
+    );
 
     $this->widgetSchema->setNameFormat('entity_type[%s]');
 

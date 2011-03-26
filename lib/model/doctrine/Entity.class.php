@@ -44,9 +44,9 @@ class Entity extends BaseEntity
     foreach ($channels as $channel)
     {
       $count = Doctrine_Query::create()
-              ->from("$channel ch")
-              ->andWhere('ch.entity_id = ?', $this->id)
-              ->count();
+                      ->from("$channel ch")
+                      ->andWhere('ch.entity_id = ?', $this->id)
+                      ->count();
       if ($count)
       {
         $activeChannels[] = $channel;

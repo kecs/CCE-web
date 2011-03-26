@@ -18,7 +18,7 @@ foreach ($dataSources as $dataSource) /* @var $dataSource DataSource */
     }
 
     $part3 = array(
-        $dataSource->getNode()->getParent()->getType(), //Observed device
+        $dataSource->getNode()->getParent()->EntityType->id, //Observed device
         "N/A", //Function
         "N/A", //Sensor Type
         "N/A", //Interested State

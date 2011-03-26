@@ -162,7 +162,7 @@ class Version1 extends Doctrine_Migration_Base
              'type' => 
              array(
               'type' => 'string',
-              'notnull' => '1',
+              'notnull' => '',
               'length' => '255',
              ),
              'social_security_number' => 
@@ -222,6 +222,28 @@ class Version1 extends Doctrine_Migration_Base
              'primary' => 
              array(
               0 => 'id',
+             ),
+             'collate' => 'utf8_general_ci',
+             'charset' => 'utf8',
+             ));
+        $this->createTable('data_source_affected', array(
+             'data_source_id' => 
+             array(
+              'type' => 'integer',
+              'primary' => '1',
+              'length' => '8',
+             ),
+             'entity_id' => 
+             array(
+              'type' => 'integer',
+              'primary' => '1',
+              'length' => '8',
+             ),
+             ), array(
+             'primary' => 
+             array(
+              0 => 'data_source_id',
+              1 => 'entity_id',
              ),
              'collate' => 'utf8_general_ci',
              'charset' => 'utf8',
@@ -340,6 +362,27 @@ class Version1 extends Doctrine_Migration_Base
              'primary' => 
              array(
               0 => 'id',
+             ),
+             'collate' => 'utf8_general_ci',
+             'charset' => 'utf8',
+             ));
+        $this->createTable('entity_type', array(
+             'classname' => 
+             array(
+              'type' => 'string',
+              'primary' => '1',
+              'length' => '255',
+             ),
+             'id' => 
+             array(
+              'type' => 'integer',
+              'unique' => '1',
+              'length' => '8',
+             ),
+             ), array(
+             'primary' => 
+             array(
+              0 => 'classname',
              ),
              'collate' => 'utf8_general_ci',
              'charset' => 'utf8',
@@ -1093,6 +1136,35 @@ class Version1 extends Doctrine_Migration_Base
              'collate' => 'utf8_general_ci',
              'charset' => 'utf8',
              ));
+        $this->createTable('entity_type_translation', array(
+             'classname' => 
+             array(
+              'type' => 'string',
+              'length' => '255',
+              'primary' => '1',
+             ),
+             'name' => 
+             array(
+              'type' => 'string',
+              'notnull' => '1',
+              'length' => '255',
+             ),
+             'lang' => 
+             array(
+              'fixed' => '1',
+              'primary' => '1',
+              'type' => 'string',
+              'length' => '2',
+             ),
+             ), array(
+             'primary' => 
+             array(
+              0 => 'classname',
+              1 => 'lang',
+             ),
+             'collate' => 'utf8_general_ci',
+             'charset' => 'utf8',
+             ));
     }
 
     public function down()
@@ -1101,8 +1173,10 @@ class Version1 extends Doctrine_Migration_Base
         $this->dropTable('activity');
         $this->dropTable('battery');
         $this->dropTable('entity');
+        $this->dropTable('data_source_affected');
         $this->dropTable('device');
         $this->dropTable('e_k_g');
+        $this->dropTable('entity_type');
         $this->dropTable('humidity');
         $this->dropTable('light');
         $this->dropTable('locality_type');
@@ -1121,5 +1195,6 @@ class Version1 extends Doctrine_Migration_Base
         $this->dropTable('sf_guard_user');
         $this->dropTable('sf_guard_user_group');
         $this->dropTable('sf_guard_user_permission');
+        $this->dropTable('entity_type_translation');
     }
 }

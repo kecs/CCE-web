@@ -1,10 +1,12 @@
 EntityType:
-  - {id: 0, className: "Locality", Translation: {en: {name: "Locality"}, hu: {name: "Helység"}}}
-  - {id: 1, className: "Fridge", Translation: {en: {name: "Fridge"}, hu: {name: "Hűtőszekrény"}}}
-  - {id: 2, className: "Wardrobe", Translation: {en: {name: "Wardrobe"}, hu: {name: "Szekrény"}}}
-  - {id: 3, className: "Cupboard", Translation: {en: {name: "Cupboard"}, hu: {name: "Konyhaszekrény"}}}
-  - {id: 4, className: "Window", Translation: {en: {name: "Window"}, hu: {name: "Ablak"}}}
-  - {id: 5, className: "Door", Translation: {en: {name: "Door"}, hu: {name: "Ajtó"}}}
-  - {id: 6, className: "ElectricStove", Translation: {en: {name: "Electric stove"}, hu: {name: "Villanytűzhely"}}}
-  - {id: 7, className: "Home", Translation: {en: {name: "Home"}, hu: {name: "Lakás"}}}
-  - {id: 8, className: "DataSource", Translation: {en: {name: "DataSource"}, hu: {name: "AdatForrás"}}}
+  Locality: {id: 0, className: "Locality", Translation: {en: {name: "Locality"}, hu: {name: "Helység"}}}
+  Fridge: {id: 1, className: "Fridge", Translation: {en: {name: "Fridge"}, hu: {name: "Hűtőszekrény"}}}
+  Wardrobe: {id: 2, className: "Wardrobe", Translation: {en: {name: "Wardrobe"}, hu: {name: "Szekrény"}}}
+  Cupboard: {id: 3, className: "Cupboard", Translation: {en: {name: "Cupboard"}, hu: {name: "Konyhaszekrény"}}}
+  Window: {id: 4, className: "Window", Translation: {en: {name: "Window"}, hu: {name: "Ablak"}}}
+  Door: {id: 5, className: "Door", Translation: {en: {name: "Door"}, hu: {name: "Ajtó"}}}
+  ElectricStove: {id: 6, className: "ElectricStove", Translation: {en: {name: "Electric stove"}, hu: {name: "Villanytűzhely"}}}
+  Home: {id: 7, className: "Home", Translation: {en: {name: "Home"}, hu: {name: "Lakás"}}}
+  DataSource: {id: 8, className: "DataSource", Translation: {en: {name: "DataSource"}, hu: {name: "AdatForrás"}}}
+  DataSink: {id: 9, className: "DataSink", Translation: {en: {name: "DataSink"}, hu: {name: "AdatNyelő"}}}
+  Patient: {id: 10, className: "Patient", Translation: {en: {name: "Patient"}, hu: {name: "Beteg"}}}

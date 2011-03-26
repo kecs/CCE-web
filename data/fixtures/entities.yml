@@ -1,100 +1,100 @@
 Entity:
   Home_Demo:
-    type: Home
+    EntityType: Home
     name: "Demóház"
     children:
       eloterDemo:
         name: Előtér
-        type: Locality
+        EntityType: Locality
         LocalityType: Anteroom
         children:
           bejaratiAjtoDemo:
             name: Bejárati ajtó
-            type: Door
+            EntityType: Door
             children:
               contactSensor:
-                type: DataSource
+                EntityType: DataSource
                 name: "Ajtónyitás-csukás"
           motionSensor:
-            type: DataSource
+            EntityType: DataSource
             name: "Mozgásérzékelés a szobán belül"
       nappaliDemo:
         name: Nappali
-        type: Locality
+        EntityType: Locality
         LocalityType: Living Room
         children:
           switchesSensor:
-            type: DataSource
+            EntityType: DataSource
             name: "Nyomógombok"
           sirenActuator:
-            type: DataSink
+            EntityType: DataSink
             name: "Figyelmeztető jelzés"
           nappaliAblak1Demo:
-            type: Window
+            EntityType: Window
             name: "Bal nappali ablak"
           nappaliAblak2Demo:
-            type: Window
+            EntityType: Window
             name: "Jobb nappali ablak"
       ajtoDemo:
         name: Ajtó (előtér - nappali)
-        type: Door
+        EntityType: Door
         Locality1:  eloterDemo
         Locality2:  nappaliDemo
       Patient_Demo:
-        type: Patient
+        EntityType: Patient
         sfGuardUser: sfGuardUser_patientDemo
         social_security_number: '000 000 004'
         born_at: 'Budapest, 1982. ápr. 12.'
         address: '1111 Budapest Egry József utca 18.'
   Home_1:
-    type: Home
+    EntityType: Home
     name: "Mézeskalácsház"
-    children: 
+    children:
       activtySensor:
-        type: DataSource
+        EntityType: DataSource
         name: "Mézeskalácsház aktivitás"
       Patient_1:
-        type: Patient
+        EntityType: Patient
         sfGuardUser: sfGuardUser_patient1
         social_security_number: '000 000 001'
         born_at: 'Budapest, 1982. ápr. 11.'
         address: '1117 Budapest Irinyi J. utca 42.'
   Home_2:
-    type: Home
+    EntityType: Home
     name: "Home 2"
-    children: 
+    children:
       Patient_2:
-        type: Patient
+        EntityType: Patient
         sfGuardUser: sfGuardUser_patient2
         social_security_number: '000 000 002'
         born_at: 'Budapest, 1982. ápr. 11.'
         address: '1117 Budapest Irinyi J. utca 42.'
   Home_hanak:
-    type: Home
+    EntityType: Home
     name: "HanákLak"
-    children: 
+    children:
       Patient_hanak_peter:
-        type: Patient
+        EntityType: Patient
         sfGuardUser: sfGuardUser_hanak_peter
         social_security_number: '100 000 001'
         born_at: 'Budapest, 1945. dec. 12.'
         address: '2131 Göd, Lánchíd u. 8.'
   Home_Horvath:
-    type: Home
+    EntityType: Home
     name: "HorváthLak"
-    children: 
+    children:
       Patient_horvath_lajos:
-        type: Patient
+        EntityType: Patient
         sfGuardUser: sfGuardUser_horvath_lajos
         social_security_number: '100 000 002'
         born_at: '---'
         address: '---'
   Home_vajda:
-    type: Home
+    EntityType: Home
     name: "VajdaLak"
-    children: 
+    children:
       Patient_vajda_lorant:
-        type: Patient
+        EntityType: Patient
         sfGuardUser: sfGuardUser_vajda_lorant
         social_security_number: '100 000 003'
         born_at: '---'

@@ -18,6 +18,7 @@
  * @property LocalityType $LocalityType
  * @property Entity $Locality1
  * @property Entity $Locality2
+ * @property EntityType $EntityType
  * @property sfGuardUser $sfGuardUser
  * @property Doctrine_Collection $Observers
  * @property Doctrine_Collection $Observation
@@ -41,6 +42,7 @@
  * @method LocalityType        getLocalityType()           Returns the current record's "LocalityType" value
  * @method Entity              getLocality1()              Returns the current record's "Locality1" value
  * @method Entity              getLocality2()              Returns the current record's "Locality2" value
+ * @method EntityType          getEntityType()             Returns the current record's "EntityType" value
  * @method sfGuardUser         getSfGuardUser()            Returns the current record's "sfGuardUser" value
  * @method Doctrine_Collection getObservers()              Returns the current record's "Observers" collection
  * @method Doctrine_Collection getObservation()            Returns the current record's "Observation" collection
@@ -63,6 +65,7 @@
  * @method Entity              setLocalityType()           Sets the current record's "LocalityType" value
  * @method Entity              setLocality1()              Sets the current record's "Locality1" value
  * @method Entity              setLocality2()              Sets the current record's "Locality2" value
+ * @method Entity              setEntityType()             Sets the current record's "EntityType" value
  * @method Entity              setSfGuardUser()            Sets the current record's "sfGuardUser" value
  * @method Entity              setObservers()              Sets the current record's "Observers" collection
  * @method Entity              setObservation()            Sets the current record's "Observation" collection
@@ -98,7 +101,7 @@ abstract class BaseEntity extends sfDoctrineRecord
              ));
         $this->hasColumn('type', 'string', 255, array(
              'type' => 'string',
-             'notnull' => true,
+             'notnull' => false,
              'length' => 255,
              ));
         $this->hasColumn('social_security_number', 'integer', null, array(
@@ -183,6 +186,10 @@ abstract class BaseEntity extends sfDoctrineRecord
         $this->hasOne('Entity as Locality2', array(
              'local' => 'locality2_id',
              'foreign' => 'id'));
+
+        $this->hasOne('EntityType', array(
+             'local' => 'type',
+             'foreign' => 'className'));
 
         $this->hasOne('sfGuardUser', array(
              'local' => 'id',

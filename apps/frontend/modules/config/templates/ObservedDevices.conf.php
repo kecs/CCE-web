@@ -1,19 +1,14 @@
 #ObservedDevices.conf
 Description	Leírás	Value
 <?php
-$origCulture = sfContext::getInstance()->getI18N()->getCulture();
-sfContext::getInstance()->getI18N()->setCulture('hu');
-
-foreach ($entityTables as $i => $entityTable) /* @var $entityTable EntityTable */
+foreach ($entityTypes as $entityType) /* @var $entityType EntityType */
 {
 
   echo implode("\t", array(
-      $entityTable->getDescription(),
-      __($entityTable->getDescription()),
-      $i,
+      $entityType->Translation['en']->name,
+      $entityType->Translation['hu']->name,
+      $entityType->id,
   ));
   echo "\n";
 }
-
-sfContext::getInstance()->getI18N()->setCulture($origCulture);
 ?>

@@ -78,9 +78,9 @@ EntityType:
     I18n:
       fields: [name]
   columns:
-    id:             { type: integer, primary: true }
+    className:      { type: string(255), primary: true }
+    id:             { type: integer, unique: true }
     name:           { type: string(255), notnull: true }
-    className:      { type: string(255), notnull: true }
 Entity:
   actAs:
     NestedSet:
@@ -90,7 +90,7 @@ Entity:
     id:             { type: integer, primary: true, autoincrement: true }
     name:           { type: string(255), notnull: true }
     comment:        { type: clob }
-    type:           { type: string(255), notnull: true }
+    type:           { type: string(255), notnull: false }
   relations:
     LocalityType:
     Locality1:
@@ -101,6 +101,10 @@ Entity:
       class: Entity
       #Locality in reality
       local: locality2_id
+    EntityType:
+      class: EntityType
+      local: type
+      foreign: className
 Patient:
   inheritance:
     extends: Entity
