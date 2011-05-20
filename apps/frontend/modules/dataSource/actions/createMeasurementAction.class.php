@@ -9,7 +9,7 @@ class DataSource_createMeasurementAction extends sfAction
   public function execute($request)
   {
     $this->forward404Unless($dataSource = $this->getRoute()->getObject()); /* @var $dataSource DataSource */
-    $channel = $request->getParameter('channel');
+    $channel = $dataSource->channel;
 
     $typeReflectionClass = new ReflectionClass($channel);
     if ($typeReflectionClass->isSubclassOf('Measurement'))

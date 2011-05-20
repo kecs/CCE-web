@@ -19,7 +19,7 @@ abstract class BaseDeviceFormFilter extends BaseFormFilterDoctrine
 
     $this->setValidators(array(
       'pan_id'      => new sfValidatorPass(array('required' => false)),
-      'extended_id' => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
+      'extended_id' => new sfValidatorPass(array('required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('device_filters[%s]');
@@ -41,7 +41,7 @@ abstract class BaseDeviceFormFilter extends BaseFormFilterDoctrine
     return array(
       'id'          => 'Number',
       'pan_id'      => 'Text',
-      'extended_id' => 'Number',
+      'extended_id' => 'Text',
     );
   }
 }

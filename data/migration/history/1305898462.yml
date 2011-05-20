@@ -551,11 +551,9 @@ Device:
       notnull: true
       length: '255'
     extended_id:
-      type: integer
+      type: string
       notnull: true
-      length: '8'
-    data_source_id:
-      type: integer
+      length: '16'
   indexes:
     guid:
       type: unique

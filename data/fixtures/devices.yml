@@ -1,16 +1,16 @@
 Device:
   Device_MozFenyHo:
     pan_id: Netvox
-    extended_id: 0x00137A00000037F5
+    extended_id: '00137A00000037F5'
   Device_Kapcsolok:
     pan_id: Netvox
-    extended_id: 0x00137A000000394A
+    extended_id: '00137A000000394A'
   Device_Siren:
     pan_id: Netvox
-    extended_id: 0x00137A000000378A
+    extended_id: '00137A000000378A'
   Device_Kapcsolo:
     pan_id: Netvox
-    extended_id: 0x00137A0000003819
+    extended_id: '00137A0000003819'
     
 Sensor:
   - { Device: Device_MozFenyHo, endpoint_number: 0x03, cluster_id: 0x0402, hgw_id: 1, DataSource: temperatureSensor }

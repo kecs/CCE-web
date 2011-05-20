@@ -7,12 +7,12 @@
  * 
  * @property integer $id
  * @property string $pan_id
- * @property integer $extended_id
+ * @property string $extended_id
  * @property Doctrine_Collection $Sensor
  * 
  * @method integer             getId()          Returns the current record's "id" value
  * @method string              getPanId()       Returns the current record's "pan_id" value
- * @method integer             getExtendedId()  Returns the current record's "extended_id" value
+ * @method string              getExtendedId()  Returns the current record's "extended_id" value
  * @method Doctrine_Collection getSensor()      Returns the current record's "Sensor" collection
  * @method Device              setId()          Sets the current record's "id" value
  * @method Device              setPanId()       Sets the current record's "pan_id" value
@@ -39,10 +39,10 @@ abstract class BaseDevice extends sfDoctrineRecord
              'notnull' => true,
              'length' => 255,
              ));
-        $this->hasColumn('extended_id', 'integer', 8, array(
-             'type' => 'integer',
+        $this->hasColumn('extended_id', 'string', 16, array(
+             'type' => 'string',
              'notnull' => true,
-             'length' => 8,
+             'length' => 16,
              ));
 
 

@@ -23,7 +23,7 @@ abstract class BaseDeviceForm extends BaseFormDoctrine
     $this->setValidators(array(
       'id'          => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
       'pan_id'      => new sfValidatorString(array('max_length' => 255)),
-      'extended_id' => new sfValidatorInteger(),
+      'extended_id' => new sfValidatorString(array('max_length' => 16)),
     ));
 
     $this->validatorSchema->setPostValidator(

@@ -15,6 +15,7 @@ Entity:
               contactSensor:
                 EntityType: DataSource
                 name: "Ajtónyitás-csukás"
+                channel: OpenClosed
           motionSensor:
             EntityType: DataSource
             name: "Mozgásérzékelés a szobán belül"
@@ -26,18 +27,23 @@ Entity:
           switchesSensor1:
             EntityType: DataSource
             name: "Nyomógomb 1"
+            channel: OnOff
           switchesSensor2:
             EntityType: DataSource
             name: "Nyomógombok 2"
+            channel: OnOff
           switchesSensor3:
             EntityType: DataSource
             name: "Nyomógombok 3"
+            channel: OnOff
           switchesSensor4:
             EntityType: DataSource
             name: "Nyomógombok 4"
+            channel: OnOff
           temperatureSensor:
             EntityType: DataSource
             name: "Hőmérő"
+            channel: Temperature
           sirenActuator:
             EntityType: DataSink
             name: "Figyelmeztető jelzés"
@@ -65,6 +71,7 @@ Entity:
       activtySensor:
         EntityType: DataSource
         name: "Mézeskalácsház aktivitás"
+        channel: Motion
       Patient_1:
         EntityType: Patient
         sfGuardUser: sfGuardUser_patient1

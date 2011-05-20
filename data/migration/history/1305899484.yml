@@ -431,6 +431,9 @@ Entity:
       type: string
       notnull: false
       length: '255'
+    channel:
+      type: string
+      length: '255'
     error_lower_limit:
       type: float
     warning_lower_limit:
@@ -551,9 +554,9 @@ Device:
       notnull: true
       length: '255'
     extended_id:
-      type: integer
+      type: string
       notnull: true
-      length: '8'
+      length: '16'
   indexes:
     guid:
       type: unique

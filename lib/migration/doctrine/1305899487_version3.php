@@ -6,12 +6,12 @@ class Version3 extends Doctrine_Migration_Base
 {
     public function up()
     {
-        $this->removeColumn('device', 'data_source_id');
+        $this->addColumn('entity', 'channel', 'string', '255', array(
+             ));
     }
 
     public function down()
     {
-        $this->addColumn('device', 'data_source_id', 'integer', '8', array(
-             ));
+        $this->removeColumn('entity', 'channel');
     }
 }

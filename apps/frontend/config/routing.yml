@@ -6,13 +6,12 @@ homepage:
   param:  { module: entity, action: index }
 
 datasource:
-  url:      /datasource/:id/:channel
+  url:      /datasource/:id
   class:    sfDoctrineRoute
   options:  { model: DataSource, type: object }
   param:    { module: dataSource, action: createMeasurement }
   requirements:
     entityId:         \d+
-    channel:          \S+
     sf_method:        post
 
 config:

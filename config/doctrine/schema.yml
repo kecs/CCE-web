@@ -91,6 +91,7 @@ Entity:
     name:           { type: string(255), notnull: true }
     comment:        { type: clob }
     type:           { type: string(255), notnull: false }
+    channel:        { type: string(255) }
     error_lower_limit:   { type: float }
     warning_lower_limit: { type: float }
     warning_upper_limit: { type: float }
@@ -182,7 +183,7 @@ Device:
   columns:
     id:               { type: integer, primary: true, autoincrement: true }
     pan_id:           { type: string(255), notnull: true }
-    extended_id:      { type: integer(8), notnull: true }
+    extended_id:      { type: string(16), notnull: true }
   indexes:
     guid:
       type:   unique

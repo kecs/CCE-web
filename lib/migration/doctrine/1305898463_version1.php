@@ -284,14 +284,9 @@ class Version1 extends Doctrine_Migration_Base
              ),
              'extended_id' => 
              array(
-              'type' => 'integer',
+              'type' => 'string',
               'notnull' => '1',
-              'length' => '8',
-             ),
-             'data_source_id' => 
-             array(
-              'type' => 'integer',
-              'length' => '8',
+              'length' => '16',
              ),
              ), array(
              'indexes' => 

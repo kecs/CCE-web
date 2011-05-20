@@ -9,6 +9,7 @@
  * @property string $name
  * @property clob $comment
  * @property string $type
+ * @property string $channel
  * @property float $error_lower_limit
  * @property float $warning_lower_limit
  * @property float $warning_upper_limit
@@ -37,6 +38,7 @@
  * @method string              getName()                   Returns the current record's "name" value
  * @method clob                getComment()                Returns the current record's "comment" value
  * @method string              getType()                   Returns the current record's "type" value
+ * @method string              getChannel()                Returns the current record's "channel" value
  * @method float               getErrorLowerLimit()        Returns the current record's "error_lower_limit" value
  * @method float               getWarningLowerLimit()      Returns the current record's "warning_lower_limit" value
  * @method float               getWarningUpperLimit()      Returns the current record's "warning_upper_limit" value
@@ -64,6 +66,7 @@
  * @method Entity              setName()                   Sets the current record's "name" value
  * @method Entity              setComment()                Sets the current record's "comment" value
  * @method Entity              setType()                   Sets the current record's "type" value
+ * @method Entity              setChannel()                Sets the current record's "channel" value
  * @method Entity              setErrorLowerLimit()        Sets the current record's "error_lower_limit" value
  * @method Entity              setWarningLowerLimit()      Sets the current record's "warning_lower_limit" value
  * @method Entity              setWarningUpperLimit()      Sets the current record's "warning_upper_limit" value
@@ -114,6 +117,10 @@ abstract class BaseEntity extends sfDoctrineRecord
         $this->hasColumn('type', 'string', 255, array(
              'type' => 'string',
              'notnull' => false,
+             'length' => 255,
+             ));
+        $this->hasColumn('channel', 'string', 255, array(
+             'type' => 'string',
              'length' => 255,
              ));
         $this->hasColumn('error_lower_limit', 'float', null, array(
