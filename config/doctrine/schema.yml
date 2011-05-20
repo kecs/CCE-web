@@ -183,7 +183,6 @@ Device:
     id:               { type: integer, primary: true, autoincrement: true }
     pan_id:           { type: string(255), notnull: true }
     extended_id:      { type: integer(8), notnull: true }
-    data_source_id:   { type: integer }
   indexes:
     guid:
       type:   unique

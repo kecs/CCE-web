@@ -13,15 +13,13 @@ abstract class BaseDeviceFormFilter extends BaseFormFilterDoctrine
   public function setup()
   {
     $this->setWidgets(array(
-      'pan_id'         => new sfWidgetFormFilterInput(array('with_empty' => false)),
-      'extended_id'    => new sfWidgetFormFilterInput(array('with_empty' => false)),
-      'data_source_id' => new sfWidgetFormFilterInput(),
+      'pan_id'      => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'extended_id' => new sfWidgetFormFilterInput(array('with_empty' => false)),
     ));
 
     $this->setValidators(array(
-      'pan_id'         => new sfValidatorPass(array('required' => false)),
-      'extended_id'    => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
-      'data_source_id' => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
+      'pan_id'      => new sfValidatorPass(array('required' => false)),
+      'extended_id' => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
     ));
 
     $this->widgetSchema->setNameFormat('device_filters[%s]');
@@ -41,10 +39,9 @@ abstract class BaseDeviceFormFilter extends BaseFormFilterDoctrine
   public function getFields()
   {
     return array(
-      'id'             => 'Number',
-      'pan_id'         => 'Text',
-      'extended_id'    => 'Number',
-      'data_source_id' => 'Number',
+      'id'          => 'Number',
+      'pan_id'      => 'Text',
+      'extended_id' => 'Number',
     );
   }
 }

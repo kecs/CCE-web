@@ -15,17 +15,15 @@ abstract class BaseDeviceForm extends BaseFormDoctrine
   public function setup()
   {
     $this->setWidgets(array(
-      'id'             => new sfWidgetFormInputHidden(),
-      'pan_id'         => new sfWidgetFormInputText(),
-      'extended_id'    => new sfWidgetFormInputText(),
-      'data_source_id' => new sfWidgetFormInputText(),
+      'id'          => new sfWidgetFormInputHidden(),
+      'pan_id'      => new sfWidgetFormInputText(),
+      'extended_id' => new sfWidgetFormInputText(),
     ));
 
     $this->setValidators(array(
-      'id'             => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
-      'pan_id'         => new sfValidatorString(array('max_length' => 255)),
-      'extended_id'    => new sfValidatorInteger(),
-      'data_source_id' => new sfValidatorInteger(array('required' => false)),
+      'id'          => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
+      'pan_id'      => new sfValidatorString(array('max_length' => 255)),
+      'extended_id' => new sfValidatorInteger(),
     ));
 
     $this->validatorSchema->setPostValidator(

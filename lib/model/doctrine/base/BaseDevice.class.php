@@ -8,19 +8,16 @@
  * @property integer $id
  * @property string $pan_id
  * @property integer $extended_id
- * @property integer $data_source_id
  * @property Doctrine_Collection $Sensor
  * 
- * @method integer             getId()             Returns the current record's "id" value
- * @method string              getPanId()          Returns the current record's "pan_id" value
- * @method integer             getExtendedId()     Returns the current record's "extended_id" value
- * @method integer             getDataSourceId()   Returns the current record's "data_source_id" value
- * @method Doctrine_Collection getSensor()         Returns the current record's "Sensor" collection
- * @method Device              setId()             Sets the current record's "id" value
- * @method Device              setPanId()          Sets the current record's "pan_id" value
- * @method Device              setExtendedId()     Sets the current record's "extended_id" value
- * @method Device              setDataSourceId()   Sets the current record's "data_source_id" value
- * @method Device              setSensor()         Sets the current record's "Sensor" collection
+ * @method integer             getId()          Returns the current record's "id" value
+ * @method string              getPanId()       Returns the current record's "pan_id" value
+ * @method integer             getExtendedId()  Returns the current record's "extended_id" value
+ * @method Doctrine_Collection getSensor()      Returns the current record's "Sensor" collection
+ * @method Device              setId()          Sets the current record's "id" value
+ * @method Device              setPanId()       Sets the current record's "pan_id" value
+ * @method Device              setExtendedId()  Sets the current record's "extended_id" value
+ * @method Device              setSensor()      Sets the current record's "Sensor" collection
  * 
  * @package    cce
  * @subpackage model
@@ -46,9 +43,6 @@ abstract class BaseDevice extends sfDoctrineRecord
              'type' => 'integer',
              'notnull' => true,
              'length' => 8,
-             ));
-        $this->hasColumn('data_source_id', 'integer', null, array(
-             'type' => 'integer',
              ));
 
 
