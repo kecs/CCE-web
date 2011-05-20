@@ -165,6 +165,26 @@ class Version1 extends Doctrine_Migration_Base
               'notnull' => '',
               'length' => '255',
              ),
+             'error_lower_limit' => 
+             array(
+              'type' => 'float',
+              'length' => '',
+             ),
+             'warning_lower_limit' => 
+             array(
+              'type' => 'float',
+              'length' => '',
+             ),
+             'warning_upper_limit' => 
+             array(
+              'type' => 'float',
+              'length' => '',
+             ),
+             'error_upper_limit' => 
+             array(
+              'type' => 'float',
+              'length' => '',
+             ),
              'social_security_number' => 
              array(
               'type' => 'integer',
@@ -256,12 +276,17 @@ class Version1 extends Doctrine_Migration_Base
               'autoincrement' => '1',
               'length' => '8',
              ),
-             'guid' => 
+             'pan_id' => 
              array(
               'type' => 'string',
               'notnull' => '1',
-              'unique' => '1',
               'length' => '255',
+             ),
+             'extended_id' => 
+             array(
+              'type' => 'integer',
+              'notnull' => '1',
+              'length' => '8',
              ),
              'data_source_id' => 
              array(
@@ -269,6 +294,18 @@ class Version1 extends Doctrine_Migration_Base
               'length' => '8',
              ),
              ), array(
+             'indexes' => 
+             array(
+              'guid' => 
+              array(
+              'type' => 'unique',
+              'fields' => 
+              array(
+               0 => 'pan_id',
+               1 => 'extended_id',
+              ),
+              ),
+             ),
              'primary' => 
              array(
               0 => 'id',
@@ -708,6 +745,61 @@ class Version1 extends Doctrine_Migration_Base
               'fields' => 
               array(
                0 => 'timestamp',
+              ),
+              ),
+             ),
+             'primary' => 
+             array(
+              0 => 'id',
+             ),
+             'collate' => 'utf8_general_ci',
+             'charset' => 'utf8',
+             ));
+        $this->createTable('sensor', array(
+             'id' => 
+             array(
+              'type' => 'integer',
+              'primary' => '1',
+              'autoincrement' => '1',
+              'length' => '8',
+             ),
+             'device_id' => 
+             array(
+              'type' => 'integer',
+              'notnull' => '1',
+              'length' => '8',
+             ),
+             'endpoint_number' => 
+             array(
+              'type' => 'integer',
+              'length' => '1',
+             ),
+             'cluster_id' => 
+             array(
+              'type' => 'integer',
+              'length' => '2',
+             ),
+             'hgw_id' => 
+             array(
+              'type' => 'integer',
+              'length' => '2',
+             ),
+             'data_source_id' => 
+             array(
+              'type' => 'integer',
+              'length' => '8',
+             ),
+             ), array(
+             'indexes' => 
+             array(
+              'guid' => 
+              array(
+              'type' => 'unique',
+              'fields' => 
+              array(
+               0 => 'device_id',
+               1 => 'endpoint_number',
+               2 => 'cluster_id',
               ),
               ),
              ),
@@ -1186,6 +1278,7 @@ class Version1 extends Doctrine_Migration_Base
         $this->dropTable('observer');
         $this->dropTable('on_off');
         $this->dropTable('open_closed');
+        $this->dropTable('sensor');
         $this->dropTable('temperature');
         $this->dropTable('sf_guard_forgot_password');
         $this->dropTable('sf_guard_group');

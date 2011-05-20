@@ -9,6 +9,10 @@
  * @property string $name
  * @property clob $comment
  * @property string $type
+ * @property float $error_lower_limit
+ * @property float $warning_lower_limit
+ * @property float $warning_upper_limit
+ * @property float $error_upper_limit
  * @property integer $social_security_number
  * @property string $born_at
  * @property string $address
@@ -26,13 +30,17 @@
  * @property Doctrine_Collection $Door
  * @property Doctrine_Collection $AffectedDataSources
  * @property Doctrine_Collection $DataSourceAffected
- * @property Doctrine_Collection $Device
+ * @property Doctrine_Collection $Sensor
  * @property Doctrine_Collection $Measurement
  * 
  * @method integer             getId()                     Returns the current record's "id" value
  * @method string              getName()                   Returns the current record's "name" value
  * @method clob                getComment()                Returns the current record's "comment" value
  * @method string              getType()                   Returns the current record's "type" value
+ * @method float               getErrorLowerLimit()        Returns the current record's "error_lower_limit" value
+ * @method float               getWarningLowerLimit()      Returns the current record's "warning_lower_limit" value
+ * @method float               getWarningUpperLimit()      Returns the current record's "warning_upper_limit" value
+ * @method float               getErrorUpperLimit()        Returns the current record's "error_upper_limit" value
  * @method integer             getSocialSecurityNumber()   Returns the current record's "social_security_number" value
  * @method string              getBornAt()                 Returns the current record's "born_at" value
  * @method string              getAddress()                Returns the current record's "address" value
@@ -50,12 +58,16 @@
  * @method Doctrine_Collection getDoor()                   Returns the current record's "Door" collection
  * @method Doctrine_Collection getAffectedDataSources()    Returns the current record's "AffectedDataSources" collection
  * @method Doctrine_Collection getDataSourceAffected()     Returns the current record's "DataSourceAffected" collection
- * @method Doctrine_Collection getDevice()                 Returns the current record's "Device" collection
+ * @method Doctrine_Collection getSensor()                 Returns the current record's "Sensor" collection
  * @method Doctrine_Collection getMeasurement()            Returns the current record's "Measurement" collection
  * @method Entity              setId()                     Sets the current record's "id" value
  * @method Entity              setName()                   Sets the current record's "name" value
  * @method Entity              setComment()                Sets the current record's "comment" value
  * @method Entity              setType()                   Sets the current record's "type" value
+ * @method Entity              setErrorLowerLimit()        Sets the current record's "error_lower_limit" value
+ * @method Entity              setWarningLowerLimit()      Sets the current record's "warning_lower_limit" value
+ * @method Entity              setWarningUpperLimit()      Sets the current record's "warning_upper_limit" value
+ * @method Entity              setErrorUpperLimit()        Sets the current record's "error_upper_limit" value
  * @method Entity              setSocialSecurityNumber()   Sets the current record's "social_security_number" value
  * @method Entity              setBornAt()                 Sets the current record's "born_at" value
  * @method Entity              setAddress()                Sets the current record's "address" value
@@ -73,7 +85,7 @@
  * @method Entity              setDoor()                   Sets the current record's "Door" collection
  * @method Entity              setAffectedDataSources()    Sets the current record's "AffectedDataSources" collection
  * @method Entity              setDataSourceAffected()     Sets the current record's "DataSourceAffected" collection
- * @method Entity              setDevice()                 Sets the current record's "Device" collection
+ * @method Entity              setSensor()                 Sets the current record's "Sensor" collection
  * @method Entity              setMeasurement()            Sets the current record's "Measurement" collection
  * 
  * @package    cce
@@ -103,6 +115,18 @@ abstract class BaseEntity extends sfDoctrineRecord
              'type' => 'string',
              'notnull' => false,
              'length' => 255,
+             ));
+        $this->hasColumn('error_lower_limit', 'float', null, array(
+             'type' => 'float',
+             ));
+        $this->hasColumn('warning_lower_limit', 'float', null, array(
+             'type' => 'float',
+             ));
+        $this->hasColumn('warning_upper_limit', 'float', null, array(
+             'type' => 'float',
+             ));
+        $this->hasColumn('error_upper_limit', 'float', null, array(
+             'type' => 'float',
              ));
         $this->hasColumn('social_security_number', 'integer', null, array(
              'type' => 'integer',
@@ -221,7 +245,7 @@ abstract class BaseEntity extends sfDoctrineRecord
              'local' => 'id',
              'foreign' => 'data_source_id'));
 
-        $this->hasMany('Device', array(
+        $this->hasMany('Sensor', array(
              'local' => 'id',
              'foreign' => 'data_source_id'));
 

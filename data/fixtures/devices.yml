@@ -1,5 +1,22 @@
 Device:
-  - { guid: contactSensor112, DataSource: contactSensor }
-  - { guid: motionSensor112, DataSource: motionSensor }
-  - { guid: switchesSensor112, DataSource: switchesSensor }
-  - { guid: sirenActuator112, DataSource: sirenActuator }
+  Device_MozFenyHo:
+    pan_id: Netvox
+    extended_id: 0x00137A00000037F5
+  Device_Kapcsolok:
+    pan_id: Netvox
+    extended_id: 0x00137A000000394A
+  Device_Siren:
+    pan_id: Netvox
+    extended_id: 0x00137A000000378A
+  Device_Kapcsolo:
+    pan_id: Netvox
+    extended_id: 0x00137A0000003819
+    
+Sensor:
+  - { Device: Device_MozFenyHo, endpoint_number: 0x03, cluster_id: 0x0402, hgw_id: 1, DataSource: temperatureSensor }
+  - { Device: Device_MozFenyHo, endpoint_number: 0x01, cluster_id: 0x0500, hgw_id: 2, DataSource: motionSensor }
+  - { Device: Device_Kapcsolok, endpoint_number: 0x02, cluster_id: 0x0006, hgw_id: 3, DataSource: switchesSensor1 }
+  - { Device: Device_Siren,     endpoint_number: 0x01, cluster_id: 0x0500, hgw_id: 4, DataSource: sirenActuator }
+  - { Device: Device_Kapcsolok, endpoint_number: 0x03, cluster_id: 0x0006, hgw_id: 5, DataSource: switchesSensor2 }
+  - { Device: Device_Kapcsolok, endpoint_number: 0x01, cluster_id: 0x0006, hgw_id: 6, DataSource: switchesSensor3 }
+  - { Device: Device_Kapcsolo,  endpoint_number: 0x01, cluster_id: 0x0007, hgw_id: 7, DataSource: switchesSensor4 }

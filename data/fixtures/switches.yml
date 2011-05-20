@@ -3,13 +3,13 @@
 # hogy percenként küld e valamilyen egyéb státusz infót.
 
 Activation:
-  - { Source: switchesSensor, About: switchesSensor, timestamp: 1295956569621 }
-  - { Source: switchesSensor, About: switchesSensor, timestamp: 1295956647735 }
-  - { Source: switchesSensor, About: switchesSensor, timestamp: 1295956875866 }
-  - { Source: switchesSensor, About: switchesSensor, timestamp: 1295956647081 }
-  - { Source: switchesSensor, About: switchesSensor, timestamp: 1295956638818 }
-  - { Source: switchesSensor, About: switchesSensor, timestamp: 1296120933440 }
-  - { Source: switchesSensor, About: switchesSensor, timestamp: 1296120943529 }
-  - { Source: switchesSensor, About: switchesSensor, timestamp: 1296120950896 }
-  - { Source: switchesSensor, About: switchesSensor, timestamp: 1296121033496 }
+  - { Source: switchesSensor1, About: switchesSensor1, timestamp: 1295956569621 }
+  - { Source: switchesSensor1, About: switchesSensor1, timestamp: 1295956647735 }
+  - { Source: switchesSensor1, About: switchesSensor1, timestamp: 1295956875866 }
+  - { Source: switchesSensor1, About: switchesSensor1, timestamp: 1295956647081 }
+  - { Source: switchesSensor1, About: switchesSensor1, timestamp: 1295956638818 }
+  - { Source: switchesSensor1, About: switchesSensor1, timestamp: 1296120933440 }
+  - { Source: switchesSensor1, About: switchesSensor1, timestamp: 1296120943529 }
+  - { Source: switchesSensor1, About: switchesSensor1, timestamp: 1296120950896 }
+  - { Source: switchesSensor1, About: switchesSensor1, timestamp: 1296121033496 }
 

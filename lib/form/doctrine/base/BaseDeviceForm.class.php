@@ -16,18 +16,20 @@ abstract class BaseDeviceForm extends BaseFormDoctrine
   {
     $this->setWidgets(array(
       'id'             => new sfWidgetFormInputHidden(),
-      'guid'           => new sfWidgetFormInputText(),
-      'data_source_id' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('DataSource'), 'add_empty' => true)),
+      'pan_id'         => new sfWidgetFormInputText(),
+      'extended_id'    => new sfWidgetFormInputText(),
+      'data_source_id' => new sfWidgetFormInputText(),
     ));
 
     $this->setValidators(array(
       'id'             => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
-      'guid'           => new sfValidatorString(array('max_length' => 255)),
-      'data_source_id' => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('DataSource'), 'required' => false)),
+      'pan_id'         => new sfValidatorString(array('max_length' => 255)),
+      'extended_id'    => new sfValidatorInteger(),
+      'data_source_id' => new sfValidatorInteger(array('required' => false)),
     ));
 
     $this->validatorSchema->setPostValidator(
-      new sfValidatorDoctrineUnique(array('model' => 'Device', 'column' => array('guid')))
+      new sfValidatorDoctrineUnique(array('model' => 'Device', 'column' => array('pan_id', 'extended_id')))
     );
 
     $this->widgetSchema->setNameFormat('device[%s]');

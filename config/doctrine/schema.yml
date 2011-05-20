@@ -91,6 +91,10 @@ Entity:
     name:           { type: string(255), notnull: true }
     comment:        { type: clob }
     type:           { type: string(255), notnull: false }
+    error_lower_limit:   { type: float }
+    warning_lower_limit: { type: float }
+    warning_upper_limit: { type: float }
+    error_upper_limit:   { type: float }
   relations:
     LocalityType:
     Locality1:
@@ -118,7 +122,6 @@ Home:
   inheritance:
     extends: Entity
     type: column_aggregation
-  columns:
 Locality:
   inheritance:
     extends: Entity
@@ -178,11 +181,31 @@ DataSourceAffected:
 Device:
   columns:
     id:               { type: integer, primary: true, autoincrement: true }
-    guid:             { type: string(255), notnull: true, unique: true }
+    pan_id:           { type: string(255), notnull: true }
+    extended_id:      { type: integer(8), notnull: true }
     data_source_id:   { type: integer }
+  indexes:
+    guid:
+      type:   unique
+      fields: [pan_id, extended_id]
+Sensor:
+  columns:
+    id:               { type: integer, primary: true, autoincrement: true }
+    device_id:        { type: integer, notnull: true }
+    endpoint_number:  { type: integer(1) }
+    cluster_id:       { type: integer(2) }
+    hgw_id:           { type: integer(2) }
+    data_source_id:   { type: integer }
+  indexes:
+    guid:
+      type:   unique
+      fields: [device_id, endpoint_number, cluster_id]
   relations:
+    Device:
+      class: Device
+      local: device_id
     DataSource:
-      #Device class in reality
+      #DataSource class in reality
       class: Entity
       local: data_source_id
 

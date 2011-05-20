@@ -23,9 +23,21 @@ Entity:
         EntityType: Locality
         LocalityType: Living Room
         children:
-          switchesSensor:
+          switchesSensor1:
             EntityType: DataSource
-            name: "Nyomógombok"
+            name: "Nyomógomb 1"
+          switchesSensor2:
+            EntityType: DataSource
+            name: "Nyomógombok 2"
+          switchesSensor3:
+            EntityType: DataSource
+            name: "Nyomógombok 3"
+          switchesSensor4:
+            EntityType: DataSource
+            name: "Nyomógombok 4"
+          temperatureSensor:
+            EntityType: DataSource
+            name: "Hőmérő"
           sirenActuator:
             EntityType: DataSink
             name: "Figyelmeztető jelzés"
