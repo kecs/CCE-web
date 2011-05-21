@@ -90,20 +90,20 @@ abstract class qCal_Property {
 	
 		$className = self::getClassNameFromPropertyName($name);
 		$fileName = str_replace("_", DIRECTORY_SEPARATOR, $className) . ".php";
-		try {
-			qCal_Loader::loadFile($fileName);
-			$class = new $className($value, $params);
-		} catch (qCal_Exception_InvalidFile $e) {
-			// if there is no class available for this property, check if it is non-standard
-			$xname = strtoupper(substr($name, 0, 2));
-			// non-standard property
-			if ($xname == "X-") {
-				$class = new qCal_Property_NonStandard($value, $params, $name);
-			} else {
-				// if it's not a non-standard property, rethrow
-				throw $e;
-			}
-		}
+    if (class_exists($className))
+    {
+      $class = new $className($value, $params);
+    }
+    else
+    {
+      // if there is no class available for this property, check if it is non-standard
+      $xname = strtoupper(substr($name, 0, 2));
+      // non-standard property
+      if ($xname == "X-")
+      {
+        $class = new qCal_Property_NonStandard($value, $params, $name);
+      }
+    }
 		return $class;
 	
 	}
