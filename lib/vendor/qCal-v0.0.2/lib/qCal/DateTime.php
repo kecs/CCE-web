@@ -44,8 +44,12 @@ class qCal_DateTime {
 	 * @todo Should this accept qCal_Date and qCal_DateTime objects?
 	 */
 	public static function factory($datetime, $timezone = null) {
-	
-		if (is_null($timezone) || !($timezone instanceof qCal_Timezone)) {
+    if ($datetime instanceof qCal_DateTime)
+    {
+      return $datetime;
+    }
+
+    if (is_null($timezone) || !($timezone instanceof qCal_Timezone)) {
 			// @todo Make sure this doesn't cause any issues 
 			// detect if we're working with a UTC string like "19970101T180000Z", where the Z means use UTC time
 			if (strtolower(substr($datetime, -1)) == "z") {

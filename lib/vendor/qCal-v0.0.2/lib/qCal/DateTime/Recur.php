@@ -37,7 +37,7 @@ abstract class qCal_DateTime_Recur {
 	/**
 	 * @var integer Interval of recurrence (for every 3 days, "3" would be the interval)
 	 */
-	protected $interval;
+	protected $interval = 1;
 	/**
 	 * @var integer|array An integer between 0 and 59 (for multiple, set as an array)
 	 */
@@ -352,92 +352,21 @@ abstract class qCal_DateTime_Recur {
 		if ($start->getUnixTimestamp() > $end->getUnixTimestamp()) throw new qCal_DateTime_Exception_InvalidRecur('Start date must come before end date');
 		if (!$this->interval) throw new qCal_DateTime_Exception_InvalidRecur('You must specify an interval');
 		
-		$rules = array(
-			'bymonth' => array(),
-			'byweekno' => array(),
-			'byyearday' => array(),
-			'byday' => array(),
-		);
-		
-		// byMonth rules
-		if (is_array($this->bymonth)) {
-			foreach ($this->bymonth as $bymonth) {
-				$rules['bymonth'][] = new qCal_DateTime_Recur_Rule_ByMonth($bymonth);
-			}
+    $rules = array();
+		if (isset($this->byday)) {
+				$rules['byday'] = new qCal_DateTime_Recur_Rule_ByDay($this->byday);
 		}
-		
-		// byWeekNo rules
-		if (is_array($this->byweekno)) {
-			foreach ($this->byweekno as $byweekno) {
-				$rules['byweekno'][] = new qCal_DateTime_Recur_Rule_ByWeekNo($byweekno);
-			}
+		if (isset($this->bymonthday)) {
+				$rules['bymonthday'] = new qCal_DateTime_Recur_Rule_ByMonthDay($this->bymonthday);
 		}
-		
-		// byYearDay rules
-		if (is_array($this->byyearday)) {
-			foreach ($this->byyearday as $byyearday) {
-				$rules['byyearday'][] = new qCal_DateTime_Recur_Rule_ByYearDay($byyearday);
-			}
+		if (isset($this->byyearday)) {
+				$rules['byyearday'] = new qCal_DateTime_Recur_Rule_ByYearDay($this->byyearday);
 		}
-		
-		// byMonthDay rules (these get applied to bymonth rules)
-		if (is_array($this->bymonthday)) {
-			foreach ($this->bymonthday as $bymonthday) {
-				$bmdrule = new qCal_DateTime_Recur_Rule_ByMonthDay($bymonthday);
-				foreach ($rules['bymonth'] as $bymonth) {
-					$bymonth->attach($bmdrule);
-				}
-			}
+		if (isset($this->byweekno)) {
+				$rules['byweekno'] = new qCal_DateTime_Recur_Rule_ByWeekNo($this->byweekno);
 		}
-		
-		// byDay rules (these get applied to bymonth rules if they exist, otherwise simply to year)
-		if (is_array($this->byday)) {
-			foreach ($this->byday as $byday) {
-				$bdrule = new qCal_DateTime_Recur_Rule_ByDay($byday);
-				if (is_array($rules['bymonth']) && !empty($rules['bymonth'])) {
-					foreach ($rules['bymonth'] as $bymonth) {
-						$bymonth->attach($bdrule);
-					}
-				} else {
-					$rules['byday'][] = $bdrule;
-				}
-			}
-		}
-		
-		// byHour rules (these get applied to each rule above)
-		if (is_array($this->byhour)) {
-			foreach ($this->byhour as $byhour) {
-				$bhrule = new qCal_DateTime_Recur_Rule_ByHour($byhour);
-				foreach ($rules as $type => $ruleset) {
-					foreach ($ruleset as $rule) {
-						$rule->attach($bhrule);
-					}
-				}
-			}
-		}
-		
-		// byMinute rules (these get applied to each rule above)
-		if (is_array($this->byminute)) {
-			foreach ($this->byminute as $byminute) {
-				$bmrule = new qCal_DateTime_Recur_Rule_ByMinute($byminute);
-				foreach ($rules as $type => $ruleset) {
-					foreach ($ruleset as $rule) {
-						$rule->attach($bmrule);
-					}
-				}
-			}
-		}
-		
-		// bySecond rules (these get applied to each rule above)
-		if (is_array($this->bysecond)) {
-			foreach ($this->bysecond as $bysecond) {
-				$bsrule = new qCal_DateTime_Recur_Rule_BySecond($bysecond);
-				foreach ($rules as $type => $ruleset) {
-					foreach ($ruleset as $rule) {
-						$rule->attach($bsrule);
-					}
-				}
-			}
+		if (isset($this->bymonth)) {
+				$rules['bymonth'] = new qCal_DateTime_Recur_Rule_ByMonth($this->bymonth);
 		}
 		
 		return $this->doGetRecurrences($rules, $start, $end);
@@ -447,6 +376,6 @@ abstract class qCal_DateTime_Recur {
 	 * Each type of rule needs to determine its recurrences so this is left abstract
 	 * to be implemented by children.
 	 */
-	abstract protected function doGetRecurrences($rules, $start, $end);
+	abstract protected function doGetRecurrences($rules, qCal_DateTime $start, qCal_DateTime $end);
 
 }

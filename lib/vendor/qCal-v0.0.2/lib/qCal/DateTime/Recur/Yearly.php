@@ -6,7 +6,7 @@ class qCal_DateTime_Recur_Yearly extends qCal_DateTime_Recur {
 	 * of the qCal_DateTime_Recur_Rule_ByXXX classes. For now I did all the logic
 	 * here to keep it simple and not confuse myself more than necessary.
 	 */
-	protected function doGetRecurrences($rules, $start, $end) {
+	protected function doGetRecurrences($rules, qCal_DateTime $start, qCal_DateTime $end) {
 	
 		// an array to store recurrences
 		$recurrences = array();
