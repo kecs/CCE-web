@@ -43,7 +43,6 @@ abstract class BaseMeasurement extends sfDoctrineRecord
              ));
         $this->hasColumn('data_source_id', 'integer', null, array(
              'type' => 'integer',
-             'notnull' => true,
              ));
     }
 

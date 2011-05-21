@@ -42,6 +42,18 @@ class Version2 extends Doctrine_Migration_Base
              'foreign' => 'id',
              'foreignTable' => 'entity',
              ));
+        $this->createForeignKey('calendar', 'calendar_entity_id_entity_id', array(
+             'name' => 'calendar_entity_id_entity_id',
+             'local' => 'entity_id',
+             'foreign' => 'id',
+             'foreignTable' => 'entity',
+             ));
+        $this->createForeignKey('calendar', 'calendar_data_source_id_entity_id', array(
+             'name' => 'calendar_data_source_id_entity_id',
+             'local' => 'data_source_id',
+             'foreign' => 'id',
+             'foreignTable' => 'entity',
+             ));
         $this->createForeignKey('entity', 'entity_locality_type_id_locality_type_id', array(
              'name' => 'entity_locality_type_id_locality_type_id',
              'local' => 'locality_type_id',
@@ -320,6 +332,18 @@ class Version2 extends Doctrine_Migration_Base
               0 => 'data_source_id',
              ),
              ));
+        $this->addIndex('calendar', 'calendar_entity_id', array(
+             'fields' => 
+             array(
+              0 => 'entity_id',
+             ),
+             ));
+        $this->addIndex('calendar', 'calendar_data_source_id', array(
+             'fields' => 
+             array(
+              0 => 'data_source_id',
+             ),
+             ));
         $this->addIndex('entity', 'entity_locality_type_id', array(
              'fields' => 
              array(
@@ -546,6 +570,8 @@ class Version2 extends Doctrine_Migration_Base
         $this->dropForeignKey('activity', 'activity_data_source_id_entity_id');
         $this->dropForeignKey('battery', 'battery_entity_id_entity_id');
         $this->dropForeignKey('battery', 'battery_data_source_id_entity_id');
+        $this->dropForeignKey('calendar', 'calendar_entity_id_entity_id');
+        $this->dropForeignKey('calendar', 'calendar_data_source_id_entity_id');
         $this->dropForeignKey('entity', 'entity_locality_type_id_locality_type_id');
         $this->dropForeignKey('entity', 'entity_locality_id_entity_id');
         $this->dropForeignKey('entity', 'entity_locality2_id_entity_id');
@@ -613,6 +639,18 @@ class Version2 extends Doctrine_Migration_Base
              ),
              ));
         $this->removeIndex('battery', 'battery_data_source_id', array(
+             'fields' => 
+             array(
+              0 => 'data_source_id',
+             ),
+             ));
+        $this->removeIndex('calendar', 'calendar_entity_id', array(
+             'fields' => 
+             array(
+              0 => 'entity_id',
+             ),
+             ));
+        $this->removeIndex('calendar', 'calendar_data_source_id', array(
              'fields' => 
              array(
               0 => 'data_source_id',

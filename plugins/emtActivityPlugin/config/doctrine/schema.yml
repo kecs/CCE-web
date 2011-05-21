@@ -6,3 +6,9 @@ Activity:
     type:           { type: string(255), notnull: true }
     start_time:     { type: integer(4), notnull: true }
     end_time:       { type: integer(4), notnull: true }
+Calendar:
+  inheritance:
+    type: concrete
+    extends: Measurement
+  columns:
+    ical:       { type: clob, notnull: true }

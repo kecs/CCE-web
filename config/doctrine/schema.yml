@@ -190,7 +190,7 @@ Measurement:
   columns:
     id:               { type: integer, primary: true, autoincrement: true }
     entity_id:        { type: integer, notnull: true }
-    data_source_id:   { type: integer, notnull: true }
+    data_source_id:   { type: integer }
   relations:
     About:
       class: Entity

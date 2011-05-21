@@ -23,7 +23,7 @@ sfGuardGroup:
       refClass: sfGuardGroupPermission
       foreignAlias: Groups
   package: sfDoctrineGuardPlugin.lib.model.doctrine
-  package_custom_path: /home/cassus/munka/emt/cce/plugins/sfDoctrineGuardPlugin/lib/model/doctrine
+  package_custom_path: /home/cassus/Dropbox/munka/emt/cce/plugins/sfDoctrineGuardPlugin/lib/model/doctrine
 sfGuardPermission:
   actAs:
     Timestampable: {  }
@@ -36,7 +36,7 @@ sfGuardPermission:
       type: string
       length: '1000'
   package: sfDoctrineGuardPlugin.lib.model.doctrine
-  package_custom_path: /home/cassus/munka/emt/cce/plugins/sfDoctrineGuardPlugin/lib/model/doctrine
+  package_custom_path: /home/cassus/Dropbox/munka/emt/cce/plugins/sfDoctrineGuardPlugin/lib/model/doctrine
 sfGuardGroupPermission:
   options:
     symfony:
@@ -61,7 +61,7 @@ sfGuardGroupPermission:
       local: permission_id
       onDelete: CASCADE
   package: sfDoctrineGuardPlugin.lib.model.doctrine
-  package_custom_path: /home/cassus/munka/emt/cce/plugins/sfDoctrineGuardPlugin/lib/model/doctrine
+  package_custom_path: /home/cassus/Dropbox/munka/emt/cce/plugins/sfDoctrineGuardPlugin/lib/model/doctrine
 sfGuardUser:
   actAs:
     Timestampable: {  }
@@ -131,7 +131,7 @@ sfGuardUser:
       foreignType: one
       onDelete: 'set null'
   package: sfDoctrineGuardPlugin.lib.model.doctrine
-  package_custom_path: /home/cassus/munka/emt/cce/plugins/sfDoctrineGuardPlugin/lib/model/doctrine
+  package_custom_path: /home/cassus/Dropbox/munka/emt/cce/plugins/sfDoctrineGuardPlugin/lib/model/doctrine
 sfGuardUserPermission:
   options:
     symfony:
@@ -156,7 +156,7 @@ sfGuardUserPermission:
       local: permission_id
       onDelete: CASCADE
   package: sfDoctrineGuardPlugin.lib.model.doctrine
-  package_custom_path: /home/cassus/munka/emt/cce/plugins/sfDoctrineGuardPlugin/lib/model/doctrine
+  package_custom_path: /home/cassus/Dropbox/munka/emt/cce/plugins/sfDoctrineGuardPlugin/lib/model/doctrine
 sfGuardUserGroup:
   options:
     symfony:
@@ -181,7 +181,7 @@ sfGuardUserGroup:
       local: group_id
       onDelete: CASCADE
   package: sfDoctrineGuardPlugin.lib.model.doctrine
-  package_custom_path: /home/cassus/munka/emt/cce/plugins/sfDoctrineGuardPlugin/lib/model/doctrine
+  package_custom_path: /home/cassus/Dropbox/munka/emt/cce/plugins/sfDoctrineGuardPlugin/lib/model/doctrine
 sfGuardRememberKey:
   options:
     symfony:
@@ -206,7 +206,7 @@ sfGuardRememberKey:
       foreignType: one
       onDelete: CASCADE
   package: sfDoctrineGuardPlugin.lib.model.doctrine
-  package_custom_path: /home/cassus/munka/emt/cce/plugins/sfDoctrineGuardPlugin/lib/model/doctrine
+  package_custom_path: /home/cassus/Dropbox/munka/emt/cce/plugins/sfDoctrineGuardPlugin/lib/model/doctrine
 sfGuardForgotPassword:
   options:
     symfony:
@@ -233,7 +233,7 @@ sfGuardForgotPassword:
       foreignAlias: ForgotPassword
       onDelete: CASCADE
   package: sfDoctrineGuardPlugin.lib.model.doctrine
-  package_custom_path: /home/cassus/munka/emt/cce/plugins/sfDoctrineGuardPlugin/lib/model/doctrine
+  package_custom_path: /home/cassus/Dropbox/munka/emt/cce/plugins/sfDoctrineGuardPlugin/lib/model/doctrine
 Activity:
   inheritance:
     type: concrete
@@ -252,7 +252,17 @@ Activity:
       notnull: true
       length: '4'
   package: emtActivityPlugin.lib.model.doctrine
-  package_custom_path: /home/cassus/munka/emt/cce/plugins/emtActivityPlugin/lib/model/doctrine
+  package_custom_path: /home/cassus/Dropbox/munka/emt/cce/plugins/emtActivityPlugin/lib/model/doctrine
+Calendar:
+  inheritance:
+    type: concrete
+    extends: Measurement
+  columns:
+    ical:
+      type: clob
+      notnull: true
+  package: emtActivityPlugin.lib.model.doctrine
+  package_custom_path: /home/cassus/Dropbox/munka/emt/cce/plugins/emtActivityPlugin/lib/model/doctrine
 EKG:
   inheritance:
     type: concrete
@@ -288,19 +298,19 @@ EKG:
       type: array
       notnull: true
   package: emtEKGPlugin.lib.model.doctrine
-  package_custom_path: /home/cassus/munka/emt/cce/plugins/emtEKGPlugin/lib/model/doctrine
+  package_custom_path: /home/cassus/Dropbox/munka/emt/cce/plugins/emtEKGPlugin/lib/model/doctrine
 Light:
   inheritance:
     type: concrete
     extends: ScalarTimedMeasurement
   package: emtBasicMeasurementsPlugin.lib.model.doctrine
-  package_custom_path: /home/cassus/munka/emt/cce/plugins/emtBasicMeasurementsPlugin/lib/model/doctrine
+  package_custom_path: /home/cassus/Dropbox/munka/emt/cce/plugins/emtBasicMeasurementsPlugin/lib/model/doctrine
 Temperature:
   inheritance:
     type: concrete
     extends: ScalarTimedMeasurement
   package: emtBasicMeasurementsPlugin.lib.model.doctrine
-  package_custom_path: /home/cassus/munka/emt/cce/plugins/emtBasicMeasurementsPlugin/lib/model/doctrine
+  package_custom_path: /home/cassus/Dropbox/munka/emt/cce/plugins/emtBasicMeasurementsPlugin/lib/model/doctrine
 OpenClosed:
   inheritance:
     type: concrete
@@ -311,31 +321,31 @@ OpenClosed:
       values: [open, closed]
       notnull: true
   package: emtBasicMeasurementsPlugin.lib.model.doctrine
-  package_custom_path: /home/cassus/munka/emt/cce/plugins/emtBasicMeasurementsPlugin/lib/model/doctrine
+  package_custom_path: /home/cassus/Dropbox/munka/emt/cce/plugins/emtBasicMeasurementsPlugin/lib/model/doctrine
 Battery:
   inheritance:
     type: concrete
     extends: ScalarTimedMeasurement
   package: emtBasicMeasurementsPlugin.lib.model.doctrine
-  package_custom_path: /home/cassus/munka/emt/cce/plugins/emtBasicMeasurementsPlugin/lib/model/doctrine
+  package_custom_path: /home/cassus/Dropbox/munka/emt/cce/plugins/emtBasicMeasurementsPlugin/lib/model/doctrine
 Humidity:
   inheritance:
     type: concrete
     extends: ScalarTimedMeasurement
   package: emtBasicMeasurementsPlugin.lib.model.doctrine
-  package_custom_path: /home/cassus/munka/emt/cce/plugins/emtBasicMeasurementsPlugin/lib/model/doctrine
+  package_custom_path: /home/cassus/Dropbox/munka/emt/cce/plugins/emtBasicMeasurementsPlugin/lib/model/doctrine
 OnOff:
   inheritance:
     type: concrete
     extends: ScalarTimedMeasurement
   package: emtBasicMeasurementsPlugin.lib.model.doctrine
-  package_custom_path: /home/cassus/munka/emt/cce/plugins/emtBasicMeasurementsPlugin/lib/model/doctrine
+  package_custom_path: /home/cassus/Dropbox/munka/emt/cce/plugins/emtBasicMeasurementsPlugin/lib/model/doctrine
 Activation:
   inheritance:
     type: concrete
     extends: EmptyTimedMeasurement
   package: emtBasicMeasurementsPlugin.lib.model.doctrine
-  package_custom_path: /home/cassus/munka/emt/cce/plugins/emtBasicMeasurementsPlugin/lib/model/doctrine
+  package_custom_path: /home/cassus/Dropbox/munka/emt/cce/plugins/emtBasicMeasurementsPlugin/lib/model/doctrine
 Motion:
   inheritance:
     type: concrete
@@ -345,31 +355,31 @@ Motion:
       type: boolean
       notnull: true
   package: emtBasicMeasurementsPlugin.lib.model.doctrine
-  package_custom_path: /home/cassus/munka/emt/cce/plugins/emtBasicMeasurementsPlugin/lib/model/doctrine
+  package_custom_path: /home/cassus/Dropbox/munka/emt/cce/plugins/emtBasicMeasurementsPlugin/lib/model/doctrine
 ElectricStove:
   inheritance:
     extends: Entity
     type: column_aggregation
   package: emtExtraEntitiesPlugin.lib.model.doctrine
-  package_custom_path: /home/cassus/munka/emt/cce/plugins/emtExtraEntitiesPlugin/lib/model/doctrine
+  package_custom_path: /home/cassus/Dropbox/munka/emt/cce/plugins/emtExtraEntitiesPlugin/lib/model/doctrine
 Cupboard:
   inheritance:
     extends: Entity
     type: column_aggregation
   package: emtExtraEntitiesPlugin.lib.model.doctrine
-  package_custom_path: /home/cassus/munka/emt/cce/plugins/emtExtraEntitiesPlugin/lib/model/doctrine
+  package_custom_path: /home/cassus/Dropbox/munka/emt/cce/plugins/emtExtraEntitiesPlugin/lib/model/doctrine
 Wardrobe:
   inheritance:
     extends: Entity
     type: column_aggregation
   package: emtExtraEntitiesPlugin.lib.model.doctrine
-  package_custom_path: /home/cassus/munka/emt/cce/plugins/emtExtraEntitiesPlugin/lib/model/doctrine
+  package_custom_path: /home/cassus/Dropbox/munka/emt/cce/plugins/emtExtraEntitiesPlugin/lib/model/doctrine
 Fridge:
   inheritance:
     extends: Entity
     type: column_aggregation
   package: emtExtraEntitiesPlugin.lib.model.doctrine
-  package_custom_path: /home/cassus/munka/emt/cce/plugins/emtExtraEntitiesPlugin/lib/model/doctrine
+  package_custom_path: /home/cassus/Dropbox/munka/emt/cce/plugins/emtExtraEntitiesPlugin/lib/model/doctrine
 Observer:
   comment: 'Hozzátartozó, felügyelő vagy gondozó'
   columns:
@@ -561,7 +571,6 @@ Measurement:
       notnull: true
     data_source_id:
       type: integer
-      notnull: true
   relations:
     About:
       class: Entity

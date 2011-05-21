@@ -32,6 +32,7 @@ class MeasurementTable extends Doctrine_Table
         'OpenClosed',
         'Temperature',
         'Activation',
+        'Calendar',
     );
   }
 
