@@ -14,17 +14,12 @@
  */
 class qCal_Parser_Lexer_iCalendar extends qCal_Parser_Lexer {
 	
-    /**
-     * @var string character(s) used to terminate lines
-     */
-    protected $line_terminator;
 	/**
 	 * Constructor 
 	 */
 	public function __construct($content) {
 	
 		parent::__construct($content);
-		$this->line_terminator = chr(13) . chr(10);
 	
 	}
     /**
@@ -100,7 +95,7 @@ class qCal_Parser_Lexer_iCalendar extends qCal_Parser_Lexer {
 	protected function unfold($content) {
 	
 		$return = array();
-		$lines = explode($this->line_terminator, $content);
+		$lines = preg_split('/[\n\r]+/', $content);
 		foreach ($lines as $line) {
 			$checkempty = trim($line);
 			if (empty($checkempty)) continue;
