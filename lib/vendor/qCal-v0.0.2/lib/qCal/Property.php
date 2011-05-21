@@ -265,7 +265,7 @@ abstract class qCal_Property {
 	 *
 	 * @return string The property class name
 	 **/
-	protected function getClassNameFromPropertyName($name) {
+	protected static function getClassNameFromPropertyName($name) {
 	
 		// remove dashes, capitalize properly
 		$parts = explode("-", $name);
