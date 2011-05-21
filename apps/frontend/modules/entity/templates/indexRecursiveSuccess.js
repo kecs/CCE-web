@@ -285,7 +285,7 @@
     return channel;
   };
 
-  channelMaker.Activation = function (chart, data) {
+  channelMaker.Activation = function () {
     var channel = channelMaker.Category();
 
     channel.processDataRow = function (row) {
@@ -294,6 +294,29 @@
         value: row.timestamp
       };
     };
+
+    return channel;
+  };
+
+  channelMaker.Calendar = function () {
+    var channel = channelMaker.Base();
+
+    channel.init = function (entityChannel) {
+      channel.entityChannel = entityChannel;
+      var op = {
+        view: 'week',
+        url: $.urlTemplate(
+          '<?php echo url_for("measurement_data", array("type" => ":type", "id" => ":id", "channel" => ":channel")) ?>').generate({
+          id: channel.getEntityId(),
+          type: channel.getEntityType(),
+          channel: channel.getChannelType()
+        })
+      };
+      channel.calendar = entityChannel.bcalendar(op);
+    }
+    channel.update = function (timePeriod) {
+      channel.entityChannel.gotoDate(new Date(timePeriod.from));
+    }
 
     return channel;
   };

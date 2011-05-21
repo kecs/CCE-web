@@ -131,6 +131,23 @@ class qCal_Component_Vevent extends qCal_Component
   protected $name = "VEVENT";
   protected $allowedComponents = array('VCALENDAR');
 
+  public function getAtRecurrence($recurrence)
+  {
+    $parser = new qCal_Parser();
+    
+    $event = $parser->parse($this->render()); /* @var $event qCal_Component_Vevent */
+    $event->properties['DTSTART'][0]->setValue($recurrence);
+    if ($this->hasProperty('DTEND'))
+    {
+      $dtstart = $this->getPropertyValue('DTSTART')->getUnixTimestamp();
+      $dtend = $this->getPropertyValue('DTEND')->getUnixTimestamp();
+      $duration = $dtend - $dtstart;
+      $newStart = $event->getPropertyValue('DTSTART')->getUnixTimestamp();
+      $event->properties['DTEND'][0] = qCal_DateTime::factory($newStart + $duration);
+    }
+    return $event;
+  }
+
   protected function doValidation()
   {
 

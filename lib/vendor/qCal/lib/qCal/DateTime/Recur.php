@@ -354,19 +354,19 @@ abstract class qCal_DateTime_Recur {
 		
     $rules = array();
 		if (isset($this->byday)) {
-				$rules['byday'] = new qCal_DateTime_Recur_Rule_ByDay($this->byday);
+				$rules['byday'] = new qCal_DateTime_Recur_Filter_ByDay($this->byday);
 		}
 		if (isset($this->bymonthday)) {
-				$rules['bymonthday'] = new qCal_DateTime_Recur_Rule_ByMonthDay($this->bymonthday);
+				$rules['bymonthday'] = new qCal_DateTime_Recur_Filter_ByMonthDay($this->bymonthday);
 		}
 		if (isset($this->byyearday)) {
-				$rules['byyearday'] = new qCal_DateTime_Recur_Rule_ByYearDay($this->byyearday);
+				$rules['byyearday'] = new qCal_DateTime_Recur_Filter_ByYearDay($this->byyearday);
 		}
 		if (isset($this->byweekno)) {
-				$rules['byweekno'] = new qCal_DateTime_Recur_Rule_ByWeekNo($this->byweekno);
+				$rules['byweekno'] = new qCal_DateTime_Recur_Filter_ByWeekNo($this->byweekno);
 		}
 		if (isset($this->bymonth)) {
-				$rules['bymonth'] = new qCal_DateTime_Recur_Rule_ByMonth($this->bymonth);
+				$rules['bymonth'] = new qCal_DateTime_Recur_Filter_ByMonth($this->bymonth);
 		}
 		
 		return $this->doGetRecurrences($rules, $start, $end);

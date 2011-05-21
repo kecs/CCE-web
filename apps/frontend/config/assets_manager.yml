@@ -8,4 +8,5 @@ packages:
       - jquery.mousewheel
       - highcharts
       - jquery.ui.draggable
+      - wdCalendar
     css: entity/indexRecursive.css

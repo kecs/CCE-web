@@ -7,13 +7,48 @@
  */
 class CalendarTable extends PluginCalendarTable
 {
-    /**
-     * Returns an instance of this class.
-     *
-     * @return object CalendarTable
-     */
-    public static function getInstance()
+
+  public static function getEvents($entity, $period)
+  {
+    $calendar = self::getInstance()->createQuery('m')
+            ->select('m.ical')
+            ->andWhere('m.entity_id = ?', $entity->id)
+            ->limit(1)
+            ->fetchOne(); /* @var $calendar Calendar */
+
+    $parser = new qCal_Parser();
+    $calendar = $parser->parse($calendar->ical);
+    $events = array();
+    foreach ($calendar->getComponent('VEVENT') as $event) /* @var $event qCal_Component_Vevent */
     {
-        return Doctrine_Core::getTable('Calendar');
+      if (($recurrenceSpec = $event->getRecurrence()))
+      {
+        $recurrences = $recurrenceSpec->getRecurrences("20110520T180000Z", "20110528T180000Z");
+
+        //@todo this shouldn't be null!
+        if ($recurrences === null)
+          $recurrences = array();
+
+        foreach ($recurrences as $recurrence)
+        {
+          $events[] = $event->getAtRecurrence($recurrence);
+        }
+      } else {
+        //@todo filter to the time interval!
+        $events[] = $event;
+      }
     }
+    return $events;
+  }
+
+  /**
+   * Returns an instance of this class.
+   *
+   * @return object CalendarTable
+   */
+  public static function getInstance()
+  {
+    return Doctrine_Core::getTable('Calendar');
+  }
+
 }

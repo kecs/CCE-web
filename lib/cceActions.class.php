@@ -33,6 +33,10 @@ class cceActions extends sfActions
     {
       $this->getResponse()->setHttpHeader('Content-type', 'application/json');
     }
+    else
+    {
+      $this->getResponse()->setHttpHeader('Content-type', 'text/javascript');
+    }
     return $this->renderText($content);
   }
 
