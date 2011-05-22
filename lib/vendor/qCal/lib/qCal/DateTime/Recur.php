@@ -368,10 +368,15 @@ abstract class qCal_DateTime_Recur {
 		if (isset($this->bymonth)) {
 				$rules['bymonth'] = new qCal_DateTime_Recur_Filter_ByMonth($this->bymonth);
 		}
-		
-		return $this->doGetRecurrences($rules, $start, $end);
-	
-	}
+
+    $ret = $this->doGetRecurrences($rules, $start, $end);
+    //@todo this shouldn't be null!
+    if ($ret === null)
+    {
+      $ret = array();
+    }
+    return $ret;
+  }
 	/**
 	 * Each type of rule needs to determine its recurrences so this is left abstract
 	 * to be implemented by children.

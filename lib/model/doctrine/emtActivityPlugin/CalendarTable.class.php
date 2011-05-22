@@ -17,23 +17,25 @@ class CalendarTable extends PluginCalendarTable
             ->fetchOne(); /* @var $calendar Calendar */
 
     $parser = new qCal_Parser();
-    $calendar = $parser->parse($calendar->ical);
+    $iCal = $parser->parse($calendar->ical);
     $events = array();
-    foreach ($calendar->getComponent('VEVENT') as $event) /* @var $event qCal_Component_Vevent */
+    foreach ($iCal->getComponent('VEVENT') as $event) /* @var $event qCal_Component_Vevent */
     {
-      if (($recurrenceSpec = $event->getRecurrence()))
-      {
+      if ($event->hasProperty('RRULE'))
+      {//@todo test and fix this later!
+        /*$recurrenceSpec = $event->getRecurrence();
+        echo "{$event->render()}";
+        var_dump($recurrenceSpec);
+        echo "\n\n";
         $recurrences = $recurrenceSpec->getRecurrences("20110520T180000Z", "20110528T180000Z");
-
-        //@todo this shouldn't be null!
-        if ($recurrences === null)
-          $recurrences = array();
 
         foreach ($recurrences as $recurrence)
         {
-          $events[] = $event->getAtRecurrence($recurrence);
-        }
-      } else {
+          $events[] = $tmp = $event->getAtRecurrence($recurrence);
+        }*/
+      }
+      else
+      {
         //@todo filter to the time interval!
         $events[] = $event;
       }

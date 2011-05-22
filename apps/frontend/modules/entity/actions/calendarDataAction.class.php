@@ -33,18 +33,17 @@ class Entity_calendarDataAction extends cceActions
     $jsEvents = array();
     foreach ($icalEvents as $event)
     {
-      var_dump($event->getPropertyValue('DTSTART'));
       $jsEvents[] = array(
-          $event->getPropertyValue('UID'),
-          $event->getPropertyValue('SUMMARY'),
-          $this->php2JsTime($event->getPropertyValue('DTSTART')->getUnixTimestamp()),
-          $this->php2JsTime($event->getPropertyValue('DTEND')->getUnixTimestamp()),
+          $event->getUID()->getValue(),
+          $event->getSummary()->getValue(),
+          $this->php2JsTime($event->getDtStart()->getValueObject()->getValue()->getUnixTimestamp()),
+          $this->php2JsTime($event->getDtEnd()->getValueObject()->getValue()->getUnixTimestamp()),
           0, //$row->IsAllDayEvent,
           0, //more than one day event
           0, //Recurring event,
           1, //$row->Color,
           0, //editable
-          $event->getPropertyValue('LOCATION'),
+          $event->getLocation()->getValue(),
           ''//$attends
       );
     }

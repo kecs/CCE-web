@@ -303,6 +303,7 @@
 
     channel.init = function (entityChannel) {
       channel.entityChannel = entityChannel;
+      this.entityChannel.data('channelObj', this);
       var op = {
         view: 'week',
         url: $.urlTemplate(

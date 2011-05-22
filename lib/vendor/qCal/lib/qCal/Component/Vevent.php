@@ -134,17 +134,19 @@ class qCal_Component_Vevent extends qCal_Component
   public function getAtRecurrence($recurrence)
   {
     $parser = new qCal_Parser();
-    
     $event = $parser->parse($this->render()); /* @var $event qCal_Component_Vevent */
+    
     $event->properties['DTSTART'][0]->setValue($recurrence);
     if ($this->hasProperty('DTEND'))
     {
-      $dtstart = $this->getPropertyValue('DTSTART')->getUnixTimestamp();
-      $dtend = $this->getPropertyValue('DTEND')->getUnixTimestamp();
+      $dtstart = $this->getDtStart()->getValueObject()->getValue()->getUnixTimestamp();
+      $dtend = $this->getDtEnd()->getValueObject()->getValue()->getUnixTimestamp();
       $duration = $dtend - $dtstart;
-      $newStart = $event->getPropertyValue('DTSTART')->getUnixTimestamp();
-      $event->properties['DTEND'][0] = qCal_DateTime::factory($newStart + $duration);
+      $newStart = $event->getDtStart()->getValueObject()->getValue()->getUnixTimestamp();
+      $newEndUnix = qCal_DateTime::factory($newStart + $duration);
+      $event->properties['DTEND'][0]->setValue($newEndUnix);
     }
+    
     return $event;
   }
 
@@ -188,28 +190,19 @@ class qCal_Component_Vevent extends qCal_Component
       }
     }
   }
-
-  protected function getPropertyValue($name)
-  {
-    $prop = $this->getProperty($name);
-    if (!$prop)
-    {
-      return $prop;
-    }
-    return $prop[0]->getValueObject()->getValue();
-  }
-
+  
   /**
    *
    * @return qCal_DateTime_Recur
    */
   public function getRecurrence()
   {
-    if (!($rrule = $this->getPropertyValue('RRULE')))
+    if (!$this->hasProperty('RRULE'))
     {
       return null;
     }
-    $dtStart = $this->getPropertyValue('DTSTART');
+    $rrule = $this->getRrule()->getValue();
+    $dtStart = $this->getDtStart()->getValue();
 
     $parts = array();
     foreach (explode(';', $rrule) as $part)
