@@ -19,7 +19,7 @@ abstract class qCal_DateTime_Recur {
 		'SU' => 'Sunday',
 	);
 	/**
-	 * @var qCal_Date The start date/time of the recurrence
+	 * @var qCal_DateTime The start date/time of the recurrence
 	 */
 	protected $dtstart;
 	/**
@@ -220,7 +220,7 @@ abstract class qCal_DateTime_Recur {
 			}
 			return $ret;
 		}
-		if (!is_array($day)) $day = array($day);
+		if (!is_array($day)) $day = explode(',', $day);
 		$days = array();
 		foreach ($day as $d) {
 			// optional plus or minus followed by a series of digits as group 1
@@ -342,14 +342,10 @@ abstract class qCal_DateTime_Recur {
 	 * of the month it is... stuff like that... I dunno... ?
 	 * 
 	 * @throws qCal_DateTime_Exception_InvalidRecur
-	 * @todo The giant switch in this method is a glaring code smell, but it works for now. I will refactor
-	 * after version 0.1 and remove the switch (probably will implement qCal_DateTime_Recur_Yearly, qCal_DateTime_Recur_Monthly, etc.)
 	 */
-	public function getRecurrences($start, $end) {
+	public function getRecurrences($intervalStart, $intervalEnd) {
 	
-		$start = qCal_DateTime::factory($start);
-		$end = qCal_DateTime::factory($end);
-		if ($start->getUnixTimestamp() > $end->getUnixTimestamp()) throw new qCal_DateTime_Exception_InvalidRecur('Start date must come before end date');
+		if ($intervalStart > $intervalEnd) throw new qCal_DateTime_Exception_InvalidRecur('Start date must come before end date');
 		if (!$this->interval) throw new qCal_DateTime_Exception_InvalidRecur('You must specify an interval');
 		
     $rules = array();
@@ -369,7 +365,7 @@ abstract class qCal_DateTime_Recur {
 				$rules['bymonth'] = new qCal_DateTime_Recur_Filter_ByMonth($this->bymonth);
 		}
 
-    $ret = $this->doGetRecurrences($rules, $start, $end);
+    $ret = $this->doGetRecurrences($rules, $intervalStart, $intervalEnd);
     //@todo this shouldn't be null!
     if ($ret === null)
     {
@@ -377,10 +373,14 @@ abstract class qCal_DateTime_Recur {
     }
     return $ret;
   }
-	/**
+  /**
 	 * Each type of rule needs to determine its recurrences so this is left abstract
 	 * to be implemented by children.
-	 */
-	abstract protected function doGetRecurrences($rules, qCal_DateTime $start, qCal_DateTime $end);
+   * @param array $filters
+   * @param int $intervalStart UNIX timestamp
+   * @param int $intervalEnd UNIX timestamp
+   * @return array
+   */
+	abstract protected function doGetRecurrences($filters, $intervalStart, $intervalEnd);
 
 }

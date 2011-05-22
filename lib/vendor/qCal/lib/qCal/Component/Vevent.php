@@ -131,22 +131,22 @@ class qCal_Component_Vevent extends qCal_Component
   protected $name = "VEVENT";
   protected $allowedComponents = array('VCALENDAR');
 
-  public function getAtRecurrence($recurrence)
+  public function getAtRecurrence(qCal_DateTime $recurrence)
   {
     $parser = new qCal_Parser();
     $event = $parser->parse($this->render()); /* @var $event qCal_Component_Vevent */
-    
+
     $event->properties['DTSTART'][0]->setValue($recurrence);
     if ($this->hasProperty('DTEND'))
     {
-      $dtstart = $this->getDtStart()->getValueObject()->getValue()->getUnixTimestamp();
-      $dtend = $this->getDtEnd()->getValueObject()->getValue()->getUnixTimestamp();
+      $dtstart = $this->getDtStart()->getValueObject()->getValue()->getUnixTimestamp(false);
+      $dtend = $this->getDtEnd()->getValueObject()->getValue()->getUnixTimestamp(false);
       $duration = $dtend - $dtstart;
-      $newStart = $event->getDtStart()->getValueObject()->getValue()->getUnixTimestamp();
-      $newEndUnix = qCal_DateTime::factory($newStart + $duration);
-      $event->properties['DTEND'][0]->setValue($newEndUnix);
+      $newStart = $event->getDtStart()->getValueObject()->getValue()->getUnixTimestamp(false);
+      $newEnd = qCal_DateTime::factory($newStart + $duration, $recurrence->getTime()->getTimezone());
+      $event->properties['DTEND'][0]->setValue($newEnd);
     }
-    
+
     return $event;
   }
 
@@ -190,42 +190,41 @@ class qCal_Component_Vevent extends qCal_Component
       }
     }
   }
-  
+
   /**
    *
-   * @return qCal_DateTime_Recur
+   * @return qCal_DateTime_Recur[]
    */
-  public function getRecurrence()
+  public function getRecurrenceSpecs()
   {
-    if (!$this->hasProperty('RRULE'))
-    {
-      return null;
-    }
-    $rrule = $this->getRrule()->getValue();
     $dtStart = $this->getDtStart()->getValue();
-
-    $parts = array();
-    foreach (explode(';', $rrule) as $part)
+    $recurrenceSpecs = array();
+    foreach ($this->getRrule() as $rruleProperty)
     {
-      list ($name, $value) = explode('=', $part);
-      $parts[$name] = $value;
-    }
-
-    $recur = qCal_DateTime_Recur::factory($parts['FREQ'], $dtStart);
-
-    foreach ($parts as $partName => $partSpec)
-    {
-      if ($partName == 'FREQ')
+      $rruleStr = $rruleProperty->getValue();
+      $parts = array();
+      foreach (explode(';', $rruleStr) as $part)
       {
-        continue;
+        list ($name, $value) = explode('=', $part);
+        $parts[$name] = $value;
       }
-      else
-      {
-        call_user_func(array($recur, $partName), $partSpec);
-      }
-    }
 
-    return $recur;
+      $recur = qCal_DateTime_Recur::factory($parts['FREQ'], $dtStart);
+
+      foreach ($parts as $partName => $partSpec)
+      {
+        if ($partName == 'FREQ')
+        {
+          continue;
+        }
+        else
+        {
+          call_user_func(array($recur, $partName), $partSpec);
+        }
+      }
+      $recurrenceSpecs[] = $recur;
+    }
+    return $recurrenceSpecs;
   }
 
 }

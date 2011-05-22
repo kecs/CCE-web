@@ -2,23 +2,22 @@
 
 class qCal_DateTime_Recur_Daily extends qCal_DateTime_Recur
 {
-
-  protected function doGetRecurrences($filters, qCal_DateTime $startDt, qCal_DateTime $endDt)
+  protected function doGetRecurrences($filters, $intervalStart, $intervalEnd)
   {
-    $start = $startDt->getUnixTimestamp();
-    $end = $endDt->getUnixTimestamp();
+    //round interval start to DAY
+    $intervalStart = qCal_DateTime::factory($intervalStart)->getDate()->getUnixTimestamp(false);
+
     $recurrences = array();
-    
-    for ($current = $start; $current <= $end; $current += 60*60*24)
+    for ($currentDay = $intervalStart; $currentDay <= $intervalEnd; $currentDay += 60 * 60 * 24)
     {
       foreach ($filters as $filter) /* @var $filter qCal_DateTime_Recur_Filter */
       {
-        if (! $filter->isIn($current))
+        if (!$filter->isIn($currentDay))
         {
           continue 2;
         }
       }
-      $recurrences[] = qCal_DateTime::factory($current);
+      $recurrences[] = qCal_DateTime::factory($currentDay + $this->dtstart->getTime()->getTimestamp(false), $this->dtstart->getTime()->getTimezone());
     }
     return $recurrences;
   }

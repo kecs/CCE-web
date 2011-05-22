@@ -36,8 +36,8 @@ class Entity_calendarDataAction extends cceActions
       $jsEvents[] = array(
           $event->getUID()->getValue(),
           $event->getSummary()->getValue(),
-          $this->php2JsTime($event->getDtStart()->getValueObject()->getValue()->getUnixTimestamp()),
-          $this->php2JsTime($event->getDtEnd()->getValueObject()->getValue()->getUnixTimestamp()),
+          $this->php2JsTime($event->getDtStart()->getValueObject()->getValue()->getUnixTimestamp(false)),
+          $this->php2JsTime($event->getDtEnd()->getValueObject()->getValue()->getUnixTimestamp(false)),
           0, //$row->IsAllDayEvent,
           0, //more than one day event
           0, //Recurring event,

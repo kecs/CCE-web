@@ -8,7 +8,7 @@
 class CalendarTable extends PluginCalendarTable
 {
 
-  public static function getEvents($entity, $period)
+  public static function getEvents($entity, TimePeriod $period)
   {
     $calendar = self::getInstance()->createQuery('m')
             ->select('m.ical')
@@ -22,17 +22,20 @@ class CalendarTable extends PluginCalendarTable
     foreach ($iCal->getComponent('VEVENT') as $event) /* @var $event qCal_Component_Vevent */
     {
       if ($event->hasProperty('RRULE'))
-      {//@todo test and fix this later!
-        /*$recurrenceSpec = $event->getRecurrence();
-        echo "{$event->render()}";
-        var_dump($recurrenceSpec);
-        echo "\n\n";
-        $recurrences = $recurrenceSpec->getRecurrences("20110520T180000Z", "20110528T180000Z");
-
-        foreach ($recurrences as $recurrence)
+      {
+        //echo "{$event->render()}";
+        $recurrenceSpecs = $event->getRecurrenceSpecs();
+        foreach ($recurrenceSpecs as $recurrenceSpec) /* @var $recurrenceSpec qCal_DateTime_Recur */
         {
-          $events[] = $tmp = $event->getAtRecurrence($recurrence);
-        }*/
+          $recurrences = $recurrenceSpec->getRecurrences($period->from, $period->to);
+
+          foreach ($recurrences as $recurrence)
+          {
+            $events[] = $tmp = $event->getAtRecurrence($recurrence);
+            //echo "--\n{$tmp->render()}\n--\n";
+
+          }
+        }
       }
       else
       {
