@@ -28,6 +28,7 @@ class CalendarTable extends PluginCalendarTable
         foreach ($recurrenceSpecs as $recurrenceSpec) /* @var $recurrenceSpec qCal_DateTime_Recur */
         {
           $recurrences = $recurrenceSpec->getRecurrences($period->from, $period->to);
+          
 
           foreach ($recurrences as $recurrence)
           {
