@@ -19,6 +19,7 @@ Entity:
           motionSensor:
             EntityType: DataSource
             name: "Mozgásérzékelés a szobán belül"
+            channel: Motion
       nappaliDemo:
         name: Nappali
         EntityType: Locality

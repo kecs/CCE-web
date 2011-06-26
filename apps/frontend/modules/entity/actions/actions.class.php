@@ -22,7 +22,7 @@ class entityActions extends cceActions
     $this->forward404Unless($to = $request->getParameter('to'));
 
     $timePeriod = new TimePeriod($from, $to);
-    $timePeriod->zomm(3); //return some context so we can have lines going off the chart
+    $timePeriod->zoom(3); //return some context so we can have lines going off the chart
 
     return $this->renderJSON(
             $channelTable->getMeasurementsAbout($this->getObject(), $timePeriod));

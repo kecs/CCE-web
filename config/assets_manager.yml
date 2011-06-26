@@ -103,3 +103,18 @@ packages:
     js:
       - jquery.mousewheel/jquery.mousewheel.js
 
+  wdCalendar:
+    import:
+      - jquery
+      - jquery.ui.datepicker
+    js:
+      - wdCalendar/js/Common.js
+      - wdCalendar/js/jquery.alert.js
+      - wdCalendar/js/jquery.ifrmdailog.js
+      - wdCalendar/js/wdCalendar_lang_US.js
+      - wdCalendar/js/jquery.calendar.js
+    css:
+      - wdCalendar/css/dialog.css
+      - wdCalendar/css/calendar.css
+      - wdCalendar/css/dp.css
+      - wdCalendar/css/alert.css

@@ -6,6 +6,11 @@ class TimePeriod
   public $from;
   public $to;
 
+  public function isOverlappingWidth($that)
+  {
+    return !($that->to < $this->from) && !($this->to < $that->from);
+  }
+
   /**
    *
    * @param float $from unix timestamp (float seconds)
@@ -26,7 +31,7 @@ class TimePeriod
    *
    * @param float $factor new duration will become old duration * $factor
    */
-  public function zomm($factor)
+  public function zoom($factor)
   {
     $difference = (1 - $factor) * $this->getDuration() / 2;
 

@@ -38,6 +38,19 @@ measurement_data:
     from:       \d+
     to:         \d+
 
+calendar_data:
+  url:      /:type/:id/Calendar
+  class:    sfDoctrineRoute
+  options:  { model: Entity, type: object }
+  param:    { module: entity, action: calendarData }
+  requirements:
+    type:       \S+
+    id:         \d+
+    showdate:   \S+
+    timezone:   \d+
+    viewtype:   \S+
+    sf_method:  [get, post]
+
 entity_index:
   url:      /:type/:id
   class:    sfDoctrineRoute
