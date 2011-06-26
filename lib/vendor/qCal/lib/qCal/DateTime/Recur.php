@@ -418,10 +418,10 @@ class qCal_DateTime_Recur
     switch ($this->freq)
     {
       case "DAILY":
-        $filters['daily'] = new qCal_DateTime_Recur_Filter_Daily($startDate, $this->interval);
+        $filters['daily'] = new qCal_DateTime_Recur_Filter_Daily($startDate, $this->interval, $this->count);
         break;
       case "WEEKLY":
-        $filters['weekly'] = new qCal_DateTime_Recur_Filter_Weekly($startDate, $this->interval);
+        $filters['weekly'] = new qCal_DateTime_Recur_Filter_Weekly($startDate, $this->interval, $this->count);
         break;
       case "MONTHLY":
         //@todo

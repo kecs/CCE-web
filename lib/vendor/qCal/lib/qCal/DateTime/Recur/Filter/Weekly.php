@@ -16,6 +16,13 @@ class qCal_DateTime_Recur_Filter_Weekly extends qCal_DateTime_Recur_FreqFilter
     $diff = $dayWeekStart - $originalWeekStart;
     $weekDiff = $diff / qCal_DateTime_Recur::DAY / 7;
 
+    if ($this->count !== null
+            && $weekDiff >= $this->count * $this->interval)
+    {
+      return false;
+    }
+
+
     $ret = ($weekDiff % $this->interval === 0);
     return $ret;
   }
