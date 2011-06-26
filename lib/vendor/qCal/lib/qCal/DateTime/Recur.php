@@ -398,6 +398,14 @@ class qCal_DateTime_Recur
     {
       $intervalStart = $startDate;
     }
+    if ($this->until())
+    {
+      $endDate = $this->until()->getDate()->getUnixTimestamp(false);
+      if ($endDate < $intervalEnd)
+      {
+        $intervalEnd = $endDate;
+      }
+    }
 
     if ($intervalStart > $intervalEnd)
     {
