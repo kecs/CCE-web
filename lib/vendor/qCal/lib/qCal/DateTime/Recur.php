@@ -402,7 +402,7 @@ class qCal_DateTime_Recur
         $filters['daily'] = new qCal_DateTime_Recur_Filter_Daily($startDate, $this->interval);
         break;
       case "WEEKLY":
-        //@todo
+        $filters['weekly'] = new qCal_DateTime_Recur_Filter_Weekly($startDate, $this->interval);
         break;
       case "MONTHLY":
         //@todo
