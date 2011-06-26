@@ -306,6 +306,9 @@
       this.entityChannel.data('channelObj', this);
       var op = {
         view: 'week',
+        autoload: false,
+        enableDrag: false,
+        readonly: true,
         url: $.urlTemplate(
           '<?php echo url_for("measurement_data", array("type" => ":type", "id" => ":id", "channel" => ":channel")) ?>').generate({
           id: channel.getEntityId(),
@@ -317,6 +320,7 @@
     }
     channel.update = function (timePeriod) {
       channel.entityChannel.gotoDate(new Date(timePeriod.from));
+      channel.entityChannel.reload();
     }
 
     return channel;
