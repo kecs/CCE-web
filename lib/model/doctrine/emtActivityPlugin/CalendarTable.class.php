@@ -33,14 +33,20 @@ class CalendarTable extends PluginCalendarTable
           {
             $events[] = $tmp = $event->getAtRecurrence($recurrence);
             //echo "--\n{$tmp->render()}\n--\n";
-
           }
         }
       }
       else
       {
-        //@todo filter to the time interval!
-        $events[] = $event;
+        $eventPeriod = new TimePeriod(
+                        $event->getDtStart()->getValueObject()->getValue()->getUnixTimestamp(false),
+                        $event->getDtEnd()->getValueObject()->getValue()->getUnixTimestamp(false)
+        );
+        if ($period->isOverlappingWidth($eventPeriod))
+        {
+          $events[] = $event;
+        }
+        
       }
     }
     return $events;

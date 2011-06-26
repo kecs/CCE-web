@@ -6,6 +6,11 @@ class TimePeriod
   public $from;
   public $to;
 
+  public function isOverlappingWidth($that)
+  {
+    return !($that->to < $this->from) && !($this->to < $that->from);
+  }
+
   /**
    *
    * @param float $from unix timestamp (float seconds)
