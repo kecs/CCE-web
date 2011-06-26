@@ -393,8 +393,19 @@ class qCal_DateTime_Recur
     if (!$this->interval)
       throw new qCal_DateTime_Exception_InvalidRecur('You must specify an interval');
 
-    $filters = array();
     $startDate = $this->dtstart->getDate()->getUnixTimestamp(false);
+    if ($intervalStart < $startDate)
+    {
+      $intervalStart = $startDate;
+    }
+
+    if ($intervalStart > $intervalEnd)
+    {
+      return array();
+    }
+
+
+    $filters = array();
 
     switch ($this->freq)
     {
