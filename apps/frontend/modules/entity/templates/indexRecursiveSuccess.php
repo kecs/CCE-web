@@ -5,7 +5,7 @@
 <?php foreach ($descendantEntities as $entity): /* @var $entity Entity */ ?>
   <?php if (count($activeChannels = $entity->getActiveChannels())): ?>
     <div class="entity" data-type="<?php echo $entity->type ?>" data-id="<?php echo $entity->id ?>">
-      <h2><?php echo $entity->getNode()->getPath(' / ') ?></h2>
+      <h2><?php echo $entity->getNode()->getPath(' / ', true) ?></h2>
       <div class="details">
         <?php foreach ($entity->getActiveChannels() as $channel): ?>
           <div class="channel chart" data-channel="<?php echo $channel ?>">
