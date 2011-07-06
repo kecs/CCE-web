@@ -204,6 +204,8 @@
 
   channelMaker.Category = function () {
     var channel = channelMaker.Base();
+    
+    channel.isOrhogonal = false;
 
     //override getInitOptions
     (function () {
@@ -238,6 +240,18 @@
             //extend the data point with concrete coordinates
             measurement.x = measurement.value;
             measurement.y = categoryId;
+            if (channel.isOrhogonal && seriesData.length > 0) {
+              var last = seriesData[seriesData.length-1];
+              if (last.y != measurement.y) {
+                var corner = $.extend({}, last);
+                corner.x = measurement.x-1;
+                corner.y = last.y;
+                corner.marker = {
+                  enabled: false
+                };
+                seriesData.push(corner);
+              }
+            } 
             seriesData.push(measurement);
           } else {
             seriesData.push(measurement);
@@ -258,6 +272,8 @@
 
   channelMaker.OpenClosed = function () {
     var channel = channelMaker.Category();
+    
+    channel.isOrhogonal = true;
 
     channel.processDataRow = function (row) {
       return {
@@ -275,6 +291,8 @@
   channelMaker.Motion = function () {
     var channel = channelMaker.Category();
 
+    channel.isOrhogonal = true;
+
     channel.processDataRow = function (row) {
       return {
         category: row.value ? 'true' : 'false',
@@ -287,6 +305,8 @@
 
   channelMaker.Activation = function () {
     var channel = channelMaker.Category();
+    
+    channel.isOrhogonal = true;
 
     channel.processDataRow = function (row) {
       return {
