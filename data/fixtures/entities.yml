@@ -28,19 +28,19 @@ Entity:
           switchesSensor1:
             EntityType: DataSource
             name: "Nyomógomb 1"
-            channel: OnOff
+            channel: Activation
           switchesSensor2:
             EntityType: DataSource
             name: "Nyomógombok 2"
-            channel: OnOff
+            channel: Activation
           switchesSensor3:
             EntityType: DataSource
             name: "Nyomógombok 3"
-            channel: OnOff
+            channel: Activation
           switchesSensor4:
             EntityType: DataSource
             name: "Nyomógombok 4"
-            channel: OnOff
+            channel: Activation
           temperatureSensor:
             EntityType: DataSource
             name: "Hőmérő"
