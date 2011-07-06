@@ -15,7 +15,7 @@ datasource:
     sf_method:        post
 
 config:
-  url:      /home/:id/config/:action.:sf_format
+  url:      /Home/:id/config/:action.:sf_format
   class:    sfDoctrineRoute
   options:  { model: Home, type: object }
   param:    { module: config }
