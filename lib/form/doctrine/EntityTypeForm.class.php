@@ -14,7 +14,7 @@ class EntityTypeForm extends BaseEntityTypeForm
   public function configure()
   {
     $this->setWidget('className', new sfWidgetFormInputText());
-    $this->setValidator('className', new sfValidatorInteger(array('required' => true)));
+    $this->setValidator('className', new sfValidatorString(array('required' => true)));
 
     $this->embedI18n(array('en', 'hu'));
     $this->widgetSchema->setLabel('en', 'English');
