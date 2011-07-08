@@ -305,8 +305,23 @@
 
   channelMaker.Activation = function () {
     var channel = channelMaker.Category();
-    
-    channel.isOrhogonal = true;
+
+    //override getInitOptions
+    (function () {
+      var _parentMethod = $.proxy(channel.getInitOptions, channel);
+      channel.getInitOptions = function() {
+        var options = _parentMethod();
+
+        options.chart.defaultSeriesType = 'scatter';
+        options.plotOptions.scatter = {
+          marker: {
+            radius: 10,
+            fillColor: 'rgba(0,0,255,0.3)'
+          }
+        }
+        return options;
+      };
+    }());
 
     channel.processDataRow = function (row) {
       return {
