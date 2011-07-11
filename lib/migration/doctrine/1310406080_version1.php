@@ -778,6 +778,55 @@ class Version1 extends Doctrine_Migration_Base
              'collate' => 'utf8_general_ci',
              'charset' => 'utf8',
              ));
+        $this->createTable('power', array(
+             'id' => 
+             array(
+              'type' => 'integer',
+              'primary' => '1',
+              'autoincrement' => '1',
+              'length' => '8',
+             ),
+             'entity_id' => 
+             array(
+              'type' => 'integer',
+              'notnull' => '1',
+              'length' => '8',
+             ),
+             'data_source_id' => 
+             array(
+              'type' => 'integer',
+              'length' => '8',
+             ),
+             'timestamp' => 
+             array(
+              'type' => 'integer',
+              'notnull' => '1',
+              'length' => '8',
+             ),
+             'value' => 
+             array(
+              'type' => 'integer',
+              'notnull' => '1',
+              'length' => '8',
+             ),
+             ), array(
+             'indexes' => 
+             array(
+              'timestamp' => 
+              array(
+              'fields' => 
+              array(
+               0 => 'timestamp',
+              ),
+              ),
+             ),
+             'primary' => 
+             array(
+              0 => 'id',
+             ),
+             'collate' => 'utf8_general_ci',
+             'charset' => 'utf8',
+             ));
         $this->createTable('sensor', array(
              'id' => 
              array(
@@ -1301,6 +1350,7 @@ class Version1 extends Doctrine_Migration_Base
         $this->dropTable('observer');
         $this->dropTable('on_off');
         $this->dropTable('open_closed');
+        $this->dropTable('power');
         $this->dropTable('sensor');
         $this->dropTable('temperature');
         $this->dropTable('sf_guard_forgot_password');

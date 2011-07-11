@@ -19,6 +19,7 @@ class DataSourceForm extends BaseDataSourceForm
     $this->useFields(array(
         'name',
         'comment',
+        'channel',
         'parent',
         'affected_by_list',
     ));

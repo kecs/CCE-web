@@ -190,6 +190,18 @@ class Version2 extends Doctrine_Migration_Base
              'foreign' => 'id',
              'foreignTable' => 'entity',
              ));
+        $this->createForeignKey('power', 'power_entity_id_entity_id', array(
+             'name' => 'power_entity_id_entity_id',
+             'local' => 'entity_id',
+             'foreign' => 'id',
+             'foreignTable' => 'entity',
+             ));
+        $this->createForeignKey('power', 'power_data_source_id_entity_id', array(
+             'name' => 'power_data_source_id_entity_id',
+             'local' => 'data_source_id',
+             'foreign' => 'id',
+             'foreignTable' => 'entity',
+             ));
         $this->createForeignKey('sensor', 'sensor_device_id_device_id', array(
              'name' => 'sensor_device_id_device_id',
              'local' => 'device_id',
@@ -482,6 +494,18 @@ class Version2 extends Doctrine_Migration_Base
               0 => 'data_source_id',
              ),
              ));
+        $this->addIndex('power', 'power_entity_id', array(
+             'fields' => 
+             array(
+              0 => 'entity_id',
+             ),
+             ));
+        $this->addIndex('power', 'power_data_source_id', array(
+             'fields' => 
+             array(
+              0 => 'data_source_id',
+             ),
+             ));
         $this->addIndex('sensor', 'sensor_device_id', array(
              'fields' => 
              array(
@@ -606,6 +630,8 @@ class Version2 extends Doctrine_Migration_Base
         $this->dropForeignKey('on_off', 'on_off_data_source_id_entity_id');
         $this->dropForeignKey('open_closed', 'open_closed_entity_id_entity_id');
         $this->dropForeignKey('open_closed', 'open_closed_data_source_id_entity_id');
+        $this->dropForeignKey('power', 'power_entity_id_entity_id');
+        $this->dropForeignKey('power', 'power_data_source_id_entity_id');
         $this->dropForeignKey('sensor', 'sensor_device_id_device_id');
         $this->dropForeignKey('sensor', 'sensor_data_source_id_entity_id');
         $this->dropForeignKey('temperature', 'temperature_entity_id_entity_id');
@@ -796,6 +822,18 @@ class Version2 extends Doctrine_Migration_Base
              ),
              ));
         $this->removeIndex('open_closed', 'open_closed_data_source_id', array(
+             'fields' => 
+             array(
+              0 => 'data_source_id',
+             ),
+             ));
+        $this->removeIndex('power', 'power_entity_id', array(
+             'fields' => 
+             array(
+              0 => 'entity_id',
+             ),
+             ));
+        $this->removeIndex('power', 'power_data_source_id', array(
              'fields' => 
              array(
               0 => 'data_source_id',

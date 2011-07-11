@@ -64,3 +64,4 @@ all:
       - fridgeBackend
       - wardrobeBackend
       - bedBackend
+      - powerBackend

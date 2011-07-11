@@ -34,3 +34,10 @@ Motion:
     extends: ScalarTimedMeasurement
   columns:
     value: { type: boolean, notnull: true }
+Power:
+  inheritance:
+    type: concrete
+    extends: ScalarTimedMeasurement
+  columns:
+    value: { type: integer, notnull: true }
+  
