@@ -35,14 +35,14 @@ class EntityForm extends BaseEntityForm
     $this->getValidator('parent')->setMessage('node', 'A category cannot be made a descendent of itself.');
 
 
-    // if the current category has a parent, make it the default choice
+    // if the current entity has a parent, make it the default choice
     if ($this->getObject()->getNode()->hasParent())
     {
       $this->setDefault('parent', $this->getObject()->getNode()->getParent()->getId());
     }
 
     $localLocalityQuery = LocalityTable::getInstance()->createQuery('locality')
-                    ->andWhere('locality.root_id = ?', $this->getObject()->root_id);
+            ->andWhere('locality.root_id = ?', $this->getObject()->root_id);
     $this->setWidget('locality_id', new sfWidgetFormDoctrineChoice(array(
                 'model' => 'Locality',
                 'add_empty' => true,
@@ -74,7 +74,7 @@ class EntityForm extends BaseEntityForm
     if ($this->getValue('parent'))
     {
       $parent = EntityTable::getInstance()->findOneById($this->getValue('parent'));
-      if ($this->isNew())
+      if ($this->getObject()->getNode()->hasParent())
       {
         $this->getObject()->getNode()->insertAsLastChildOf($parent);
       }
