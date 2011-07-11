@@ -380,6 +380,12 @@ Fridge:
     type: column_aggregation
   package: emtExtraEntitiesPlugin.lib.model.doctrine
   package_custom_path: /home/cassus/Dropbox/munka/emt/cce/plugins/emtExtraEntitiesPlugin/lib/model/doctrine
+Bed:
+  inheritance:
+    extends: Entity
+    type: column_aggregation
+  package: emtExtraEntitiesPlugin.lib.model.doctrine
+  package_custom_path: /home/cassus/Dropbox/munka/emt/cce/plugins/emtExtraEntitiesPlugin/lib/model/doctrine
 Observer:
   comment: 'Hozzátartozó, felügyelő vagy gondozó'
   columns:

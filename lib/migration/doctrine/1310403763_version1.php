@@ -137,39 +137,6 @@ class Version1 extends Doctrine_Migration_Base
              'collate' => 'utf8_general_ci',
              'charset' => 'utf8',
              ));
-        $this->createTable('calendar', array(
-             'id' => 
-             array(
-              'type' => 'integer',
-              'primary' => '1',
-              'autoincrement' => '1',
-              'length' => '8',
-             ),
-             'entity_id' => 
-             array(
-              'type' => 'integer',
-              'notnull' => '1',
-              'length' => '8',
-             ),
-             'data_source_id' => 
-             array(
-              'type' => 'integer',
-              'length' => '8',
-             ),
-             'ical' => 
-             array(
-              'type' => 'clob',
-              'notnull' => '1',
-              'length' => '',
-             ),
-             ), array(
-             'primary' => 
-             array(
-              0 => 'id',
-             ),
-             'collate' => 'utf8_general_ci',
-             'charset' => 'utf8',
-             ));
         $this->createTable('entity', array(
              'id' => 
              array(
@@ -272,6 +239,39 @@ class Version1 extends Doctrine_Migration_Base
              array(
               'type' => 'integer',
               'length' => '2',
+             ),
+             ), array(
+             'primary' => 
+             array(
+              0 => 'id',
+             ),
+             'collate' => 'utf8_general_ci',
+             'charset' => 'utf8',
+             ));
+        $this->createTable('calendar', array(
+             'id' => 
+             array(
+              'type' => 'integer',
+              'primary' => '1',
+              'autoincrement' => '1',
+              'length' => '8',
+             ),
+             'entity_id' => 
+             array(
+              'type' => 'integer',
+              'notnull' => '1',
+              'length' => '8',
+             ),
+             'data_source_id' => 
+             array(
+              'type' => 'integer',
+              'length' => '8',
+             ),
+             'ical' => 
+             array(
+              'type' => 'clob',
+              'notnull' => '1',
+              'length' => '',
              ),
              ), array(
              'primary' => 
@@ -1286,8 +1286,8 @@ class Version1 extends Doctrine_Migration_Base
         $this->dropTable('activation');
         $this->dropTable('activity');
         $this->dropTable('battery');
-        $this->dropTable('calendar');
         $this->dropTable('entity');
+        $this->dropTable('calendar');
         $this->dropTable('data_source_affected');
         $this->dropTable('device');
         $this->dropTable('e_k_g');

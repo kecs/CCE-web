@@ -14,3 +14,7 @@ Fridge:
   inheritance:
     extends: Entity
     type: column_aggregation
+Bed:
+  inheritance:
+    extends: Entity
+    type: column_aggregation

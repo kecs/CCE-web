@@ -10,3 +10,4 @@ EntityType:
   DataSource: {id: 8, className: "DataSource", Translation: {en: {name: "DataSource"}, hu: {name: "AdatForrás"}}}
   DataSink: {id: 9, className: "DataSink", Translation: {en: {name: "DataSink"}, hu: {name: "AdatNyelő"}}}
   Patient: {id: 10, className: "Patient", Translation: {en: {name: "Patient"}, hu: {name: "Beteg"}}}
+  Bed: {id: 11, className: "Bed", Translation: {en: {name: "Bed"}, hu: {name: "Ágy"}}}

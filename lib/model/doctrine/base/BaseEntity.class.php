@@ -176,6 +176,10 @@ abstract class BaseEntity extends sfDoctrineRecord
              array(
               'type' => 'Fridge',
              ),
+             'Bed' => 
+             array(
+              'type' => 'Bed',
+             ),
              'Patient' => 
              array(
               'type' => 'Patient',

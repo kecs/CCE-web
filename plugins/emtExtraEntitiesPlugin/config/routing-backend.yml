@@ -33,3 +33,13 @@ electric_stove:
     prefix_path:          /electricStoveBackend
     column:               id
     with_wildcard_routes: true
+
+bed:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                Bed
+    module:               bedBackend
+    prefix_path:          /bedBackend
+    column:               id
+    with_wildcard_routes: true
+

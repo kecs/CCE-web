@@ -1,3 +1,12 @@
+bed:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                Bed
+    module:               bedBackend
+    prefix_path:          /bedBackend
+    column:               id
+    with_wildcard_routes: true
+
 fridge:
   class: sfDoctrineRouteCollection
   options:
