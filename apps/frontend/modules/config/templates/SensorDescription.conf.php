@@ -1,5 +1,5 @@
 #SensorDescription.conf
-<?php
+#<?php
 echo implode("\t", array(
     'PAN ID',
     'Extended ID',
