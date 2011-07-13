@@ -40,4 +40,10 @@ Power:
     extends: ScalarTimedMeasurement
   columns:
     value: { type: integer, notnull: true }
+ForceCell:
+  inheritance:
+    type: concrete
+    extends: ScalarTimedMeasurement
+  columns:
+    value: { type: boolean, notnull: true }
   

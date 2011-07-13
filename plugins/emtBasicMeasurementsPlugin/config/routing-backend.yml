@@ -1,3 +1,12 @@
+force_cell:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                ForceCell
+    module:               forceCellBackend
+    prefix_path:          /forceCellBackend
+    column:               id
+    with_wildcard_routes: true
+
 power:
   class: sfDoctrineRouteCollection
   options:

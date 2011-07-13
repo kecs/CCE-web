@@ -34,6 +34,7 @@ class MeasurementTable extends Doctrine_Table
         'Activation',
         'Calendar',
         'Power',
+        'ForceCell',
     );
   }
 

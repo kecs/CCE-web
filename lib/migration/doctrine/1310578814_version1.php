@@ -453,6 +453,55 @@ class Version1 extends Doctrine_Migration_Base
              'collate' => 'utf8_general_ci',
              'charset' => 'utf8',
              ));
+        $this->createTable('force_cell', array(
+             'id' => 
+             array(
+              'type' => 'integer',
+              'primary' => '1',
+              'autoincrement' => '1',
+              'length' => '8',
+             ),
+             'entity_id' => 
+             array(
+              'type' => 'integer',
+              'notnull' => '1',
+              'length' => '8',
+             ),
+             'data_source_id' => 
+             array(
+              'type' => 'integer',
+              'length' => '8',
+             ),
+             'timestamp' => 
+             array(
+              'type' => 'integer',
+              'notnull' => '1',
+              'length' => '8',
+             ),
+             'value' => 
+             array(
+              'type' => 'boolean',
+              'notnull' => '1',
+              'length' => '25',
+             ),
+             ), array(
+             'indexes' => 
+             array(
+              'timestamp' => 
+              array(
+              'fields' => 
+              array(
+               0 => 'timestamp',
+              ),
+              ),
+             ),
+             'primary' => 
+             array(
+              0 => 'id',
+             ),
+             'collate' => 'utf8_general_ci',
+             'charset' => 'utf8',
+             ));
         $this->createTable('humidity', array(
              'id' => 
              array(
@@ -1341,6 +1390,7 @@ class Version1 extends Doctrine_Migration_Base
         $this->dropTable('device');
         $this->dropTable('e_k_g');
         $this->dropTable('entity_type');
+        $this->dropTable('force_cell');
         $this->dropTable('humidity');
         $this->dropTable('light');
         $this->dropTable('locality_type');

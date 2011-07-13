@@ -1,9 +1,18 @@
+forceCell:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                ForceCell
+    module:               forceCellBackend
+    prefix_path:          /forceCell
+    column:               id
+    with_wildcard_routes: true
+
 power:
   class: sfDoctrineRouteCollection
   options:
     model:                Power
     module:               powerBackend
-    prefix_path:          /powerBackend
+    prefix_path:          /power
     column:               id
     with_wildcard_routes: true
 
@@ -12,7 +21,7 @@ bed:
   options:
     model:                Bed
     module:               bedBackend
-    prefix_path:          /bedBackend
+    prefix_path:          /bed
     column:               id
     with_wildcard_routes: true
 
@@ -21,7 +30,7 @@ fridge:
   options:
     model:                Fridge
     module:               fridgeBackend
-    prefix_path:          /fridgeBackend
+    prefix_path:          /fridge
     column:               id
     with_wildcard_routes: true
 
@@ -30,7 +39,7 @@ wardrobe:
   options:
     model:                Wardrobe
     module:               wardrobeBackend
-    prefix_path:          /wardrobeBackend
+    prefix_path:          /wardrobe
     column:               id
     with_wildcard_routes: true
 
@@ -39,7 +48,7 @@ cupboard:
   options:
     model:                Cupboard
     module:               cupboardBackend
-    prefix_path:          /cupboardBackend
+    prefix_path:          /cupboard
     column:               id
     with_wildcard_routes: true
 
@@ -48,7 +57,7 @@ electric_stove:
   options:
     model:                ElectricStove
     module:               electricStoveBackend
-    prefix_path:          /electricStoveBackend
+    prefix_path:          /electricStove
     column:               id
     with_wildcard_routes: true
 

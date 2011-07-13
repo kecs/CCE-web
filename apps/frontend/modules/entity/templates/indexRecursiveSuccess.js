@@ -263,7 +263,20 @@
     channel.processDataRow = function (row) {
       return {
         category: row.value,
-        value: row.timestamp,
+        value: row.timestamp
+      };
+    };
+
+    return channel;
+  };
+
+  channelMaker.ForceCell = function () {
+    var channel = channelMaker.Category();
+
+    channel.processDataRow = function (row) {
+      return {
+        category: row.value ? 'Unused' : 'Used',
+        value: row.timestamp
       };
     };
 

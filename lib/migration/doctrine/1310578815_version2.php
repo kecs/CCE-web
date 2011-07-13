@@ -102,6 +102,18 @@ class Version2 extends Doctrine_Migration_Base
              'foreign' => 'id',
              'foreignTable' => 'entity',
              ));
+        $this->createForeignKey('force_cell', 'force_cell_entity_id_entity_id', array(
+             'name' => 'force_cell_entity_id_entity_id',
+             'local' => 'entity_id',
+             'foreign' => 'id',
+             'foreignTable' => 'entity',
+             ));
+        $this->createForeignKey('force_cell', 'force_cell_data_source_id_entity_id', array(
+             'name' => 'force_cell_data_source_id_entity_id',
+             'local' => 'data_source_id',
+             'foreign' => 'id',
+             'foreignTable' => 'entity',
+             ));
         $this->createForeignKey('humidity', 'humidity_entity_id_entity_id', array(
              'name' => 'humidity_entity_id_entity_id',
              'local' => 'entity_id',
@@ -410,6 +422,18 @@ class Version2 extends Doctrine_Migration_Base
               0 => 'data_source_id',
              ),
              ));
+        $this->addIndex('force_cell', 'force_cell_entity_id', array(
+             'fields' => 
+             array(
+              0 => 'entity_id',
+             ),
+             ));
+        $this->addIndex('force_cell', 'force_cell_data_source_id', array(
+             'fields' => 
+             array(
+              0 => 'data_source_id',
+             ),
+             ));
         $this->addIndex('humidity', 'humidity_entity_id', array(
              'fields' => 
              array(
@@ -616,6 +640,8 @@ class Version2 extends Doctrine_Migration_Base
         $this->dropForeignKey('data_source_affected', 'data_source_affected_entity_id_entity_id');
         $this->dropForeignKey('e_k_g', 'e_k_g_entity_id_entity_id');
         $this->dropForeignKey('e_k_g', 'e_k_g_data_source_id_entity_id');
+        $this->dropForeignKey('force_cell', 'force_cell_entity_id_entity_id');
+        $this->dropForeignKey('force_cell', 'force_cell_data_source_id_entity_id');
         $this->dropForeignKey('humidity', 'humidity_entity_id_entity_id');
         $this->dropForeignKey('humidity', 'humidity_data_source_id_entity_id');
         $this->dropForeignKey('light', 'light_entity_id_entity_id');
@@ -738,6 +764,18 @@ class Version2 extends Doctrine_Migration_Base
              ),
              ));
         $this->removeIndex('e_k_g', 'e_k_g_data_source_id', array(
+             'fields' => 
+             array(
+              0 => 'data_source_id',
+             ),
+             ));
+        $this->removeIndex('force_cell', 'force_cell_entity_id', array(
+             'fields' => 
+             array(
+              0 => 'entity_id',
+             ),
+             ));
+        $this->removeIndex('force_cell', 'force_cell_data_source_id', array(
              'fields' => 
              array(
               0 => 'data_source_id',

@@ -40,4 +40,8 @@ all:
             url:    temperature
           Activation:
             url:    activation
+          Power:
+            url:    power
+          ForceCell:
+            url:    forceCell
             

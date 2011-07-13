@@ -65,3 +65,4 @@ all:
       - wardrobeBackend
       - bedBackend
       - powerBackend
+      - forceCellBackend

@@ -366,6 +366,16 @@ Power:
       notnull: true
   package: emtBasicMeasurementsPlugin.lib.model.doctrine
   package_custom_path: /home/cassus/Dropbox/munka/emt/cce/plugins/emtBasicMeasurementsPlugin/lib/model/doctrine
+ForceCell:
+  inheritance:
+    type: concrete
+    extends: ScalarTimedMeasurement
+  columns:
+    value:
+      type: boolean
+      notnull: true
+  package: emtBasicMeasurementsPlugin.lib.model.doctrine
+  package_custom_path: /home/cassus/Dropbox/munka/emt/cce/plugins/emtBasicMeasurementsPlugin/lib/model/doctrine
 ElectricStove:
   inheritance:
     extends: Entity

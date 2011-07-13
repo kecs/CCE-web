@@ -55,6 +55,11 @@ Entity:
           nappaliAblak1Demo:
             EntityType: Window
             name: "Bal nappali ablak"
+            children:
+              forceCell:
+                EntityType: DataSource
+                name: "Erőmérő"
+                channel: ForceCell
           nappaliAblak2Demo:
             EntityType: Window
             name: "Jobb nappali ablak"
