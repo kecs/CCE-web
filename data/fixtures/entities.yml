@@ -16,6 +16,10 @@ Entity:
                 EntityType: DataSource
                 name: "Ajtónyitás-csukás"
                 channel: OpenClosed
+              powerSensor:
+                EntityType: DataSource
+                name: "Ajtó fogyasztása"
+                channel: Power
           motionSensor:
             EntityType: DataSource
             name: "Mozgásérzékelés a szobán belül"
