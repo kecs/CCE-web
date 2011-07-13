@@ -264,9 +264,6 @@
       return {
         category: row.value,
         value: row.timestamp,
-        marker: {
-          fillColor: (row.value === 'open') ? '#CC0000' : null
-        }
       };
     };
 
