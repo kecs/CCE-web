@@ -33,6 +33,7 @@ class MeasurementTable extends Doctrine_Table
         'Temperature',
         'Activation',
         'Calendar',
+        'Power',
     );
   }
 

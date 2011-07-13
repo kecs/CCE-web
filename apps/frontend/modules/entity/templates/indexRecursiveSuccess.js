@@ -1,4 +1,4 @@
-/*jslint newcap: true, undef: true, nomen: true, regexp: true, bitwise: true, strict: true, nomen: false */
+/*jslint white: true, vars: true, newcap: true, undef: true, nomen: true, regexp: true, bitwise: true, strict: true */
 /*global jQuery, $, Highcharts */
 
 (function () {
@@ -98,7 +98,7 @@
         from: focus - (focus - currentTimePeriod.from) * zoomFactor,
         to: focus + (currentTimePeriod.to - focus) * zoomFactor
       };
-      
+
       channel.zoomTo(newTimePeriod);
     };
 
@@ -286,6 +286,40 @@
     return channel;
   };
 
+  channelMaker.Power = function () {
+    var channel = channelMaker.Base();
+
+    channel.doUpdate = function (data) {
+      var seriesData = [];
+      var lastPoint;
+      $.each(data,function() {
+        var value = parseInt(this.value, 10);
+        var timestamp = parseInt(this.timestamp, 10);
+        var chartPoint = {
+          x: timestamp,
+          y: value
+        };
+        seriesData.push(chartPoint);
+
+        if(lastPoint && chartPoint.x - lastPoint.x > 6000) {
+          seriesData.push({
+            x: lastPoint.x+1,
+            y: null
+          });
+        }
+
+        lastPoint = chartPoint;
+      });
+
+      this.chart.series[0].setData(seriesData, false);
+
+      this.chart.redraw();
+    };
+
+
+    return channel;
+  };
+
   channelMaker.Activation = function () {
     var channel = channelMaker.Category();
 
@@ -301,7 +335,7 @@
             radius: 10,
             fillColor: 'rgba(0,0,255,0.3)'
           }
-        }
+        };
         return options;
       };
     }());
@@ -335,11 +369,11 @@
         })
       };
       channel.calendar = entityChannel.bcalendar(op);
-    }
+    };
     channel.update = function (timePeriod) {
       channel.entityChannel.gotoDate(new Date(timePeriod.from));
       channel.entityChannel.reload();
-    }
+    };
 
     return channel;
   };
@@ -351,7 +385,7 @@
         from: 1295956560000,
         to:   1296145800000
       };
-      
+
       channelMaker(channel, timePeriod);
     });
   });
