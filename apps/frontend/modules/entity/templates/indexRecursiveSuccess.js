@@ -219,10 +219,12 @@
         return options;
       };
     }());
+    
+    channel.initCategories = [];
 
     channel.updateCategorySeries = function (data, processDataRow) {
       var seriesData = [];
-      var categories = [];
+      var categories = channel.initCategories;
       $.each(data, function (i, dataRow) {
         var measurements = processDataRow(dataRow);
         if (measurements[0] === undefined) {
@@ -259,6 +261,8 @@
 
   channelMaker.OpenClosed = function () {
     var channel = channelMaker.Category();
+    
+    channel.initCategories = ['closed', 'open'];
 
     channel.processDataRow = function (row) {
       return {
@@ -273,9 +277,11 @@
   channelMaker.ForceCell = function () {
     var channel = channelMaker.Category();
 
+    channel.initCategories = ['Unused', 'Used'];
+
     channel.processDataRow = function (row) {
       return {
-        category: row.value ? 'Unused' : 'Used',
+        category: row.value ? 'Used' : 'Unused',
         value: row.timestamp
       };
     };
@@ -285,6 +291,8 @@
 
   channelMaker.Motion = function () {
     var channel = channelMaker.Category();
+
+    channel.initCategories = ['false', 'true'];
 
     channel.processDataRow = function (row) {
       return {
