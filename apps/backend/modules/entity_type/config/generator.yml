@@ -15,8 +15,13 @@ generator:
     config:
       actions: ~
       fields:  ~
-      list:    ~
+      list:
+        batch_actions: {}
+        object_actions:
+          _edit: ~
+        actions: {}
       filter:  ~
       form:    ~
-      edit:    ~
+      edit:
+        title: Edit entity type %%className%%
       new:     ~
