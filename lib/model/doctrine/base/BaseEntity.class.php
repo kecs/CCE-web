@@ -17,6 +17,7 @@
  * @property integer $social_security_number
  * @property string $born_at
  * @property string $address
+ * @property string $calendar_url
  * @property integer $locality_type_id
  * @property integer $locality_id
  * @property integer $locality2_id
@@ -46,6 +47,7 @@
  * @method integer             getSocialSecurityNumber()   Returns the current record's "social_security_number" value
  * @method string              getBornAt()                 Returns the current record's "born_at" value
  * @method string              getAddress()                Returns the current record's "address" value
+ * @method string              getCalendarUrl()            Returns the current record's "calendar_url" value
  * @method integer             getLocalityTypeId()         Returns the current record's "locality_type_id" value
  * @method integer             getLocalityId()             Returns the current record's "locality_id" value
  * @method integer             getLocality2Id()            Returns the current record's "locality2_id" value
@@ -74,6 +76,7 @@
  * @method Entity              setSocialSecurityNumber()   Sets the current record's "social_security_number" value
  * @method Entity              setBornAt()                 Sets the current record's "born_at" value
  * @method Entity              setAddress()                Sets the current record's "address" value
+ * @method Entity              setCalendarUrl()            Sets the current record's "calendar_url" value
  * @method Entity              setLocalityTypeId()         Sets the current record's "locality_type_id" value
  * @method Entity              setLocalityId()             Sets the current record's "locality_id" value
  * @method Entity              setLocality2Id()            Sets the current record's "locality2_id" value
@@ -147,6 +150,11 @@ abstract class BaseEntity extends sfDoctrineRecord
         $this->hasColumn('address', 'string', 255, array(
              'type' => 'string',
              'comment' => 'lakcim',
+             'length' => 255,
+             ));
+        $this->hasColumn('calendar_url', 'string', 255, array(
+             'type' => 'string',
+             'notnull' => true,
              'length' => 255,
              ));
         $this->hasColumn('locality_type_id', 'integer', null, array(

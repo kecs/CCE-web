@@ -119,6 +119,7 @@ Patient:
     social_security_number: { type: integer, comment: 'taj szam'}
     born_at:                { type: string(255), comment: 'szuletesi hely, idopont'}
     address:                { type: string(255), comment: 'lakcim' }
+    calendar_url:           { type: string(255), notnull: true }
 Home:
   inheritance:
     extends: Entity

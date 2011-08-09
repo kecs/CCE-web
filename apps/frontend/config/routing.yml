@@ -26,6 +26,16 @@ javascript:
   url:    /assets/dynamic/entity/indexRecursive.js
   param:  { module: entity, action: javascript, sf_format: js }
 
+calendar_refresh:
+  url:      /:type/:id/Calendar/refresh
+  class:    sfDoctrineRoute
+  options:  { model: Entity, type: object }
+  param:    { module: entity, action: calendarRefresh }
+  requirements:
+    type:       \S+
+    id:         \d+
+    sf_method:  [post]
+
 measurement_data:
   url:      /:type/:id/:channel
   class:    sfDoctrineRoute

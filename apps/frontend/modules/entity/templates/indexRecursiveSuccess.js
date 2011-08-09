@@ -387,6 +387,29 @@
         })
       };
       channel.calendar = entityChannel.bcalendar(op);
+      var reloadButton = $('<a />')
+      .attr({
+        href: 'javascript:void(0)'
+      })
+      .text('<?php echo __("Refresh")?>')
+      .appendTo(entityChannel.closest('.details'))
+      .click(function(){
+        var url = $.urlTemplate(
+          '<?php echo url_for("calendar_refresh", array("type" => ":type", "id" => ":id")) ?>').generate({
+          id: channel.getEntityId(),
+          type: channel.getEntityType()
+        });
+        $.ajax({
+          url: url,
+          type: 'POST',
+          success: function() {
+            channel.calendar.reload();
+          },
+          error: function(jqXHR, textStatus){
+            alert('error: ' + textStatus);
+          }
+        });
+      });
     };
     channel.update = function (timePeriod) {
       channel.entityChannel.gotoDate(new Date(timePeriod.from));

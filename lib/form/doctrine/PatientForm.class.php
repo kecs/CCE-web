@@ -22,7 +22,10 @@ class PatientForm extends BasePatientForm
         'social_security_number',
         'born_at',
         'address',
+        'calendar_url',
     ));
+
+    $this->setValidator('calendar_url', new sfValidatorUrl(array('max_length' => 255)));
   }
 
 }

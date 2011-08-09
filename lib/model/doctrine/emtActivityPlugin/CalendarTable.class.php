@@ -8,13 +8,21 @@
 class CalendarTable extends PluginCalendarTable
 {
 
+  /**
+   * @param Calendar $entity
+   */
+  public static function getByEntity($entity)
+  {
+    return self::getInstance()->createQuery('m')
+                    ->select('m.ical')
+                    ->andWhere('m.entity_id = ?', $entity->id)
+                    ->limit(1)
+                    ->fetchOne();
+  }
+
   public static function getEvents($entity, TimePeriod $period)
   {
-    $calendar = self::getInstance()->createQuery('m')
-            ->select('m.ical')
-            ->andWhere('m.entity_id = ?', $entity->id)
-            ->limit(1)
-            ->fetchOne(); /* @var $calendar Calendar */
+    $calendar = self::getByEntity($entity);
 
     $parser = new qCal_Parser();
     $iCal = $parser->parse($calendar->ical);
@@ -28,7 +36,7 @@ class CalendarTable extends PluginCalendarTable
         foreach ($recurrenceSpecs as $recurrenceSpec) /* @var $recurrenceSpec qCal_DateTime_Recur */
         {
           $recurrences = $recurrenceSpec->getRecurrences($period->from, $period->to);
-          
+
 
           foreach ($recurrences as $recurrence)
           {
@@ -47,7 +55,6 @@ class CalendarTable extends PluginCalendarTable
         {
           $events[] = $event;
         }
-        
       }
     }
     return $events;
