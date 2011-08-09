@@ -23,4 +23,18 @@ class Patient extends BasePatient
     return $this->sfGuardUser->getName();
   }
 
+  public function postSave($event)
+  {
+    parent::postSave($event);
+    $calendar = CalendarTable::getByEntity($this);
+    if($this->calendar_url && !$calendar) {
+      $calendar = new Calendar();
+      $calendar->About = $this;
+      $calendar->Source = $this;
+      $calendar->save();
+    } elseif (!$this->calendar_url && $calendar) {
+      $calendar->delete();
+    }
+  }
+
 }

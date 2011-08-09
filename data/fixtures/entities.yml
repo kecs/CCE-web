@@ -74,6 +74,7 @@ Entity:
         social_security_number: '000 000 004'
         born_at: 'Budapest, 1982. ápr. 12.'
         address: '1111 Budapest Egry József utca 18.'
+        calendar_url: 'https://www.google.com/calendar/ical/eshicf3rdk9tegrlalobunm19k%40group.calendar.google.com/private-e7d518b1a0de9544342daee78b7a8fd5/basic.ics'
   Home_1:
     EntityType: Home
     name: "Mézeskalácsház"
