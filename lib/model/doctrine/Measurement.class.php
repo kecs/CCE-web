@@ -29,7 +29,7 @@ class Measurement extends BaseMeasurement
 
   protected function loadData($data)
   {
-    
+    throw new Exception("loadData not implemented");
   }
   
 
