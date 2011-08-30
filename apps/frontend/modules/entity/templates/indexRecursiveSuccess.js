@@ -115,7 +115,7 @@
         channel.activeRequest.abort();
       }
       channel.activeRequest = jQuery.get($.urlTemplate(
-        '<?php echo url_for("measurement_data", array("type" => ":type", "id" => ":id", "channel" => ":channel")) ?>').generate({
+        '<?php echo url_for("measurement_data", array("type" => ":type", "id" => ":id", "channelName" => ":channel")) ?>').generate({
         id: this.getEntityId(),
         type: this.getEntityType(),
         channel: this.getChannelType()
@@ -338,6 +338,11 @@
     return channel;
   };
 
+  channelMaker.Temperature = function () {
+      var channel = channelMaker.Power();
+      return channel;
+  }
+  
   channelMaker.Activation = function () {
     var channel = channelMaker.Category();
 
@@ -380,7 +385,7 @@
         enableDrag: false,
         readonly: true,
         url: $.urlTemplate(
-          '<?php echo url_for("measurement_data", array("type" => ":type", "id" => ":id", "channel" => ":channel")) ?>').generate({
+          '<?php echo url_for("measurement_data", array("type" => ":type", "id" => ":id", "channelName" => ":channel")) ?>').generate({
           id: channel.getEntityId(),
           type: channel.getEntityType(),
           channel: channel.getChannelType()

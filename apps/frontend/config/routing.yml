@@ -37,14 +37,14 @@ calendar_refresh:
     sf_method:  [post]
 
 measurement_data:
-  url:      /:type/:id/:channel
+  url:      /:type/:id/:channelName
   class:    sfDoctrineRoute
   options:  { model: Entity, type: object }
   param:    { module: entity, action: data }
   requirements:
     type:       \S+
     id:         \d+
-    channel:    \S+
+    channelName:    \S+
     from:       \d+
     to:         \d+
 

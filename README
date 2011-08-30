@@ -33,4 +33,6 @@ Development
 Schema update
 ---------------------------------------
 
+    ./symfony model:diff
     ./symfony model:update --trace
+    

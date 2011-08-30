@@ -19,6 +19,9 @@ abstract class BaseTemperatureForm extends MeasurementForm
     $this->widgetSchema   ['timestamp'] = new sfWidgetFormInputText();
     $this->validatorSchema['timestamp'] = new sfValidatorInteger();
 
+    $this->widgetSchema   ['value'] = new sfWidgetFormInputText();
+    $this->validatorSchema['value'] = new sfValidatorNumber();
+
     $this->widgetSchema->setNameFormat('temperature[%s]');
   }
 

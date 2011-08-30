@@ -15,7 +15,7 @@ class entityActions extends cceActions
 
   public function executeData(sfWebRequest $request)
   {
-    $this->forward404Unless($channel = $request->getParameter('channel'));
+    $this->forward404Unless($channel = $request->getParameter('channelName'));
     $this->forward404Unless($channelTable = Doctrine::getTable($channel));
     $this->forward404Unless($channelTable instanceof MeasurementTable);
     $this->forward404Unless($from = $request->getParameter('from'));

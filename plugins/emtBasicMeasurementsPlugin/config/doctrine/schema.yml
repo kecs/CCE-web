@@ -6,6 +6,8 @@ Temperature:
   inheritance:
     type: concrete
     extends: ScalarTimedMeasurement
+  columns:
+    value: { type: float, notnull: true }    
 OpenClosed:
   inheritance:
     type: concrete

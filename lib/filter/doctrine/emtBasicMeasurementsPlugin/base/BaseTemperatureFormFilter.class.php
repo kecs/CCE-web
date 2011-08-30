@@ -17,6 +17,9 @@ abstract class BaseTemperatureFormFilter extends MeasurementFormFilter
     $this->widgetSchema   ['timestamp'] = new sfWidgetFormFilterInput(array('with_empty' => false));
     $this->validatorSchema['timestamp'] = new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false)));
 
+    $this->widgetSchema   ['value'] = new sfWidgetFormFilterInput(array('with_empty' => false));
+    $this->validatorSchema['value'] = new sfValidatorSchemaFilter('text', new sfValidatorNumber(array('required' => false)));
+
     $this->widgetSchema->setNameFormat('temperature_filters[%s]');
   }
 
@@ -29,6 +32,7 @@ abstract class BaseTemperatureFormFilter extends MeasurementFormFilter
   {
     return array_merge(parent::getFields(), array(
       'timestamp' => 'Number',
+      'value' => 'Number',
     ));
   }
 }
