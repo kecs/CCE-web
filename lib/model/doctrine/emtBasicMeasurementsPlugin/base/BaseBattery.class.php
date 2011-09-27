@@ -17,6 +17,15 @@ abstract class BaseBattery extends ScalarTimedMeasurement
     {
         parent::setTableDefinition();
         $this->setTableName('battery');
+        $this->hasColumn('level', 'enum', null, array(
+             'type' => 'enum',
+             'values' => 
+             array(
+              0 => 'normal',
+              1 => 'low',
+             ),
+             'notnull' => true,
+             ));
     }
 
     public function setUp()

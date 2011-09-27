@@ -10,13 +10,12 @@
  * @author     ##NAME## <##EMAIL##>
  * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
  */
-abstract class PluginPower extends BasePower
-{
-  protected function loadData($data)
-  {
-    var_dump($data);
-    $this->value = $data['data'];
-    $this->timestamp = $data['timestamp'];
-  }
+abstract class PluginPower extends BasePower{
+    protected function loadData($data){
+        //echo "i got the power!";
+
+        $this->value = $data['data'];
+        $this->timestamp = $data['timestamp'];
+    }
 
 }

@@ -18,6 +18,8 @@ Battery:
   inheritance:
     type: concrete
     extends: ScalarTimedMeasurement
+  columns:
+    level: { type: enum, values: [low, normal], notnull: true }
 Humidity:
   inheritance:
     type: concrete
