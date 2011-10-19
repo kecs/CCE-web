@@ -1,0 +1,9 @@
+all:
+  mailer:
+    param:
+      delivery_strategy: realtime
+      transport:
+      class: Swift_SmtpTransport
+      param:
+        host: localhost
+        port: 25

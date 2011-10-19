@@ -5,6 +5,8 @@ homepage:
   url:    /
   param:  { module: entity, action: index }
 
+
+
 datasource:
   url:      /datasource/:id
   class:    sfDoctrineRoute
@@ -13,7 +15,7 @@ datasource:
   requirements:
     entityId:         \d+
     sf_method:        post
-
+    
 config:
   url:      /Home/:id/config/:action.:sf_format
   class:    sfDoctrineRoute

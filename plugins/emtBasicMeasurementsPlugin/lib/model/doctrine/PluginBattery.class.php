@@ -14,5 +14,23 @@ abstract class PluginBattery extends BaseBattery{
     protected function loadData($data){
         $this -> level = $data['data']; // a korabbiak szerint, pl: data:"normal"
         $this -> timestamp = $data['timestamp'];
+        
+        $mailer = sfContext::getInstance()->getMailer();
+        
+        $message = $mailer -> compose(
+            array('user@example.com' => 'mihaly gabor'),
+            "subj@anywhere.com",
+            'hello subj',
+            <<<EOF
+A tapfeszultseg a kritikus szintre esett a(z) {$data["id"]} azonositoju eszkozon.
+EOF
+        );
+        
+        // NO echo("getInstance ".property_exists($this, 'getInstance'));
+        echo("self::getNode ".property_exists(self, 'getNode'));
+        //echo(var_dump(
+        //$node = self::getNode();//);
+        //echo(self :: getNode());
+        //$mailer -> send($message);
     }
 }
