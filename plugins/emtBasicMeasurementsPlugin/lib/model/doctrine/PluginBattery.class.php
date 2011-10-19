@@ -12,7 +12,7 @@
  */
 abstract class PluginBattery extends BaseBattery{
     protected function loadData($data){
-        $this -> level = $data['data']; // a korabbiak szerint, pl: data:"normal"
+        $this -> level = $data['data'];
         $this -> timestamp = $data['timestamp'];
         
         $mailer = sfContext::getInstance()->getMailer();
