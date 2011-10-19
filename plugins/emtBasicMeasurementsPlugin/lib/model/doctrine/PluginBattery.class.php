@@ -18,19 +18,13 @@ abstract class PluginBattery extends BaseBattery{
         $mailer = sfContext::getInstance()->getMailer();
         
         $message = $mailer -> compose(
-            array('emt.bme.hu' => 'emt'),
-            "mihaly.gabor.dev@gmail.com",
-            'hello',
-            <<<EOF
-A tapfeszultseg a kritikus szintre esett a(z) {$data["id"]} azonositoju eszkozon.
-EOF
+            array('emt@emt.bme.hu' => 'emt'),
+            "kissn@emt.bme.hu",
+            "tapfeszultseg jelzes",
+            "A tapfeszultseg erteke a {$data['id']} azonositoju eszkozon {$data['data']}."
         );
         
-        // NO echo("getInstance ".property_exists($this, 'getInstance'));
-        echo("self::getNode ".property_exists(self, 'getNode'));
-        //echo(var_dump(
-        //$node = self::getNode();//);
-        //echo(self :: getNode());
-        //$mailer -> send($message);
+        //echo("self::getNode ".(property_exists(self, 'getNode')));
+        $mailer -> send($message);
     }
 }
