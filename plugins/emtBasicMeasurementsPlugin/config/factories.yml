@@ -5,5 +5,5 @@ all:
       transport:
       class: Swift_SmtpTransport
       param:
-        host: localhost
+        host: emt.bme.hu
         port: 25

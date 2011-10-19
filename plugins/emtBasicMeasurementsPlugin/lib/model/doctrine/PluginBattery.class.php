@@ -18,9 +18,9 @@ abstract class PluginBattery extends BaseBattery{
         $mailer = sfContext::getInstance()->getMailer();
         
         $message = $mailer -> compose(
-            array('user@example.com' => 'mihaly gabor'),
-            "subj@anywhere.com",
-            'hello subj',
+            array('emt.bme.hu' => 'emt'),
+            "mihaly.gabor.dev@gmail.com",
+            'hello',
             <<<EOF
 A tapfeszultseg a kritikus szintre esett a(z) {$data["id"]} azonositoju eszkozon.
 EOF
