@@ -9,3 +9,6 @@ all:
         param:
           host: emt.bme.hu
           port: 25
+          encryption: ~
+          username: ~
+          password: ~
