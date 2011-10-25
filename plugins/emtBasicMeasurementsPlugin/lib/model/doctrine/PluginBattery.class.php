@@ -15,16 +15,24 @@ abstract class PluginBattery extends BaseBattery{
         $this -> level = $data['data'];
         $this -> timestamp = $data['timestamp'];
         
-        $mailer = sfContext::getInstance()->getMailer();
-        
-        $message = $mailer -> compose(
-            array('emt@emt.bme.hu' => 'emt'),
-            "kissn@emt.bme.hu",
-            "tapfeszultseg jelzes",
-            "A tapfeszultseg erteke a {$data['id']} azonositoju eszkozon {$data['data']}."
-        );
-        
-        //echo("self::getNode ".(property_exists(self, 'getNode')));
-        $mailer -> send($message);
+        if($data['data'] === 'low'){
+            $mailer = sfContext :: getInstance() -> getMailer();
+            
+            $containment = array();
+            foreach(Doctrine_Core :: getTable('Entity') -> find($data['id']) -> getNode() -> getAncestors() as $anc){
+                array_push($containment, "{$anc -> getName()}({$anc -> getType()}, {$anc -> getId()})");
+            }
+            
+            $message = $mailer -> compose(
+                array('emt@emt.bme.hu' => 'emt'),
+                "kissn@emt.bme.hu",
+                "tapfeszultseg jelzes",
+                "A tapfeszultseg erteke a "
+                    .implode(' / ', $containment)
+                    ."azonositoju eszkozon alacsony. A csatorna azonositoja {$data['id']}."
+            );
+            
+            $mailer -> send($message);
+        }
     }
 }

@@ -12,8 +12,6 @@
  */
 abstract class PluginLight extends BaseLight{
     protected function loadData($data){
-        echo "let there be light!";
-
         $this->value = $data['data'];
         $this->timestamp = $data['timestamp'];
     }
