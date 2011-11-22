@@ -17,6 +17,9 @@ abstract class BaseBatteryFormFilter extends MeasurementFormFilter
     $this->widgetSchema   ['timestamp'] = new sfWidgetFormFilterInput(array('with_empty' => false));
     $this->validatorSchema['timestamp'] = new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false)));
 
+    $this->widgetSchema   ['level'] = new sfWidgetFormChoice(array('choices' => array('' => '', 'low' => 'low', 'normal' => 'normal')));
+    $this->validatorSchema['level'] = new sfValidatorChoice(array('required' => false, 'choices' => array('low' => 'low', 'normal' => 'normal')));
+
     $this->widgetSchema->setNameFormat('battery_filters[%s]');
   }
 
@@ -29,6 +32,7 @@ abstract class BaseBatteryFormFilter extends MeasurementFormFilter
   {
     return array_merge(parent::getFields(), array(
       'timestamp' => 'Number',
+      'level' => 'Enum',
     ));
   }
 }
