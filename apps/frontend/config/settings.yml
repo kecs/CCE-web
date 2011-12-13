@@ -50,3 +50,9 @@ all:
 
     enabled_modules:
       - sfGuardAuth
+      #NOTABENE: temporary
+      - sfGuardForgotPassword
+      - sfGuardGroup
+      - sfGuardPermission
+      - sfGuardRegister
+      - sfGuardUser
