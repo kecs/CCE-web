@@ -10,7 +10,12 @@
  * @author     ##NAME## <##EMAIL##>
  * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
  */
-abstract class PluginActivity extends BaseActivity
-{
-
+abstract class PluginActivity extends BaseActivity{
+    protected function loadData($data){
+        
+        
+        $this -> type = $data['type'];
+        $this -> start_time = $data['start_time'];
+        $this -> end_time = $data['end_time'];
+    }
 }
