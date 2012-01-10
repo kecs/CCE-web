@@ -11,6 +11,9 @@ Installation
     ./symfony project:autoconfig config/autoconfig.yml
     ./symfony project:permissions
     ./symfony model:update --reload --trace
+    
+    in case of "Unknown method sfGuardUser::checkPassword":
+        find . -name *SfGuard*.php | xargs rm
 
 Upgrade
 =======
