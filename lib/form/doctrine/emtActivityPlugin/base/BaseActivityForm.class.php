@@ -16,8 +16,8 @@ abstract class BaseActivityForm extends MeasurementForm
   {
     parent::setupInheritance();
 
-    $this->widgetSchema   ['type'] = new sfWidgetFormInputText();
-    $this->validatorSchema['type'] = new sfValidatorString(array('max_length' => 255));
+    $this->widgetSchema   ['activity_type_id'] = new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('ActivityType'), 'add_empty' => false));
+    $this->validatorSchema['activity_type_id'] = new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('ActivityType')));
 
     $this->widgetSchema   ['start_time'] = new sfWidgetFormInputText();
     $this->validatorSchema['start_time'] = new sfValidatorInteger();

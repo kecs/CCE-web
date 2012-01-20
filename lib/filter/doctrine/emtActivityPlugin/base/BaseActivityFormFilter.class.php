@@ -14,8 +14,8 @@ abstract class BaseActivityFormFilter extends MeasurementFormFilter
   {
     parent::setupInheritance();
 
-    $this->widgetSchema   ['type'] = new sfWidgetFormFilterInput(array('with_empty' => false));
-    $this->validatorSchema['type'] = new sfValidatorPass(array('required' => false));
+    $this->widgetSchema   ['activity_type_id'] = new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('ActivityType'), 'add_empty' => true));
+    $this->validatorSchema['activity_type_id'] = new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('ActivityType'), 'column' => 'id'));
 
     $this->widgetSchema   ['start_time'] = new sfWidgetFormFilterInput(array('with_empty' => false));
     $this->validatorSchema['start_time'] = new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false)));
@@ -34,7 +34,7 @@ abstract class BaseActivityFormFilter extends MeasurementFormFilter
   public function getFields()
   {
     return array_merge(parent::getFields(), array(
-      'type' => 'Text',
+      'activity_type_id' => 'ForeignKey',
       'start_time' => 'Number',
       'end_time' => 'Number',
     ));

@@ -12,7 +12,8 @@
  */
 abstract class PluginActivity extends BaseActivity{
     protected function loadData($data){
-        
+        // it is never called, lib/model/doctrine/emtActivityPlugin/Activity.class.php
+        //is called instead
         
         $this -> type = $data['type'];
         $this -> start_time = $data['start_time'];
