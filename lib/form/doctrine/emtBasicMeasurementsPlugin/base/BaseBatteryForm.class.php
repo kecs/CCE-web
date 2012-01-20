@@ -19,8 +19,8 @@ abstract class BaseBatteryForm extends MeasurementForm
     $this->widgetSchema   ['timestamp'] = new sfWidgetFormInputText();
     $this->validatorSchema['timestamp'] = new sfValidatorInteger();
 
-    $this->widgetSchema   ['level'] = new sfWidgetFormChoice(array('choices' => array('low' => 'low', 'normal' => 'normal')));
-    $this->validatorSchema['level'] = new sfValidatorChoice(array('choices' => array(0 => 'low', 1 => 'normal')));
+    $this->widgetSchema   ['power_level'] = new sfWidgetFormChoice(array('choices' => array('low' => 'low', 'normal' => 'normal')));
+    $this->validatorSchema['power_level'] = new sfValidatorChoice(array('choices' => array(0 => 'low', 1 => 'normal')));
 
     $this->widgetSchema->setNameFormat('battery[%s]');
   }
