@@ -1,11 +1,21 @@
+ActivityType:
+  columns:
+    id: { type: integer, primary: true, autoincrement: true }
+    type: { type: string(255), notnull: true }
+  relations:
+    
 Activity:
   inheritance:
     type: concrete
     extends: Measurement
   columns:
-    type:           { type: string(255), notnull: true }
+    #type:           { type: string(255), notnull: true }
+    activity_type_id:  { type: integer, notnull: true }
     start_time:     { type: integer(4), notnull: true }
     end_time:       { type: integer(4), notnull: true }
+  relations:
+    ActivityType: { foreignAlias: Activities } 
+
 Calendar:
   inheritance:
     type: concrete
