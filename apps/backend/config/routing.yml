@@ -163,6 +163,15 @@ activity:
     column:               id
     with_wildcard_routes: true
 
+activity_type:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                ActivityType
+    module:               activity_type
+    prefix_path:          /activity_type
+    column:               id
+    with_wildcard_routes: true
+
 patient:
   class: sfDoctrineRouteCollection
   options:
