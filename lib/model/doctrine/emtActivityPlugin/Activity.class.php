@@ -24,6 +24,7 @@ class Activity extends PluginActivity{
             $this -> start_time = $data['start_time'];
             $this -> end_time = $data['end_time'];
         }else{
+            // TODO: forward404...
             //$response = $this -> getResponse();
             //response->setStatusCode(403);
         }
