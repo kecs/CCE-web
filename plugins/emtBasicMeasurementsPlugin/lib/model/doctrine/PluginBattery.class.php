@@ -12,7 +12,7 @@
  */
 abstract class PluginBattery extends BaseBattery{
     protected function loadData($data){
-        $this -> level = $data['data'];
+        $this -> power_level = $data['data'];
         $this -> timestamp = $data['timestamp'];
         
         if($data['data'] === 'low'){
