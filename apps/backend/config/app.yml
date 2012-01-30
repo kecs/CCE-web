@@ -18,6 +18,8 @@ all:
             url:    device
           Entity types:
             url:    entity_type
+          Activity types:
+            url:    activity_type
       Measurements:
         items:
           Activity:

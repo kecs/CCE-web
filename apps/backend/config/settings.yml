@@ -50,6 +50,7 @@ all:
       - sfJqueryTreeDoctrineManager
       #Measurement plugin backend modules
       - activityBackend
+      - activity_type
       - ekgBackend
       - batteryBackend
       - humidityBackend
