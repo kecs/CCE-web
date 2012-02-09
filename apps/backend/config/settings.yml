@@ -67,3 +67,9 @@ all:
       - bedBackend
       - powerBackend
       - forceCellBackend
+      - default
+      
+  .actions:
+    error_404_module:       default
+    error_404_action:       error404
+    
