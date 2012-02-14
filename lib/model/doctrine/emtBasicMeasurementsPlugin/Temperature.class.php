@@ -14,5 +14,6 @@ class Temperature extends PluginTemperature{
     protected function loadData($data){
         //sfContext :: getInstance() -> getLogger() -> info("[*] ".var_dump($data));
         $this -> value = $data['data'];
+        $this -> timestamp = $data['timestamp'];
     }
 }
