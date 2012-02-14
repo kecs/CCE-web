@@ -12,16 +12,30 @@ generator:
     actions_base_class:    sfActions
     css:                   false
 
+    #config:
+      #actions: ~
+      #fields:  ~
+      #list:
+        #batch_actions: {}
+        #object_actions:
+          #_edit: ~
+        #actions: {}
+      #filter:  ~
+      #form:    ~
+      #edit:
+        #title: Edit entity type %%className%%
+      #new:     ~
+    
     config:
       actions: ~
       fields:  ~
       list:
-        batch_actions: {}
+        
         object_actions:
           _edit: ~
-        actions: {}
       filter:  ~
       form:    ~
       edit:
         title: Edit entity type %%className%%
       new:     ~
+
