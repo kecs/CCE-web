@@ -14,8 +14,7 @@ class DataSourceForm extends BaseDataSourceForm
   /**
    * @see EntityForm
    */
-  public function configure()
-  {
+  public function configure(){
     $this->useFields(array(
         'name',
         'comment',
@@ -23,6 +22,18 @@ class DataSourceForm extends BaseDataSourceForm
         'parent',
         'affected_by_list',
     ));
+    
+    
+    $channels = $this -> getObject() -> getActiveChannels();
+    if(! count($channels)){
+        $channels = MeasurementTable::getInstance()->getChannels();
+    }
+    
+
+    $this -> widgetSchema['channel'] = new sfWidgetFormSelect(array(
+        'choices'  => $channels,
+    ));
+
   }
 
   protected function setupInheritance()
