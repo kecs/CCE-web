@@ -11,16 +11,19 @@
  * @author     Adam Banko (Cassus)
  * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
  */
-abstract class BaseHumidity extends ScalarTimedMeasurement
-{
-    public function setTableDefinition()
-    {
-        parent::setTableDefinition();
-        $this->setTableName('humidity');
+abstract class BaseHumidity extends ScalarTimedMeasurement{
+    public function setTableDefinition(){
+        parent :: setTableDefinition();
+        $this -> setTableName('humidity');
+        $this -> hasColumn('value', 'float', null,
+            array(
+                'type' => 'float',
+                'notnull' => true,
+            )
+        );
     }
 
-    public function setUp()
-    {
+    public function setUp(){
         parent::setUp();
         
     }

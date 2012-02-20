@@ -24,6 +24,8 @@ Humidity:
   inheritance:
     type: concrete
     extends: ScalarTimedMeasurement
+  columns:
+    value: { type: float, notnull: true }    
 OnOff:
   inheritance:
     type: concrete
