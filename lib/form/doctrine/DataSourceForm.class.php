@@ -26,13 +26,27 @@ class DataSourceForm extends BaseDataSourceForm
     
     $channels = $this -> getObject() -> getActiveChannels();
     if(! count($channels)){
-        $channels = MeasurementTable::getInstance()->getChannels();
+        $channels = MeasurementTable :: getInstance() -> getChannels();
     }
     
+    $choices = array();
+    foreach($channels as $channel){
+        $choices[$channel] = $channel;
+    }
 
-    $this -> widgetSchema['channel'] = new sfWidgetFormSelect(array(
-        'choices'  => $channels,
-    ));
+    $this -> widgetSchema['channel'] = new sfWidgetFormSelect(
+        array('choices' => $choices)
+        
+        //array('selected' => 3)
+    );
+    
+    $this -> validatorSchema['channel'] = new sfValidatorChoice(
+        array('choices' => $channels)
+    );
+    
+    //$this -> setDefaults(array('choices' => 555));
+    //$this -> setDefaults(array('channel' => 555));
+    //$this->setDefaults(array('choices' => 2));
 
   }
 
