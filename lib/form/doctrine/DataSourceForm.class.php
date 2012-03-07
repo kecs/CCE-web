@@ -24,10 +24,10 @@ class DataSourceForm extends BaseDataSourceForm
     ));
     
     
-    $channels = $this -> getObject() -> getActiveChannels();
-    if(! count($channels)){
+    //$channels = $this -> getObject() -> getActiveChannels();
+    //if(! count($channels)){
         $channels = MeasurementTable :: getInstance() -> getChannels();
-    }
+    //}
     
     $choices = array();
     foreach($channels as $channel){
