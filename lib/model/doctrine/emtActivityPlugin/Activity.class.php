@@ -21,8 +21,11 @@ class Activity extends PluginActivity{
         
         if(count($activity)){
             $this -> activity_type_id = $activity[0] -> getId();
-            $this -> start_time = $data['start_time'];
-            $this -> end_time = $data['end_time'];
+            
+            $start = (int)($data['start_time']);
+            $end = (int)($data['end_time']);
+            $this -> start_time = $start > 1000000000 ? (int)($start / 1000) : $start;
+            $this -> end_time = $end > 1000000000 ? (int)($end / 1000) : $end;
         }else{
             throw new sfError404Exception("Unknown activity type: '{$data['type']}'");
         }
